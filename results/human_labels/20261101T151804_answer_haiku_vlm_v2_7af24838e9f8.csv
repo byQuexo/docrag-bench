@@ -1,0 +1,773 @@
+﻿qid,question,gold_answer,system_answer,cited_passages,human_correct,human_faithful
+eeb08e3c7f04,How many USD dollars will the author spend if the annotators finish annotating all of claims of the authors' proposed dataset? Please write the answer in float format.,453.25,"453.25 USD. The SCITAB dataset has 1,225 total claims [2305.13186v3:p4:c0], and each claim annotation is reimbursed at 0.37 USD [2305.13186v3:p4:c1], so 1,225 × 0.37 = 453.25.","[2305.13186v3:p4:c0]
+Table 1: Comparison of SCITAB to three recent table fact verification datasets: TabFact (Chen et al., 2020), FEVEROUS (Aly et al., 2021), and SEM-TAB-FACTS (Wang et al., 2021). The table presents statistics related to the domain, annotator (AMT represents Amazon Mechanical Turk), maximum reasoning hops, veracity labels percentage of each dataset, the total number of claims, and average claims per table.
+|Statistics|TabFact|FEVEROUS|SEMTABFACTS<br>- -|SCITAB|
+|---|---|---|---|---|
+|Domain<br>Annotator<br>Max. Reasoning Hops<br>Supported<br>Veracity<br>Refuted|Wiki Tables<br>AMT<br>7<br>54%<br>46%|Wiki Tables<br>AMT<br>2<br>56%<br>39%|Scientifc Articles<br>AMT<br>1<br>58%<br>38%|Scientifc Articles<br>Experts<br>11<br>37%<br>34%|
+|NEI<br>Total # of Claims<br>Avg. claims per table|—<br>117,854<br>7.11|5%<br>87,026<br>0.07|4%<br>5,715<br>5.27|29%<br>1,225<br>6.16|
+
+[2305.13186v3:p4:c1]
+In compliance with ethical guidelines, we ensure fair compensation for the annotators. Each claim annotation is reimbursed at a rate of 0.37 USD, resulting in an hourly wage of 11.2 USD2.
+Quality Control and Annotator Agreement. To ensure the quality of the annotation, we apply strict quality control procedures following the guide- lines outlined in the Dataset Statement (Bender and Friedman, 2018). We assign two different anno- tators to perform a two-round annotation for each claim, while two authors review and resolve any identified errors or issues. To measure the inter- annotator agreement, we use Cohen’s Kappa (Co- hen, 1960). Our inter-annotator agreement is 0.630 for the false claim verification task (872 claims in total) and 0.719 for the NEI claim verification task (900 claims in total). Both values indicate substantial agreement among the annotators.
+3 Data Analysis","",""
+796c93a406a1,What is the ebay.in listing for shown in the image?,milk giving black young buffalo 20 liter per day,"The ebay.in listing is for a milk giving black young buffalo, 20 liter per day, listed as used [ecommerceopportunityindia-141124010546-conversion-gate01_95:p4:c0].","[ecommerceopportunityindia-141124010546-conversion-gate01_95:p4:c0]
+www.ebay.in/itm/milk-giving-black-young-buffalo-20-liter-per-day-/150731422974?pt=LH_DefaultDomain_203&hash=item2318 4afcfe#ht_500wt [partly unreadable] ebay.in Welcome! Sign in or register My eBay | Sell | Community | Customer Support My Shopping Cart | My PaisaPay | Site Map CATEGORIES | SHOPS | MOTORS | PH... Everything Else > Miscellaneous FREE SHIPPING! Add to Watch list milk giving black young buffalo 20 liter per day Item condition: Used Time left: 4d 07h (15 Jan, 2012 16:13:17 IST) Bid history: 1 bid Seller info naveenahlawat ( 0 ) Ask a question Save this seller See other items Buffalo err... to Shipping: FREE National Courier - Delivery outside seller's city | See all details Payments: PaisaPay (Credit card, Debit card, Online Bank Transfer) | See payment information Returns: 7 Days, exchange | Read details Ships to: India Print | Report item Make the smart choice! Use PaisaPay, complete your purchase on eBay! PaisaPay sends your money to the seller after you get the item Most items are shipped within 2 days of payment Replacement or Refund if you are not 100% satisfied* Know more | *T&C apply Enlarge","",""
+6ee3ca73ffec,How many appendices appear in the document?,5,"The document lists 5 appendices, Appendix A through Appendix E. [e79deb02a0c0e87511080836c5d4347b:p3:c0]","[e79deb02a0c0e87511080836c5d4347b:p3:c0]
+Executive Summary .............................................................................................................. 1 Mission, Vision and Values .............................................................................................. 1 Strategy Map .............................................................................................................................. 2 Strategic Priorities ................................................................................................................. 3 Appendices
+Appendix A: Strategic Planning Participants ....................................................................... 4 Appendix B: Planning and Monitoring Summary ............................................................... 8 Appendix C: SWOT Analysis ................................................................................................ 10 Appendix D: Alignment ......................................................................................................... 13 Appendix E: Environmental Scan Resources .................................................................... 14","",""
+49493a7582c3,What is NARL stand for in this document?,National Atmospheric Research Laboratory,NARL stands for National Atmospheric Research Laboratory [fdac8d1e9ef56519371df7e6532df27d:p9:c0]. It is located at Gadanki near Tirupati [fdac8d1e9ef56519371df7e6532df27d:p18:c0].,"[fdac8d1e9ef56519371df7e6532df27d:p9:c0]
+Space activities in the country were initiated with the setting up of the Indian National Committee for Space Research (INCOSPAR) in 1962. In the same year, work on Thumba Equatorial Rocket Launching Station (TERLS) near Thiruvananthapuram was also started. Indian Space Research Organisation (ISRO) was established in August 1969. The Government of India constituted the Space Commission and established the Department of Space (DOS) in June 1972 and brought ISRO under DOS in September 1972.
+Space Commission formulates the policies and oversees the implementation of the Indian space programme to promote the development and application of space science and technology for the socio- economic benefit of the country. DOS implements these programmes through, mainly, ISRO, Physical Research Laboratory (PRL), National Atmospheric Research Laboratory (NARL), North Eastern-Space Applications Centre (NE-SAC) and Semi-Conductor Laboratory (SCL). Antrix Corporation, established in 1992 as a government owned company, markets the space products and services.
+The establishment of space systems and their applications are coordinated by the national level committees, namely, INSAT Coordination Committee (ICC), Planning Committee on National Natural Resources Management System (PC-NNRMS) and Advisory Committee for Space Sciences (ADCOS).
+
+[fdac8d1e9ef56519371df7e6532df27d:p18:c0]
+Space Technology
+Space Applications
+INSAT Operational
+Space Sciences Direction & Administration
+and Other Programmes
+Grand Total
+4596.2
+962.32
+1320.95
+300.25
+208.47
+7388.19
+4351.78
+967.63
+1167.75
+297.75
+174.53
+6959.44
+5235.68
+1034.39
+796.1
+288.95
+154.02
+7509.14
+BE 2015-2016 RE 2015-2016 BE 2016-2017
+National Atmospheric Research Laboratory (NARL)
+NARL at Gadanki near Tirupati, an autonomous society supported by DOS, is a centre for atmospheric research with the vision “Developing capability to predict the behaviour of the earth’s atmosphere through observations and modeling”. Towards realising this vision, NARL gives equal emphasis to technology development, observations, data archival, dissemination, assimilation and modeling.
+NARL carries out its research activities under seven major groups, namely, Radar Application and Development Group, Ionospheric and Space Research Group, Atmospheric Structure and Dynamics Group, Cloud and Convective Systems Group, Aerosols, Radiation and Trace Gases Group, Weather and Climate Research Group and Computers and Data Management Group. Apart from these groups, there are also specific projects such as the LIDAR project and Advanced Space-borne Instrument Development project.
+North Eastern-Space Applications Centre (NE-SAC)","",""
+c050d0b76953,What is the total percentage of income > 75k for the LinkedIn platform?,44%,The share of LinkedIn users with income above $75K is 44% [measuringsuccessonfacebooktwitterlinkedin-160317142140_95:p20:c0].,"[measuringsuccessonfacebooktwitterlinkedin-160317142140_95:p20:c0]
+LinkedIn Usage Among Key Demographics GENDER 28% MEN 27% WOMEN AGE 18–29 23% 30–49 31% 50–64 30% 65+ 21% LOCATION 32% URBAN 29% SUBURBAN 14% RURAL INCOME 44% > $75K 31% $50K–$75K 21% $30K–$49K 15% < $30K EDUCATION 50% COLLEGE GRADUATE 22% SOME COLLEGE 12% HIGH SCHOOL OR LESS sproutsocial http://www.pewinternet.org/files/2015/01/PI_SocialMediaUpdate20144.pdf https://press.linkedin.com/about-linkedin @BrianHonigman Figure: infographic titled 'LinkedIn Usage Among Key Demographics' with several charts: - Gender: two donut charts, Men 28%, Women 27%. - Age: horizontal bar chart, 18–29 23%, 30–49 31%, 50–64 30%, 65+ 21%. - Location: icons with Urban 32%, Suburban 29%, Rural 14%. - Income: bar chart of banknote stacks, >$75K 44%, $50K–$75K 31%, $30K–$49K 21%, <$30K 15%. - Education: stacked-book bars, College graduate 50%, Some college 22%, High school or less 12%.","",""
+2c107098a152,Which example notebook does module 3 use to show how to create an interactive map?,WikidataMapMakingWorkshop.ipynb,"Module 3 uses the notebook WikidataMapMakingWorkshop.ipynb, listed under the MODULE 3 section in the folder 'WikidataMapMakingWorkshop'. Module 3 covers creating Wikidata-based off-Wiki maps [52b3137455e7ca4df65021a200aef724:p7:c0].","[52b3137455e7ca4df65021a200aef724:p7:c0]
+Learning objectives Module 1, basic: Understand steps to make basic flat and layered maps in Wikidata, based on geo referenced (?) items and SPARQL queries Module 2, intermediate: Understand steps to embed maps in Wikimedia sites like Wikipedia, Wikimedia Commons and Wikidata Module 3, advanced: Understand steps to create Wikidata-based off-Wiki maps Figure: screenshot of a Wikimedia Commons page titled ""Data:DutchPublicLibraries.map"" (""Map of Dutch public libraries, work in progress, 21-5-2019"") showing a map of the Netherlands, Belgium and nearby Germany with grey clustered markers for public libraries, with place labels including Antwerp, Belgium, Münster, Dortmund, Dusseldorf and Cologne. Figure: map screenshot of a heatmap of Dutch public libraries (with popups) over municipal boundaries on a dark base map of The Netherlands, with a legend listing ""Base map of The Netherlands"", ""Heatmap public libraries (with popups)"" and ""Municipal boundaries"", and a popup reading ""Schoolhoofd public library"" (text partly unreadable), Municipality: Bergen, Province: North Holland. The heatmap colours range from blue (low density) through green and yellow to red (high density). Figure: map screenshot in the background (top left) showing a flat map of the northern Netherlands with place labels including Leeuwarden and Emmen.","",""
+db0734928ebf,Which year this document was most likely published?,2007,"2007. The annual report covers the financial year ended 31st March, 2007 [f86d073b0d735ac873a65d906ba82758:p8:c0], and it refers to the annual custody fee for the financial year 2007-08 as already paid [f86d073b0d735ac873a65d906ba82758:p8:c0].","[f86d073b0d735ac873a65d906ba82758:p8:c0]
+The Company received 13 share related complaints during the financial year ended 31st March, 2007, which translate to 0.003% of the total number of Shareholders of the Company. The said complaints have been resolved.
+Dematerialisation of Shares and Liquidity
+The Shares of the Company are required to be traded in the dematerialised form and are available for trading under both the Depository Systems in India – NSDL and CDSL. The International Securities Identification Number (ISIN) allotted to the Company’s Shares under the Depository System is INE154A01025. The annual custody fee for the financial year 2007-08 has been paid to NSDL and CDSL, the Depositories.
+During the year, 1,48,86,346 Shares of the Company, covered in 6,255 requests and constituting 0.4% of the issued and subscribed Share Capital of the Company, were dematerialised. As on 31st March, 2007, 2,41,09,64,064 Shares of the Company constituting 64.08% of the issued and subscribed Share Capital stand dematerialised. The processing activities with respect to requests received for dematerialisation are generally completed within one working day.","",""
+b341a250dbad,"Compared to October 2018, by how much did the proportion of Democrats who support automatically registering all eligible citizens to vote increase by April 2021?",4%,"Democrats' support for automatically registering all eligible citizens rose by 4 percentage points, from 78% in 2018 to 82% today [PP_2021.04.22_voting-access_REPORT:p9:c0].","[PP_2021.04.22_voting-access_REPORT:p9:c0]
+By contrast, Republicans are considerably more likely than Democrats to strongly favor photo identification requirements for voting (81% strongly favor compared with 30% of Democrats), even as majorities in both partisan groups favor this policy.
+Democrats more likely to strongly favor proposals aimed at making it easier to vote; Republicans more likely to strongly support requiring voters to show photo ID
+% who favor …
+Source: Survey of U.S. adults conducted April 5-11, 2021.
+PEW RESEARCH CENTER
+PEW RESEARCH CENTER
+Over the past few years, there have been some sizable shifts in views of voting policy among Republicans, including in views of automatic voter registration and removing people from registration lists if they have not recently voted or confirmed their registration.
+In 2018, about half of Republicans (49%) said they would somewhat or strongly favor automatically registering all eligible citizens to vote. Today, a much smaller share of Republicans say they support this measure (38%). At the same time, the share of Democrats who support automatic voter registration has ticked up slightly – from 78% in 2018 to 82% today.","",""
+daa1384bf752,What is the average performance gap between the ProgramFC performance and our proposed system in the HOVER dataset? Please write down the answer in float format with 2 decimals.,0.45,"The average gap is 0.45 points (QACheck minus ProgramFC on HOVER 2-, 3-, and 4-hop: +1.40, +0.49, and -0.53) [2310.07609v1:p6:c0].","[2310.07609v1:p6:c0]
+Table 1: Evaluation of F1 scores for different models. The bold text shows the best results for each setting.
+|Model|HOVER<br>FEVEROUS<br>2 -hop 3 -hop 4 -hop|
+|---|---|
+|InstructGPT<br>- Direct<br>- CoT<br>Codex<br>FLAN-T5<br>ProgramFC|56.51<br>51.75<br>49.68<br>60.13<br>**57.20**<br>53.66<br>51.83<br>**61.05**<br>55.57<br>53.42<br>45.59<br>57.85<br>48.27<br>52.11<br>51.13<br>55.16<br>54.27<br>54.18<br>**52.88**<br>59.66|
+|QACheck|55.67<br>**54.67**<br>52.35<br>59.47|","",""
+883d852ff510,"Which subsection does the section ""AUGMENTATION PROCESS IN RAG"" include?","['Iterative Retrieval ', 'Recursive Retrieval ', 'Adaptive Retrieval ']","The section ""AUGMENTATION PROCESS IN RAG"" (Section V) covers three augmentation processes: iterative retrieval [2312.10997v5:p11:c0], recursive retrieval [2312.10997v5:p11:c0], and adaptive retrieval [2312.10997v5:p11:c0]. Section V is described as analyzing these three augmentation processes [2312.10997v5:p2:c1].","[2312.10997v5:p11:c0]
+Fig. 5. In addition to the most common once retrieval, RAG also includes three types of retrieval augmentation processes. (left) Iterative retrieval involves alternating between retrieval and generation, allowing for richer and more targeted context from the knowledge base at each step. (Middle) Recursive retrieval involves gradually refining the user query and breaking down the problem into sub-problems, then continuously solving complex problems through retrieval and generation. (Right) Adaptive retrieval focuses on enabling the RAG system to autonomously determine whether external knowledge retrieval is necessary and when to stop retrieval and generation, often utilizing LLM-generated special tokens for control.
+
+[2312.10997v5:p2:c1]
+advanced RAG, and modular RAG. This review contex- tualizes the broader scope of RAG research within the landscape of LLMs.
+• We identify and discuss the central technologies integral to the RAG process, specifically focusing on the aspects of “Retrieval”, “Generation” and “Augmentation”, and delve into their synergies, elucidating how these com- ponents intricately collaborate to form a cohesive and effective RAG framework.
+• We have summarized the current assessment methods of RAG, covering 26 tasks, nearly 50 datasets, outlining the evaluation objectives and metrics, as well as the current evaluation benchmarks and tools. Additionally, we anticipate future directions for RAG, emphasizing potential enhancements to tackle current challenges.
+The paper unfolds as follows: Section II introduces the main concept and current paradigms of RAG. The following three sections explore core components—“Retrieval”, “Gen- eration” and “Augmentation”, respectively. Section III focuses on optimization methods in retrieval,including indexing, query and embedding optimization. Section IV concentrates on post- retrieval process and LLM fine-tuning in generation. Section V analyzes the three augmentation processes. Section VI focuses on RAG’s downstream tasks and evaluation system. Sec- tion VII mainly discusses the challenges that RAG currently","",""
+56c0e33506fe,"For the users with the safety approval of UL Listed and CSA , what is the second bullet point for safety?",Operate the unit on 100-240V AC only.,"The second safety bullet point is ""Operate the unit on 100-240V AC only."" [91521110100M_4K_UHD_Display_User_Manual_V1.1:p25:c0] It follows the ""3.5.2 Safety"" heading. [91521110100M_4K_UHD_Display_User_Manual_V1.1:p24:c1]","[91521110100M_4K_UHD_Display_User_Manual_V1.1:p25:c0]
+• M270TF-XXX / M320TF-XXX is a DC powered device. Use with the supplied AC adaptor (EM11701F). • Operate the unit on 100-240V AC only. • The nameplate indicating operating voltage, etc. is located on the AC adaptor. • Should any solid object or liquid fall into the cabinet, unplug the unit and have it checked by qualified personnel before operating it any further. • Unplug the unit from the wall outlet if it is not to be used for several days or more. • To disconnect the AC power cord, pull it out by grasping the plug. Never pull the cord itself. • The socket-outlet shall be installed near the equipment and shall be easily accessible.
+3.5.3 Installation
+• Prevent internal heat build-up allowing adequate air circulation。 • Do not place the unit on surfaces (rugs, blankets, etc.) or near materials (curtains, draperies) that may block the ventilation holes. • Do not install the unit near heat sources such as radiators or air ducts, or in a place subject to direct sunlight, excessive dust, mechanical vibration or shock. • Do not place the monitor near equipment which generates magnetism, such as a transformer or high voltage power lines.
+
+[91521110100M_4K_UHD_Display_User_Manual_V1.1:p24:c1]
+Cord (3-core mains lead) / Appliance Connector /Plug with earthing-contacts that
+conforms to the safety regulations of each country if applicable. Use the Power
+Cord (3-core mains lead) / Appliance Connector / Plug conforming to the proper
+ratings (Voltage, Ampere). If you have questions on the use of the above Power
+Cord / Appliance Connector / Plug, please consult a qualified service personnel.
+3.5.1 For the customers in U.S.A. and Canada
+Please use the following power supply cord.
+NOTE
+Grounding reliability can only be achieved when the equipment is connected to an equivalent receptacle marked “Hospital Only” or “Hospital Grade”.
+CAUTION
+This unit is heavy. Make sure to unpack and move the unit with two or more people.
+3.5.2 Safety","",""
+8db39c929d55,"According to table II, which are the datasets that has exactly three methods?","['POPQA', 'MS MARCO', 'SST-2']","Three datasets in Table II list exactly three methods: PopQA [2312.10997v5:p13:c0], MS MARCO [2312.10997v5:p13:c0], and SST-2 [2312.10997v5:p13:c0].","[2312.10997v5:p13:c0]
+TABLE II DOWNSTREAM TASKS AND DATASETS OF RAG
+|Task|Sub Task|Dataset|Method|
+|---|---|---|---|
+||||[26], [30], [34], [42], [45], [50], [52], [59], [64], [82]|
+|QA|Single-hop|Natural Qustion(NQ) [111]|[3], [4], [22], [27], [40], [43], [54], [62], [71], [112]|
+||||[20], [44], [72]|
+||||[13], [30], [34], [45], [50], [64]|
+|||TriviaQA(TQA) [113]|[4], [27], [59], [62], [112]|
+||||[22], [25], [43], [44], [71], [72]|
+|||SQuAD [114]|[20], [23], [30], [32], [45], [69], [112]|
+|||Web Questions(WebQ) [115]|[3], [4], [13], [30], [50], [68]|
+|||PopQA [116]|[7], [25], [67]|
+|||MS MARCO [117]|[4], [40], [52]|
+||Multi-hop|HotpotQA [118]|[23], [26], [31], [34], [47], [51], [61], [82]<br>[7], [14], [22], [27], [59], [62], [69], [71], [91]|
+|||2WikiMultiHopQA [119]|[14], [24], [48], [59], [61], [91]|
+|||MuSiQue [120]|[14], [51], [61], [91]|
+||Long-form QA|ELI5 [121]|[27], [34], [43], [49], [51]|
+|||NarrativeQA(NQA) [122]|[45], [60], [63], [123]|
+|||ASQA [124]|[24], [57]|
+|||QMSum(QM) [125]|[60], [123]|
+||Domain QA|Qasper [126]|[60], [63]|
+|||COVID-QA [127]|[35], [46]|
+|||CMB [128],MMCU Medical [129]|[81]|
+||Multi-Choice QA|QuALITY [130]|[60], [63]|
+|||ARC [131]|[25], [67]|
+|||CommonsenseQA [132]|[58], [66]|
+||Graph QA|GraphQA [84]|[84]|
+|Dialog|Dialog Generation|Wizard of Wikipedia (WoW) [133]|[13], [27], [34], [42]|
+||Personal Dialog|KBP [134]|[74], [135]|
+|||DuleMon [136]|[74]|
+||Task-oriented Dialog|CamRest [137]|[78], [79]|
+||Recommendation|Amazon(Toys,Sport,Beauty) [138]|[39], [40]|
+|IE|Event Argument Extraction|WikiEvent [139]|[13], [27], [37], [42]|
+|||RAMS [140]|[36], [37]|
+||Relation Extraction|T-REx [141],ZsRE [142]|[27], [51]|
+|Reasoning|Commonsense Reasoning|HellaSwag [143]|[20], [66]|
+||CoT Reasoning|CoT Reasoning [144]|[27]|
+||Complex Reasoning|CSQA [145]|[55]|
+|Others|Language Understanding|MMLU [146]|[7], [27], [28], [42], [43], [47], [72]|
+||Language Modeling|WikiText-103 [147]|[5], [29], [64], [71]|
+|||StrategyQA [148]|[14], [24], [48], [51], [55], [58]|
+||Fact Checking/Verifcation|FEVER [149]|[4], [13], [27], [34], [42], [50]|
+|||PubHealth [150]|[25], [67]|
+||Text Generation|Biography [151]|[67]|
+||Text Summarization|WikiASP [152]|[24]|
+|||XSum [153]|[17]|
+||Text Classifcation|VioLens [154]|[19]|
+|||TREC [155]|[33]|
+||Sentiment|SST-2 [156]|[20], [33], [38]|
+||Code Search|CodeSearchNet [157]|[76]|
+||Robustness Evaluation|NoMIRACL [56]|[56]|
+||Math|GSM8K [158]|[73]|
+||Machine Translation|JRC-Acquis [159]|[17]|","",""
+e683575933ee,"List all titles of the charts (for example, Americans and Germans diverge sharply in their views of bilateral relations) in which the results are grouped by political affiliation.","['Republican support for increased defense spending from Europe has waned since 2017', 'Supporters of CDU/CSU more likely to favor increased defense spending', 'Democrats and Republicans are about as likely to name Germany as a top foreign policy partner, but Republicans are keener on Israel', 'Supporters of different parties take alternate stances on U.S.-German cooperation', 'Ideological differences in views of the UN, EU and Russia']","Two charts are grouped by political affiliation: ""Democrats and Republicans are about as likely to name Germany as a top foreign policy partner, but Republicans are keener on Israel"" [PG_2020.03.09_US-Germany_FINAL:p12:c0] and ""Supporters of different parties take alternate stances on U.S.-German cooperation"".","[PG_2020.03.09_US-Germany_FINAL:p12:c0]
+For Germans of differing political stripes, the differences are less dramatic. Supporters of the CDU/CSU, as well as those who support the SPD and Greens, name France as the first or second- most important partner, followed by the U.S.
+When it comes to cooperation with other countries, there is again a divergence between American and German views. Nearly seven-in-ten Americans (69%) say that they want to cooperate more with Germany, compared with only half of Germans who say the same about the U.S. Nonetheless, the percentage of Germans who say they want to cooperate more with the U.S. has increased nine points since 2018. At that time, fully 47% wanted to cooperate less with America.
+Democrats and Republicans are about as likely to name Germany as a top foreign policy partner, but Republicans are keener on Israel
+% who say __ is the most/second-most important partner for American foreign policy
+Source: Pew Research Center survey conducted in the U.S. Sept. 17-22, 2019. Q1a-b. “Americans and Germans Differ in Their Views of Each Other and the World”
+PEW RESEARCH CENTER
+41%
+UK
+Israel
+China
+Canada
+Germany
+Republican/Lean Republican
+35%
+UK
+China
+Canada
+Mexico
+Germany
+Democrat/Lean Democrat
+PEW RESEARCH CENTER","",""
+41622141a6c4,What's the percentage value of west Germany respondents viewing Germany's relationship with the United States is as important as its relationship with Russia?,29%,The exact percentage for West German respondents is not given in the passages. They state only that West Germans are twice as likely to prefer a close relationship with the U.S. than with Russia [PG_2020.03.09_US-Germany_FINAL:p15:c0].,"[PG_2020.03.09_US-Germany_FINAL:p15:c0]
+There are also slight partisan differences in the U.S. on the choice of a close relationship with Russia or Germany. About two-thirds of Democrats (66%) say they prefer close ties with Germany, compared with 57% of Republicans. And 31% of Republicans prefer close relations with Russia compared with 21% among Democrats.
+Among Germans, there is far more support for a close relationship with Russia in the former East than in the former West. Nearly four-in- ten East Germans say that they prefer close ties with Russia, compared with only 23% who say the same about the U.S. And West Germans are twice as likely to prefer a close relationship with the U.S. than with Russia.","",""
+5b493c441795,How many distinct button functions are there during a workout?,5,"There are five distinct button functions during a workout: lock/unlock, mute, end/finish the workout, switch screen, and wake up the voice assistant [honor_watch_gs_pro:p12:c1]. Counting the listed functions literally, 'end workout' and 'finish the workout' are the same action, so they count once.","[honor_watch_gs_pro:p12:c1]
+|Operation|Function|
+|---|---|
+|Press the Up button|Lock/unlock, mute, or end workout|
+|Press the Down button|Switch screen.|
+|Press and hold the Up button|Finish the workout.|
+|Press and hold the Down button|Wake up the voice assistant. Currently,<br>this feature is only available with the<br>HONOR Watch GS Pro.|
+|Swipe up or down on the screen|Switch screen.|
+|Swipe left or right on the screen|Switch screen.|","",""
+0e275f2765eb,"Compared to ViQuAE, how many more QA pairs does SnapNtell have?",71980,"SnapNTell has 71,980 more QA pairs than ViQuAE: 75,680 [SnapNTell:p5:c0] versus 3,700 [SnapNTell:p5:c0].","[SnapNTell:p5:c0]
+Table 1: More detailed comparison with existing knowledge-based VQA datasets. Anonymity means whether the question already contains a knowledge clue related to the entity in question. (* Unclear)
+|Dataset|Categories|UniqueEntity|QAPairs|Images|AverageAnsLength|NumberofImages/Entity|Anonymity|
+|---|---|---|---|---|---|---|---|
+|ViQuAE<br>Encyclopedic VQA (test)|3<br>12|2,400<br>*|3,700<br>5,750|3,300<br>5,750|1.8<br>3.2|*<br>*|✗<br>✗|
+|SnapNTell (Ours)|22|7,568|75,680|75,680|25.7|10|✓|","",""
+7b9fcb2eb7ac,How many website url does the document have?,30,"The document contains 28 website URLs: 23 in the references list [Campaign_038_Introducing_AC_Whitepaper_v5e:p27:c0], plus 1 in the ICP registration section [Campaign_038_Introducing_AC_Whitepaper_v5e:p9:c0], 2 in the Getting Started section [Campaign_038_Introducing_AC_Whitepaper_v5e:p25:c0], and 2 in the About section [Campaign_038_Introducing_AC_Whitepaper_v5e:p28:c0].","[Campaign_038_Introducing_AC_Whitepaper_v5e:p27:c0]
+1.
+https://www.alizila.com/jack-ma-lays-hopes-vision- alibaba-damo-academy/
+2.
+http://www.alizila.com/alibaba-cloud-launches-ai- driven-city-brain-in-malaysia/
+3.
+https://tutorials.hostucan.com/China-public-cloud- market-share-in-2017-alibaba-leads-the-market- continously
+4.
+https://www.techrepublic.com/article/amazon- crushing-iaas-cloud-competition-oracle-gaining- ground-in-saas-and-paas/
+5.
+https://www.theregister.co.uk/2017/06/19/gartner_ confirms_what_we_all_know_aws_and_microsoft_are_ the_cloud_leaders_by_a_fair_way/
+6.
+https://www.alibabacloud.com/press-room/alibaba- cloud-included-in-gartner-magic-quadrant-for-data- management
+7.
+https://www.mckinsey.com/global-themes/asia-pacific/ meet-the-chinese-consumer-of-2020
+8.
+https://www.alibabacloud.com/customers/Cainiao
+9.
+https://www.alibabagroup.com/en/news/press_pdf/ p180504.pdf
+10.
+https://www.globalgap.org/ja/news/Chinese-Retail- Platform-Tmall-Fresh-Alibaba-Group-Starts-Sourcing- Products-from-GLOBALG.A.P.-Certified-Producers/
+11.
+https://www.alibabagroup.com/en/news/ article?news=p171112
+12.
+https://www.bloomberg.com/news/articles/2017-11-08/ alibaba-prepares-a-grand-retail-experiment-for-singles- day
+13.
+http://www.alizila.com/hema-supermarket-offers- shoppers-new-retail-experience/
+14.
+https://www.alibabacloud.com/et/industrial#f9
+15.
+https://www.alibabagroup.com/en/news/ article?news=p170322
+16.
+https://www.alibabacloud.com/about
+17.
+https://www.gartner.com/newsroom/id/3871416
+18.
+https://www.alibabacloud.com/forum/read-71
+19.
+https://www.alibabacloud.com/blog/alibaba-cloud- apsara-receives-grand-prize-from-the-chinese-institute- of-electronics_590156
+20.
+https://www.businesswire.com/news/ home/20150908005493/en/AliCloud-Launches-New- Energy-Efficient-Qiandao-Lake-Data
+21.
+https://www.gartner.com/doc/3875999/magic- quadrant-cloud-infrastructure-service
+22.
+https://www.technologyreview.com/lists/innovators- under-35/2017/
+23.
+https://www.pwc.com/gx/en/industries/consumer- markets/consumer-insights-survey/consumer-trust. html
+
+[Campaign_038_Introducing_AC_Whitepaper_v5e:p9:c0]
+and over 1100 CDN nodes. It received China’s first IDC license in 2013 and now has a 40% share of the local market with a full ecosystem of products to support different aspects of business, providing access to China under one single global account.
+Alibaba Cloud’s channel, ChinaConnect, offers advice and support for international companies spanning a range of industries and across all business units and doing business in China. It covers everything from website hosting, online payments and offline logistics, as well as ICP registration.
+ICP REGISTRATION
+An Internet Content Provider (ICP) license is a state-issued registration number that allows you to host your website on a server inside Mainland China, a rule that is enforced at the hosting level and an essential element for any digital business. The application comes after selecting hosting and domain, but before a site can go live.
+Alibaba Cloud provides ICP support here:
+https://www.alibabacloud.com/icp
+
+[Campaign_038_Introducing_AC_Whitepaper_v5e:p25:c0]
+Alibaba Cloud has established an infrastructure of Free Trials, Tutorials and the Alibaba Cloud Academy to help people get started with our platform, explore different products and gain qualifications.
+FREE TRIAL
+New users of Alibaba Cloud can access a free trial worth up to $300 for individuals or $1,200 for enterprises at www.alibabacloud.com/ campaign/free-trial. You can use this tutorial as a guide on how to sign up to Alibaba Cloud and start exploring our products and services.
+TUTORIALS AND QUICK START VIDEOS
+Once you’re set up with an Alibaba Cloud account, there are a host of tutorials and quick start videos that will guide you through setting up and running quickly with various Alibaba Cloud products.
+Simply head to www.alibabacloud.com/getting-started and you can access 3-Minute Product Videos that give you a quick run through of a range of our products.
+APIS & SDKS
+Alibaba Cloud provides a range of developer resources, including Software Development Kits (SDKs) and APIs, allowing developers to get access to Alibaba Cloud services and manage applications. Alibaba Cloud’s API Gateway provides developers with a complete API hosting service to release your APIs on Alibaba Cloud products.
+
+[Campaign_038_Introducing_AC_Whitepaper_v5e:p28:c0]
+Established in September 2009, Alibaba Cloud is the cloud computing arm of Alibaba Group and develops highly scalable platforms for cloud computing and data management.
+It provides a comprehensive suite of cloud computing services available from www.alibabacloud.com to support participants of Alibaba Group’s online and mobile commerce ecosystem, including sellers and other third-party customers and businesses.
+Alibaba Cloud is a business within Alibaba Group which is listed on the New York Stock Exchange (NYSE) under the symbol BABA.
+www.alibabacloud.com/contact-sales","",""
+6e50e0aff5a3,How many regulations of the HSCA 2008 are breached in all according to this report?,7,"Seven distinct regulations of the Health and Social Care Act 2008 are breached: regulations 9, 10, 11, 12, 13, 17 and 18. Regulation 13 and regulation 17 are each breached in more than one place [379f44022bb27aa53efd5d322c7b57bf:p6:c1] [379f44022bb27aa53efd5d322c7b57bf:p8:c4] [379f44022bb27aa53efd5d322c7b57bf:p13:c1] [379f44022bb27aa53efd5d322c7b57bf:p13:c4]. The report also cites a breach of regulation 18 of the Health and Social Care Act 2008 (Registration) Regulations 2009, which shares the number 18 but is a different set of regulations [379f44022bb27aa53efd5d322c7b57bf:p13:c4].","[379f44022bb27aa53efd5d322c7b57bf:p6:c1]
+Allegations of abuse were not always taken seriously and dealt with appropriately. When a person made an allegation of financial abuse against a family member the registered manager and senior staff suggested the allegation was due to the person’s “paranoia”, or because they may have “a UTI [urinary tract infection]”. This approach to abuse allegations did not safeguard people and was not in line with the service’s safeguarding policy.
+The failure to respond to allegations and record, report and investigate safeguarding incidents was a breach of regulation 13 of the Health and Social Care Act 2008 (Regulated Activities) Regulations 2014.
+Risks to people’s health, safety and wellbeing were recorded in people’s care records. These covered areas such as moving and handling, skin integrity and falls and were not always up to date.
+
+[379f44022bb27aa53efd5d322c7b57bf:p8:c4]
+The failure to ensure people were not unlawfully restrained was a breach of regulation 13 of the Health and Social Care Act 2008 (Regulated Activities) Regulations 2014.
+A lack of understanding and application of the Mental Capacity Act (MCA) 2005 code of practice amongst staff meant it could not be ascertained whether decisions were made in people’s best interests. The MCA provides a legal framework to assess people’s capacity to make certain decisions, at a certain time. When people are assessed as not having the capacity to make a decision, a best interest decision should be made involving people who know the person well and other professionals, where relevant. Care records indicated that three people lacked capacity. However, the support the person required to enable them to make a decision, or information on how a decision was
+
+[379f44022bb27aa53efd5d322c7b57bf:p13:c1]
+The registered manager said “I don’t ask my staff to do anything I wouldn’t do myself”. Their vision for the home was to make it, “homely, with high standards of cleanliness, respect and dignity”. They said they monitored this through training and support given to staff. However, the registered manager was not aware that staff did not always reflect their vision as they provided daily care to people. Staff practice was not monitored effectively. Formal supervisions and observation of staff practice was infrequent and did not enable the registered manager or provider to be informed of areas requiring improvement. Staffing levels during the evening and night had not been monitored in the light of people’s increased needs for support. Reviews of the care people required were not thorough and care records were not audited to ensure the care people received was appropriate.
+The failure to effectively assess, monitor and improve the quality and safety of services was a breach of regulation 17 of the Health and Social Care Act 2008 (Regulated Activities) Regulations 2014.
+
+[379f44022bb27aa53efd5d322c7b57bf:p13:c4]
+The failure to maintain an accurate and complete record of the care provided to each person was a breach of regulation 17 of the Health and Social Care Act 2008 (Regulated Activities) Regulations 2014.
+Providers are required to inform CQC of notifiable incidents that occur in the home. The registered manager had not notified CQC, appropriately when notifiable events had taken place in the home. These included incidents of suspected abuse, and injuries sustained by people living in the home including the development of a grade four pressure injury.
+The failure to notify CQC of notifiable incidents was a breach of regulation 18 of the Health and Social Care Act 2008 (Registration) Regulations 2009.
+People’s feedback was sought and this was acted on. Results from the residents’ and relatives’ survey were positive, with most areas scored as “good” or “excellent”. Two people had made comments which the registered manager had acted on. These were in relation to the meals offered and the time a person was offered a cup of tea. Several relatives had written to express their thanks for the care provided to their family member whilst at the home.","",""
+8f6765e628a6,WHAT IS THE 2nd OBJECTIVE OF REGULATORY EFFICIENCY?,"By December 31,2018, reduce the average time to issue a facility license from 60 days (2015) to 45 days","The 2nd objective under Regulatory Efficiency (Strategic Priority 5, Strategy 5.1.2) is B: by December 31, 2018, reduce the average time to issue a facility license from 60 days (2015) to 45 days. [e79deb02a0c0e87511080836c5d4347b:p6:c5]","[e79deb02a0c0e87511080836c5d4347b:p6:c5]
+|Strategy|Objective|Col3|Col4|
+|---|---|---|---|
+|5.1.2<br>Increase<br>percentage<br>of licensed<br>health<br>professionals|A<br>|A<br>|By December 31, 2018,reduce the average time to issue a license from 65<br>days (2015) to 49 days.|
+|5.1.2<br>Increase<br>percentage<br>of licensed<br>health<br>professionals|B<br>|B<br>|By December 31, 2018,reduce the average time to issue a facility license<br>from 60 days (2015) to 45 days.|
+|5.1.2<br>Increase<br>percentage<br>of licensed<br>health<br>professionals|C  <br> <br>|C  <br> <br>|By December 31, 2018, increase the number of applications approved for<br>health care licensure of military spouses and honorably-discharged veterans<br>from 137 (2015) to 206.|
+|5.1.3 Standardize<br>department<br>regulatory<br>systems.|A|By December 31, 2017, establish enterprise solutions for all department<br>regulatory functions.|By December 31, 2017, establish enterprise solutions for all department<br>regulatory functions.|","",""
+0c97c5978e5e,"In the example image for extending RAR to zero-shot recognition on object detection datasets, how many bounding boxes (bboxes) are there in total?",3,"There are 2 bounding boxes, bbox1 and bbox2, in the Fig. 3 example [RAR:p6:c2]. Fig. 3 shows the extension of the multimodal retriever to zero-shot recognition on object detection datasets.","[RAR:p6:c2]
+Pre-processing for Detection Datasets. In object detection datasets, our methodology for extracting image embeddings eimg is slightly different from the approach discussed previously. As presented in Fig. 3, we apply two additional pre-processing steps: cropping and blurring. Some previous works have proposed similar methods in CLIP like [33,53]. In the object detection dataset, an image typically contains multiple objects of varying sizes. Some objects may dominate a large portion of the image, whereas others occupy minimal space. Accordingly, our object detection procedure begins with cropping the image regions based on proposal bounding box coordinates, subsequently resizing the cropped region to a fixed proportion. Moreover, unlike image classification tasks the objects of interest generally appear large and centrally positioned, the objects within object detection datasets are smaller and their positions more varied. To help the MLLMs understand the objects to be detected, we employ a blurring technique on the non-target areas surrounding the objects of interest. The blurring strategy is designed to direct the MLLMs’ focus toward the relevant objects, thereby facilitating their identification in object detection tasks.
+RAR: Retrieving And Ranking Augmented MLLMs for Visual Recognition 7
+Memory 𝑴
+Image Encoder
+Image Encoder
+Image Encoder
+k-NN
+k-NN
+k-NN
+bbox1
+bbox2","",""
+e7f5a89333aa,What is the average number of words per user used for the experiments in the dataset from which a data sample of a user's Receptiviti score is shown? Please write the answer in float format.,466.43,466.43 [2303.05039v2:p4:c5]. The sample review about a piano hymn book is from the Amazon-music dataset [2303.05039v2:p4:c0].,"[2303.05039v2:p4:c5]
+Table 3 shows the final statistics of the datasets used in our study. We can observe that the Amazon-beauty / Amazon-music dataset has the largest / smallest percentage of interactions. The Personality2018 dataset contains the largest number of items and the smallest number of users. We can see that these datasets differ in domains, number of users, items, and interactions, which facili- tates the study of personality-based recommendation across a wide spectrum of settings.
+|Dataset|Amazon-beauty|Amazon-music|Personality’18|
+|---|---|---|---|
+|# of items|85|8,895|21,776|
+|# of users|991|1,791|678|
+|# of ratings|5,269|28,399|339,000|
+|# of interactions|6.26%|0.18%|2.30%|
+|Avg. words/user|990.48|466.43|-|
+|Avg. words/review|51.01|51.18|-|
+
+[2303.05039v2:p4:c0]
+Table 1: An example of Receptiviti score for a specific, anonymized user.
+|reviewerID|A2SUAM1J3GNN38|
+|---|---|
+|**asin**|0000013714|
+|**reviewerName**|J.McDonald|
+|**vote**|5|
+|**style**|Format:Hardcover|
+|**reviewText**|I bought this for my husband who plays the piano. He is<br>having a wonderful time playing these old hymns. The<br>music is at times hard to read because we think the book<br>was published for singing from more than playing form.<br>Greatepurchase though!|
+|**overall**|5.0|","",""
+f4a8cd4c1b2f,How many children are being read to in the photograph of Page 3?,2,Two children are being read to in the photograph on page 3 [avalaunchpresentationsthatkickasteriskv3copy-150318114804-conversion-gate01_95:p3:c0].,"[avalaunchpresentationsthatkickasteriskv3copy-150318114804-conversion-gate01_95:p3:c0]
+1 YOU DIDN'T TELL A STORY Figure: black-and-white photograph of a woman seated in an upholstered wing chair reading an open book to two children. A girl leans against her on the left and a boy sits on the right, both looking at the book. A carved ornamental finial stands on the right and a framed picture hangs on the back wall. This is a photograph, not a chart, graph, or table, and it contains no numeric data.","",""
+730d7b31d3e8,How many organisations does this report introduce in detail (at least one paragraph) ?,19,"The passages describe at least five organisations in detail: Vikram Sarabhai Space Centre [fdac8d1e9ef56519371df7e6532df27d:p9:c1], Regional Remote Sensing Centres [fdac8d1e9ef56519371df7e6532df27d:p15:c1], Indian Institute of Remote Sensing [fdac8d1e9ef56519371df7e6532df27d:p15:c1], Physical Research Laboratory [fdac8d1e9ef56519371df7e6532df27d:p16:c0], and ISTRAC [fdac8d1e9ef56519371df7e6532df27d:p13:c1]. The context is partial, so this may not be the full count.","[fdac8d1e9ef56519371df7e6532df27d:p9:c1]
+DOS Secretariat and ISRO Headquarters are located at Antariksh Bhavan in Bengaluru. Programme offices at ISRO Headquarters coordinate the programmes like satellite communication and navigation, earth observation, launch vehicle, space science, disaster management support, sponsored research scheme, international cooperation, system reliability and quality, safety, publications and public relations, budget and economic analysis and human resources development. The major establishments of DOS and their area of activities are given in the following paragraphs:
+Vikram Sarabhai Space Centre (VSSC)
+Vikram Sarabhai Space Centre (VSSC) at Thiruvananthapuram is the lead centre of ISRO for the design and development of launch vehicle technology. The Centre pursues active research and development and has developed core competence in various disciplines including aeronautics, avionics, materials, mechanisms, vehicle integration, chemicals, propulsion, space ordnance, structures, space physics and systems reliability. The Centre undertakes crucial responsibilities of design, manufacturing, analysis, development and testing related to the realisation of subsystems for different missions. These are sustained by activities towards programme planning & evaluation, human resources development, technology transfer, industry coordination and safety. Planning, execution and maintenance of all civil works related to the Centre is also carries out. The Centre depends on administrative and auxiliary services for support.
+
+[fdac8d1e9ef56519371df7e6532df27d:p15:c1]
+Regional Remote Sensing Centres (RRSCs) support various remote sensing tasks specific to their regions as well as at the national level. RRSCs are carrying out application projects encompassing all the fields of natural resources like agriculture and soils, water resources, forestry, oceanography, geology, environment and urban planning. Apart from executing application projects, RRSCs are involved in software development, customisation and packaging specific to user requirements and conducting regular training programmes for users in geo-spatial technology, particularly digital image processing and GIS applications.
+Indian Institute of Remote Sensing (IIRS)
+Indian Institute of Remote Sensing at Dehradun is a premier institute with the objective of capacity building in Remote Sensing and Geo-informatics and their applications through education and training programmes at postgraduate level. The Institute also hosts and provides support to the Centre for Space Science and Technology Education in Asia and the Pacific (CSSTE-AP), affiliated to the
+IIRS Main Building
+United Nations. The training and education programmes of the Institute are designed to meet the requirements of various target/user groups, i.e., for professionals at working, middle and supervisory levels, fresh graduates, researchers, academia, and decision makers. The duration of courses ranges from one week to two years.
+
+[fdac8d1e9ef56519371df7e6532df27d:p16:c0]
+The training and education programmes conducted by the Institute are broadly grouped into: Post- graduate Diploma courses, Certificate programmes and Awareness programmes. In addition, IIRS also conducts special programmes for International and National participants on request from different organisations. M.Tech. course of 24 months duration is being conducted in collaboration with Andhra University, Visakhapatnam; and M.Sc. course of 18 months duration being conducted in collaboration with the Faculty of Geo-information Science & Earth Observation (ITC) of the University of Twente (UT), The Netherlands.
+Physical Research Laboratory (PRL)
+Physical Research Laboratory (PRL) at Ahmedabad is an autonomous unit of DOS and a premier research institute engaged in basic research in the areas of Astronomy and Astrophysics, Solar Physics, Planetary Science and Exploration, Space and Atmospheric Sciences, Geosciences, Theoretical Physics, Atomic, Molecular and Optical Physics, and Astro-chemistry.
+
+[fdac8d1e9ef56519371df7e6532df27d:p13:c1]
+In keeping with its long-established TTC support responsibility, ISTRAC has also been mandated to provide space operations support for Deep Space Missions of ISRO, undertake development of radar systems for launch vehicle tracking and meteorological applications, establish and operationalise the ground segment for Indian Regional Navigational Satellite System, provide Search & Rescue and Disaster Management Services and support space based services like telemedicine, VRC and tele- education.
+Master Control Facility (MCF)
+Master Control Facility (MCF) at Hassan in Karnataka and Bhopal in Madhya Pradesh monitors and controls all the Geostationary/Geosynchronous satellites of ISRO, namely, INSAT, GSAT, Kalpana and IRNSS series of satellites. MCF is responsible for Orbit Raising of satellites, In-orbit payload testing, and On-orbit operations all through the life of these satellites. MCF activities include round-the-clock Tracking, Telemetry & Commanding (TT&C) operations, and special operations like Eclipse management, Station-keeping manoeuvres and recovery actions in case of contingencies. MCF interacts with User Agencies for effective utilisation of the satellite payloads and to minimise the service disturbances during special operations.","",""
+b419838bb68f,What is the evaluation metric that has highest number for the method located at the bottom of the model structure figure across the three datasets? Please write down the answer with string format.,H@10,"Assuming the bottom method is NCF + Hard-coded Personality, the metric with the highest number across the three datasets is ""H@10"" (0.977 on Amazon-beauty) [2303.05039v2:p8:c0].","[2303.05039v2:p8:c0]
+|Algorithms|Amazon-beauty|Col3|Col4|Col5|Col6|Col7|Amazon-music|Col9|Col10|Col11|Col12|Col13|Personality2018|Col15|Col16|Col17|Col18|Col19|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|Rating|**H@3**|**H@5**|**H@10**|**N@3**|**N@5**|**N@10**|**H@3**|**H@5**|**H@10**|**N@3**|**N@5**|**N@10**|**H@3**|**H@5**|**H@10**|**N@3**|**N@5**|**N@10**|
+|NCF+Random|0.923|0.965|0.975|0.675|0.605|0.660|0.159|0.224|0.339|0.117|0.143|0.171|0.510|0.628|0.777|0.406|0.454|0.504|
+|NCF+Same|0.918|0.967|0.975|0.683|0.630|0.662|0.160|0.224|0.340|0.122|0.149|0.167|0.511|0.622|0.777|0.403|0.454|0.502|
+|NCF+Most-Salient|0.939|**0.969**|**0.977**|0.714|0.676|0.707|0.156|0.226|0.343|**0.164**|0.145|0.174|0.516|0.631|0.795|0.415|0.463|0.511|
+|NCF+Soft-labeled|0.936|0.965|0.973|0.810|**0.867**|0.831|0.156|0.225|**0.348**|0.113|0.141|0.175|**0.528**|**0.656**|**0.805**|**0.421**|**0.471**|**0.511**|
+|NCF+Hard-Coded|**0.948**|0.961|0.977|**0.849**|0.826|**0.848**|0.175|0.232|0.345|0.147|**0.160**|**0.189**|0.503|0.622|0.758|0.398|0.447|0.498|","",""
+703eb0d81aaf,"How many geographic markers in Greater Houston, Texas?",4,"Greater Houston has 4 geographic markers, numbered 15 through 18 [8dfc21ec151fb9d3578fc32d5c4e5df9:p8:c2].","[8dfc21ec151fb9d3578fc32d5c4e5df9:p8:c2]
+1. Texas Greater San Antonio: 13 and 14 Greater Houston: 15 through 18 Greater Dallas – Fort Worth: 19 through 24
+OR
+MT
+ID
+CA
+NV
+AZ
+UT
+WY
+CO
+WA
+AK
+2 2
+HI
+1 2
+1 2
+2 1
+3 5
+4–11
+13 14–26 27 28 29 31 30","",""
+b904b2b69cd0,Which dataset was introduced in the 'coding time' section of the PPT for training?,Cat vs Dog dataset,The Kaggle Cat vs Dog dataset (25k dog/cat pictures) is the dataset named on the slide that follows the 'Coding time' slide [catvsdogdlpycon15se-150512122612-lva1-app6891_95:p34:c0]. The 'Coding time' slide itself names no dataset [catvsdogdlpycon15se-150512122612-lva1-app6891_95:p33:c0].,"[catvsdogdlpycon15se-150512122612-lva1-app6891_95:p34:c0]
+Kaggle's Cat vs Dog dataset (25k dog/cat pictures) DEEP LEARNING CLASSIFIER ANIMALS PLANTS FOOD TOOLS INSECTS SIMPLE CLASSIFIER CATS DOGS DOG (picture by Dato) Figure: diagram of a machine pipeline illustrating image classification. An image of a dog enters the top funnel and passes into the ""Deep Learning Classifier,"" which has a category panel listing ANIMALS, PLANTS, FOOD, TOOLS, INSECTS. Its output feeds into a ""Simple Classifier,"" which routes items to two outputs labeled CATS and DOGS. The dog image emerges at the DOGS output as a green card labeled DOG. No numeric values are shown.
+
+[catvsdogdlpycon15se-150512122612-lva1-app6891_95:p33:c0]
+Coding time! our ingredients... (picture by Dato) DEEP LEARNING CLASSIFIER ANIMALS PLANTS FOOD TOOLS INSECTS SIMPLE CLASSIFIER DOGS CATS DOG Figure: diagram of a machine pipeline. A dog image enters a funnel at the top left of a box labeled ""DEEP LEARNING CLASSIFIER,"" which has a category panel listing ANIMALS, PLANTS, FOOD, TOOLS, INSECTS. Its output pipe feeds a box labeled ""SIMPLE CLASSIFIER,"" which has two outlets labeled DOGS and CATS. A green card labeled ""DOG"" with a dog icon emerges from the DOGS outlet. No numeric values are shown.","",""
+4fdcc227680f,Which country had the highest percentage of respondents for whom traditional values mean a lot?,Oman,"Oman had the highest share, at 60% saying traditional values mean a lot to them [asdaaburson-marstellerarabyouthsurvey2014-140407100615-phpapp01_95:p11:c0].","[asdaaburson-marstellerarabyouthsurvey2014-140407100615-phpapp01_95:p11:c0]
+asdaa Burson-Marsteller PENN SCHOEN BERLAND arabyouthsurvey.com #arabyouthsurvey ASDA'A Burson-Marsteller ARAB YOUTH SURVEY 2014 VALUES AND BELIEFS BY COUNTRY Traditional values mean a lot to me, and ought to be preserved for generations to come. Traditional values are outdated and belong in the past. I am keen to embrace modern values and beliefs. 2014 Figure: stacked bar chart 'Values and beliefs by country, 2014', each bar split into a red segment (traditional values mean a lot to me, ought to be preserved) on top and an orange segment (traditional values are outdated, keen to embrace modern values) below. Values as red/orange: Among All 54/46; Egypt 57/43; Jordan 51/49; Kuwait 54/46; Qatar 57/43; Saudi Arabia 55/45; UAE 57/43; Oman 60/40; Lebanon 55/45; Bahrain 50/50; Iraq 55/45; Tunisia 54/46; Libya 49/51; Algeria 56/44; Morocco 55/45; Yemen 51/49; Palestine 54/46; GCC 56/44; Non GCC 54/46. Among All / Egypt / Jordan / Kuwait / Qatar / Saudi Arabia / UAE / Oman / Lebanon / Bahrain / Iraq / Tunisia / Libya / Algeria / Morocco / Yemen / Palestine / GCC / Non GCC Base: Rebased to remove ""Don't know"" 11","",""
+0fa2c0b4b0ff,How many pages contain tables?,13,"Six pages contain tables: pages 5, 6, 7, 9, 10, and 12 [936c0e2c2e6c8e0c07c51bfaf7fd0a83:p5:c3] [936c0e2c2e6c8e0c07c51bfaf7fd0a83:p6:c1] [936c0e2c2e6c8e0c07c51bfaf7fd0a83:p7:c1] [936c0e2c2e6c8e0c07c51bfaf7fd0a83:p9:c1] [936c0e2c2e6c8e0c07c51bfaf7fd0a83:p10:c1] [936c0e2c2e6c8e0c07c51bfaf7fd0a83:p12:c1].","[936c0e2c2e6c8e0c07c51bfaf7fd0a83:p5:c3]
+|8 . Planning & Operational Systems - Privacy Table:|Col2|Col3|Col4|Col5|Col6|
+|---|---|---|---|---|---|
+|why the PIA has not been publicly posted or why the PIA has not been conducted.|why the PIA has not been publicly posted or why the PIA has not been conducted.|why the PIA has not been publicly posted or why the PIA has not been conducted.|why the PIA has not been publicly posted or why the PIA has not been conducted.|why the PIA has not been publicly posted or why the PIA has not been conducted.|why the PIA has not been publicly posted or why the PIA has not been conducted.|
+|||||||
+|Column (f): If yes to (e), provide the link(s) to where the current and up to date SORN(s) is published in the federal register. If no to (e), provide|Column (f): If yes to (e), provide the link(s) to where the current and up to date SORN(s) is published in the federal register. If no to (e), provide|Column (f): If yes to (e), provide the link(s) to where the current and up to date SORN(s) is published in the federal register. If no to (e), provide|Column (f): If yes to (e), provide the link(s) to where the current and up to date SORN(s) is published in the federal register. If no to (e), provide|Column (f): If yes to (e), provide the link(s) to where the current and up to date SORN(s) is published in the federal register. If no to (e), provide|Column (f): If yes to (e), provide the link(s) to where the current and up to date SORN(s) is published in the federal register. If no to (e), provide|
+
+[936c0e2c2e6c8e0c07c51bfaf7fd0a83:p6:c1]
+|4 Service Component Reference Model (SRM) Table:<br>.|Col2|Col3|Col4|Col5|Col6|Col7|Col8|Col9|
+|---|---|---|---|---|---|---|---|---|
+|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|
+|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|
+||||||**Service**|**Service**|||
+|**Agency**|**Agency**|**FEA SRM**|**FEA SRM**|**FEA SRM**|**FEA SRM**|**FEA SRM**|**Internal or**|**Internal or**|
+|**Agency**|**Agency**|**FEA SRM**|**FEA SRM**|**FEA SRM**|**Component**|**Component**|**Component**|**BY Funding**|
+|<br>**Component**|<br>**Component**|**Service**|**Service**|**Service**|**Service**|**Service**|**External**|**External**|
+|<br>**Component**|<br>**Component**|**Service**|**Service Type**|**Component (a)**|**Reused Name**|**Reused UPI**|**Reused UPI**|<br>**Percentage (d)**|
+|**Name**|**Description**|**Domain**|**Domain**|**Domain**|**Domain**|**Domain**|**Reuse? (c)**|**Reuse? (c)**|
+
+[936c0e2c2e6c8e0c07c51bfaf7fd0a83:p7:c1]
+|4 Service Component Reference Model (SRM) Table:<br>.|Col2|Col3|Col4|Col5|Col6|Col7|Col8|Col9|
+|---|---|---|---|---|---|---|---|---|
+|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|
+|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|
+||||||**Service**|**Service**|||
+|**Agency**|**Agency**|**FEA SRM**|**FEA SRM**|**FEA SRM**|**FEA SRM**|**FEA SRM**|**Internal or**|**Internal or**|
+|**Agency**|**Agency**|**FEA SRM**|**FEA SRM**|**FEA SRM**|**Component**|**Component**|**Component**|**BY Funding**|
+|<br>**Component**|<br>**Component**|**Service**|**Service**|**Service**|**Service**|**Service**|**External**|**External**|
+|<br>**Component**|<br>**Component**|**Service**|**Service Type**|**Component (a)**|**Reused Name**|**Reused UPI**|**Reused UPI**|<br>**Percentage (d)**|
+|**Name**|**Description**|**Domain**|**Domain**|**Domain**|**Domain**|**Domain**|**Reuse? (c)**|**Reuse? (c)**|
+
+[936c0e2c2e6c8e0c07c51bfaf7fd0a83:p9:c1]
+|4 Service Component Reference Model (SRM) Table:<br>.|Col2|Col3|Col4|Col5|Col6|Col7|Col8|Col9|
+|---|---|---|---|---|---|---|---|---|
+|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|
+|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|
+||||||**Service**|**Service**|||
+|**Agency**|**Agency**|**FEA SRM**|**FEA SRM**|**FEA SRM**|**FEA SRM**|**FEA SRM**|**Internal or**|**Internal or**|
+|**Agency**|**Agency**|**FEA SRM**|**FEA SRM**|**FEA SRM**|**Component**|**Component**|**Component**|**BY Funding**|
+|<br>**Component**|<br>**Component**|**Service**|**Service**|**Service**|**Service**|**Service**|**External**|**External**|
+|<br>**Component**|<br>**Component**|**Service**|**Service Type**|**Component (a)**|**Reused Name**|**Reused UPI**|**Reused UPI**|<br>**Percentage (d)**|
+|**Name**|**Description**|**Domain**|**Domain**|**Domain**|**Domain**|**Domain**|**Reuse? (c)**|**Reuse? (c)**|
+
+[936c0e2c2e6c8e0c07c51bfaf7fd0a83:p10:c1]
+|4 Service Component Reference Model (SRM) Table:<br>.|Col2|Col3|Col4|Col5|Col6|Col7|Col8|Col9|
+|---|---|---|---|---|---|---|---|---|
+|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|
+|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|
+||||||**Service**|**Service**|||
+|**Agency**|**Agency**|**FEA SRM**|**FEA SRM**|**FEA SRM**|**FEA SRM**|**FEA SRM**|**Internal or**|**Internal or**|
+|**Agency**|**Agency**|**FEA SRM**|**FEA SRM**|**FEA SRM**|**Component**|**Component**|**Component**|**BY Funding**|
+|<br>**Component**|<br>**Component**|**Service**|**Service**|**Service**|**Service**|**Service**|**External**|**External**|
+|<br>**Component**|<br>**Component**|**Service**|**Service Type**|**Component (a)**|**Reused Name**|**Reused UPI**|**Reused UPI**|<br>**Percentage (d)**|
+|**Name**|**Description**|**Domain**|**Domain**|**Domain**|**Domain**|**Domain**|**Reuse? (c)**|**Reuse? (c)**|
+
+[936c0e2c2e6c8e0c07c51bfaf7fd0a83:p12:c1]
+|4 Service Component Reference Model (SRM) Table:<br>.|Col2|Col3|Col4|Col5|Col6|Col7|Col8|Col9|
+|---|---|---|---|---|---|---|---|---|
+|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|Identify the service components funded by this major IT investment (e.g., knowledge management, content management, customer relationship management,|
+|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|<br>etc.). Provide this information in the format of the following table.  For detailedguidance regarding components, please refer to http://www.egov.gov.|
+||||||**Service**|**Service**|||
+|**Agency**|**Agency**|**FEA SRM**|**FEA SRM**|**FEA SRM**|**FEA SRM**|**FEA SRM**|**Internal or**|**Internal or**|
+|**Agency**|**Agency**|**FEA SRM**|**FEA SRM**|**FEA SRM**|**Component**|**Component**|**Component**|**BY Funding**|
+|<br>**Component**|<br>**Component**|**Service**|**Service**|**Service**|**Service**|**Service**|**External**|**External**|
+|<br>**Component**|<br>**Component**|**Service**|**Service Type**|**Component (a)**|**Reused Name**|**Reused UPI**|**Reused UPI**|<br>**Percentage (d)**|
+|**Name**|**Description**|**Domain**|**Domain**|**Domain**|**Domain**|**Domain**|**Reuse? (c)**|**Reuse? (c)**|","",""
+8e3780daba01,Does the  information flow from label words to the target position dominate in all layers? Answer 'yes' or 'no' directly.,No,"No. In shallow layers, Spq is low while Swp is high [2305.14160v4:p3:c3], and Spq dominates only in deeper layers [2305.14160v4:p11:c5].","[2305.14160v4:p3:c3]
+Results and Analysis Figure 3 reveals that: (1) in shallow layers, Spq, the significance of the infor- mation flow from label words to targeted positions, is low, while Swp, the information flow from the text part to label words is high; (2) in deep layers, Spq, the importance of information flow from label words to the targeted position becomes the dom- inant one. Notably, Spq and Swp usually surpass Sww, suggesting that interactions involving label words outweigh others.
+Proposed Hypothesis Based on this, we propose the hypothesis that label words function as anchors in the ICL information flow. In shallow layers, label words gather information from demonstra- tion examples to form semantic representations for deeper layers, while in deep layers, the model ex- tracts the information from label words to form the final prediction. Figure 2 gives an illustration for our hypothesis.
+2.2 Shallow Layers: Information Aggregation
+In this part, we validate our hypothesis’ first compo- nent. We assume that the information aggregation in ICL relies on the information flow from the text
+0 10 20 30 40 Layer
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+S
+Swp Spq Sww
+(a) Results on the SST-2 dataset
+
+[2305.14160v4:p11:c5]
+is prominent, while Spq (the information flow from label words to targeted positions) is less signifi- cant. However, in deeper layers, Spq dominates. Importantly, Swp and Spq generally exceed Sww, indicating that interactions involving label words are predominant.
+C Reason for Using Word Loyalty Besides Label Loyalty
+Label loyalty alone may not capture changes in the probability distribution of non-label words or the relative ratio of the probability of the label words within the entire vocabulary. Word loyalty helps address this limitation, which is shown in Table 5.
+D Isolating Different Numbers of Layers
+We study the impact of the numbers of isolated
+layers, as shown in Figures 8a and 8b. It can be found that isolating shallow layers cause a signifi- cant impact, isolating deep layers has a negligible impact on the model, even when the number of isolation layers increases. This further illustrates","",""
+e98cd68517c8,"How many schools from College of Humanities, Arts, and Social Sciences are not individually introduced in detail?",3,"4. The College of Humanities, Arts and Social Sciences has four schools: School of Art, Design and Media, School of Humanities, School of Social Sciences, and Wee Kim Wee School of Communication and Information. The passages only list them and give no detailed introduction to any of them [2024.ug.eprospectus:p2:c0] [2024.ug.eprospectus:p12:c1] [2024.ug.eprospectus:p12:c0].","[2024.ug.eprospectus:p2:c0]
+2 TOP 10 REASONS WHY NTU SMART CAMPUS IS FOR YOU
+4 BE AMONG THE TOP RANKED
+6 NURTURING TALENT FOR THE GOOD
+8 A TRANSFORMATIVE LEARNING JOURNEY
+10 PREMIER SCHOLARS PROGRAMMES
+10 Renaissance Engineering Programme (REP)
+11 NTU-University Scholars Programme (NTU-USP)
+12 CN Yang Scholars Programme (CNYSP)
+13 NTU-NIE Teaching Scholars Programme (TSP)
+14 OTHER PROGRAMMES
+14 Undergraduate Research Experience On Campus (URECA)
+15 Minor Programmes
+16 COLLEGE OF ENGINEERING
+18 School of Computer Science and Engineering
+18 School of Electrical and Electronic Engineering
+18 School of Civil and Environmental Engineering
+19 School of Mechanical and Aerospace Engineering
+19 School of Chemistry, Chemical Engineering and Biotechnology
+19 School of Materials Science and Engineering
+20 COLLEGES OF HUMANITIES, ARTS AND SOCIAL SCIENCES
+22 School of Art, Design and Media
+22 School of Humanities
+23 School of Social Sciences
+23 Wee Kim Wee School of Communication and Information
+24 COLLEGES OF SCIENCE
+26 Asian School of the Environment
+26 School of Biological Sciences
+27 School of Chemistry, Chemical Engineering and Biotechnology
+27 School of Physical and Mathematical Sciences
+28 LEE KONG CHIAN SCHOOL OF MEDICINE
+30 NANYANG BUSINESS SCHOOL
+32 NATIONAL INSTITUTE OF EDUCATION
+34 BE CAREER SAVVY
+
+[2024.ug.eprospectus:p12:c1]
+• School of Art, Design and Media
+• School of Humanities
+• School of Social Sciences
+• Wee Kim Wee School of Communication and Information
+• Nanyang Centre for Public Administration
+• NTU Centre for Contemporary Art Singapore
+• Centre for Liberal Arts and Social Sciences
+
+[2024.ug.eprospectus:p12:c0]
+Cultivate your skills, expand your worldview and flourish as a person at CoHASS. Home to some 6,000 undergraduate and graduate students, we offer well-balanced programmes that foster a culture of excellence, intellectual rigour, global insight and creativity.
+At CoHASS, you can choose from a wide range of Majors, Integrated Second Majors, Second Majors, Minors, and an expansive list of modern languages.","",""
+ea7dd13f46e4,"Of the four missions of Indian Space Program's space mission from 2012 to 2017, which mission includes the launch of least number of satellites?",Space Science & Planetary Exploration Satellites.,"Based on the table, Earth Observation Satellites and Space Science & Planetary Exploration Satellites are tied with the fewest, two each. Earth Observation lists SARAL and RISAT-1 [fdac8d1e9ef56519371df7e6532df27d:p2:c0]. Space Science lists Mars Orbiter (2013-14) and ASTROSAT (2015-16) [fdac8d1e9ef56519371df7e6532df27d:p2:c0]. The Communication & Navigation category has more satellites [fdac8d1e9ef56519371df7e6532df27d:p2:c0].","[fdac8d1e9ef56519371df7e6532df27d:p2:c0]
+|- SPACE MISSIONS 2012 2017|- 17 2016|- RESOURCESAT2A SCATSAT - INSAT3DR|- GSAT9 – GSAT 19E - 11 GSAT - GSAT 18 - 17 GSAT|Col5|- RLV TD - MkIII D1 F05 F09 C38 C37 C36 Commercial HEX-01|
+|---|---|---|---|---|---|
+|_SPACE MISSIONS  2012 -2017_|**2015-16**||GSAT-15<br>IRNSS-1G<br>IRNSS-1F<br>GSAT-6<br>IRNSS-1E|ASTROSAT|**D6**<br>**C28C29**<br>Commercial<br>**C31C32**<br>**C30**<br>**C33**|
+|_SPACE MISSIONS  2012 -2017_|**2014-15**||GSAT-16<br>IRNSS-1B<br>IRNSS-1C<br>IRNSS-1D||**CARE**<br>**Mk III-X**<br>**C24**<br>**C26**<br>**C27**<br>**C23**<br>Commercial|
+|_SPACE MISSIONS  2012 -2017_|**2013-14**||GSAT-14<br>INSAT-3D<br>GSAT-7<br>IRNSS-1A|Mars<br>Orbiter|**C22**<br>**D5**<br>**C25**|
+|_SPACE MISSIONS  2012 -2017_|**2012-13**|SARAL<br>RISAT-1|GSAT-10||**C21**<br>Commercial<br>**C20**<br>**C19**|
+|_SPACE MISSIONS  2012 -2017_|**MISSIONS**|EARTH<br>OBSERVATION<br>SATELLITES|COMMUNICATION &<br>NAVIGATION<br>SATELLITES<br>**Procured Launch Service**|SPACE SCIENCE &<br>PLANETARY<br>EXPLORATION<br>SATELLITES|**PSLV**<br>**GSLV**<br>**GSLV-MkIII**<br>LAUNCH VEHICLES<br>TECHNOLOGY<br>DEVELOPMENT|","",""
+49886db7eccb,"In the 4-shot classification task, how much higher is the top-5 average accuracy of RAR (LLaVA1.5) compared to the top-1 accuracy?",18.9%,"RAR (LLaVA1.5) averages 82.1% top-5 accuracy in the 4-shot setting [RAR:p25:c0], versus 63.2% top-1 accuracy [RAR:p11:c1], so top-5 is 18.9 percentage points higher.","[RAR:p25:c0]
+Table 9: Evaluation on 11 datasets, reporting the top-5 accuracy. We use the 4-shot setting.
+|Method Common Fine-Grained<br>StanfordCars<br>ImageNet Caltech101 RAF-DB SUN397 EuroSAT UCF-101 Flower102 Food101 OxfordPets Average<br>DTD<br>CLIP+KNN 671 976 480 789 915 705 854 965 791 862 876 808<br>. . . . . . . . . . . .<br>∆RAR (LLaVA1 .5) +69 2.7 +97 0.7 +53 5.8 +80 1.1 +92 1.5 +71 1.9 +86 0.2 +96 0.5 +79 0.1 +87 1.7 +88 0.1 +82 1.1<br>6 1 8 2 0 4 8 0 0 5 5 3<br>. . . . . . . . . . . .|Col2|Col3|Col4|Col5|Col6|Col7|Col8|Col9|Col10|Col11|Col12|Col13|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|Method<br>Common<br>Fine-Grained<br>ImageNet<br>Caltech101<br>RAF-DB<br>SUN397<br>EuroSAT<br>DTD<br>UCF-101<br>Flower102<br>StanfordCars<br>Food101<br>OxfordPets<br>**Average**<br>CLIP+KNN<br>67.1<br>97.6<br>48.0<br>78.9<br>91.5<br>70.5<br>85.4<br>96.5<br>79.1<br>86.2<br>87.6<br>80.8<br>RAR (LLaVA1.5)<br>**69.7**<br>**97.7**<br>**53.8**<br>**80.1**<br>**92.5**<br>**71.9**<br>**86.2**<br>**96.5**<br>**79.1**<br>**87.7**<br>**88.1**<br>**82.1**<br>_∆_<br>**+2.6**<br>**+0.1**<br>**+5.8**<br>**+1.2**<br>**+1.0**<br>**+1.4**<br>**+0.8**<br>**+0.0**<br>**+0.0**<br>**+1.5**<br>**+0.5**<br>**+1.3**|67.1|97.6|48.0|78.9|91.5|70.5|96.5|79.1|86.2|||80.8|
+|Method<br>Common<br>Fine-Grained<br>ImageNet<br>Caltech101<br>RAF-DB<br>SUN397<br>EuroSAT<br>DTD<br>UCF-101<br>Flower102<br>StanfordCars<br>Food101<br>OxfordPets<br>**Average**<br>CLIP+KNN<br>67.1<br>97.6<br>48.0<br>78.9<br>91.5<br>70.5<br>85.4<br>96.5<br>79.1<br>86.2<br>87.6<br>80.8<br>RAR (LLaVA1.5)<br>**69.7**<br>**97.7**<br>**53.8**<br>**80.1**<br>**92.5**<br>**71.9**<br>**86.2**<br>**96.5**<br>**79.1**<br>**87.7**<br>**88.1**<br>**82.1**<br>_∆_<br>**+2.6**<br>**+0.1**<br>**+5.8**<br>**+1.2**<br>**+1.0**<br>**+1.4**<br>**+0.8**<br>**+0.0**<br>**+0.0**<br>**+1.5**<br>**+0.5**<br>**+1.3**|**69.7**<br>**97.7**<br>**53.8**<br>**80.1**<br>**92.5**<br>**71.9**<br>**86.2**<br>**96.5**<br>**79.1**<br>**87.7**<br>**88.1**<br>**+2.6**<br>**+0.1**<br>**+5.8**<br>**+1.2**<br>**+1.0**<br>**+1.4**<br>**+0.8**<br>**+0.0**<br>**+0.0**<br>**+1.5**<br>**+0.5**|**97.7**|**97.7**|**97.7**|**97.7**|**97.7**|**97.7**|**97.7**|**87.7**|**87.7**|**88.1**|**82.1**|
+|Method<br>Common<br>Fine-Grained<br>ImageNet<br>Caltech101<br>RAF-DB<br>SUN397<br>EuroSAT<br>DTD<br>UCF-101<br>Flower102<br>StanfordCars<br>Food101<br>OxfordPets<br>**Average**<br>CLIP+KNN<br>67.1<br>97.6<br>48.0<br>78.9<br>91.5<br>70.5<br>85.4<br>96.5<br>79.1<br>86.2<br>87.6<br>80.8<br>RAR (LLaVA1.5)<br>**69.7**<br>**97.7**<br>**53.8**<br>**80.1**<br>**92.5**<br>**71.9**<br>**86.2**<br>**96.5**<br>**79.1**<br>**87.7**<br>**88.1**<br>**82.1**<br>_∆_<br>**+2.6**<br>**+0.1**<br>**+5.8**<br>**+1.2**<br>**+1.0**<br>**+1.4**<br>**+0.8**<br>**+0.0**<br>**+0.0**<br>**+1.5**<br>**+0.5**<br>**+1.3**|**69.7**<br>**97.7**<br>**53.8**<br>**80.1**<br>**92.5**<br>**71.9**<br>**86.2**<br>**96.5**<br>**79.1**<br>**87.7**<br>**88.1**<br>**+2.6**<br>**+0.1**<br>**+5.8**<br>**+1.2**<br>**+1.0**<br>**+1.4**<br>**+0.8**<br>**+0.0**<br>**+0.0**<br>**+1.5**<br>**+0.5**|**97.7**|**97.7**|**97.7**|**97.7**|**97.7**|**97.7**|**97.7**|**87.7**|**87.7**|**88.1**|**+1.3**|
+
+[RAR:p11:c1]
+retrieve predictions based on few-shot examples. The second is the LLaVA model directly fine-tuning with LoRA [16] on few-shot examples. Averaged Results on 11 Datasets. Tab. 2 summarizes the few-shot results on 11 datasets, including 4 fine-grained datasets. Compared to the CLIP initial retrieval results (top row), our RAR (third row) with ranking facilitates a notable increase in classification accuracy. On average, our approach boosts the top-1 accuracy from 57.0 to 63.2 (%) on the 4-shot setting, and from 63.0 to 69.8 (%) on the 8-shot setting. Such improvements illustrate the ranking process of MLLMs effectively uses a nuanced understanding of context and detail to better align predictions with ground truth. Additionally, we observe that LLaVA1.5 + fine- tuning (second row) baseline underperforms in datasets with large vocabularies such as ImageNet due to the constraint of LLMs’ context window. Thanks to the retrieved candidates, our RAR works for datasets with a vast of categories and is a potent tool in refining classification decisions, proving particularly useful in handling the diverse and challenging landscape of image classification tasks.
+4.4 Zero-Shot Object Recognition","",""
+a44d724c5259,The overlap of which two capabilities is considered the danger zone?,"['Hacking Skills', 'Substantive Expertise']",The overlap of Hacking Skills and Substantive Expertise is labeled the Danger Zone [catvsdogdlpycon15se-150512122612-lva1-app6891_95:p11:c0].,"[catvsdogdlpycon15se-150512122612-lva1-app6891_95:p11:c0]
+Hacking Skills Math & Statistics Knowledge Machine Learning Data Science Danger Zone! Traditional Research Substantive Expertise (Drew Connoway 2010) Figure: Venn diagram titled none, with three overlapping circles: red circle ""Hacking Skills"", green circle ""Math & Statistics Knowledge"", and blue circle ""Substantive Expertise"". Overlap regions: Hacking Skills and Math & Statistics Knowledge overlap labeled ""Machine Learning""; Hacking Skills and Substantive Expertise overlap labeled ""Danger Zone!""; Math & Statistics Knowledge and Substantive Expertise overlap labeled ""Traditional Research""; all three overlap in the center labeled ""Data Science"".","",""
+f1ba2a39490d,What company is a plaintiff?,"LIBERTARIAN PARTY OF GEORGIA, INC","The Libertarian Party of Georgia, Inc., a Georgia nonprofit corporation, is a plaintiff. [a4f3ced0696009fec3179f493e4f28c4:p1:c1]","[a4f3ced0696009fec3179f493e4f28c4:p1:c1]
+____________________
+No. 21-13199
+____________________ MARTIN COWEN, an individual, ALLEN BUCKLEY, an individual, AARON GILMER, an individual, JOHN MONDS, an individual, LIBERTARIAN PARTY OF GEORGIA, INC., a Georgia nonprofit corporation,
+Plaintiffs-Appellees-
+Cross Appellants,
+versus
+2 Opinion of the Court 21-13199
+SECRETARY OF STATE OF THE STATE OF GEORGIA,
+Defendant-Appellant-
+Cross Appellee.
+____________________
+Appeals from the United States District Court
+for the Northern District of Georgia D.C. Docket No. 1:17-cv-04660-LMM
+____________________
+Before WILLIAM PRYOR, Chief Judge, GRANT, and HULL, Circuit Judges.
+GRANT, Circuit Judge:
+Georgia law places restrictions on which prospective candidates for elective office can appear on the general election ballot. Over the past 50 years, courts have repeatedly rejected constitutional challenges to these ballot-access laws: first the Supreme Court, then our predecessor circuit, and then this Circuit, twice. See Jenness v. Fortson, 403 U.S. 431 (1971); McCrary v. Poythress, 638 F.2d 1308 (5th Cir. 1981); Cartwright v. Barnes, 304 F.3d 1138 (11th Cir. 2002); Coffield v. Kemp, 599 F.3d 1276 (11th Cir. 2010). The challengers here—the Libertarian Party of Georgia, prospective Libertarian candidates, and affiliated voters—ask us to change course and hold that Georgia’s ballot-access laws
+21-13199 Opinion of the Court 3","",""
+58c1f58e6f50,"In the ""Who are you talking to"" section,  what tips does the author give us?","['line them up', 'observe your clients', 'build a buyer persons']","The author gives three tips: (1) Line them up: list common characteristics of your best clients, such as hobbies, age, and where they like to vacation [csewt7zsecmmbzjufbyx-signature-24d91a254426c21c3079384270e1f138dc43a271cfe15d6d520d68205855b2a3-poli-150306115347-conversion-gate01_95:p39:c0]. (2) Observe your clients: ask how they make complex decisions, how they describe you, what most concerns them about a poor financial decision, and why they think you are their advisor [csewt7zsecmmbzjufbyx-signature-24d91a254426c21c3079384270e1f138dc43a271cfe15d6d520d68205855b2a3-poli-150306115347-conversion-gate01_95:p40:c0]. (3) Build a buyer persona: define your ideal client's objectives, why they do business with you, their quotes, personality, life story, and basic demographics [csewt7zsecmmbzjufbyx-signature-24d91a254426c21c3079384270e1f138dc43a271cfe15d6d520d68205855b2a3-poli-150306115347-conversion-gate01_95:p41:c0].","[csewt7zsecmmbzjufbyx-signature-24d91a254426c21c3079384270e1f138dc43a271cfe15d6d520d68205855b2a3-poli-150306115347-conversion-gate01_95:p39:c0]
+Tip no. 1: Line them up. LIST COMMON CHARACTERISTICS OF YOUR BEST CLIENTS 01 WHAT ARE THEIR HOBBIES? 02 HOW OLD ARE THEY? 03 WHERE DO THEY LIKE TO VACATION?
+
+[csewt7zsecmmbzjufbyx-signature-24d91a254426c21c3079384270e1f138dc43a271cfe15d6d520d68205855b2a3-poli-150306115347-conversion-gate01_95:p40:c0]
+Tip no. 2: Observe your clients. DON'T OUTSOURCE THE IMPORTANT STUFF 01 HOW DO THEY MAKE COMPLEX DECISIONS? 02 HOW DO THEY DESCRIBE YOU TO SOMEONE ELSE? 03 WHAT CONCERNS THEM MOST ABOUT MAKING A POOR FINANCIAL DECISION? 03 WHY DO THEY THINK YOU ARE THEIR ADVISOR?
+
+[csewt7zsecmmbzjufbyx-signature-24d91a254426c21c3079384270e1f138dc43a271cfe15d6d520d68205855b2a3-poli-150306115347-conversion-gate01_95:p41:c0]
+Tip no. 3: Build a buyer persona. DEFINE AN IDEAL CLIENT OBJECTIVES What is this person trying to accomplish and how are we uniquely positioned to help her? WHY WE MATTER Why do they ""really"" do business with us? QUOTES What are some real quotes collected from client interviews? PERSONALITY Are they analytical, spontaneous, enthusiastic, irrational? LIFE STORY Where did they go to school? How many kids? What do they enjoy? BASIC DEMOGRAPHICS What is the age, sex, income, marital status of your ideal client? Figure: decorative graphic of a grey human head silhouette in profile, filled with construction scenes (workers, cranes, scaffolding, and building structures). It is an illustrative image with no data, numbers, or chart values.","",""
+af210151c83f,What are the Online Games native major internet companies and the Telecom Operator name of the second largest Prepaid ARPU in 2008? Please list the answer in list with reverse alphabetical order.,"['XL', 'Kotakgame.com', 'GameQQ.net']","Online Games companies in reverse alphabetical order: Kotakgame.com, GameQQ.net [indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95:p17:c0]. Second largest Prepaid ARPU in 2008 is XL (35) [indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95:p11:c0]. Combined list in reverse alphabetical order: XL, Kotakgame.com, GameQQ.net.","[indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95:p17:c0]
+Native Major Internet Companies UC Web Type | Company E-commerce | Lazada/Zalora/Foodpanda/Lamido E-commerce | Blibli.com Group buying | Disdus.com Group buying | Dealkeren.com Online Travel | Traveloka.com Online Travel | Tiket.com Ticketing e-commerce | Rajakarcis.com Matrimony Portals | Bridestory.com Matrimony Portals | Weddingku.com Online Games | GameQQ.net Online Games | Kotakgame.com Online Music | Melon.co.id Online Music | Langitmusik.com Online News | Detik.com Figure: table 'Native Major Internet Companies' listing type and company pairs: E-commerce (Lazada/Zalora/Foodpanda/Lamido; Blibli.com), Group buying (Disdus.com; Dealkeren.com), Online Travel (Traveloka.com; Tiket.com), Ticketing e-commerce (Rajakarcis.com), Matrimony Portals (Bridestory.com; Weddingku.com), Online Games (GameQQ.net; Kotakgame.com), Online Music (Melon.co.id; Langitmusik.com), Online News (Detik.com).
+
+[indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95:p11:c0]
+ARPU (1) UC Web Exhibit 1: Indonesia Prepaid ARPU (Rp'000) Source: Venture Consulting Analysis Exhibit 2: Prepaid ARPU (Rp'000) Source: Venture Consulting Analysis Initially reduced ARPU was due to massive price war, initiated by the government. CDMA operators managed to force GSM operators to reduce their tariffs. Recently people use data-based IM, VoIP, etc. thus leads to even less usage of SMS and voice call. Tariffs have hit rock-bottom thus there will not be any price war anymore. Less usage on SMS and voice also lead to reduced ARPU. Source: http://www.ventureconsulting.com/assets/indo-mobile-Arpu4.pdf ARPU seems to being declining because of multi-sim usage and availability of cheap mobile phones. With cheap mobile phones, the lower income people can afford to have multiple phones from various operators to benefit from cheap on-net calls. Figure: line chart 'Indonesia Prepaid ARPU (Rp'000)' for 2008 to 2012: 2008 38, 2009 36, 2010 33, 2011 31, 2012 30. Y-axis ranges from 26 to 40. Figure: grouped bar chart 'Prepaid ARPU (Rp'000)' comparing 2008 and 2012 for each operator: Indosat 2008 34.6, 2012 25.4; Telkomsel 2008 53, 2012 34; XL 2008 35, 2012 31; Smartfren 2008 21.5, 2012 14.4. Y-axis ranges from 0 to 60.","",""
+d3073c855930,How many websites are present on the cover page?,2,Two websites are present on the cover page: http://www.access.gpo.gov/congress/house and http://edworkforce.house.gov [e639029d16094ea71d964e2fb953952b:p1:c4],"[e639029d16094ea71d964e2fb953952b:p1:c4]
+Available via the World Wide Web: http://www.access.gpo.gov/congress/house
+or Committee address: http://edworkforce.house.gov
+VerDate 0ct 09 2002 09:18 May 18, 2004 Jkt 000000 PO 00000 Frm 00001 Fmt 5011 Sfmt 5011 H:\DOCS\90141.SF EDUWK PsN: NNIXON
+(II)
+COMMITTEE ON EDUCATION AND THE WORKFORCE
+JOHN A. BOEHNER, Ohio, Chairman
+Thomas E. Petri, Wisconsin, Vice Chairman Cass Ballenger, North Carolina Peter Hoekstra, Michigan Howard P. ‘‘Buck’’ McKeon, California Michael N. Castle, Delaware Sam Johnson, Texas James C. Greenwood, Pennsylvania Charlie Norwood, Georgia Fred Upton, Michigan Vernon J. Ehlers, Michigan Jim DeMint, South Carolina Johnny Isakson, Georgia Judy Biggert, Illinois Todd Russell Platts, Pennsylvania Patrick J. Tiberi, Ohio Ric Keller, Florida Tom Osborne, Nebraska Joe Wilson, South Carolina Tom Cole, Oklahoma Jon C. Porter, Nevada John Kline, Minnesota John R. Carter, Texas Marilyn N. Musgrave, Colorado Marsha Blackburn, Tennessee Phil Gingrey, Georgia Max Burns, Georgia","",""
+9c93ad842286,What is the Email address in this document on the second cover page?,['combshj@unk.edu'],The email address is combshj@unk.edu [698bba535087fa9a7f9009e172a7f763:p3:c1].,"[698bba535087fa9a7f9009e172a7f763:p3:c1]
+Prepared by:
+H. Jason Combs (PI)
+Anne M. Bauer
+John T. Bauer
+501 West 28th Street Kearney, Nebraska 68845
+(308) 236-5137 combshj@unk.edu
+July 2009
+Executive Summary
+The Nebraska State Historical Society (NSHS) contracted with H. Jason Combs (PI), Anne Bauer, and John Bauer to conduct a Nebraska Historic Buildings Survey (NeHBS) of Hamilton County. The survey was conducted in the summer and fall of 2008 to document properties that possess historic or architectural significance. Hamilton County was previously surveyed in 1984—at that time 546 properties were identified and recorded. The properties were resurveyed in addition to the 183 newly identified and documented properties.
+Within the report, when a surveyed building is mentioned, its NeHBS site number follows its reference in the text (for example, HM01-114). These site numbers begin with an abbreviation for the county, HM for Hamilton County, and a two-digit number referring to its location with the county. Each community has a specific number, for instance, Marquette is “06” and rural sites are labeled “00.” The last three numbers refer to the building or structure with the NeHBS inventory.","",""
+633517e11fca,What is Chendu's latest GDP in billion Rmb?,1217.02,"Chengdu's latest GDP in the passages is Rmb1217.02 billion, for 2016 [Sinopolis-Chengdu:p14:c1].","[Sinopolis-Chengdu:p14:c1]
+Chengdu’s importance was rekindled in the early 20th century as – to hear the city’s own take on the tale – the
+“When you’re young, don’t go to Sichuan...”
+A popular saying implying that life in Sichuan is so leisurely that once you go, you’ll never want to leave
+Shu history and culture displayed at the Yongling Museum
+INTRODUCTION
+Billion Rmb
+Billion Rmb
+2014 2015 Primary Industry
+Secondary
+Industry
+Tertiary Industry
+1005.66
+1080.12
+37.32 47.49
+472.35
+523.20
+570.45
+646.33
+Chengdu GDP Chengdu GDP by industry
++8.9%
+2015 2016 2015 2016 2015 2016
+1217.02
++7.9%
++7.7%
++3.9%
++4.0%
++7.2%
++6.7%
++9.0%
++9.0%
+Sichuan spicy crab
+INTRODUCTION
+in 1938, before switching to nearby Chongqing. Chengdu maintained a notable role in the war though, becoming the launch base for Operation Matterhorn: an American- led aerial bombing campaign against the Japanese using bombers that could fly far enough to hit Japanese islands some 2,400 kilometres away.","",""
+f416786369e1,"Looking at the Slide of country overview, by what percent did ""Smartphone Penetration"" grow between 2013 and 2015?",26%,"Smartphone Penetration rose from 24% in 2013 [indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95:p3:c0] to 50% in 2015 [indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95:p3:c0]. That is a 26 percentage point increase, or about 108% relative growth ((50-24)/24).","[indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95:p3:c0]
+Country Overview UC Web Population: (July 2013 est.) 251,160,124 GDP (per capita): (2014) $4,271 Mobile phone penetration: (2014) 278 million (110%) Internet penetration: (2014) 80 million (32%) Facebook: 4th in the world at 70 million users Twitter: 3rd in the world at 30 million users 125 proj. Source: http://www.indonesia-investments.com/news/todays-headlines/social-media-in-indonesia-indonesian-facebook-line-twitter-communities/item2330 http://telsetnews.com/82221/gandeng-samsung-telkomsel-ingin-dongkrak-penetrasi-smartphone/ http://techno.okezone.com/read/2014/05/14/54/984900/di-indonesia-pelanggan-telko-melebihi-jumlah-penduduknya Figure: bar chart 'GDP per capita' (2010–2013): 2010 $3,695; 2011 $3,873; 2012 $4,071; 2013 $4,271. Figure: bar chart 'Smartphone Penetration' (2012–2015): 2012 9%; 2013 24%; 2014 35%; 2015 50%. Figure: bar chart 'Internet Penetration (in millions)' (2011–2015): 2011 47; 2012 55; 2013 68; 2014 85; 2015 125 (projected).","",""
+2bdc861565ce,Which dataset used in this paper was proposed in 2022 and all of its logical reasoning problems are multiple-choice questions with 5 options?,ProofWriter,"AR-LSAT, proposed by Zhong et al. (2022), is the dataset that fits. It is a multiple-choice dataset with 5 options per question [2023.findings-emnlp.248:p6:c3] [2023.findings-emnlp.248:p14:c2].","[2023.findings-emnlp.248:p6:c3]
+AR-LSAT (Zhong et al., 2022) is a dataset that collects all analytical logic reasoning questions from the Law School Admission Test from 1991 to 2016. We use the test set which has 231 multiple- choice questions. AR-LSAT is particularly chal- lenging, with state-of-the-art models only achiev- ing performance slightly better than random guess- ing (Liang et al., 2022; Ribeiro et al., 2023a).
+We convert all examples into a standard multiple- choice format, comprising a problem statement, a question, and potential answers, as shown in Fig- ure 2. We also select 1-5 examples from the train- ing set of each dataset as in-context examples. De- tailed data statistics are in Appendix B.
+
+[2023.findings-emnlp.248:p14:c2]
+Table 5: Statistics of the logical reasoning datasets.
+|Dataset|Reasoning|TestSize|#Opts|
+|---|---|---|---|
+|PrOntoQA|Deductive|500|2|
+|ProofWriter|Deductive|600|3|
+|FOLIO|FOL|204|3|
+|LogicalDeduction|CSP|300|3,5,7|
+|AR-LSAT|AR|230|5|","",""
+a1113612ddc9,What are the three steps of binary fission of a prokaryotic cell?,"['Duplication of chromosome and separation of copies', 'Continued elongation of the cell and movement of copies', 'Division into two daughter cell']",The three steps are: 1) Duplication of the chromosome and separation of copies [chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95:p5:c0]; 2) Continued elongation of the cell and movement of copies [chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95:p5:c0]; 3) Division into two daughter cells [chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95:p5:c0].,"[chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95:p5:c0]
+Plasma membrane Prokaryotic chromosome Cell wall 1 Duplication of chromosome and separation of copies Binary fission of a prokaryotic cell 2 Continued elongation of the cell and movement of copies 3 Division into two daughter cells Copyright © 2009 Pearson Education, Inc. Figure: diagram titled 'Binary fission of a prokaryotic cell' showing four stages of a prokaryotic cell dividing. Labels point to the plasma membrane, the cell wall, and the prokaryotic chromosome (a coiled purple loop). Step 1 (Duplication of chromosome and separation of copies): a single cell with one chromosome becomes a cell with two chromosome copies. Step 2 (Continued elongation of the cell and movement of copies): the elongated cell has a copy of the chromosome at each end, with a constriction forming in the middle. Step 3 (Division into two daughter cells): the cell pinches apart into two daughter cells, each containing one chromosome. No numerical values are shown.","",""
+163057ccb207,How many layers does the neural network mentioned in the PPT for distinguishing faces have?,5,"The face-recognition network in the PPT has three hidden layers, plus an input layer and an output layer [catvsdogdlpycon15se-150512122612-lva1-app6891_95:p30:c0]. Another face-mosaic diagram shows four hidden layers [catvsdogdlpycon15se-150512122612-lva1-app6891_95:p29:c0].","[catvsdogdlpycon15se-150512122612-lva1-app6891_95:p30:c0]
+Deep neural networks learn hierarchical feature representations input layer hidden layer 1 hidden layer 2 hidden layer 3 output layer Figure: diagram of a deep neural network showing a grid of face photographs as the input, feeding into an input layer, three hidden layers, and an output layer with four output nodes. Above the network are three panels of learned feature visualizations: the hidden layer 1 panel shows small edge and stroke-like filters, the hidden layer 2 panel shows face-part detectors such as eyes, noses and mouths, and the hidden layer 3 panel shows whole-face templates. Arrows link each panel to its corresponding hidden layer. No numerical values are shown.
+
+[catvsdogdlpycon15se-150512122612-lva1-app6891_95:p29:c0]
+Text on page: input layer output layer Figure: diagram of a neural network. On the left is a grid of small face photographs (a mosaic of many portraits of different people) with an arrow pointing to the network. The network is drawn as fully connected layers of circular nodes: an input layer of 8 nodes on the left, followed by four hidden layers of roughly 10 nodes each, and an output layer of 4 nodes on the right, each with an outgoing arrow. The input layer is labeled ""input layer"" and the rightmost layer is labeled ""output layer"". No numeric values are shown.","",""
+ed33b779cada,How many chapter authors of this report come from Columbia University?,3,"The visible passages do not confirm a count of chapter authors from Columbia University. The chapter author list is cut off after four names, none from Columbia. The contributor lists show three Columbia University affiliates: Radley Horton [efd88e41c5f2606c57929cac6c1c0605:p14:c1], Patrick Kinney [efd88e41c5f2606c57929cac6c1c0605:p14:c1], and Carlos Perez Garcia-Pando [efd88e41c5f2606c57929cac6c1c0605:p15:c0]. These lists are not labeled as chapter authors, so the answer is uncertain.","[efd88e41c5f2606c57929cac6c1c0605:p14:c1]
+Jada F. Garofalo, Centers for Disease Control and Prevention
+Cristina Gonzalez-Maddux, formerly Institute for Tribal Environmental
+Professionals
+Micah Hahn, Centers for Disease Control and Prevention
+Elaine Hallisey, Centers for Disease Control and Prevention
+Michelle D. Hawkins, National Oceanic and Atmospheric
+Administration
+Mary Hayden, National Center for Atmospheric Research
+Stephanie C. Herring, National Oceanic and Atmospheric
+Administration
+Jeremy Hess, University of Washington
+Radley Horton, Columbia University
+Sonja Hutchins, Centers for Disease Control and Prevention
+Vito Ilacqua, U.S. Environmental Protection Agency
+John Jacobs, National Oceanic and Atmospheric Administration
+Lesley Jantarasami, U.S. Environmental Protection Agency
+Ali S. Khan, University of Nebraska Medical Center
+Patrick Kinney, Columbia University
+Laura Kolb, U.S. Environmental Protection Agency
+Nancy Kelly, U.S. Department of Health and Human Services,
+Substance Abuse and Mental Health Services Administration
+Samar Khoury, Association of Schools and Programs of Public
+Health
+Max Kiefer, Centers for Disease Control and Prevention, National
+Institute for Occupational Safety and Health
+Jessica Kolling, Centers for Disease Control and Prevention
+Kenneth E. Kunkel, Cooperative Institute for Climate and Satellite–
+North Carolina,
+Annette La Greca, University of Miami
+Erin Lipp, The University of Georgia
+Irakli Loladze, Bryan College of Health Sciences
+Jeffrey Luvall, National Aeronautics and Space Administration
+
+[efd88e41c5f2606c57929cac6c1c0605:p15:c0]
+U.S. Global Change Research Program Impacts of Climate Change on Human Health in the United States xiii
+Sandra McLellan, University of Wisconsin-Milwaukee
+David M. Mills, Abt Associates
+Andrew J. Monaghan, National Center for Atmospheric Research
+Stephanie Moore, National Oceanic and Atmospheric Administration
+and University Corporation for Atmospheric Research
+Rachel Morello-Frosch, University of California, Berkeley
+Joshua Morganstein, Uniformed Services University of the Health
+Sciences
+Christopher G. Nolte, U.S. Environmental Protection Agency
+Nicholas H. Ogden, Public Health Agency of Canada
+Hans Paerl, The University of North Carolina at Chapel Hill
+Adalberto A. Pérez de León, U.S. Department of Agriculture
+Carlos Perez Garcia-Pando, Columbia University
+Dale Quattrochi, National Aeronautics and Space Administration
+John Ravenscroft, U.S. Environmental Protection Agency
+Margaret H. Redsteer, U.S. Geological Survey
+Joseph Reser, Griffith University
+Jennifer Runkle, Cooperative Institute for Climate and Satellites–
+North Carolina
+Josef Ruzek, U.S. Department of Veterans Affairs
+Shubhayu Saha, Centers for Disease Control and Prevention
+Marcus C. Sarofim, U.S. Environmental Protection Agency
+Paul J. Schramm, Centers for Disease Control and Prevention
+Carl J. Schreck III, Cooperative Institute for Climate and Satellites–
+North Carolina
+Shulamit Schweitzer, U.S. Department of Health and Human
+Services, Office of the Assistant Secretary for Preparedness and
+Response","",""
+1984c1367c09,"When was the last serious shock recorded in the table? The answer needs to be accurate to the year, month, day, hour, and minute. For example: 1883 Dec.7, 2 8 p.m.","1884 April 5, 10 45 a.m.","1884 Apr.5, 10 45 a.m. (the last entry described as severe, an ""Awfully severe shock"") [fd76bbefe469561966e5387aa709c482:p8:c1]. The year 1884 comes from the table heading [fd76bbefe469561966e5387aa709c482:p8:c0].","[fd76bbefe469561966e5387aa709c482:p8:c1]
+11 Tuesday 4 33 Awoke by awful shaking of bed and furnishings. 12 Wednesday.. 2 50 Severe shock . 13 Thursday 6 56 Slight shock . 16 Sunday 7 25 Sharp, severe shock. 18 Tuesday 9 24 Sharp, severe shock. 18 4 4 p.m. Severe shock . 19 Wednesday.. 10 55 a.m. Frightfulshake;almost as bad as that of Dec. 7. 20 | Thursday 6 11 Slight shock . 26 Wednesday.. 7 9 Do. 26 7 11 Do. 27 Thursday 7 37 Do. 27 11 7 p.m. Very severe shock , shaking house. 29 Saturday 2 12 Slight shock . April 2 Wednesday .. 4 27 a.m. Awoke by frightful shock, causing complete oscillation of whole house. 2 3 33 p,m . Severe shock . 3 Thursday 2 45 a.m. Slight shock. 4 Friday 8 35 Do. 5 Saturday 10 45 Awfully severe shock ; house shook , windows
+rattled . 7 Monday 7 19 p.m. Slight shock .
+>
+... 9
+..
+""
+Since the last date given in the above table the phenomena have con
+tinued much in the same manner, without either sensibly increasing or decreasing in intensity. For the purposes of this paper the above facts,
+
+[fd76bbefe469561966e5387aa709c482:p8:c0]
+1883 . Dec. 7 Friday 2 8 p.m. Sudden and terrific thud, as if from blasting operations. 7 2 22 Severeshake, accompanied with rumbling noise. 18 Tuesday 1 15 a.m. Very sharp shock, shaking house ; not so severe as on the 7th inst. 19 Wednesday.. 8 30 Slight shock . 20 Thursday 8 30 Sudden, sharp shock . 20 11 15 Very sharp shock . 21 Friday 4 32 p.m. Slight shock, accompanied by rumbling noise. 1884 . Jan. 10 Thursday 7 20 Slight shock . 12 Saturday 8 14 a.m. Very sharp, severe shock; proper shake of house. 22 Tuesday 4 55 Awoke by sudden rattlingof jugs in wash -basin. 29 Feb. 10 Sunday 9 7 p.m. Slight shock . 11 7 Severe, startling shocks. 14 Thursday 7 17 a.m. Sudden rattling of bedroom ware. Mar. 2 Sunday 4 20 Awoke by alarming shake of house ; thought
+the walls were giving way. 2 10 0 Slight shock . 6 Thursday 5 56 Sudden ,sharp shock . 6 8 10 Severe shock . 7 Friday 8 30 House shook .","",""
+8458038e4a80,"In the slide that includes Mobile Internet Demographics and Trends, how many colors are there in the chart in the top right corner?",7,"The passages do not state which chart is in the top right corner, so I can't identify it with certainty. On this slide, the 'Mobile Internet users demographics' stacked bar chart has four legend categories, so four colors [indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95:p34:c0]. The occupation donut chart has seven legend categories [indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95:p34:c0].","[indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95:p34:c0]
+Mobile Internet Demographics and Trends UCWeb Mobile Internet users demographics What do people do on mobile Internet? Mobile Users Avg. Internet Users Avg. Source: APJII, Profile Internet Indonesia, Desember 2012 Source: InMobi, Mobile Media Consumption-Indonesia 1/4TH OF MOBILE INTERNET USERS IN INDONESIA ARE BUSINESSMEN OR ENTREPRENEUR GAMES/APPS ARE THE MOST DOWNLOADED MOBILE CONTENT Source: MMA & VSERV.mobi, The Mobile Internet Consumer Indonesia, 2013 Source: MMA & VSERV.mobi, The Mobile Internet Consumer Indonesia, 2013 Figure: stacked bar chart 'Mobile Internet users demographics' (age groups). Mobile Users Avg.: <18 21%, 18-24 32%, 25-35 33%, >35 14%. Internet Users Avg.: <18 20.80%, 18-24 11.60%, 25-35 26%, >35 41.60%. Legend: >35, 25-35, 18-24, < 18. Figure: bar chart 'What do people do on mobile Internet?' (phone graphic with activities): Social Media 24%, Entertainment 20%, General Info 16%, E-Mail 14%, Games 12%, Shopping 8%, Local Search 6%. Figure: donut chart of mobile internet users by occupation: Full-time job 39%, Business 16%, Entrepreneur 9%, Part-time job 12%, Student 16%, Housewives 4%, Retired 4%. Legend: Full-time job, Business, Entrepreneur, Part-time job, Student, Housewives, Retired. Figure: bar chart 'Games/Apps are the most downloaded mobile content': Game/App 70%, Video 49%, Music 44%, Themes 33%. Legend: Game/App, Video, Music, Themes.","",""
+8e0bc85eb532,"In Q3 2015, what is the approximate range of cost in 1 day (dollar) of a mobile incentive platform in Vietnam for installing? Answer with a list of two number for boundary, for example [3000, 4000]","[1500, 8000]","[1500, 8000] (estimated: about 5-20k installs a day [reportq32015-151009093138-lva1-app6891_95:p27:c0] at about $0.3-0.4 per incentive install [reportq32015-151009093138-lva1-app6891_95:p26:c0])","[reportq32015-151009093138-lva1-app6891_95:p27:c0]
+STATE OF MOBILE ADS IN VIETNAM Trends in Vietnam Incentive reward platform Mobile incentive reward platform boom in Vietnam with many names entering the market, each player providing approximately 5 - 20k installs a day. Mobile video ads There are millions of online video views on the smartphone everyday in Vietnam. Therefore increased demand and rapid adoption of mobile video-ad units. Appota Inc. Vietnam Mobile Apps Report Q3 2015 Slide 27 Figure: two icons, not data charts. A blue circle with a coin-stack icon sits beside ""Incentive reward platform""; a dark grey circle with a play-button icon sits beside ""Mobile video ads"". No numbers are shown beyond the text above.
+
+[reportq32015-151009093138-lva1-app6891_95:p26:c0]
+STATE OF MOBILE ADS IN VIETNAM Most popular ad-types and average costs Cost pr. click Cost pr. install Cost pr. mile 0,01 – 0,03 $ 0,3 – 0,4 $ incentive 0,5 – 1 $ Non- incentive 1 – 2 $ thousand of impressions Appota Inc. Vietnam Mobile Apps Report Q3 2015 Source: Adsota Slide 26 Figure: three phone icon illustrations with associated average costs. Cost pr. click (touch/hand icon): 0,01 – 0,03 $. Cost pr. install (download icon): 0,3 – 0,4 $ incentive; 0,5 – 1 $ Non-incentive. Cost pr. mile (eye icon): 1 – 2 $ per thousand of impressions.","",""
+8501336a2cb8,Which group accounts for the second largest share in terms of religious demographics in Slide 4 in 2014?,Christians,"The religious demographics data is for 2010, not 2014. In 2010, Muslims were the largest group at 87.18%, and Christians were the second largest at 6.96% [indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95:p4:c1].","[indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95:p4:c1]
+Religious Demographics Source: http://sp2010.bps.go.id/index.php/site/tabel?tid=321&wid=0 Composition Muslims Christians Catholics Buddhist Hindus Others % total of population 2010 207,176,162 (87.18%) 16,528,513 (6.96%) 6,907,873 (2.91%) 4,012,116 (1.69%) 1,703,254 (0.71%) 1,313,408 (0.55%) Figure: table 'Religious Demographics' showing population and share of total population in 2010: Muslims 207,176,162 (87.18%); Christians 16,528,513 (6.96%); Catholics 6,907,873 (2.91%); Buddhist 4,012,116 (1.69%); Hindus 1,703,254 (0.71%); Others 1,313,408 (0.55%).","",""
+d48d28c4bf03,Which programme by coursework with disciplinary content allows to have the maximum of 3 years full-time duration? Write down the answer with alphabetical order.,"['MA (Humanities Education)', 'MSc (Exercise & Sport Studies)', 'MSc (Life Science)', 'MSc (Mathematics for Education)']",MA (Humanities Education) [GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021:p5:c0]; MSc (Exercise & Sport Studies) [GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021:p5:c0]; MSc (Life Sciences) [GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021:p5:c1]; MSc (Mathematics for Educators) [GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021:p5:c0],"[GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021:p5:c0]
+Programme Full-Time Part-Time Mode
+MA (Applied Linguistics) 1 - 2 years 2 - 4 years By Coursework or By Coursework with Dissertation
+MA (Humanities Education) 1 – 3 years 2 - 4 years By Coursework or By Coursework with Dissertation
+MA (Counselling & Guidance) 1.5 - 2 years 3 - 4 years By Coursework
+MA (Leadership & Educational
+Change) – Joint programme
+with the Teachers College,
+Columbia University
+1 year - By Coursework
+MA (Applied Psychology) 2 - 3 years 2 - 4 years By Coursework or By Coursework with Dissertation
+MA (Instructional Design &
+Technology) 1 – 2 years 2 - 4 years By Coursework or By Coursework with Dissertation
+MA (Educational Management) 1 – 2 years 2 - 4 years By Coursework or By Coursework with Dissertation
+MSc (Exercise & Sport Studies) 1 – 3 years 2 - 4 years By Coursework or By Coursework with Dissertation
+MSc (Mathematics for
+Educators)
+MSc (Science of Learning)
+MTeach
+1 – 3 years
+1 – 2 years
+1 – 2 years
+2 - 4 years
+2 - 4 years
+2 - 4 years
+By Coursework
+By Coursework or By Coursework with Dissertation
+By Coursework or By Coursework with Dissertation
+
+[GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021:p5:c1]
+MSc (Life Sciences) 1 – 3 years 2 - 4 years By Coursework or By Coursework with Dissertation
+Master of Education (MEd) 1 - 2 years 2 - 4 years By Coursework or By Coursework with Dissertation
+MA (Teaching Chinese as an
+International Language) 1 - 2 years 2 - 4 years By Coursework
+MA in Professional Education (Training & Development)
+1 - 2 years 2 - 4 years By Coursework","",""
+be6b288d18d7,What is the average session duration for desktop?,00:04:14,The average session duration for desktop is 00:04:14. [amb-siteaudits-ds15-150204174043-conversion-gate01_95:p14:c0],"[amb-siteaudits-ds15-150204174043-conversion-gate01_95:p14:c0]
+Mastering Strategic SEO Audits Figure: table 'Device Category' from an analytics report, with column groups Acquisition (Sessions, % New Sessions, New Users) and Behavior (Bounce Rate, Pages / Session, Avg. Session Duration). Totals row: Sessions 19,149,315 (% of Total: 100.00% (19,149,315)); % New Sessions 54.86% (Avg for View: 54.83% (0.06%)); New Users 10,505,727 (% of Total: 100.06% (10,499,415)); Bounce Rate 38.10% (Avg for View: 38.10% (0.00%)); Pages / Session 5.90 (Avg for View: 5.90 (0.00%)); Avg. Session Duration 00:03:51 (Avg for View: 00:03:51 (0.00%)). Rows: desktop: Sessions 15,390,335 (80.37%), % New Sessions 55.28%, New Users 8,507,262 (80.98%), Bounce Rate 33.01%, Pages / Session 6.50, Avg. Session Duration 00:04:14. mobile: Sessions 2,872,777 (15.00%), % New Sessions 50.55%, New Users 1,452,105 (13.82%), Bounce Rate 60.26%, Pages / Session 3.19, Avg. Session Duration 00:02:04. tablet: Sessions 886,203 (4.63%), % New Sessions 61.65%, New Users 546,360 (5.20%), Bounce Rate 54.56%, Pages / Session 4.27, Avg. Session Duration 00:02:53. digitalsummit PHOENIX #DS15 @AlanBleiweiss","",""

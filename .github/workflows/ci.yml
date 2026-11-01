@@ -43,6 +43,10 @@ jobs:
       # their own job below, where a Qdrant service exists.
       - name: Unit tests
         run: uv run pytest -m "not e2e" -q
+      # Execute the lesson SOLUTION notebooks so they can't rot when the code
+      # changes. The exercise notebooks are incomplete on purpose and not run.
+      - name: Lesson notebooks
+        run: uv run pytest --nbmake notebooks/lessons/solutions -q
 
   e2e:
     runs-on: ubuntu-latest

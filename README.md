@@ -232,8 +232,9 @@ read, i.e. answerable and not abstained):
 |---|---|---|---|---|---|---|---|---|---|
 | hybrid + rerank + LLM | 0.398 | 0.301 | 0.272 | 0.105 | 0.282 | 0.929 | 0.694 | 0.829 | 0.668 / 0.677 |
 | + OCR (RapidOCR) | 0.471 | 0.387 | 0.390 | 0.220 | 0.531 | 0.905 | 0.577 | 0.843 | 0.731 / 0.740 |
-| + OCR (vision LLM) | 0.508 | 0.408 | 0.390 | 0.309 | 0.653 | **0.881** | 0.529 | **0.885** | 0.755 / 0.762 |
-| **+ prompt `answer_v2`, 10 chunks** | **0.540** | **0.498** | **0.566** | **0.357** | **0.667** | 0.780 | 0.426 | 0.851 | 0.764 / 0.764 |
+| + OCR (vision LLM) | 0.508 | 0.408 | 0.390 | 0.309 | 0.653 | 0.881 | 0.529 | 0.885 | 0.755 / 0.762 |
+| + prompt `answer_v2`, 10 chunks | 0.540 | **0.498** | **0.566** | **0.357** | **0.667** | 0.780 | 0.426 | 0.851 | 0.764 / 0.764 |
+| **+ prompt `answer_v3`, 10 chunks (headline)** | **0.544** | 0.445 | 0.500 | 0.328 | 0.657 | **0.929** | 0.520 | **0.891** | **0.783 / 0.790** |
 
 The vision LLM beats local OCR mainly where **charts** are involved (chart/figure
 slice correct 0.220 → 0.309, image-only documents 0.531 → 0.653): it binds numbers
@@ -258,12 +259,19 @@ the winner ran on test:
   p = 0.0001). 11 of the 18 lost answers *do* say the premise is false ("the cartoon
   has no elephant") but then add a related fact instead of answering exactly
   "Not answerable"; the rest answer a near-miss (a 2013 survey for a 2020 question).
-  A follow-up prompt targets exactly this (`answer_v3`: "answer exactly what was
-  asked; if the premise is false, answer exactly *Not answerable*"). On dev it wins
-  the unanswerable questions back (0.797 → 0.878, 6 gained, 0 lost, p = 0.031, now
-  above the baseline's 0.824) at a small, non-significant cost on answerable ones
-  (0.434 → 0.415). Overall it ties `answer_v2` on dev (0.514 vs 0.512) with a better
-  balance; it has not been run on test yet.
+- **`answer_v3`** targets exactly this: "answer exactly what was asked; if the
+  premise is false, answer exactly *Not answerable*". It was designed from the
+  **dev** errors (the prompt file predates the `answer_v2` test results) and chosen
+  on dev (unanswerable 0.797 → 0.878, p = 0.031). On test it ties `answer_v2`
+  overall (0.544 vs 0.540, 28 gained, 25 lost, p = 0.78) but with the opposite
+  trade-off: unanswerable 0.780 → **0.929** (25 gained, 0 lost) and answerable
+  0.469 → 0.430 (3 gained, 25 lost), tables hit hardest (0.566 → 0.500). Against the
+  vision-LLM baseline it wins clearly (45 gained, 19 lost, p = 0.002).
+- **Why `answer_v3` is the headline:** equal overall correctness, but it abstains
+  when the question doesn't fit the document, and it has the best faithfulness
+  (0.891) and citation precision (0.790). For a system built on verified citations
+  that's the right trade-off. `answer_v2` is the choice when coverage matters more
+  than honesty.
 
 - **Faithfulness correction (2026-11-01), in two steps.** (1) The first version
   averaged a rule placeholder (`faithful=True`) for every abstention, which reported
@@ -280,7 +288,7 @@ the winner ran on test:
 - Judge failures (invalid JSON from the judge after one retry) are counted now:
   2–3 of 735 per run, excluded from "correct" and visible as `judge_failed`.
 - Cost of all LLM calls in this project (answers, judges, VLM OCR, the abstention
-  experiment): **~3.25 EUR** (OpenRouter-reported).
+  experiment): **~3.90 EUR** (OpenRouter-reported).
 
 Per-query latency on GPU: search ~1 ms (Qdrant), query embedding ~5 ms,
 reranking 50 candidates ~0.6 s including tokenization (8.1 s on CPU before).

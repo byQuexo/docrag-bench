@@ -64,6 +64,12 @@ select = [
     "E", "F", "I", "UP", "B"
 ]
 
+[tool.ruff.lint.per-file-ignores]
+# Lesson notebooks: long assert messages are fine. Exercise notebooks (not the
+# solutions) import things the learner only uses once the TODOs are filled in.
+"notebooks/**/*.ipynb" = ["E501"]
+"notebooks/lessons/*.ipynb" = ["F401", "F841"]
+
 [tool.mypy]
 strict = true
 plugins = ["pydantic.mypy"]
@@ -89,6 +95,7 @@ filterwarnings = [
 dev = [
     "ipykernel>=7.4.0",
     "mypy>=2.4.1",
+    "nbmake>=1.5.5",
     "pytest>=9.2.0",
     "pytest-asyncio>=1.4.1",
     "ruff>=0.17.3",

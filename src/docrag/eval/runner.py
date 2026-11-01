@@ -158,14 +158,18 @@ async def run_experiment(
     )
 
     retriever = build_retriever(settings, config, cache)
+    ocr = build_ocr(settings, config, cache)
     index_documents(
         {d: settings.pdf_dir / f"{d}.pdf" for d in doc_ids},
         retriever.store,
         retriever.embeddings,
         prefix_headings=config.prefix_headings,
         cache=cache,
-        ocr=build_ocr(settings, config, cache),
+        ocr=ocr,
     )
+    # A vision-LLM OCR engine has its own proxy: its spend is indexing cost,
+    # reported separately from the answer/judge calls.
+    ocr_proxy: LLMProxy | None = getattr(ocr, "proxy", None)
 
     proxy = (
         LLMProxy.from_settings(settings, cache) if config.llm or config.judge else None
@@ -191,7 +195,7 @@ async def run_experiment(
         **index_components(config, retriever.embeddings.embedder),
     }
     run_dir = _write_results(
-        config, settings.results_dir, rows, proxy, started, index, code
+        config, settings.results_dir, rows, proxy, started, index, code, ocr_proxy
     )
     log.info("results written to %s", run_dir)
     return run_dir
@@ -323,6 +327,7 @@ def _write_results(
     started: float,
     index: dict[str, str],
     code: dict[str, str | bool | None],
+    ocr_proxy: LLMProxy | None = None,
 ) -> Path:
     stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%S")
     run_dir = results_dir / f"{stamp}_{config.name}_{config.config_hash()}"
@@ -350,16 +355,11 @@ def _write_results(
         "latency": timing.snapshot(),
     }
     if proxy is not None:
-        s = proxy.stats
-        run_info["llm"] = {
-            "calls": s.calls,
-            "cache_hits": s.cache_hits,
-            "input_tokens": s.input_tokens,
-            "output_tokens": s.output_tokens,
-            "cost_eur": round(s.cost_eur, 4),
-            "validation_retries": s.validation_retries,
-            "validation_failures": s.validation_failures,
-        }
+        run_info["llm"] = proxy.stats_dict()  # answers + judge
+    # Only when OCR actually ran: an existing index needs no OCR, and a row of
+    # zeros would read as "OCR is free".
+    if ocr_proxy is not None and (ocr_proxy.stats.calls or ocr_proxy.stats.cache_hits):
+        run_info["ocr_llm"] = ocr_proxy.stats_dict()  # VLM OCR during indexing
     (run_dir / "run.json").write_text(json.dumps(run_info, indent=2), encoding="utf-8")
     return run_dir
 

@@ -49,7 +49,12 @@ class ProxyStats:
     cache_hits: int = 0
     input_tokens: int = 0
     output_tokens: int = 0
+    # cost_eur = what this process was BILLED (cache hits are free); the budget
+    # cap uses it. cost_eur_full = what the same calls cost on a cold cache
+    # (cache hits priced from their stored usage), the number to compare runs
+    # by: a re-run with 90% cache hits otherwise looks 10x cheaper.
     cost_eur: float = 0.0
+    cost_eur_full: float = 0.0
     validation_retries: int = 0
     validation_failures: int = 0
     per_route_calls: dict[str, int] = field(default_factory=dict)
@@ -102,6 +107,7 @@ class LLMProxy:
                 self.stats.cache_hits += 1
                 timing.cache_hit()
                 cached = ChatCompletion.model_validate(hit)
+                self.stats.cost_eur_full += cost_eur(route, cached.usage)
                 _trace_response(route, cached, cache_hit=True)
                 return cached
 
@@ -166,7 +172,23 @@ class LLMProxy:
         s.per_route_calls[route] = s.per_route_calls.get(route, 0) + 1
         s.input_tokens += completion.usage.input_tokens
         s.output_tokens += completion.usage.output_tokens
-        s.cost_eur += cost_eur(route, completion.usage)
+        cost = cost_eur(route, completion.usage)
+        s.cost_eur += cost
+        s.cost_eur_full += cost
+
+    def stats_dict(self) -> dict[str, float | int]:
+        """The numbers that go into run.json."""
+        s = self.stats
+        return {
+            "calls": s.calls,
+            "cache_hits": s.cache_hits,
+            "input_tokens": s.input_tokens,
+            "output_tokens": s.output_tokens,
+            "cost_eur_billed": round(s.cost_eur, 4),
+            "cost_eur_full": round(s.cost_eur_full, 4),
+            "validation_retries": s.validation_retries,
+            "validation_failures": s.validation_failures,
+        }
 
     async def aclose(self) -> None:
         for provider in self.providers.values():

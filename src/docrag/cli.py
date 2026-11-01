@@ -5,6 +5,9 @@ docrag eval      configs/a.yaml configs/b.yaml ...
 docrag summary
 docrag calibrate --config configs/baseline.yaml
 docrag ask       --config configs/baseline.yaml --doc <doc_id> "question"
+docrag label-sample    results/<run> [--n 50]   (blind CSV for human labels)
+docrag label           <labels.csv>             (y/n per answer, resumable)
+docrag judge-agreement results/<run> <labels.csv>
 docrag serve     --config configs/baseline.yaml [--port 8000]
 """
 
@@ -74,6 +77,42 @@ def _cmd_calibrate(args: argparse.Namespace) -> None:
         ExperimentConfig.from_yaml(args.config), settings, Cache(settings.cache_path)
     )
     print(f"rerank_threshold: {threshold:.4f}   # dev F1 = {f1:.3f}")
+
+
+def _cmd_label_sample(args: argparse.Namespace) -> None:
+    from docrag.eval.agreement import label_sample
+    from docrag.eval.dataset import load_questions
+    from docrag.store.qdrant import make_client
+
+    settings = get_settings()
+    out = args.out or settings.results_dir / "human_labels" / f"{args.run.name}.csv"
+    if out.exists():  # never overwrite labels someone spent an hour on
+        sys.exit(f"{out} exists; delete it or pass --out")
+    questions = {q.qid: q for q in load_questions(settings.qa_glob)}
+    client = make_client(settings.qdrant_location)
+    sample = label_sample(args.run, questions, client, n=args.n, seed=args.seed)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    sample.write_csv(out, include_bom=True)  # BOM: Excel then reads UTF-8 correctly
+    print(
+        f"wrote {sample.height} answers to {out}\n"
+        f"Label it (one answer at a time, y/n): docrag label {out}\n"
+        f"Then: docrag judge-agreement {args.run} {out}"
+    )
+
+
+def _cmd_label(args: argparse.Namespace) -> None:
+    from docrag.eval.agreement import label_interactive
+
+    n = label_interactive(args.labels)
+    print(f"\nset {n} labels in {args.labels} (saved after each one)")
+
+
+def _cmd_judge_agreement(args: argparse.Namespace) -> None:
+    from docrag.eval.agreement import judge_agreement
+
+    for field, r in judge_agreement(args.run, args.labels).items():
+        kappa = "undefined (one label only)" if r["kappa"] != r["kappa"] else r["kappa"]
+        print(f"{field}: {r['agree']}/{r['n']} agree, Cohen's kappa {kappa}")
 
 
 def _cmd_ask(args: argparse.Namespace) -> None:
@@ -156,6 +195,22 @@ def main(argv: list[str] | None = None) -> None:
     p = sub.add_parser("calibrate", help="choose the rerank threshold on the dev split")
     p.add_argument("--config", type=Path, required=True)
     p.set_defaults(func=_cmd_calibrate)
+
+    p = sub.add_parser("label-sample", help="blind CSV of judged answers to label")
+    p.add_argument("run", type=Path, help="a results/<run> folder")
+    p.add_argument("--n", type=int, default=50)
+    p.add_argument("--seed", type=int, default=0)
+    p.add_argument("--out", type=Path, default=None)
+    p.set_defaults(func=_cmd_label_sample)
+
+    p = sub.add_parser("label", help="label a sample in the terminal, one by one")
+    p.add_argument("labels", type=Path, help="CSV written by label-sample")
+    p.set_defaults(func=_cmd_label)
+
+    p = sub.add_parser("judge-agreement", help="judge vs. human labels (kappa)")
+    p.add_argument("run", type=Path)
+    p.add_argument("labels", type=Path)
+    p.set_defaults(func=_cmd_judge_agreement)
 
     p = sub.add_parser("ask", help="answer one question from the command line")
     p.add_argument("--config", type=Path, required=True)

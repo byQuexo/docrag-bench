@@ -234,3 +234,29 @@ def test_code_version_commit_and_dirty(tmp_path: Path) -> None:
     assert code_version(tmp_path)["dirty"] is False
     (tmp_path / "src" / "a.py").write_text("x = 2\n")
     assert code_version(tmp_path)["dirty"] is True
+
+
+# --- Costs: billed vs. full (cache hits priced from stored usage) ----------
+
+
+async def test_cache_hits_count_in_full_cost_but_not_billed(tmp_path: Path) -> None:
+    from docrag.llm.types import ChatCompletion, Usage
+
+    class PricedFake(FakeProvider):
+        def from_native(self, model: str, raw: object) -> ChatCompletion:
+            # OpenRouter-style: the provider reports what it billed.
+            return ChatCompletion(
+                model=model,
+                content=str(raw),
+                usage=Usage(input_tokens=10, output_tokens=5, cost_usd=0.01),
+            )
+
+    proxy = LLMProxy({"fake": PricedFake()}, cache=Cache(tmp_path / "c.sqlite"))
+    msgs = [Message(role="user", content="hi")]
+    await proxy.chat("fake:m", msgs)
+    await proxy.chat("fake:m", msgs)  # cache hit: free now, not free on a cold run
+    stats = proxy.stats_dict()
+    assert stats["cache_hits"] == 1
+    assert stats["cost_eur_billed"] > 0 and set(stats) >= {"cost_eur_full"}
+    # Unrounded (run.json rounds to 4 decimals):
+    assert proxy.stats.cost_eur_full == pytest.approx(2 * proxy.stats.cost_eur)

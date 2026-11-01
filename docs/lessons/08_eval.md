@@ -280,8 +280,12 @@ plus the share of unsupported answers. (fill in from results/)
 **Q: How reliable is your LLM judge?**
 A: Rules handle the unambiguous cases (unanswerable, abstained); the judge only grades
 correctness and faithfulness with a strict schema, reasoning first. A single judge has
-bias, so the plan's next step is a panel from different model families plus Cohen's κ
-for agreement. In v1 there's one cheap judge, which is a known limitation.
+bias, so it gets checked against a human: `docrag label-sample <run>` writes a *blind*
+CSV of 50 judged answers (question, gold, answer, full cited passages, no verdicts),
+I label them one by one in the terminal (`docrag label <csv>`, y/n per answer,
+resumable), and `docrag judge-agreement <run> <csv>` reports raw agreement and Cohen's
+κ (agreement corrected for chance) for `correct` and `faithful` (`eval/agreement.py`).
+A panel of judges from different model families would be the next step.
 
 **Q: How is a run reproducible?**
 A: The config is saved with its hash; parse, embed and LLM results are cached by content and
