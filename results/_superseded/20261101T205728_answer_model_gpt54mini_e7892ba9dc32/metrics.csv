@@ -1,0 +1,7 @@
+slice,n,answerable,recall@1,recall@5,recall@10,mrr@10,ndcg@10,top_score,failed,correct,abstained,abstained_before_llm,n_citations,n_verified,cit_precision_verify_off,cit_precision_verify_on,faithful,judge_failed,run,config_hash
+all,735,0.7714,0.3913,0.692,0.776,0.6255,0.6401,0.8522,0.9714,0.0068,1.0,1.0,0.0,0.0,,,,0.0,answer_model_gpt54mini,e7892ba9dc32
+text,283,1.0,0.3873,0.6879,0.7909,0.6436,0.653,0.8539,0.9717,0.0,1.0,1.0,0.0,0.0,,,,0.0,answer_model_gpt54mini,e7892ba9dc32
+table,138,1.0,0.408,0.6835,0.7697,0.63,0.6412,0.8762,1.0,0.0,,,,,,,,,answer_model_gpt54mini,e7892ba9dc32
+image,314,1.0,0.3791,0.698,0.7767,0.63,0.6408,0.8514,0.9554,0.0,1.0,1.0,0.0,0.0,,,,0.0,answer_model_gpt54mini,e7892ba9dc32
+unanswerable,168,0.0,0.0,0.2,0.2,0.0667,0.1,0.8365,0.9702,0.0298,1.0,1.0,0.0,0.0,,,,0.0,answer_model_gpt54mini,e7892ba9dc32
+no_text_layer,213,0.7183,0.5451,0.7527,0.8345,0.7878,0.7696,0.868,0.9859,0.0,1.0,1.0,0.0,0.0,,,,0.0,answer_model_gpt54mini,e7892ba9dc32

@@ -1,0 +1,7 @@
+slice,n,answerable,recall@1,recall@5,recall@10,mrr@10,ndcg@10,top_score,abstained,abstained_before_llm,n_citations,n_verified,cit_precision_verify_off,cit_precision_verify_on,correct,faithful,failed,judge_failed,run,config_hash
+all,735,0.7714,0.3913,0.692,0.776,0.6255,0.6401,0.8522,0.6289,0.1321,0.6289,0.6038,0.8175,0.8289,0.0501,1.0,0.7837,0.3522,answer_model_gemini38flash,812803072cd2
+text,283,1.0,0.3873,0.6879,0.7909,0.6436,0.653,0.8539,0.5522,0.1194,0.8209,0.806,0.7972,0.7902,0.0078,1.0,0.7633,0.4179,answer_model_gemini38flash,812803072cd2
+table,138,1.0,0.408,0.6835,0.7697,0.63,0.6412,0.8762,0.2222,0.0,1.3889,1.3889,0.8036,0.8036,0.0,,0.8696,0.7778,answer_model_gemini38flash,812803072cd2
+image,314,1.0,0.3791,0.698,0.7767,0.63,0.6408,0.8514,0.64,0.1867,0.5867,0.5467,0.9074,0.9423,0.0,,0.7611,0.36,answer_model_gemini38flash,812803072cd2
+unanswerable,168,0.0,0.0,0.2,0.2,0.0667,0.1,0.8365,0.9697,0.1515,0.0303,0.0303,,,0.1905,,0.8036,0.0,answer_model_gemini38flash,812803072cd2
+no_text_layer,213,0.7183,0.5451,0.7527,0.8345,0.7878,0.7696,0.868,0.4808,0.0577,0.8269,0.8077,0.9444,0.9444,0.0645,,0.7559,0.5192,answer_model_gemini38flash,812803072cd2

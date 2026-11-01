@@ -1,0 +1,23 @@
+# Answer-model comparison (Package 1): identical to answer_haiku_vlm_v3 except the answer model.
+name: answer_model_qwen35_9b
+embedder: onnx:gte-small
+prefix_headings: true
+ocr: vlm                 # vision LLM transcribes text + describes charts
+ocr_model: "openrouter:anthropic/claude-haiku-5.5"
+retrieval: hybrid_rerank
+scope: doc
+top_k: 10
+prefetch_k: 50
+rrf_k: 60
+reranker: onnx:gte-reranker-modernbert-base
+rerank_threshold: 0.6318    # calibrated per question on dev, with VLM OCR
+context_k: 10              # chosen on dev (abstention experiment)
+prompt_version: answer_v3  # designed on dev error analysis (dev: unanswerable 0.797 -> 0.878 vs v2)
+llm: "openrouter:qwen/qwen3.5-9b"
+llm_temperature: 0.0
+judge: "openrouter:deepseek/deepseek-v4.1-flash"   # different family than the answerer
+judge_temperature: 0.0
+llm_concurrency: 6
+dataset:
+  split: test
+  max_docs: null        # all test documents

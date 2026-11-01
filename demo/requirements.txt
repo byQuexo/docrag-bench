@@ -1,3 +1,8 @@
-# Hugging Face Space: installs the package (CPU ONNX Runtime + Gradio) from GitHub.
-# The repository must be public. Locally, use `uv sync --extra cpu --extra demo`.
+# Hugging Face Space: the package (CPU ONNX Runtime + Gradio) from GitHub, plus
+# what the open answer model needs on ZeroGPU (demo/local_llm.py). Locally, use
+# `uv sync --extra cpu --extra demo` instead.
 docrag-bench[cpu,demo] @ git+https://github.com/byQuexo/docrag-bench.git
+torch>=2.8,<2.14       # the versions ZeroGPU supports
+transformers>=5.8,<6   # Qwen3.5 / Qwen3.8 model classes
+accelerate
+spaces

@@ -25,7 +25,7 @@ Measured on [MMLongBench-Doc](https://huggingface.co/datasets/yubo2333/MMLongBen
 
 ## Try it
 
-**Live demo:** coming soon (Hugging Face Space). Until then, run the same Gradio demo locally: pick a sample PDF or upload your own, ask a question, and see the answer with verified page citations, the retrieved evidence and the cited page ([demo/README.md](demo/README.md)).
+**Live demo:** coming soon as a Hugging Face Space on ZeroGPU, answered by the open Qwen3.8-27B model (no API key, free for visitors' daily GPU quota). Until then, run the same Gradio demo locally: pick a sample PDF or upload your own, ask a question, and see the answer with verified page citations, the retrieved evidence and the cited page ([demo/README.md](demo/README.md)).
 
 ## Two ways to use this repo
 
@@ -158,7 +158,19 @@ Test split: 735 questions over 93 documents (split by document; everything tuned
 - **OCR.** 28 of 134 PDFs are image-only (mostly slide decks); without OCR the system can't see them. OCR takes recall@10 over all questions from 0.550 to 0.776, the biggest single gain in the project. The vision LLM beats RapidOCR mainly on charts (correct 0.220 → 0.309), because it binds numbers to their labels. It cost 0.42 EUR for 1,390 pages.
 - **Abstention.** The first answer runs abstained on ~43% of answerable questions, although the gold page was often in the top 5. A new column (`abstained_before_llm`) showed the rerank gate stops only 2.8%; the LLM itself was saying "Not answerable". Variants were compared on dev, only the winners ran on test. `answer_v2` (combine passages, read tables, do arithmetic) + 10 chunks answers more (answerable +48/−7, p < 0.0001) but also answers questions whose premise is false (unanswerable 1 gained, 18 lost). `answer_v3` adds "answer exactly what was asked; false premise → *Not answerable*": unanswerable back to 0.929 (+25/−0 vs v2), answerable 0.430 (3 gained, 25 lost vs v2). v2 and v3 tie overall (p = 0.78); v3 is the headline because it abstains honestly and has the best citation precision (its faithfulness is also highest, but see the judge caveat above).
 - **Chatbot mode (search all documents).** All numbers above search only the question's own PDF. Asking across all 134 indexed PDFs, like a company chatbot (`scope: corpus`, `configs/corpus_vlm.yaml`), recall@10 drops from 0.776 to **0.599** [0.546, 0.655]: −0.177, CI [−0.211, −0.143] (text-layer 0.755 → 0.567, scanned 0.834 → 0.687). Answer quality in this mode is not benchmarked yet. The web UI and the API support it ("All documents").
-- **Answer-model comparison:** planned (same retrieval and judge, only the answer model changes).
+- **Answer-model comparison.** Same index, retrieval, prompt (`answer_v3`, 10 chunks) and judge; only the answer model changes (configs `answer_model_*.yaml`). Paired McNemar against Haiku on the same 735 questions:
+
+  | answer model | correct | vs Haiku | unanswerable | failed answers* | LLM p50 / p95 | EUR per 100 questions |
+  |---|---|---|---|---|---|---|
+  | **Claude Haiku 5.5** | **0.544** [0.501, 0.590] | – | 0.929 | 0.0% | 2.2 s / 7.4 s | 0.09 |
+  | Qwen3.8-27B | 0.521 [0.479, 0.566] | −2.3 pts (p = 0.036) | 0.839 | 6.8% | 5.0 s / 49 s | 0.37 |
+  | Qwen3.8 Flash | 0.518 [0.473, 0.566] | −2.6 pts (p = 0.010) | 0.815 | 6.1% | 10.1 s / 68 s | 0.14 |
+  | Qwen3.5-9B | 0.434 [0.392, 0.478] | −11.0 pts (p < 0.001) | 0.875 | 0.0% | 0.9 s / 5.9 s | 0.01 |
+  | Mistral Small 2603 | 0.423 [0.385, 0.462] | −12.1 pts (p < 0.001) | 0.780 | 0.0% | 1.0 s / 6.4 s | 0.07 |
+
+  \* empty or invalid JSON after one retry, counted as wrong. The Qwen3.8 models are reasoning models: with the same 4,096-token limit as every other model, they sometimes spend it all on hidden reasoning and return nothing; Qwen3.8 Flash's count also includes a few provider rate-limit errors. Gemini 3.8 Flash and GPT-5.4 mini are not in the table yet: the runs stopped at the OpenRouter key's monthly limit.
+
+  Two caveats: `answer_v3` was developed with Haiku, so other models may do better with their own prompt; and there is one judge model. Haiku is the best *and* one of the cheapest options here. The closest open models trail by 2–3 points, are slower and fail on ~6–7% of questions. Qwen3.5-9B often gets the answer right but rarely quotes verbatim: Verify rejected the citations of 93% of its answers, so they come back as `unsupported`. That is exactly what Verify is for.
 
 ## Learnings
 
@@ -168,6 +180,7 @@ Test split: 735 questions over 93 documents (split by document; everything tuned
 - **The LLM abstains, not the threshold.** Only 2.8% of answerable questions were stopped by the rerank gate. The fix was the prompt.
 - **Check the judge before you trust the score.** A quote-only judge (`judge_v1`) put faithfulness at 0.46–0.50; with the full cited passages (`judge_v2`) it is 0.83–0.89. Against human labels, though, `judge_v2` agrees on correctness (κ 0.77) but its faithfulness verdicts are at chance level (κ 0.06). Earlier, averaging abstentions as "faithful" had made a metric artifact look like an OCR effect.
 - **Knowing the document is worth 18 points of recall.** Searching all 134 PDFs instead of the right one drops recall@10 from 0.776 to 0.599. A chatbot over many documents needs better retrieval (or document routing) before it matches the per-document numbers.
+- **A small model can be right and still unsourced.** Qwen3.5-9B answers many questions correctly, but Verify rejected the citations of 93% of its answers because the quotes weren't verbatim. Without Verify those answers would look sourced.
 - **One number hides trade-offs.** v2 and v3 have the same overall correctness, but v2 gets 3.9 points more answerable questions right and v3 14.9 points more unanswerable ones.
 
 <details>
@@ -260,7 +273,7 @@ Solutions are in `notebooks/lessons/solutions/`; CI executes them so they stay i
 <details>
 <summary>Future work</summary>
 
-- **Next:** answer-model comparison; a more reliable faithfulness check (a second judge model, or more human labels); a model-based support check (LettuceDetect) as a second Verify stage; deploying the demo as a Space.
+- **Next:** Gemini 3.8 Flash and GPT-5.4 mini in the answer-model comparison; a more reliable faithfulness check (a second judge model, or more human labels); a model-based support check (LettuceDetect) as a second Verify stage; deploying the demo as a Space.
 - **Later:** a judge panel across providers; Promptfoo as an eval gate in CI; Redis for threads and cache; a ColPali-style visual retriever; German as an evaluation axis.
 </details>
 

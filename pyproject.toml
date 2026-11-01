@@ -83,7 +83,9 @@ untyped_calls_exclude = ["pymupdf"]
 
 [[tool.mypy.overrides]]
 # Libraries without type hints.
-module = ["pymupdf.*", "sklearn.*", "onnxruntime.*", "rapidocr.*"]
+module = ["pymupdf.*", "sklearn.*", "onnxruntime.*", "rapidocr.*",
+          # Hugging Face Space only (demo/local_llm.py), not project dependencies.
+          "torch.*", "transformers.*", "spaces.*"]
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]

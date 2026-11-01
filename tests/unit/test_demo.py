@@ -78,6 +78,7 @@ async def test_ask_runs_the_real_pipeline_with_fakes(app: ModuleType) -> None:
     app._state.update(
         settings=Settings(qdrant_location=":memory:", use_keyring=False),
         service=service,
+        retriever=service.retriever,
         config=config,
         ocr=None,
         cache=None,
@@ -90,3 +91,26 @@ async def test_ask_runs_the_real_pipeline_with_fakes(app: ModuleType) -> None:
     assert image is not None, "page image of the first verified citation"
     with pytest.raises(app.gr.Error):
         await app.ask("tiny", None, "again", app.MAX_QUESTIONS)  # session limit
+
+
+async def test_retrieval_only_mode_shows_evidence_without_an_answer(
+    app: ModuleType,
+) -> None:
+    config = ExperimentConfig(
+        name="t", embedder="fake:64", reranker="fake:x", rerank_threshold=0.3
+    )
+    embeddings = EmbeddingService(FakeEmbedder(dim=64))
+    store = QdrantStore(make_client(":memory:"), "demo_ro", embeddings.dim)
+    store.ensure_collection()
+    app._state.update(
+        settings=Settings(qdrant_location=":memory:", use_keyring=False),
+        service=None,  # no answer model configured
+        retriever=Retriever(embeddings, store, config, FakeReranker()),
+        config=config,
+        ocr=None,
+        cache=None,
+    )
+    md, rows, image, _ = await app.ask("tiny", None, "Revenue in Europe 2024?", 0)
+    assert "Answer generation is off" in md
+    assert rows and rows[0][2] == "TABLE" and all(r[4] == "" for r in rows)
+    assert image is not None, "page of the best hit"

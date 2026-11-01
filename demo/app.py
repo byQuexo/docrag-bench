@@ -5,11 +5,17 @@ Run locally:   uv sync --extra cpu --extra demo   (or --extra gpu)
 As a Space:    see demo/README.md
 
 Everything below is UI glue. The pipeline is the same one the benchmark measures:
-wiring.build_answer_service -> AnswerService.answer (retrieve, rerank, abstain
-gate, LLM, Verify). Qdrant runs in-memory; PDFs are indexed the first time they
-are asked about.
+retrieve, rerank, abstain gate, LLM, Verify. Qdrant runs in-memory; PDFs are
+indexed the first time they are asked about.
+
+Who answers (chosen at startup):
+1. DOCRAG_DEMO_LOCAL_MODEL set (e.g. "Qwen/Qwen3.5-9B"): an open model inside the
+   Space on ZeroGPU (demo/local_llm.py). No API key, no cost for the Space owner.
+2. Otherwise OPENROUTER_API_KEY set: Claude Haiku 5.5, the benchmarked model.
+3. Otherwise retrieval only: the evidence is shown, no answer is generated.
 """
 
+import asyncio
 import os
 import re
 import tempfile
@@ -26,13 +32,14 @@ from docrag.answer.service import AnswerService
 from docrag.ingest.indexer import index_documents
 from docrag.ingest.ocr import OcrEngine
 from docrag.ingest.pages import render_page_png
-from docrag.llm.proxy import BudgetExceededError, StructuredOutputError
+from docrag.llm.proxy import BudgetExceededError, LLMProxy, StructuredOutputError
 from docrag.llm.types import ProviderError
 from docrag.shared.cache import Cache, bytes_hash
 from docrag.shared.config import ExperimentConfig
 from docrag.shared.schema import Hit
 from docrag.shared.settings import ROOT, Settings
-from docrag.wiring import build_answer_service, build_ocr
+from docrag.store.retriever import Retriever
+from docrag.wiring import build_answer_service, build_ocr, build_retriever
 
 APP_DIR = Path(__file__).resolve().parent
 # Cost and abuse limits (override with environment variables / Space settings).
@@ -43,6 +50,11 @@ MAX_UPLOAD_MB = int(os.environ.get("DOCRAG_DEMO_MAX_UPLOAD_MB", "15"))
 os.environ.setdefault("DOCRAG_BUDGET_EUR", "1.0")
 
 _INLINE_ID = re.compile(r"\[([^\]\s]+):p(\d+):c\d+\]")
+
+LOCAL_MODEL = os.environ.get("DOCRAG_DEMO_LOCAL_MODEL")
+if LOCAL_MODEL:
+    # Loads the model weights NOW, at startup: ZeroGPU requires that.
+    import local_llm  # noqa: E402
 
 
 def sample_pdfs() -> dict[str, Path]:
@@ -86,8 +98,26 @@ def render_answer(
         md = f"{text}\n\n*Verify: {label}.*"
         if sources:
             md += f"\n\n**Verified quotes**\n{sources}"
-    cited = {c.id for c in result.verified_citations}
-    rows = [
+    return md, evidence_rows(hits, {c.id for c in result.verified_citations})
+
+
+def render_evidence_only(hits: list[Hit], threshold: float) -> str:
+    """Retrieval-only mode: no answer model is configured in this Space."""
+    md = (
+        "### Answer generation is off in this Space\n\n"
+        "No answer model is configured, so this shows what retrieval found: the "
+        "chunks below, ranked by the reranker, with the best page on the right."
+    )
+    if hits and hits[0].score < threshold:
+        md += (
+            f"\n\nThe relevance gate would abstain here: top rerank score "
+            f'{hits[0].score:.2f} < threshold {threshold:.2f} ("Not answerable").'
+        )
+    return md
+
+
+def evidence_rows(hits: list[Hit], cited: set[str]) -> list[list[Any]]:
+    return [
         [
             rank,
             h.chunk.page_start,
@@ -98,7 +128,15 @@ def render_answer(
         ]
         for rank, h in enumerate(hits, start=1)
     ]
-    return md, rows
+
+
+def answer_mode() -> str:
+    """Who answers in this Space (shown in the UI)."""
+    if LOCAL_MODEL:
+        return f"open model `{LOCAL_MODEL}` on ZeroGPU (not part of the benchmark)"
+    if _settings().openrouter_api_key is not None:
+        return "Claude Haiku 5.5 via OpenRouter (the benchmarked model)"
+    return "none: retrieval only (no answer model configured)"
 
 
 # --- pipeline (built lazily: importing this module stays cheap) -------------
@@ -123,16 +161,38 @@ def _settings() -> Settings:
     return cached
 
 
-def _pipeline() -> tuple[AnswerService, ExperimentConfig, OcrEngine | None, Cache]:
-    if "service" not in _state:
+def _pipeline() -> tuple[
+    AnswerService | None, Retriever, ExperimentConfig, OcrEngine | None, Cache
+]:
+    """(service or None in retrieval-only mode, retriever, config, ocr, cache)."""
+    if "retriever" not in _state:
         settings = _settings()
         config = ExperimentConfig.from_yaml(APP_DIR / "config.yaml")
         cache = Cache(settings.cache_path)
-        _state["config"] = config
-        _state["cache"] = cache
-        _state["service"] = build_answer_service(settings, config, cache)
-        _state["ocr"] = build_ocr(settings, config, cache)
-    return _state["service"], _state["config"], _state["ocr"], _state["cache"]
+        service: AnswerService | None
+        if LOCAL_MODEL:
+            retriever = build_retriever(settings, config, cache)
+            proxy = LLMProxy({"local": local_llm.LocalProvider()}, cache=cache)
+            service = AnswerService(retriever, proxy, f"local:{LOCAL_MODEL}")
+        elif settings.openrouter_api_key is not None:
+            service = build_answer_service(settings, config, cache)
+            retriever = service.retriever
+        else:
+            service, retriever = None, build_retriever(settings, config, cache)
+        _state.update(
+            config=config,
+            cache=cache,
+            service=service,
+            retriever=retriever,
+            ocr=build_ocr(settings, config, cache),
+        )
+    return (
+        _state["service"],
+        _state["retriever"],
+        _state["config"],
+        _state["ocr"],
+        _state["cache"],
+    )
 
 
 def _resolve_pdf(choice: str | None, upload: str | None) -> tuple[str, Path]:
@@ -167,8 +227,8 @@ async def ask(
     if asked >= MAX_QUESTIONS:
         raise gr.Error(f"This demo allows {MAX_QUESTIONS} questions per session.")
     doc_id, path = _resolve_pdf(choice, upload)
-    service, config, ocr, cache = _pipeline()
-    store, embeddings = service.retriever.store, service.retriever.embeddings
+    service, retriever, config, ocr, cache = _pipeline()
+    store, embeddings = retriever.store, retriever.embeddings
     if store.count(doc_id) == 0:
         index_documents(
             {doc_id: path},
@@ -179,6 +239,12 @@ async def ask(
             workers=1,
             ocr=ocr,
         )
+    if service is None:  # retrieval-only mode
+        hits = await asyncio.to_thread(retriever.retrieve, question, [doc_id])
+        top = hits[0].chunk.page_start if hits else None
+        image = Image.open(BytesIO(render_page_png(path, top))) if top else None
+        md = render_evidence_only(hits, config.rerank_threshold)
+        return md, evidence_rows(hits, set()), image, asked + 1
     try:
         result, hits = await service.answer(question, doc_ids=[doc_id])
     except BudgetExceededError:
@@ -198,7 +264,9 @@ def build_ui() -> gr.Blocks:
             "## docrag-bench: answers with verified citations\n"
             "Pick a PDF (or upload one), ask a question. Every citation is checked: "
             "the cited passage must have been retrieved, and the quote must appear "
-            "in it verbatim. If the document doesn't contain the answer, it says so."
+            "in it verbatim. If the document doesn't contain the answer, it says "
+            "so.\n\n"
+            f"**Answers by:** {answer_mode()}"
         )
         asked = gr.State(0)
         with gr.Row():
