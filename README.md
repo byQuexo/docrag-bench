@@ -6,6 +6,7 @@
 ![Python 3.12](https://img.shields.io/badge/python-3.12-blue)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![13 interactive lessons](https://img.shields.io/badge/lessons-13%20interactive-orange)](docs/lessons/README.md)
+[![Demo on Hugging Face](https://img.shields.io/badge/demo-Hugging%20Face%20Space-yellow)](https://huggingface.co/spaces/Quexoo/docrag-bench)
 
 ![Benchmark dashboard](docs/assets/dashboard.png)
 
@@ -25,7 +26,7 @@ Measured on [MMLongBench-Doc](https://huggingface.co/datasets/yubo2333/MMLongBen
 
 ## Try it
 
-**Live demo:** coming soon as a Hugging Face Space on ZeroGPU, answered by the open Qwen3.8-27B model (no API key, free for visitors' daily GPU quota). Until then, run the same Gradio demo locally: pick a sample PDF or upload your own, ask a question, and see the answer with verified page citations, the retrieved evidence and the cited page ([demo/README.md](demo/README.md)).
+**Live demo: [huggingface.co/spaces/Quexoo/docrag-bench](https://huggingface.co/spaces/Quexoo/docrag-bench)**. Pick a sample PDF or upload your own (up to 60 pages), ask a question, and get the answer with verified page citations, the retrieved evidence and the cited page. Answers come from the open model Qwen3.8-27B on free ZeroGPU hardware: no API key, the GPU time comes from each visitor's daily Hugging Face quota. Expect a wait: the GPU is lent per question, and the first question about a new PDF also indexes it. The same demo runs locally ([demo/README.md](demo/README.md)).
 
 ## Two ways to use this repo
 
@@ -124,7 +125,7 @@ flowchart LR
 
 ## Results
 
-Test split: 735 questions over 93 documents (split by document; everything tuned on the dev split only). Search is scoped to the question's document. `results/` holds every run's config, per-question CSV, metrics and `run.json` (git commit, index versions, latency, cost). Brackets are 95% CIs, bootstrapped over documents (2,000 reps, seed 0); reproduce with `uv run docrag summary`.
+Test split: 735 questions over 93 documents (split by document; thresholds and prompt variants were chosen on the dev split, with one exception: `answer_v3` was picked over `answer_v2` as the headline after both had run on test, see the abstention experiment). Search is scoped to the question's document. `results/` holds every run's config, per-question CSV, metrics and `run.json` (git commit, index versions, latency, cost). Brackets are 95% CIs, bootstrapped over documents (2,000 reps, seed 0); reproduce with `uv run docrag summary`.
 
 **Answers** (Claude Haiku 5.5 via OpenRouter, judged by DeepSeek V4.1 Flash with `judge_v2`):
 
@@ -156,7 +157,7 @@ Test split: 735 questions over 93 documents (split by document; everything tuned
 **Experiments**
 
 - **OCR.** 28 of 134 PDFs are image-only (mostly slide decks); without OCR the system can't see them. OCR takes recall@10 over all questions from 0.550 to 0.776, the biggest single gain in the project. The vision LLM beats RapidOCR mainly on charts (correct 0.220 → 0.309), because it binds numbers to their labels. It cost 0.42 EUR for 1,390 pages.
-- **Abstention.** The first answer runs abstained on ~43% of answerable questions, although the gold page was often in the top 5. A new column (`abstained_before_llm`) showed the rerank gate stops only 2.8%; the LLM itself was saying "Not answerable". Variants were compared on dev, only the winners ran on test. `answer_v2` (combine passages, read tables, do arithmetic) + 10 chunks answers more (answerable +48/−7, p < 0.0001) but also answers questions whose premise is false (unanswerable 1 gained, 18 lost). `answer_v3` adds "answer exactly what was asked; false premise → *Not answerable*": unanswerable back to 0.929 (+25/−0 vs v2), answerable 0.430 (3 gained, 25 lost vs v2). v2 and v3 tie overall (p = 0.78); v3 is the headline because it abstains honestly and has the best citation precision (its faithfulness is also highest, but see the judge caveat above).
+- **Abstention.** The first answer runs abstained on ~43% of answerable questions, although the gold page was often in the top 5. A new column (`abstained_before_llm`) showed the rerank gate stops only 2.8%; the LLM itself was saying "Not answerable". Variants were compared on dev, only the winners ran on test. `answer_v2` (combine passages, read tables, do arithmetic) + 10 chunks answers more (answerable +48/−7, p < 0.0001) but also answers questions whose premise is false (unanswerable 1 gained, 18 lost). `answer_v3` adds "answer exactly what was asked; false premise → *Not answerable*": unanswerable back to 0.929 (+25/−0 vs v2), answerable 0.430 (3 gained, 25 lost vs v2). v2 and v3 tie overall (p = 0.78). Note that this choice was made with both test results in view, the one place where test numbers influenced a decision; v3 is the headline because it abstains honestly and has the best citation precision (its faithfulness is also highest, but see the judge caveat above).
 - **Chatbot mode (search all documents).** All numbers above search only the question's own PDF. Asking across all 134 indexed PDFs, like a company chatbot (`scope: corpus`, `configs/corpus_vlm.yaml`), recall@10 drops from 0.776 to **0.599** [0.546, 0.655]: −0.177, CI [−0.211, −0.143] (text-layer 0.755 → 0.567, scanned 0.834 → 0.687). Answer quality in this mode is not benchmarked yet. The web UI and the API support it ("All documents").
 - **Answer-model comparison.** Same index, retrieval, prompt (`answer_v3`, 10 chunks) and judge; only the answer model changes (configs `answer_model_*.yaml`). Paired McNemar against Haiku on the same 735 questions:
 
@@ -176,14 +177,16 @@ Test split: 735 questions over 93 documents (split by document; everything tuned
 
 ## Learnings
 
-- **OCR only helps on PDFs without a text layer.** On text-layer documents recall@10 stays at 0.752 / 0.753 / 0.755 (no OCR / RapidOCR / vision LLM); on scanned ones it goes 0.000 → 0.776 → 0.834. Look at the data before tuning models.
-- **Reranker, heading prefix and a 2× larger embedding model: no significant effect on retrieval.** Paired differences in recall@10 are within ±0.005, every CI includes 0; even the reranker's recall@1 gain (+0.028) is not significant. The reranker still costs ~0.5 s per query on GPU (p50 499 ms).
-- **Hybrid search beats BM25 (recall@10 +0.040, significant) and dense at the top of the ranking** (MRR +0.044, significant); against dense on recall@10 the gain is not significant.
-- **The LLM abstains, not the threshold.** Only 2.8% of answerable questions were stopped by the rerank gate. The fix was the prompt.
-- **Check the judge before you trust the score.** A quote-only judge (`judge_v1`) put faithfulness at 0.46–0.50; with the full cited passages (`judge_v2`) it is 0.83–0.89. Against human labels, though, `judge_v2` agrees on correctness (κ 0.77) but its faithfulness verdicts are at chance level (κ 0.06). Earlier, averaging abstentions as "faithful" had made a metric artifact look like an OCR effect.
-- **Knowing the document is worth 18 points of recall.** Searching all 134 PDFs instead of the right one drops recall@10 from 0.776 to 0.599. A chatbot over many documents needs better retrieval (or document routing) before it matches the per-document numbers.
-- **A small model can be right and still unsourced.** Qwen3.5-9B answers many questions correctly, but Verify rejected the citations of 93% of its answers because the quotes weren't verbatim. Without Verify those answers would look sourced.
-- **One number hides trade-offs.** v2 and v3 have the same overall correctness, but v2 gets 3.9 points more answerable questions right and v3 14.9 points more unanswerable ones.
+- **OCR only helps on PDFs without a text layer.** On text-layer documents recall@10 stays at 0.752 / 0.753 / 0.755 (no OCR / RapidOCR / vision LLM); on scanned ones it goes 0.000 → 0.776 → 0.834. Look at the data before tuning models. → [lesson 12](docs/lessons/12_ocr.md)
+- **Reranker, heading prefix and a 2× larger embedding model: no significant effect on retrieval.** Paired differences in recall@10 are within ±0.005, every CI includes 0; even the reranker's recall@1 gain (+0.028) is not significant. The reranker still costs ~0.5 s per query on GPU (p50 499 ms). → [lesson 04](docs/lessons/04_rerank_and_threshold.md)
+- **Hybrid search beats BM25 (recall@10 +0.040, significant) and dense at the top of the ranking** (MRR +0.044, significant); against dense on recall@10 the gain is not significant. → [lesson 03](docs/lessons/03_embeddings_and_search.md)
+- **The LLM abstains, not the threshold.** Only 2.8% of answerable questions were stopped by the rerank gate. The fix was the prompt. → [lesson 08](docs/lessons/08_eval.md)
+- **Check the judge before you trust the score.** A quote-only judge (`judge_v1`) put faithfulness at 0.46–0.50; with the full cited passages (`judge_v2`) it is 0.83–0.89. Against human labels, though, `judge_v2` agrees on correctness (κ 0.77) but its faithfulness verdicts are at chance level (κ 0.06). Earlier, averaging abstentions as "faithful" had made a metric artifact look like an OCR effect. → [lesson 08](docs/lessons/08_eval.md)
+- **Knowing the document is worth 18 points of recall.** Searching all 134 PDFs instead of the right one drops recall@10 from 0.776 to 0.599. A chatbot over many documents needs better retrieval (or document routing) before it matches the per-document numbers. → [lesson 03](docs/lessons/03_embeddings_and_search.md)
+- **A small model can be right and still unsourced.** Qwen3.5-9B answers many questions correctly, but Verify rejected the citations of 93% of its answers because the quotes weren't verbatim. Without Verify those answers would look sourced. → [lesson 06](docs/lessons/06_answer_and_verify.md)
+- **The more expensive model doesn't win.** Haiku and Gemini 3.8 Flash are statistically tied on correctness (0.544 vs 0.536, p = 0.47), but Gemini costs about 5.6× as much per question. Measure before paying for the bigger model. → [lesson 05](docs/lessons/05_llm_proxy.md)
+- **Reasoning models need their own token budget.** With the same 4,096-token output limit as every other model, both Qwen3.8 models sometimes spend it all on hidden reasoning and return nothing: no answer on 6–7% of questions. In production that means a separate, larger budget (or reasoning turned off) for reasoning models, and monitoring for empty responses. → [lesson 05](docs/lessons/05_llm_proxy.md)
+- **One number hides trade-offs.** v2 and v3 have the same overall correctness, but v2 gets 3.9 points more answerable questions right and v3 14.9 points more unanswerable ones. → [lesson 08](docs/lessons/08_eval.md)
 
 <details>
 <summary>More notes on the results</summary>
@@ -252,7 +255,7 @@ Solutions are in `notebooks/lessons/solutions/`; CI executes them so they stay i
 - **Our own LLM proxy instead of LiteLLM.** Routing, format conversion, caching, cost accounting and the budget cap in about 300 tested lines. LiteLLM would be the pragmatic choice with many providers and could be swapped in behind the same `Provider` interface.
 - **Structured output plus exactly one retry.** A Pydantic schema as `response_format`, one retry with the validation error, then a counted hard failure. No regex JSON repair.
 - **Verify in pure code.** Deterministic, free, and runs on the same answers for the on/off comparison.
-- **Tuned on dev, reported on test, split by document.** Questions about one PDF never end up in both splits.
+- **Tuned on dev, reported on test, split by document.** Questions about one PDF never end up in both splits. One exception, stated openly: `answer_v3`'s rules came from dev errors, but choosing it over `answer_v2` as the headline happened with both test results visible.
 - **Page-level metrics.** The ground truth is evidence pages, so ranked chunks are mapped to unique pages, which keeps chunkers comparable.
 - **Versioned index.** The Qdrant collection name carries a fingerprint of parser, chunker, embedder and OCR versions; a change means a fresh index instead of silently reusing old chunks.
 - **Tracing only on the query path.** `@timed` opens an OpenTelemetry span only *inside* a trace, so ingest records nothing. The `@timed` percentiles still feed `run.json`, so benchmark numbers don't depend on a tracing backend.
