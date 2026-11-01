@@ -75,12 +75,18 @@ def question_row(
         "ndcg@10": ndcg_at_k(pages, gold, 10),
         "top_pages": json.dumps(pages[:10]),
         "gold_pages": json.dumps(sorted(gold)),
+        # Best (reranked) score: compare with the threshold to see how close an
+        # abstention was. The mean per slice is also a cheap retrieval signal.
+        "top_score": hits[0].score if hits else nan,
     }
     if result is not None:
         all_cits = result.citations
         row |= {  # LEARN: `|=` merges a dict into another (3.9+), like Object.assign.
             "status": result.status,
             "abstained": result.status == "abstained",
+            # Abstained by the rerank gate (no LLM call) vs. by the LLM itself.
+            # Without this column the two causes could only be guessed.
+            "abstained_before_llm": result.abstained_before_llm,
             "n_citations": len(all_cits),
             "n_verified": len(result.verified_citations),
             # Verify OFF: every citation the LLM produced counts.
@@ -244,11 +250,19 @@ async def _evaluate(
     if config.judge:
         judge_route = config.judge
 
-        async def judge_in_trace(q: EvalQuestion, result: AnswerResult) -> JudgeVerdict:
+        async def judge_in_trace(
+            q: EvalQuestion, result: AnswerResult, hits: list[Hit]
+        ) -> JudgeVerdict:
             parent = question_spans.get(q.qid)
             with tracing.child_of(parent, "judge", kind=tracing.EVALUATOR):
                 verdict = await judge(
-                    proxy, judge_route, q, result, config.judge_temperature
+                    proxy,
+                    judge_route,
+                    q,
+                    result,
+                    config.judge_temperature,
+                    prompt_version=config.judge_prompt_version,
+                    chunks={h.chunk.id: h.chunk.text for h in hits},
                 )
                 tracing.annotate(
                     {
@@ -260,7 +274,7 @@ async def _evaluate(
                 return verdict
 
         jobs = [
-            (i, judge_in_trace(q, res[0]))
+            (i, judge_in_trace(q, res[0], res[1]))
             for i, (q, res) in enumerate(zip(questions, answered.results, strict=True))
             if res is not None
         ]

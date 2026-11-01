@@ -59,6 +59,10 @@ class ExperimentConfig(BaseModel):
     # Parallel LLM calls during eval. ~2 for a local Ollama, 4-8 for hosted APIs.
     llm_concurrency: int = Field(default=2, ge=1)
     prompt_version: str = "answer_v1"
+    # judge_v1 saw only the short quotes; judge_v2 sees the full cited passages
+    # (v1 under-reported faithfulness: an answer that went beyond a 5-word quote
+    # looked unsupported). Changing it re-runs the judge calls (new cache keys).
+    judge_prompt_version: str = "judge_v2"
     dataset: DatasetConfig = DatasetConfig()
 
     def config_hash(self) -> str:

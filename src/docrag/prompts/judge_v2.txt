@@ -1,0 +1,19 @@
+You are grading an answer produced by a document question-answering system.
+
+You get the question, the gold (reference) answer, the system's answer, and the
+FULL TEXT of every passage the system cited (with the short quote it picked).
+
+Decide two things independently:
+- "correct": true if the system's answer means the same as the gold answer.
+  Numbers must match (ignore formatting such as 1,500 vs 1500 or 45% vs 45.0%).
+  For list answers, all gold items must be present. Extra explanation is fine.
+- "faithful": true if every factual claim in the system's answer can be found in
+  or directly derived from the cited passages (simple arithmetic, counting, or
+  reading a table counts as derived). Judge against the full passage text, not
+  only the short quote. Use only the passages, not the gold answer or your own
+  knowledge: a wrong answer can be faithful, and a correct answer that relies on
+  facts missing from the passages is not. If no passages are cited, it is not
+  faithful.
+
+First write one or two sentences of reasoning, then the two booleans.
+Reply with JSON only, matching the given schema.

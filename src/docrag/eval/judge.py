@@ -6,6 +6,8 @@ Rule-based where possible, LLM only where needed:
 * Otherwise: ask the judge model for {reasoning, correct, faithful}.
 """
 
+from collections.abc import Mapping
+
 from pydantic import BaseModel, ConfigDict
 
 from docrag.answer.context import load_prompt
@@ -40,13 +42,37 @@ def judged_by_llm(q: EvalQuestion, result: AnswerResult) -> bool:
     return q.answerable and not abstained(result)
 
 
+def render_cited(result: AnswerResult, chunks: Mapping[str, str]) -> str:
+    """Full text of every passage behind a VERIFIED citation (what the user sees).
+
+    One block per chunk ID, with the quote(s) the system picked from it.
+    """
+    quotes: dict[str, list[str]] = {}
+    for c in result.verified_citations:
+        quotes.setdefault(c.id, []).append(c.quote)
+    if not quotes:
+        return "(none)"
+    blocks = []
+    for cid, qs in quotes.items():
+        picked = "; ".join(f'"{q}"' for q in qs)
+        # Fallback to the quote if the chunk text is missing (shouldn't happen:
+        # verified citations always point at a chunk that was in the context).
+        text = chunks.get(cid, " ".join(qs))
+        blocks.append(f"[{cid}] (quoted: {picked})\n{text}")
+    return "\n\n".join(blocks)
+
+
 async def judge(
     proxy: LLMProxy,
     route: str,
     q: EvalQuestion,
     result: AnswerResult,
     temperature: float | None = 0.0,
+    *,
+    prompt_version: str = "judge_v2",
+    chunks: Mapping[str, str] | None = None,
 ) -> JudgeVerdict:
+    """Grade one answer. ``chunks``: chunk id -> text of the answer's context."""
     is_abstained = abstained(result)
     if not q.answerable:
         return JudgeVerdict(
@@ -55,15 +81,22 @@ async def judge(
     if is_abstained:
         return JudgeVerdict(reasoning="rule: abstained", correct=False, faithful=True)
 
-    quotes = "\n".join(f"- {c.quote}" for c in result.verified_citations) or "(none)"
+    if prompt_version == "judge_v1":
+        # Kept byte-identical so old runs stay reproducible from the cache.
+        quotes = (
+            "\n".join(f"- {c.quote}" for c in result.verified_citations) or "(none)"
+        )
+        evidence = f"Cited evidence quotes:\n{quotes}"
+    else:
+        evidence = f"Cited passages:\n{render_cited(result, chunks or {})}"
     user = (
         f"Question: {q.question}\n"
         f"Gold answer: {q.answer}\n"
         f"System answer: {result.answer}\n"
-        f"Cited evidence quotes:\n{quotes}"
+        f"{evidence}"
     )
     messages = [
-        Message(role="system", content=load_prompt("judge_v1")),
+        Message(role="system", content=load_prompt(prompt_version)),
         Message(role="user", content=user),
     ]
     verdict, _ = await proxy.structured(

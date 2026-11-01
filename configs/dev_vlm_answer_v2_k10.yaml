@@ -1,0 +1,25 @@
+# Abstention experiment (dev split): prompt answer_v2 x context_k 10.
+# Chosen on DEV, then only the winner runs on test (no tuning on the test set).
+name: dev_vlm_answer_v2_k10
+embedder: onnx:gte-small
+prefix_headings: true
+ocr: vlm
+ocr_model: "openrouter:anthropic/claude-haiku-5.5"
+retrieval: hybrid_rerank
+scope: doc
+top_k: 10
+prefetch_k: 50
+rrf_k: 60
+reranker: onnx:gte-reranker-modernbert-base
+rerank_threshold: 0.6318    # same gate as answer_haiku_vlm (calibrated on dev)
+context_k: 10
+prompt_version: answer_v2
+llm: "openrouter:anthropic/claude-haiku-5.5"
+llm_temperature: null    # Claude 5.5 rejects sampling parameters
+judge: "openrouter:deepseek/deepseek-v4.1-flash"
+judge_prompt_version: judge_v2
+judge_temperature: 0.0
+llm_concurrency: 6
+dataset:
+  split: dev
+  max_docs: null
