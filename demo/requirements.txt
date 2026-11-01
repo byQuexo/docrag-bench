@@ -6,4 +6,5 @@ torch>=2.8,<2.14       # the versions ZeroGPU supports
 transformers>=5.8,<6   # Qwen3.5 / Qwen3.8 model classes
 accelerate
 kernels>=0.17.2,<0.18  # GPU kernels for the FP8 weights (transformers requires this range)
+flash-linear-attention>=0.5.2,<0.6  # Triton kernels for Qwen3.5/3.8 attention (without: very slow fallback)
 spaces
