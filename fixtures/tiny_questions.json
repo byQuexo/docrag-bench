@@ -1,0 +1,17 @@
+[
+  {
+    "question": "Who conducted the Northwind customer survey?",
+    "answer": "Acme Research",
+    "evidence_pages": [1]
+  },
+  {
+    "question": "What was the revenue in Europe in 2024?",
+    "answer": "45.5 million euros",
+    "evidence_pages": [2]
+  },
+  {
+    "question": "What does the report recommend for Asia?",
+    "answer": "Expanding the support team in Asia",
+    "evidence_pages": [3]
+  }
+]

@@ -1,0 +1,71 @@
+# Local stack: Qdrant + the docrag API + Phoenix (traces).
+#   docker compose up -d qdrant     # only the vector DB (for CLI ingest/eval)
+#   docker compose up -d            # DB + API on http://localhost:8000/docs
+#                                   #   + traces on http://localhost:6006
+# Traces from CLI runs on the host (`docrag ask`/`eval`): start phoenix, then
+#   DOCRAG_OTEL_ENDPOINT=http://127.0.0.1:6006/v1/traces uv run docrag ask ...
+#
+# LEARN: services on the same compose network reach each other by service name,
+# which is why the API uses http://qdrant:6333 while your host uses localhost.
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.20.0 # pinned: same version as CI
+    # SECURITY: bound to 127.0.0.1 so only this machine can connect. Qdrant has no
+    # API key configured here; "6333:6333" would expose it to the whole network
+    # (anyone on the same Wi-Fi could read or delete collections). For a server
+    # deployment, also set QDRANT__SERVICE__API_KEY and enable TLS.
+    ports:
+      - "127.0.0.1:6333:6333" # REST
+      - "127.0.0.1:6334:6334" # gRPC
+    volumes:
+      # Named volume: the index survives `docker compose down` (not `down -v`).
+      - qdrant_storage:/qdrant/storage
+    restart: unless-stopped
+
+  # Phoenix: open-source trace viewer for LLM apps (Arize). It receives
+  # OpenTelemetry spans over OTLP and understands the OpenInference attributes
+  # we set (LLM prompts/tokens, retrieved documents, sessions).
+  phoenix:
+    image: arizephoenix/phoenix:version-20.23.0 # pinned
+    ports:
+      # SECURITY: localhost only, like Qdrant. Traces contain questions, prompts
+      # and document text; Phoenix has no auth enabled here.
+      - "127.0.0.1:6006:6006" # UI + OTLP/HTTP at /v1/traces
+    environment:
+      PHOENIX_WORKING_DIR: /mnt/data
+    volumes:
+      - phoenix_data:/mnt/data # traces survive a restart
+    restart: unless-stopped
+
+  api:
+    build: .
+    depends_on:
+      - qdrant
+      - phoenix
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      DOCRAG_QDRANT_LOCATION: http://qdrant:6333
+      DOCRAG_DATA_DIR: /app/data
+      DOCRAG_PDF_DIR: /app/data/mmlongbench/documents
+      DOCRAG_MODELS_DIR: /app/models/hf
+      DOCRAG_CACHE_PATH: /app/.cache/docrag.sqlite
+      # LLM: reach an Ollama running on the host machine.
+      DOCRAG_OLLAMA_BASE_URL: http://host.docker.internal:11434/v1
+      # Tracing on: spans go to the phoenix service (remove to turn it off).
+      DOCRAG_OTEL_ENDPOINT: http://phoenix:6006/v1/traces
+    # API keys (OPENAI_API_KEY, GEMINI_API_KEY, ...) come from a local .env file,
+    # never from this committed file. `required: false`: works without one.
+    env_file:
+      - path: .env
+        required: false
+    volumes:
+      - ./data:/app/data:ro # PDFs are read-only for the API
+      - ./models:/app/models # ONNX models (downloaded once, reused)
+      - ./.cache:/app/.cache # parse/embedding/LLM cache
+      - ./configs:/app/configs:ro
+    command: ["docrag", "serve", "--config", "configs/baseline.yaml", "--host", "0.0.0.0"]
+
+volumes:
+  qdrant_storage:
+  phoenix_data:

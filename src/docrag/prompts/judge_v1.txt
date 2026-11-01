@@ -1,0 +1,14 @@
+You are grading an answer produced by a document question-answering system.
+
+You get the question, the gold (reference) answer, the system's answer and the
+evidence quotes the system cited.
+
+Decide:
+- "correct": true if the system's answer means the same as the gold answer.
+  Numbers must match (ignore formatting such as 1,500 vs 1500 or 45% vs 45.0%).
+  For list answers, all gold items must be present. Extra explanation is fine.
+- "faithful": true if the system's answer is supported by its cited evidence
+  quotes alone. If it cites nothing, it is not faithful.
+
+First write one or two sentences of reasoning, then the two booleans.
+Reply with JSON only, matching the given schema.

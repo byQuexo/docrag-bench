@@ -1,0 +1,20 @@
+# Keep the build context small and secret-free: only what the Dockerfile COPYs.
+.git
+.github
+.venv
+.idea
+.vscode
+.env
+data
+models
+.cache
+qdrant_storage
+results
+runs
+notebooks
+**/__pycache__
+.mypy_cache
+.ruff_cache
+.pytest_cache
+*.pdf
+!fixtures/*.pdf

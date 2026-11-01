@@ -1,0 +1,7 @@
+slice,n,answerable,recall@1,recall@5,recall@10,mrr@10,ndcg@10,run,config_hash
+all,735,0.7714,0.3778,0.6833,0.7596,0.6073,0.6242,baseline_ocr,2780bf8283bf
+text,283,1.0,0.3802,0.6927,0.7779,0.636,0.6453,baseline_ocr,2780bf8283bf
+table,138,1.0,0.4127,0.6835,0.7612,0.6329,0.6389,baseline_ocr,2780bf8283bf
+image,314,1.0,0.3588,0.6779,0.7478,0.6023,0.6139,baseline_ocr,2780bf8283bf
+unanswerable,168,0.0,0.0,0.2,0.2,0.0667,0.1,baseline_ocr,2780bf8283bf
+no_text_layer,213,0.7183,0.5081,0.7251,0.7763,0.7295,0.7166,baseline_ocr,2780bf8283bf

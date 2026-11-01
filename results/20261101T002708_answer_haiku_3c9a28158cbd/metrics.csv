@@ -1,0 +1,7 @@
+slice,n,answerable,recall@1,recall@5,recall@10,mrr@10,ndcg@10,abstained,n_citations,n_verified,cit_precision_verify_off,cit_precision_verify_on,correct,faithful,run,config_hash
+all,735,0.7714,0.2411,0.487,0.5495,0.4116,0.4317,0.6925,0.5728,0.5578,0.6697,0.6787,0.3918,0.8422,answer_haiku,3c9a28158cbd
+text,283,1.0,0.2889,0.5415,0.6159,0.4837,0.4984,0.5265,0.8445,0.8127,0.717,0.7329,0.2968,0.7562,answer_haiku,3c9a28158cbd
+table,138,1.0,0.2932,0.5343,0.6083,0.481,0.4907,0.529,0.9855,0.971,0.7196,0.7275,0.2609,0.7536,answer_haiku,3c9a28158cbd
+image,314,1.0,0.1681,0.4124,0.4636,0.3304,0.3494,0.7994,0.3662,0.3471,0.5484,0.5519,0.1019,0.8726,answer_haiku,3c9a28158cbd
+unanswerable,168,0.0,0.0,0.2,0.2,0.0667,0.1,0.9286,0.119,0.119,,,0.9286,1.0,answer_haiku,3c9a28158cbd
+no_text_layer,213,0.7183,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,,,0.2817,1.0,answer_haiku,3c9a28158cbd

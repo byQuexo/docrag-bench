@@ -1,0 +1,22 @@
+config_hash: 34aa1429d82f
+name: bm25
+embedder: onnx:gte-small
+prefix_headings: true
+retrieval: bm25
+scope: doc
+top_k: 10
+prefetch_k: 50
+rrf_k: 60
+reranker: onnx:gte-reranker-modernbert-base
+rerank_threshold: 0.2
+context_k: 5
+llm: null
+judge: null
+llm_temperature: 0.0
+judge_temperature: 0.0
+llm_concurrency: 2
+prompt_version: answer_v1
+dataset:
+  split: test
+  max_docs: null
+  max_questions: null

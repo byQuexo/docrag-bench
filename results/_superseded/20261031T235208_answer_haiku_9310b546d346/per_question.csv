@@ -1,0 +1,736 @@
+qid,doc_id,slices,answerable,recall@1,recall@5,recall@10,mrr@10,ndcg@10,top_pages,gold_pages,status,abstained,n_citations,n_verified,cit_precision_verify_off,cit_precision_verify_on,answer,correct,faithful
+6f6a2eab55f3,Independents-Report,text,true,0.5,0.5,0.5,1.0,0.6131471927654584,[3],"[3, 5]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+8515c4089459,Independents-Report,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+2a7bd8fd304c,Independents-Report,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+c27969eab7b9,Independents-Report,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],"[3, 22]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+7b583b6d91d6,Independents-Report,image,true,0.0,0.0,0.0,0.0,0.0,[],"[8, 12]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+18757927eb5e,Independents-Report,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[3, 6, 16, 18, 19, 20, 22]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+24cf6fe22597,fdac8d1e9ef56519371df7e6532df27d,image,true,0.0,0.0,0.0,0.0,0.0,[],[17],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+756ebf00cb3d,fdac8d1e9ef56519371df7e6532df27d,text,true,0.0,0.0,0.0,0.0,0.0,[],[3],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+b69b88d55982,fdac8d1e9ef56519371df7e6532df27d,text,true,1.0,1.0,1.0,1.0,1.0,"[6, 15]",[6],supported,false,1,1,1.0,1.0,"During the year, the Indian Remote Sensing Satellite constellation helped in Agricultural Crops Inventory, Agricultural Drought, Forest Fire, Landslides and Earthquakes monitoring, Groundwater Prospects Mapping, Inventory; Monitoring of Glacial Lakes/Water Bodies, Sericulture Development and Satellite Aided Search and Rescue. [fdac8d1e9ef56519371df7e6532df27d:p6:c1]",true,false
+49493a7582c3,fdac8d1e9ef56519371df7e6532df27d,text,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[18, 19]",[19],supported,false,1,1,0.0,0.0,NARL stands for National Atmospheric Research Laboratory [fdac8d1e9ef56519371df7e6532df27d:p18:c0].,true,true
+ea7dd13f46e4,fdac8d1e9ef56519371df7e6532df27d,image,true,0.0,0.0,0.0,0.0,0.0,[],[2],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+730d7b31d3e8,fdac8d1e9ef56519371df7e6532df27d,text,true,0.0,0.0,0.0,0.0,0.0,[1],"[9, 10, 11, 12, 13, 14, 15, 16, 19, 20]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+4b77da9b17ec,fdac8d1e9ef56519371df7e6532df27d,image,true,0.0,0.0,0.0,0.0,0.0,[],"[10, 11, 12, 14, 15, 16, 19, 20]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+29fe8de1011d,52b3137455e7ca4df65021a200aef724,text,true,0.0,0.0,0.0,0.0,0.0,[],[10],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+d324c83aedf0,52b3137455e7ca4df65021a200aef724,text,true,0.0,0.0,0.0,0.0,0.0,[],[47],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+f4a9b873071b,52b3137455e7ca4df65021a200aef724,table,true,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+c91c0460734f,52b3137455e7ca4df65021a200aef724,image,true,0.0,0.0,0.0,0.0,0.0,[],[81],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+2c107098a152,52b3137455e7ca4df65021a200aef724,image,true,0.0,0.0,0.0,0.0,0.0,[102],[101],unsupported,false,1,0,0.0,NaN,"The context names a 'WikidataMapMakingWorkshop' notebook in Module 3, but it does not explicitly say the notebook shows how to create an interactive map.",true,false
+b54217a2f0fc,52b3137455e7ca4df65021a200aef724,image,true,0.0,0.0,0.0,0.0,0.0,[],"[24, 53, 56]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0a3390e655f6,earlybird-110722143746-phpapp02_95,"image,table",true,0.0,0.0,0.0,0.0,0.0,[],[6],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+db823b48c592,earlybird-110722143746-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[11],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+6dbf93123d98,earlybird-110722143746-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[11, 13, 15, 16, 21, 22, 23, 24, 25, 26, 27, 31, 38]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+d2d914521f3a,earlybird-110722143746-phpapp02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[14, 19, 20, 33, 37]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+9cc15e05c276,earlybird-110722143746-phpapp02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[33],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+a6fd345bee55,earlybird-110722143746-phpapp02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+4a9a9a24faed,earlybird-110722143746-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[6, 7, 8, 11, 18, 23, 24, 25, 28, 30]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+12e9ef562003,earlybird-110722143746-phpapp02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+467035338d7a,earlybird-110722143746-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[26],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+bc78d79f369b,ddoseattle-150627210357-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[12],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+05f9036bba57,ddoseattle-150627210357-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+8f0b95d05665,ddoseattle-150627210357-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[13],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+cdadbb9198d6,ddoseattle-150627210357-lva1-app6891_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[7, 8, 9, 16]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+809b8934f643,ddoseattle-150627210357-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[49, 50]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+504b3117ab55,ddoseattle-150627210357-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+122d91be95bf,ddoseattle-150627210357-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[17, 25, 40, 51]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+6eadde9fa504,ddoseattle-150627210357-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[21, 26, 36, 39, 42, 43, 44, 45]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+6cecdb1ad002,ddoseattle-150627210357-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[25],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+8cf5f9868629,ddoseattle-150627210357-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+d5faa46d39c1,reportq32015-151009093138-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[7],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+fd86cc1431ce,reportq32015-151009093138-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[9],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+a307ade21e59,reportq32015-151009093138-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[10],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+a87da443e982,reportq32015-151009093138-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[29, 30]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+3e27f6e1ff93,reportq32015-151009093138-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+8e0bc85eb532,reportq32015-151009093138-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[26, 27]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+2b620fae99ec,reportq32015-151009093138-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[28, 33]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+7e4297d8fafe,reportq32015-151009093138-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[7, 15]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+61f3bae8b65d,reportq32015-151009093138-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+07fa8c06a320,reportq32015-151009093138-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[13, 31]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+4a9401a08f4a,2312.10997v5,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[2],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+7478748e29cc,2312.10997v5,image,true,0.0,0.0,0.0,0.0,0.0,[],[4],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+fdcaa6d66f5c,2312.10997v5,"table,text",true,0.0,0.0,0.0,0.0,0.0,[8],"[6, 17]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+9a304b687364,2312.10997v5,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[6],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+8db39c929d55,2312.10997v5,table,true,1.0,1.0,1.0,1.0,1.0,[13],[13],supported,false,3,3,1.0,1.0,"Three datasets have exactly three method citations: PopQA [2312.10997v5:p13:c0], MS MARCO [2312.10997v5:p13:c0], and SST-2 [2312.10997v5:p13:c0].",true,true
+883d852ff510,2312.10997v5,text,true,0.5,1.0,1.0,1.0,1.0,"[11, 10, 2, 3]","[10, 11]",supported,false,2,2,0.5,0.5,"The context does not list explicit subsection titles under ""AUGMENTATION PROCESS IN RAG"". It says Section V analyzes the three augmentation processes [2312.10997v5:p2:c1], which are iterative retrieval, recursive retrieval, and adaptive retrieval [2312.10997v5:p11:c0].",true,false
+65dc7e2a7354,2312.10997v5,text,true,0.5,0.5,0.5,1.0,0.6131471927654584,[10],"[9, 10]",supported,false,2,2,1.0,1.0,"The context does not name the method. It describes an innovative method for integrating knowledge into white-box models via directive fine-tuning [2312.10997v5:p10:c0], in which the retriever module is directly substituted to generate relevant documents according to a query [2312.10997v5:p10:c0].",false,false
+8d54328601c9,honor_watch_gs_pro,image,true,0.0,0.0,0.0,0.0,0.0,[],"[39, 40, 41]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+73187a56213b,honor_watch_gs_pro,image,true,1.0,1.0,1.0,1.0,1.0,[23],[23],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+436e301fee93,honor_watch_gs_pro,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[16],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+20f4bab14200,honor_watch_gs_pro,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+5b493c441795,honor_watch_gs_pro,table,true,0.5,0.5,0.5,1.0,0.6131471927654584,[12],"[12, 13]",supported,false,4,4,1.0,1.0,"There are 6 distinct button functions during a workout: lock/unlock [honor_watch_gs_pro:p12:c1], mute [honor_watch_gs_pro:p12:c1], end workout [honor_watch_gs_pro:p12:c1], switch screen [honor_watch_gs_pro:p12:c1], finish the workout [honor_watch_gs_pro:p12:c1], and wake up the voice assistant [honor_watch_gs_pro:p12:c1]. Switch screen is triggered by three different inputs.",false,true
+a10bbfb10545,honor_watch_gs_pro,"",true,0.0,0.0,0.0,0.0,0.0,"[24, 25]","[20, 21]",supported,false,1,1,0.0,0.0,The user should measure their resting heart rate in a quiet and relaxed environment when they are awake [honor_watch_gs_pro:p24:c2].,true,true
+9b443bb0693a,watch_d,image,true,0.0,0.0,0.0,0.0,0.0,[],[15],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+58d5c3fc224d,watch_d,"image,text",true,1.0,1.0,1.0,1.0,1.0,"[6, 7]",[6],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+cd2a82933755,watch_d,text,true,0.5,1.0,1.0,1.0,1.0,"[9, 10, 2]","[9, 10]",supported,false,2,2,1.0,1.0,"Two steps are needed. First, press the Up button to open the app list and go to Settings > Down button. Second, select an app and customize the function of the Down button. [watch_d:p9:c2]",true,true
+a1ad114483c7,watch_d,table,true,1.0,1.0,1.0,1.0,1.0,[3],[3],supported,false,2,2,1.0,1.0,"Pressing and holding the down button powers on the watch when it is off [watch_d:p3:c1]. When the watch is on, it opens the restart/power off screen [watch_d:p3:c1].",false,false
+c4e7f75705d2,watch_d,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[15, 3]",[],supported,false,1,1,NaN,NaN,Pressing the Down button twice starts a measurement [watch_d:p15:c0].,false,true
+b7f68b73b001,2024.ug.eprospectus,table,true,0.0,0.0,0.0,0.0,0.0,[],[25],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+307c8509887c,2024.ug.eprospectus,"image,text",true,1.0,1.0,1.0,1.0,1.0,"[3, 2]",[3],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+a3920698bb19,2024.ug.eprospectus,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[22],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+db7cb298f219,2024.ug.eprospectus,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+2891ad6f18de,2024.ug.eprospectus,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[10, 17, 18]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+e98cd68517c8,2024.ug.eprospectus,text,true,0.0,0.0,0.0,0.0,0.0,[],"[12, 13]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+3854e5e77c4a,Bergen-Brochure-en-2022-23,text,true,0.0,0.0,0.0,0.0,0.0,"[44, 7]","[11, 12, 13, 14]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+e383c70e45d7,Bergen-Brochure-en-2022-23,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[23],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+6248b70aba12,Bergen-Brochure-en-2022-23,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[13, 14, 12, 44]",[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+46699a4f4063,Bergen-Brochure-en-2022-23,image,true,0.0,0.0,0.0,0.0,0.0,[44],"[9, 10]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+5aca40c27e07,Bergen-Brochure-en-2022-23,text,true,0.0,0.0,0.0,0.0,0.0,[],[32],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+15adcc7ffefc,Bergen-Brochure-en-2022-23,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[46],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+41622141a6c4,PG_2020.03.09_US-Germany_FINAL,image,true,1.0,1.0,1.0,1.0,1.0,"[15, 11, 13, 14, 4, 5]",[15],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+73b48d868d45,PG_2020.03.09_US-Germany_FINAL,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[11, 13]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+484c3c752999,PG_2020.03.09_US-Germany_FINAL,image,true,0.0,1.0,1.0,0.3333333333333333,0.5,"[14, 4, 5, 15, 6, 13, 17, 18]",[5],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+c1c24c4b2495,PG_2020.03.09_US-Germany_FINAL,text,true,0.0,0.0,0.0,0.0,0.0,[],"[6, 17]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+e683575933ee,PG_2020.03.09_US-Germany_FINAL,image,true,0.0,0.25,0.25,0.2,0.15101961822780524,"[4, 5, 6, 13, 14]","[8, 12, 14, 18]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+712347c25e50,PG_2020.03.09_US-Germany_FINAL,image,true,1.0,1.0,1.0,1.0,1.0,"[16, 17]",[16],supported,false,1,1,1.0,1.0,"About 53% of Germans name China as the leading economic power [PG_2020.03.09_US-Germany_FINAL:p16:c0]. The context gives no separate figure for Japan among Germans, so a combined China-or-Japan percentage cannot be calculated.",false,false
+f44bab727242,PG_2020.03.09_US-Germany_FINAL,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+d16c357e6d8f,fd76bbefe469561966e5387aa709c482,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+9e2b4a974e4d,fd76bbefe469561966e5387aa709c482,text,true,0.0,0.0,0.0,0.0,0.0,[],[1],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+36b3cdc7a000,fd76bbefe469561966e5387aa709c482,image,true,0.0,0.0,0.0,0.0,0.0,[],[3],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+90a672516ced,fd76bbefe469561966e5387aa709c482,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+72d86666b9b1,fd76bbefe469561966e5387aa709c482,"image,text",true,0.0,1.0,1.0,0.5,0.6309297535714575,"[2, 3, 7, 8]",[3],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+1984c1367c09,fd76bbefe469561966e5387aa709c482,table,true,0.0,0.0,0.0,0.0,0.0,[8],[7],supported,false,1,1,0.0,0.0,"1884 Apr. 5, 10 45 (am/pm not stated), an awfully severe shock that shook the house and rattled windows [fd76bbefe469561966e5387aa709c482:p8:c1]",false,false
+8a21438b1cd2,379f44022bb27aa53efd5d322c7b57bf,unanswerable,false,0.0,0.0,0.0,0.0,0.0,[],[10],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+cc6dcedd2ab4,379f44022bb27aa53efd5d322c7b57bf,text,true,0.0,0.0,0.0,0.0,0.0,[],[1],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+9b79a8985416,379f44022bb27aa53efd5d322c7b57bf,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+09d8c8f6920a,379f44022bb27aa53efd5d322c7b57bf,text,true,1.0,1.0,1.0,1.0,1.0,[3],[3],supported,false,2,2,1.0,1.0,"The report says it always asks five questions of services, but the passage only states the first one: whether the service is safe [379f44022bb27aa53efd5d322c7b57bf:p3:c0]. The other four are not given in the context.",false,true
+43ea50cad137,379f44022bb27aa53efd5d322c7b57bf,text,true,0.0,0.0,0.0,0.0,0.0,[],"[1, 5]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+6e50e0aff5a3,379f44022bb27aa53efd5d322c7b57bf,text,true,0.0,0.0,0.0,0.0,0.0,[2],"[6, 7, 8, 9, 10, 12, 13]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+99edf0f05cd5,efd88e41c5f2606c57929cac6c1c0605,text,true,0.0,0.0,0.0,0.0,0.0,[],[14],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+8605f175c3d2,efd88e41c5f2606c57929cac6c1c0605,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+215bd9478864,efd88e41c5f2606c57929cac6c1c0605,table,true,0.0,0.0,0.0,0.0,0.0,"[8, 12, 13, 9, 11]",[7],supported,false,3,3,0.0,0.0,"The report has 9 chapters: a first background chapter, seven topical health-impact chapters, and a final chapter on Populations of Concern. [efd88e41c5f2606c57929cac6c1c0605:p9:c2]",true,true
+ffa7b3c501b7,efd88e41c5f2606c57929cac6c1c0605,table,true,0.0,0.0,0.0,0.0,0.0,[8],[6],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+ed33b779cada,efd88e41c5f2606c57929cac6c1c0605,text,true,0.0,0.0,0.0,0.0,0.0,[],"[14, 15]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+a81ff447d3cb,efd88e41c5f2606c57929cac6c1c0605,text,true,0.0,0.0,0.0,0.0,0.0,[],"[1, 3, 9, 11, 19, 20]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+2db4bbbd85f8,efd88e41c5f2606c57929cac6c1c0605,"table,text",true,0.5,0.5,0.5,1.0,0.6131471927654584,"[12, 13]","[7, 12]",supported,false,1,1,1.0,1.0,"Four chapters include research highlights: [""Temperature-Related Death and Illness"", ""Air Quality Impacts"", ""Vector-Borne Disease"", ""Water-Related Illness""] [efd88e41c5f2606c57929cac6c1c0605:p12:c3]",false,true
+2344bba9256c,finalpresentationdeck-whatwhyhowofcertificationsocial-160324220748_95,table,true,0.0,0.0,0.0,0.0,0.0,[],[12],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+9d51545ca4a6,finalpresentationdeck-whatwhyhowofcertificationsocial-160324220748_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+e4bcfec79895,finalpresentationdeck-whatwhyhowofcertificationsocial-160324220748_95,table,true,0.0,0.0,0.0,0.0,0.0,[],[12],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+581db0785235,finalpresentationdeck-whatwhyhowofcertificationsocial-160324220748_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[10, 11, 12, 13]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+8d67bd3496c1,finalpresentationdeck-whatwhyhowofcertificationsocial-160324220748_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[24, 25, 26]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+3a7414063d28,finalpresentationdeck-whatwhyhowofcertificationsocial-160324220748_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+88d65335d3f9,finalpresentationdeck-whatwhyhowofcertificationsocial-160324220748_95,text,true,0.0,0.0,0.0,0.0,0.0,[],[22],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+5fc0dd4d8e0a,finalpresentationdeck-whatwhyhowofcertificationsocial-160324220748_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+f4a8cd4c1b2f,avalaunchpresentationsthatkickasteriskv3copy-150318114804-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[3],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+801fc2084dc8,avalaunchpresentationsthatkickasteriskv3copy-150318114804-conversion-gate01_95,text,true,0.0,0.0,0.0,0.0,0.0,[],[1],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+60af8ed97982,avalaunchpresentationsthatkickasteriskv3copy-150318114804-conversion-gate01_95,text,true,0.0,0.0,0.0,0.0,0.0,[],[6],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+ad06a7794522,avalaunchpresentationsthatkickasteriskv3copy-150318114804-conversion-gate01_95,text,true,0.0,0.0,0.0,0.0,0.0,[],[2],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+b48abb46fba2,asdaaburson-marstellerarabyouthsurvey2014-140407100615-phpapp01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[10],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+5afea30d87a6,asdaaburson-marstellerarabyouthsurvey2014-140407100615-phpapp01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+c51794adf774,asdaaburson-marstellerarabyouthsurvey2014-140407100615-phpapp01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[6, 10]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+4fdcc227680f,asdaaburson-marstellerarabyouthsurvey2014-140407100615-phpapp01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[11],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+822631450305,asdaaburson-marstellerarabyouthsurvey2014-140407100615-phpapp01_95,text,true,0.0,0.0,0.0,0.0,0.0,[],[33],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+54b58b9f5488,asdaaburson-marstellerarabyouthsurvey2014-140407100615-phpapp01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+4dfbe2ca938e,asdaaburson-marstellerarabyouthsurvey2014-140407100615-phpapp01_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[11, 19, 20, 25, 37]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+5fdcc710e639,asdaaburson-marstellerarabyouthsurvey2014-140407100615-phpapp01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[20],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+5e0c6c4212d5,2303.08559v2,table,true,1.0,1.0,1.0,1.0,1.0,"[9, 8, 7, 6]",[9],supported,false,3,3,1.0,1.0,"For filter-then-rerank without SLM ensemble, TACREV 50-shot F1 is 72.3 with an InstructGPT reranker [2303.08559v2:p9:c0] and 72.3 with a GPT-4 reranker [2303.08559v2:p9:c0]. With a Vicuna-13B reranker it is 70.8 [2303.08559v2:p9:c0]. These values are read from a complex table layout, so the row-to-reranker mapping is an inference.",false,false
+7a0b93ee1c64,2303.08559v2,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[8, 6, 7, 9, 2]",[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+02edb90fd445,2303.08559v2,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[5, 16]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0ce2caa32055,2303.08559v2,text,true,0.0,0.0,0.0,0.0,0.0,[],[0],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+f3565538302b,2303.08559v2,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],"[8, 29]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+770afcbd9064,2303.08559v2,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+dffc5619025d,2303.08559v2,"image,table",true,0.0,0.0,0.0,0.0,0.0,[],"[8, 9]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+8fa5ebd1f769,Macbook_air,text,true,0.0,0.0,0.0,0.0,0.0,[],"[45, 49, 50]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+f87a5c6cbedb,Macbook_air,image,true,0.0,0.0,0.0,0.0,0.0,[],[33],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+e31e3d61e1d9,Macbook_air,image,true,0.0,0.0,0.0,0.0,0.0,[],[30],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+3bfddb5c6862,Macbook_air,text,true,0.0,0.0,0.0,0.0,0.0,[],"[66, 67, 68]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+3b25eb600098,Macbook_air,"table,text",true,0.5,1.0,1.0,1.0,1.0,"[54, 55]","[54, 55]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+734efc178181,Macbook_air,image,true,0.0,0.0,0.0,0.0,0.0,[],[26],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+f8a737c4c8af,Macbook_air,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+aa88bf9f54d7,05-03-18-political-release,"image,text",true,0.0,0.5,1.0,0.2,0.45560514958746035,"[7, 8, 9, 10, 3, 4, 5, 11, 16]","[3, 4]",supported,false,1,1,0.0,0.0,36% of adults rated the Trump administration's ethical standards as poor [05-03-18-political-release:p7:c2].,false,false
+05ea265c456d,05-03-18-political-release,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[3, 7, 8, 9, 10, 4, 5, 11]",[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+2efb0bc79734,05-03-18-political-release,image,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[4, 5, 6, 7]",[5],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+50849ee1836d,05-03-18-political-release,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+de1f32ae121c,05-03-18-political-release,"image,text",true,0.5,1.0,1.0,1.0,0.8503449055347546,"[13, 14, 12, 10, 11, 3, 4]","[11, 13]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+c8fbea4553fd,05-03-18-political-release,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[13, 14, 12, 10, 11, 3, 4]",[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+67c7edff5488,05-03-18-political-release,"image,text",true,0.5,0.5,1.0,1.0,0.8315546295836225,"[14, 15, 13, 12, 10, 11, 17, 3, 4]","[11, 14]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+73026b227558,05-03-18-political-release,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[14, 15, 17, 13, 12]",[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+ba858d0d501b,05-03-18-political-release,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[8, 10]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+5c36fb254685,05-03-18-political-release,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[17],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+3d76366446a4,05-03-18-political-release,"image,table",true,0.0,0.5,0.5,0.5,0.38685280723454163,"[11, 12, 3, 4, 10, 13]","[12, 17]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+7ca3c4013fbd,05-03-18-political-release,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[12, 11, 3, 4, 13, 10, 9]",[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+bd7e11aa6009,PIP_Seniors-and-Tech-Use_040314,"",true,0.0,1.0,1.0,0.5,0.6309297535714575,"[14, 5, 6, 3, 4, 2, 7, 8]",[5],supported,false,1,1,0.0,0.0,41% of seniors do not use the internet at all [PIP_Seniors-and-Tech-Use_040314:p2:c1].,true,false
+f4a60e4de9f7,PIP_Seniors-and-Tech-Use_040314,"image,text",true,0.0,1.0,1.0,0.5,0.6309297535714575,"[5, 6, 24]",[6],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+12c4a31799a3,PIP_Seniors-and-Tech-Use_040314,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[5, 6, 24]",[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+4758bc513c5e,PIP_Seniors-and-Tech-Use_040314,"image,table,text",true,0.0,0.5,0.5,0.25,0.2640681225725909,"[3, 4, 17, 8, 2]","[7, 8]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+89c3b15d8f56,PIP_Seniors-and-Tech-Use_040314,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[7, 8]",[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+968d58da00f7,PIP_Seniors-and-Tech-Use_040314,"table,text",true,0.0,0.0,0.0,0.0,0.0,"[6, 7]","[8, 9, 10]",supported,false,1,1,0.0,0.0,"Higher-income seniors (annual household income of $75,000 or more): list in descending order: [""90%""] go online [PIP_Seniors-and-Tech-Use_040314:p7:c1]. The context does not report smartphone or tablet ownership for this group, so those figures cannot be answered from the context.",false,false
+44249e38f97e,PIP_Seniors-and-Tech-Use_040314,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[7],[],supported,false,1,1,NaN,NaN,"Only the online figure is in the context: [""90%""] of higher-income seniors (annual household income of $75,000 or more) go online [PIP_Seniors-and-Tech-Use_040314:p7:c1]. The context does not give smartphone or tablet ownership figures for this group, and it does not mention the July 18-September 30, 2022 survey.",false,true
+1bb47f2d8028,PIP_Seniors-and-Tech-Use_040314,"image,table,text",true,0.0,0.5,0.5,0.5,0.38685280723454163,"[3, 4, 13, 14, 5, 10, 11, 2, 8, 24]","[4, 16]",supported,false,2,2,0.0,0.0,"Among 65+ internet users, 82% go online either every day or almost every day or 3-5 times per week: 71% every day or almost every day and 11% three to five times per week [PIP_Seniors-and-Tech-Use_040314:p13:c2]. The chart's net figure for 65+ is 82 [PIP_Seniors-and-Tech-Use_040314:p3:c1]. These are percentages of internet users, not raw counts.",false,true
+7cd1132eb5d4,PIP_Seniors-and-Tech-Use_040314,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[13, 14, 3, 4, 7]",[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+00121f2ccc42,PIP_Seniors-and-Tech-Use_040314,table,true,0.0,1.0,1.0,0.5,0.6509209298071326,"[9, 18, 19, 20, 21, 16, 17, 22, 23, 24]","[18, 20]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+2214c4e84476,PIP_Seniors-and-Tech-Use_040314,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[9, 19, 20, 17, 18, 23, 24, 21, 22, 16]",[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+81cd9983a4d9,PIP_Seniors-and-Tech-Use_040314,"table,text",true,0.0,0.0,0.0,0.0,0.0,"[8, 3, 4, 2]","[16, 17]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+6861cb7fdcf3,0b85477387a9d0cc33fca0f4becaa0e5,"image,text",true,0.0,0.0,0.0,0.0,0.0,[7],[2],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+ee8da3bb7649,0b85477387a9d0cc33fca0f4becaa0e5,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[7],[],supported,false,1,1,NaN,NaN,"The context names Capt. Buhari Oyofo as the NAMRU-3 commanding officer [0b85477387a9d0cc33fca0f4becaa0e5:p7:c0]. The passages do not show that page 7 is the last page of the document, so I can't confirm this is the last page's officer.",false,true
+02bed8dfc195,0b85477387a9d0cc33fca0f4becaa0e5,text,true,1.0,1.0,1.0,1.0,1.0,[1],[1],supported,false,1,1,1.0,1.0,"Rear Adm. (Ret.) Tim Ziemer, the U.S. Global Malaria Coordinator, visited the Naval Medical Research Center on November 29 [0b85477387a9d0cc33fca0f4becaa0e5:p1:c1]. The passage does not state the year 2012.",true,false
+d65da00c81f5,0b85477387a9d0cc33fca0f4becaa0e5,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[1],[],supported,false,2,2,NaN,NaN,"Rear Adm. (Ret.) Tim Ziemer, the U.S. Global Malaria Coordinator, visited the Naval Medical Research Center on November 29 [0b85477387a9d0cc33fca0f4becaa0e5:p1:c1]. The passage does not state the year, so 2020 cannot be confirmed.",false,true
+051a8aa3e327,0b85477387a9d0cc33fca0f4becaa0e5,"",true,1.0,1.0,1.0,1.0,1.0,[7],[7],supported,false,1,1,1.0,1.0,"The NAMRU-3 team visited with: 1) Dr. Walter Gwenigale, Minister of Health and Social Welfare; 2) Dr. Fatorma Bolay, Director of LIBR; 3) U.S. Marine Col. Vernon Graham, officer in charge of Operation Onward Liberty [0b85477387a9d0cc33fca0f4becaa0e5:p7:c1]. The context says November but does not specify the year.",true,false
+b530b0e82d0e,0b85477387a9d0cc33fca0f4becaa0e5,image,true,0.0,0.0,0.0,0.0,0.0,[],"[2, 4, 5, 14, 15]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+544010e6fc98,0b85477387a9d0cc33fca0f4becaa0e5,image,true,0.0,0.0,0.0,0.0,0.0,[],[9],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+498a06a78937,698bba535087fa9a7f9009e172a7f763,text,true,0.0,0.0,0.0,0.0,0.0,[],[3],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+9c93ad842286,698bba535087fa9a7f9009e172a7f763,text,true,0.0,0.0,0.0,0.0,0.0,[],[3],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+f2e5bc0bb5d9,698bba535087fa9a7f9009e172a7f763,text,true,1.0,1.0,1.0,1.0,1.0,"[11, 12]",[11],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+fa0c6b41f28d,698bba535087fa9a7f9009e172a7f763,"image,table,text",true,0.0,0.0,0.0,0.0,0.0,[],"[11, 19]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+fc061d5f7140,698bba535087fa9a7f9009e172a7f763,text,true,0.0,0.0,0.0,0.0,0.0,[],"[12, 15, 17]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+800cf2e4dbc6,8e7c4cb542ad160f80fb3d795ada35d8,"table,text",true,1.0,1.0,1.0,1.0,1.0,"[8, 9, 3, 4, 14, 5]",[8],supported,false,1,1,1.0,1.0,"About 18.4% of the Bronx's land area was rezoned between 2003 and 2007, per Table A. [8e7c4cb542ad160f80fb3d795ada35d8:p8:c2]",true,true
+a5a474f85b8c,8e7c4cb542ad160f80fb3d795ada35d8,"table,text",true,1.0,1.0,1.0,1.0,1.0,"[8, 9]",[8],supported,false,1,1,1.0,1.0,Staten Island's residential development capacity was 435000000 square feet in 2003 [8e7c4cb542ad160f80fb3d795ada35d8:p8:c2]. The context gives no separate 2007 capacity figure for Staten Island.,true,false
+f4b1d1e76a2a,8e7c4cb542ad160f80fb3d795ada35d8,text,true,0.0,0.0,0.0,0.0,0.0,[],[15],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+519e59df9d24,8e7c4cb542ad160f80fb3d795ada35d8,unanswerable,false,0.0,0.0,0.0,0.0,0.0,[],[2],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+4d72d26f6169,8e7c4cb542ad160f80fb3d795ada35d8,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[8, 9]",[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+58c50846d820,8e7c4cb542ad160f80fb3d795ada35d8,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+053d5135b590,8e7c4cb542ad160f80fb3d795ada35d8,image,true,0.0,0.0,0.0,0.0,0.0,[],"[2, 4]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+6ef742161809,8e7c4cb542ad160f80fb3d795ada35d8,image,true,0.0,0.0,0.0,0.0,0.0,[],"[3, 6, 14]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+8c33ca502fdf,8e7c4cb542ad160f80fb3d795ada35d8,text,true,0.0,0.0,0.0,0.0,0.0,[],"[6, 8, 10, 11]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+c601646f4fa4,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[3],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+94078c7dd5ea,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+f416786369e1,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[3],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+dabc9033773e,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+8501336a2cb8,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],[4],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+25dd846140c6,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+af39ffb27312,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[9],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+c6fb14b60799,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[9, 10]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+af210151c83f,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,"image,table",true,0.0,0.0,0.0,0.0,0.0,[],"[11, 17]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+8458038e4a80,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[34],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+e8f52a3b6ef7,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+dff6acff7243,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[31],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+7d6d64aa6ff5,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+e8a32f9165a4,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[18, 19, 20, 21, 23, 25, 26, 27, 28]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+be31c41d75b6,caltraincapacitymountainview1-150701205750-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[15],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+8f5820335392,caltraincapacitymountainview1-150701205750-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+a0185f14b035,caltraincapacitymountainview1-150701205750-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[19, 21, 23]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+2d411f677169,caltraincapacitymountainview1-150701205750-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+ea187e02ac2f,caltraincapacitymountainview1-150701205750-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[14],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+1b1cd9329cb3,caltraincapacitymountainview1-150701205750-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[11],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+f12a968b7da7,caltraincapacitymountainview1-150701205750-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+b148c66cfa28,digitalmeasurementframework22feb2011v6novideo-110221233835-phpapp01_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[12],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+2d63ac92a6b8,digitalmeasurementframework22feb2011v6novideo-110221233835-phpapp01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+9a4af15ab778,digitalmeasurementframework22feb2011v6novideo-110221233835-phpapp01_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[16],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+2f6cbe658ef3,digitalmeasurementframework22feb2011v6novideo-110221233835-phpapp01_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[5],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+52c4858ec849,digitalmeasurementframework22feb2011v6novideo-110221233835-phpapp01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+ee45c17dadb6,digitalmeasurementframework22feb2011v6novideo-110221233835-phpapp01_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[11],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0d49bbf02866,digitalmeasurementframework22feb2011v6novideo-110221233835-phpapp01_95,"image,table,text",true,0.0,0.0,0.0,0.0,0.0,[],"[95, 107]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+947b05a93133,digitalmeasurementframework22feb2011v6novideo-110221233835-phpapp01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+651830f5af06,digitalmeasurementframework22feb2011v6novideo-110221233835-phpapp01_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[133],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+4cd04e9443fb,2310.07609v1,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[1],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+4f67d840f619,2310.07609v1,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+e75f7102819a,2310.07609v1,"image,text",true,0.0,0.0,0.0,0.0,0.0,[7],[2],supported,false,1,1,0.0,0.0,"The context does not give an exact number. It says that several modules of QACHECK use external API-based large language models, such as InstructGPT [2310.07609v1:p7:c0].",false,false
+e2ee3f9680ba,2310.07609v1,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+648eb3b4528a,2310.07609v1,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[5],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+8d855e09037a,2310.07609v1,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[2, 4, 5]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+ee7ae6407066,2310.07609v1,text,true,0.0,0.0,0.0,0.0,0.0,[],"[3, 4]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+daa1384bf752,2310.07609v1,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],[6],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+bcdea7af9b7c,2303.05039v2,table,true,0.0,0.0,0.0,0.0,0.0,[],[4],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+7720b483b438,2303.05039v2,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+e7f5a89333aa,2303.05039v2,"",true,1.0,1.0,1.0,1.0,1.0,[4],[4],supported,false,1,1,1.0,1.0,990.48 [2303.05039v2:p4:c3],false,true
+7384c26dfda2,2303.05039v2,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+a82c2b678557,2303.05039v2,"image,table,text",true,0.0,0.0,0.0,0.0,0.0,[],"[4, 5]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0bfe98022c22,2303.05039v2,"image,table,text",true,0.5,0.5,0.5,1.0,0.6131471927654584,[6],"[5, 6]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+7f53a20d7b9f,2303.05039v2,"image,table,text",true,0.0,0.0,0.0,0.0,0.0,[],"[6, 8]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+b419838bb68f,2303.05039v2,"image,table,text",true,0.0,0.0,0.0,0.0,0.0,[],"[5, 8]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+205350bd3d6e,2305.13186v3,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[2],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+d0e710526ce9,2305.13186v3,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+cc843b326075,2305.13186v3,"image,text",true,0.0,0.0,0.0,0.0,0.0,"[4, 5]",[2],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+a965858bc7ed,2305.13186v3,"table,text",true,1.0,1.0,1.0,1.0,1.0,[4],[4],supported,false,4,4,1.0,1.0,197940 [2305.13186v3:p4:c0],true,true
+be17f2b099e4,2305.13186v3,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+eeb08e3c7f04,2305.13186v3,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],[4],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+9c1dc36737fd,2305.13186v3,"image,table,text",true,0.5,1.0,1.0,1.0,1.0,"[5, 4]","[4, 5]",supported,false,1,1,1.0,1.0,"The context does not give a claim count for the tallest bar. The histogram's highest value is about 20% of claims, but the extracted figure text does not clearly map that value to a specific number of reasoning steps. [2305.13186v3:p5:c1]",false,false
+db6d89f2831f,2305.13186v3,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[15, 16, 17, 22, 23, 24, 25, 26, 27]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+4ee6d98ba3f9,91521110100M_4K_UHD_Display_User_Manual_V1.1,"table,text",true,0.0,1.0,1.0,0.5,0.6309297535714575,"[22, 23]",[23],supported,false,3,3,0.0,0.0,"Using the 80 MHz to 800 MHz formula d = (3.5/E1)·√P with E1 = 3 V/m and P = 10 W, the minimum separation distance is 3.69 m [91521110100M_4K_UHD_Display_User_Manual_V1.1:p22:c1].",false,false
+7c5aa9f8063a,91521110100M_4K_UHD_Display_User_Manual_V1.1,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+56c0e33506fe,91521110100M_4K_UHD_Display_User_Manual_V1.1,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],[25],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0c9c751f07e9,91521110100M_4K_UHD_Display_User_Manual_V1.1,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+aa5d54a029d4,91521110100M_4K_UHD_Display_User_Manual_V1.1,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[24, 25, 26, 27, 28]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+031316d6e7b0,91521110100M_4K_UHD_Display_User_Manual_V1.1,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+0e2cd2487d10,91521110100M_4K_UHD_Display_User_Manual_V1.1,table,true,0.0,0.0,0.0,0.0,0.0,[],[29],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+e9ab7e8d9fd4,91521110100M_4K_UHD_Display_User_Manual_V1.1,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],"[31, 32]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+f71c8dd1a869,GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[4],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+8558f19979b0,GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+ed511b344dfb,GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021,image,true,0.0,0.0,0.0,0.0,0.0,[],[10],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+4f6f0e057313,GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021,image,true,0.0,0.0,0.0,0.0,0.0,[],[10],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+583826643636,GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[11, 12]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+ac1fce7531c5,GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021,image,true,0.0,0.0,0.0,0.0,0.0,[],[16],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0a9584503612,GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],[11],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+d48d28c4bf03,GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],[5],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+ef36a27f3477,welcome-to-nus,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[9],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+77cdadeede5b,welcome-to-nus,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+db4f915d4668,welcome-to-nus,text,true,1.0,1.0,1.0,1.0,1.0,[10],[10],supported,false,1,1,1.0,1.0,1. NUSSU constituent clubs: 15 [welcome-to-nus:p10:c0] 2. NUSSU committees: 9 [welcome-to-nus:p10:c0],true,true
+b11f5fe3b668,welcome-to-nus,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+7593f34bf64b,welcome-to-nus,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[11, 12]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+dcdac1d252d2,welcome-to-nus,text,true,0.0,0.0,0.0,0.0,0.0,[],"[17, 18]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+9fc90f653324,welcome-to-nus,text,true,0.0,0.0,0.0,0.0,0.0,[],"[19, 20]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+bd6dc38c7a8c,f8d3a162ab9507e021d83dd109118b60,table,true,0.0,0.0,0.0,0.0,0.0,[],"[15, 16]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+c9c43643e6f4,f8d3a162ab9507e021d83dd109118b60,text,true,0.0,0.0,0.0,0.0,0.0,[],"[4, 5, 6]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+6afda169204d,e79deb02a0c0e87511080836c5d4347b,text,true,0.0,0.0,0.0,0.0,0.0,[],[2],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+68682b60f111,e79deb02a0c0e87511080836c5d4347b,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+5b7fe410458a,e79deb02a0c0e87511080836c5d4347b,text,true,0.0,0.0,0.0,0.0,0.0,[],[5],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+8f6765e628a6,e79deb02a0c0e87511080836c5d4347b,text,true,0.0,0.0,0.0,0.0,0.0,[],[5],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+df1719bb7c37,e79deb02a0c0e87511080836c5d4347b,text,true,0.0,0.0,0.0,0.0,0.0,[],[1],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+c9fc69a6b356,e79deb02a0c0e87511080836c5d4347b,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+73165e9a3c24,e79deb02a0c0e87511080836c5d4347b,image,true,0.0,0.0,0.0,0.0,0.0,[],[1],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+6bacc48d0a69,e79deb02a0c0e87511080836c5d4347b,image,true,0.0,0.0,0.0,0.0,0.0,[],[4],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+a2e377bff8d6,e79deb02a0c0e87511080836c5d4347b,image,true,0.0,0.0,0.0,0.0,0.0,[],[12],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+42a0723edb3f,e79deb02a0c0e87511080836c5d4347b,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+295b5d143cf5,e79deb02a0c0e87511080836c5d4347b,text,true,0.0,0.0,0.0,0.0,0.0,[],[5],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+83745083e903,e79deb02a0c0e87511080836c5d4347b,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+90988de9e2ce,e79deb02a0c0e87511080836c5d4347b,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+8f23d579004b,e79deb02a0c0e87511080836c5d4347b,table,true,0.0,0.0,0.0,0.0,0.0,[],"[13, 14]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+8661b19c7a8b,e79deb02a0c0e87511080836c5d4347b,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+6ee3ca73ffec,e79deb02a0c0e87511080836c5d4347b,text,true,0.0,0.0,0.0,0.0,0.0,[3],"[7, 11, 13, 16, 17]",supported,false,2,2,0.0,0.0,There are 5 appendices (Appendix A through Appendix E) [e79deb02a0c0e87511080836c5d4347b:p3:c0].,true,false
+372d3606b0d6,e79deb02a0c0e87511080836c5d4347b,text,true,0.0,0.0,0.0,0.0,0.0,[],"[7, 9]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+c25671df3c79,e79deb02a0c0e87511080836c5d4347b,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+5bd9b9251d97,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[5],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+a1113612ddc9,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[5],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+fb2e6159e884,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[1, 28, 48]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+a2687777d68e,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[1],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+ac353efa9b14,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+b1597e6e578e,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+a2521e7d86bc,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[38, 46]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+962a57253b42,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+fb20cd1e67fe,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[12, 14]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+a3c2c89c240b,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[39],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+9e1e976919cf,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+796c93a406a1,ecommerceopportunityindia-141124010546-conversion-gate01_95,text,true,0.0,0.0,0.0,0.0,0.0,[],[4],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+457e440ddbf0,ecommerceopportunityindia-141124010546-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[8, 15]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+f1113a69f23d,ecommerceopportunityindia-141124010546-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[15],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+41255b0fbbe5,ecommerceopportunityindia-141124010546-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+915a9a24d1f2,ecommerceopportunityindia-141124010546-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[12],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+7f2126937de8,ecommerceopportunityindia-141124010546-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+21bc7b11a30d,ecommerceopportunityindia-141124010546-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[12, 15]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+6b11b70698ec,ecommerceopportunityindia-141124010546-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+213e14c8a03d,ecommerceopportunityindia-141124010546-conversion-gate01_95,table,true,0.0,0.0,0.0,0.0,0.0,[],[11],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+8e092588f2de,ecommerceopportunityindia-141124010546-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+5e631f962c22,ecommerceopportunityindia-141124010546-conversion-gate01_95,table,true,0.0,0.0,0.0,0.0,0.0,[],"[21, 22]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+38f375b30104,ecommerceopportunityindia-141124010546-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[1, 26]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+87134018f0be,catvsdogdlpycon15se-150512122612-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+a44d724c5259,catvsdogdlpycon15se-150512122612-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[11],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+f77804da2243,catvsdogdlpycon15se-150512122612-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[1, 9]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+13ccb41294d1,catvsdogdlpycon15se-150512122612-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+cb8a030f4e13,catvsdogdlpycon15se-150512122612-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[23],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+36ef128d6f58,catvsdogdlpycon15se-150512122612-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[9, 28]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+2a20489328d9,catvsdogdlpycon15se-150512122612-lva1-app6891_95,image,true,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+163057ccb207,catvsdogdlpycon15se-150512122612-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[29, 30, 32]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+251eef1b47cb,catvsdogdlpycon15se-150512122612-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+84517eaaed23,catvsdogdlpycon15se-150512122612-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[58, 60, 61]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+b904b2b69cd0,catvsdogdlpycon15se-150512122612-lva1-app6891_95,text,true,0.0,0.0,0.0,0.0,0.0,[],[34],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+92923e29a177,catvsdogdlpycon15se-150512122612-lva1-app6891_95,text,true,0.0,0.0,0.0,0.0,0.0,[],[42],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0e275f2765eb,SnapNTell,table,true,1.0,1.0,1.0,1.0,1.0,"[5, 1, 3]",[5],supported,false,2,2,1.0,1.0,"SnapNTell has 71,980 more QA pairs than ViQuAE (75,680 vs. 3,700). [SnapNTell:p5:c0]",true,true
+260c8be35cc2,SnapNTell,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[5, 3, 1]",[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+4c350ec34ae5,SnapNTell,image,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[15, 6, 19, 1]",[6],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+ce22aba6ce01,SnapNTell,table,true,1.0,1.0,1.0,1.0,1.0,[13],[13],supported,false,1,1,1.0,1.0,"The table's summary row is ambiguous about column order, so this assumes 14910 is the starting count and the following values are the counts remaining after each filtering step. Under that reading, the 1st Wiki filtering removed 4457 entities (14910 − 10453) and the 3rd Wiki filtering removed 2534 (10102 − 7568). The 3rd Wiki filtering therefore removed 1923 fewer entities, not more. [SnapNTell:p13:c0]",false,false
+aab8b2dfa343,SnapNTell,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[13],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+68be42719eb9,SnapNTell,image,true,0.0,0.0,0.0,0.0,0.0,[],"[1, 6, 13, 15]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+fdc3ea3e4147,SnapNTell,image,true,0.0,0.0,0.0,0.0,0.0,[],"[17, 19]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+cf2a92937745,SnapNTell,table,true,0.0,0.0,0.0,0.0,0.0,[],"[19, 20]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+f58f287a9ca2,RAR,image,true,0.0,0.0,0.0,0.0,0.0,[],[6],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+23208fdeaaaf,RAR,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+2c32a18105cd,RAR,image,true,1.0,1.0,1.0,1.0,1.0,"[8, 21, 7]",[8],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0ac8ef95f678,RAR,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[21],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+0c97c5978e5e,RAR,image,true,0.0,1.0,1.0,0.3333333333333333,0.5,"[21, 13, 7, 2, 12]",[7],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0a9af3752172,RAR,image,true,0.0,0.5,0.5,0.5,0.38685280723454163,"[17, 22, 25, 26]","[21, 22]",supported,false,2,2,0.5,0.5,"The context does not give a total count of GPT-4V examples. Fig. 8 shows GPT-4V examples for three datasets: Flowers102, Pets37 and Food101 [RAR:p22:c2]. Fig. 7 is also mentioned but its contents are not in the context [RAR:p25:c3].",false,false
+c5ade0990c57,RAR,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+49886db7eccb,RAR,table,true,0.5,1.0,1.0,1.0,0.8772153153380493,"[25, 11, 27, 24, 28, 12]","[24, 25]",supported,false,2,2,0.5,0.5,"The top-5 average for RAR (LLaVA1.5) in the 4-shot setting is 82.1 [RAR:p25:c0], and the top-1 average is 63.2 [RAR:p11:c1], so the top-5 average is 18.9 percentage points higher.",true,false
+7f77d7be781c,RAR,image,true,0.5,0.5,0.5,1.0,0.6131471927654584,[8],"[8, 13]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+dc09afb30971,STEPBACK,image,true,0.0,0.0,0.0,0.0,0.0,[],[1],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0a7f41874e08,STEPBACK,table,true,1.0,1.0,1.0,1.0,1.0,"[5, 3, 1, 2, 6, 7, 31, 19]",[5],supported,false,1,1,1.0,1.0,PaLM-2L + Step-Back achieved 73.2% (1.9%) on MMLU Physics [STEPBACK:p5:c1].,true,true
+f374aff7dd2f,STEPBACK,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[31, 19, 32, 30, 5, 6]",[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+0c1c7d66f109,STEPBACK,table,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[7, 6, 8, 11, 12, 4, 3]",[6],supported,false,3,3,0.6666666666666666,0.6666666666666666,"PaLM-2L + RAG reaches 57.4% on TimeQA versus 41.5% for PaLM-2L, so it is 15.9 percentage points higher [STEPBACK:p6:c1][STEPBACK:p7:c0].",true,true
+1a789f094714,STEPBACK,table,true,0.0,0.5,0.5,0.3333333333333333,0.3065735963827292,"[7, 3, 5]","[5, 6]",supported,false,2,2,0.5,0.5,"GPT-4 scores 63.2% on SituatedQA [STEPBACK:p7:c1] and 79.9% on MMLU Chemistry [STEPBACK:p5:c1], so its SituatedQA accuracy is about 16.7 percentage points lower.",true,true
+11dabc6dcf69,STEPBACK,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+f91941d44cc7,STEPBACK,image,true,0.0,0.0,0.0,0.0,0.0,[],"[6, 12]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+2e50d1a74f3c,STEPBACK,image,true,0.5,1.0,1.0,1.0,0.9197207891481876,"[6, 5, 12, 7, 3, 26, 1, 25, 11]","[6, 12]",supported,false,2,2,0.5,0.5,"Approximately 60.4%, by adding 20.5% [STEPBACK:p5:c4] (MMLU high-school Physics, errors from the baseline corrected by Step-Back) and 39.9% [STEPBACK:p12:c1] (TimeQA, baseline-wrong predictions fixed by Step-Back + RAG). These figures measure different things, and the context gives no single baseline-wrong percentage for either task.",true,true
+1775c402b6e2,q1-2023-bilibili-inc-investor-presentation,image,true,0.0,0.0,0.0,0.0,0.0,[],[5],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+069a1d9de08a,q1-2023-bilibili-inc-investor-presentation,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+2c631b608491,q1-2023-bilibili-inc-investor-presentation,image,true,0.0,0.0,0.0,0.0,0.0,[],[7],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+4b55cef504d5,q1-2023-bilibili-inc-investor-presentation,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+fd3f20414b64,q1-2023-bilibili-inc-investor-presentation,image,true,0.0,0.0,0.0,0.0,0.0,[],[8],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+434e38653b2c,q1-2023-bilibili-inc-investor-presentation,image,true,0.0,0.0,0.0,0.0,0.0,[],[9],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+38518d0f2a54,q1-2023-bilibili-inc-investor-presentation,image,true,0.5,1.0,1.0,1.0,0.9197207891481876,"[11, 4, 10, 21, 23, 24, 18, 19]","[10, 11]",supported,false,3,2,1.0,1.0,"Daily average active content creators rose 42% in 23Q1 vs 22Q1 [q1-2023-bilibili-inc-investor-presentation:p11:c0], while average daily video views rose 19% [q1-2023-bilibili-inc-investor-presentation:p10:c1]. The increase rate is 23 percentage points higher for content creators (about 2.2 times the video-view rate). Note that the 19% figure appears only in a section heading of the video-views chunk, so it is a less certain match.",false,false
+d6e552872017,q1-2023-bilibili-inc-investor-presentation,image,true,0.0,0.0,0.0,0.0,0.0,[],"[16, 18]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+91823227777a,Pew-Research-Center_Hispanic-Identity-Report_12.20.2017,"image,text",true,0.0,1.0,1.0,0.25,0.43067655807339306,"[19, 20, 12, 5, 6, 21, 22, 23, 17, 18]",[5],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+a0d4af67ce54,Pew-Research-Center_Hispanic-Identity-Report_12.20.2017,image,true,0.0,1.0,1.0,0.25,0.43067655807339306,"[19, 20, 12, 5, 6, 21, 22, 23, 17, 18]",[5],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+173f44d2acef,Pew-Research-Center_Hispanic-Identity-Report_12.20.2017,table,true,0.0,0.0,0.0,0.0,0.0,[25],[26],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+6ab99bef4bea,Pew-Research-Center_Hispanic-Identity-Report_12.20.2017,"image,text",true,0.5,1.0,1.0,1.0,1.0,"[10, 9, 8]","[9, 10]",supported,false,1,1,1.0,1.0,65% of immigrant Latinos (foreign born) most often use the name of their origin country to describe themselves [Pew-Research-Center_Hispanic-Identity-Report_12.20.2017:p10:c0].,true,true
+af9b6af1655f,Pew-Research-Center_Hispanic-Identity-Report_12.20.2017,image,true,0.0,0.0,0.0,0.0,0.0,[10],[9],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+d20445164e4d,Pew-Research-Center_Hispanic-Identity-Report_12.20.2017,image,true,0.0,1.0,1.0,0.3333333333333333,0.5,"[22, 20, 21, 26, 11, 18, 19, 14, 10, 9]",[21],,,,,,,,,
+f4189d4a3b57,PRE_2022.09.29_NSL-politics_REPORT,"image,text",true,0.0,0.5,0.5,0.5,0.38685280723454163,"[94, 95, 92, 93, 23, 91, 77, 78, 76, 21]","[73, 95]",,,,,,,,,
+8e36cb3588a1,PRE_2022.09.29_NSL-politics_REPORT,"image,text",true,0.0,0.5,0.5,0.5,0.38685280723454163,"[65, 66, 64, 16, 17, 14]","[57, 66]",,,,,,,,,
+b753bd1d4a61,PRE_2022.09.29_NSL-politics_REPORT,image,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[96, 97, 98, 22, 99, 23, 21]",[97],,,,,,,,,
+b753bd1d4a61,PRE_2022.09.29_NSL-politics_REPORT,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[96, 97, 98, 22, 99, 23, 21]",[],,,,,,,,,
+e4e087c36cd7,PRE_2022.09.29_NSL-politics_REPORT,"image,text",true,0.0,1.0,1.0,0.25,0.43067655807339306,"[82, 83, 84, 86, 87, 85, 18, 19]",[86],,,,,,,,,
+ad2d286493ee,8dfc21ec151fb9d3578fc32d5c4e5df9,text,true,1.0,1.0,1.0,1.0,1.0,"[8, 3, 4, 6, 7, 9]",[8],,,,,,,,,
+49c341899028,8dfc21ec151fb9d3578fc32d5c4e5df9,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[6, 4, 8, 3, 7, 9]",[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+703eb0d81aaf,8dfc21ec151fb9d3578fc32d5c4e5df9,text,true,0.0,0.0,0.0,0.0,0.0,[],[8],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+038a0b7a64dd,8dfc21ec151fb9d3578fc32d5c4e5df9,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+969cee26e1df,8dfc21ec151fb9d3578fc32d5c4e5df9,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[18],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+43c6ae54a188,8dfc21ec151fb9d3578fc32d5c4e5df9,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+e326c69bad8c,8dfc21ec151fb9d3578fc32d5c4e5df9,"table,text",true,0.0,0.0,0.0,0.0,0.0,"[9, 7]",[10],,,,,,,,,
+f8bbd95c781b,8dfc21ec151fb9d3578fc32d5c4e5df9,"",true,1.0,1.0,1.0,1.0,1.0,[8],[8],,,,,,,,,
+ffec58fc3542,8dfc21ec151fb9d3578fc32d5c4e5df9,text,true,0.0,0.0,0.0,0.0,0.0,[],"[1, 2]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+1efd6df086c9,8dfc21ec151fb9d3578fc32d5c4e5df9,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],"[9, 10]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+a96a137496ef,8dfc21ec151fb9d3578fc32d5c4e5df9,table,true,0.0,0.0,0.0,0.0,0.0,[],"[9, 10]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+fab3fbf792da,8dfc21ec151fb9d3578fc32d5c4e5df9,image,true,0.0,0.0,0.0,0.0,0.0,[],[17],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+7d98930d28c3,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,table,true,0.0,0.0,0.0,0.0,0.0,[],"[10, 13]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+d43af75ee00f,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+2f432711bb9f,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+26ac794ac584,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[10, 11]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+15370f13e537,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+b3ab168d33a9,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,table,true,0.0,0.0,0.0,0.0,0.0,[],"[15, 19]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+9155f2870bc9,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,"image,table",true,0.0,0.0,0.0,0.0,0.0,[],"[15, 18]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+9a4011fd42ac,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[16],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+aca488808ca6,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[20, 24]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+7fc6f66b2c44,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+08eb80edd33a,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[13, 18, 23]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+c050d0b76953,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[20],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+be6b288d18d7,amb-siteaudits-ds15-150204174043-conversion-gate01_95,table,true,0.0,0.0,0.0,0.0,0.0,[],[14],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+94a0f07d50b2,amb-siteaudits-ds15-150204174043-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+28d36c3ca993,amb-siteaudits-ds15-150204174043-conversion-gate01_95,"image,table",true,0.0,0.0,0.0,0.0,0.0,[],[16],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+43798cb6770c,amb-siteaudits-ds15-150204174043-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[2, 8]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+386fcb27fe69,amb-siteaudits-ds15-150204174043-conversion-gate01_95,"image,table",true,0.0,0.0,0.0,0.0,0.0,[],[23],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+b8bab26f61a0,amb-siteaudits-ds15-150204174043-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[28],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+61eff661ec1c,amb-siteaudits-ds15-150204174043-conversion-gate01_95,table,true,0.0,0.0,0.0,0.0,0.0,[],[25],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+75bbefc89e77,amb-siteaudits-ds15-150204174043-conversion-gate01_95,"image,table",true,0.0,0.0,0.0,0.0,0.0,[],[29],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+6a807d94dbdd,2309.17421v2,image,true,0.0,0.0,0.0,0.0,0.0,[],[153],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+c57bff6bd7f5,2309.17421v2,image,true,0.0,0.0,0.0,0.0,0.0,[],[143],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+70bec40a231d,2309.17421v2,image,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[121, 141]",[141],,,,,,,,,
+fdfb17051fa7,2309.17421v2,image,true,0.0,0.0,0.0,0.0,0.0,[],[137],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+4ba887c177ad,2309.17421v2,image,true,0.0,0.0,0.0,0.0,0.0,[],[131],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+f8191cb2db67,2309.17421v2,image,true,1.0,1.0,1.0,1.0,1.0,"[118, 116]",[118],,,,,,,,,
+8a61ef40c627,StudentSupport_Guidebook,"table,text",true,1.0,1.0,1.0,1.0,1.0,[43],[43],supported,false,1,1,1.0,1.0,Prime Taxi's telephone number is +65 6778-0808 [StudentSupport_Guidebook:p43:c1].,true,true
+31b59b0af455,StudentSupport_Guidebook,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+a552fe790344,StudentSupport_Guidebook,image,true,0.0,0.0,0.0,0.0,0.0,[],[12],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+7fdcd1e85431,StudentSupport_Guidebook,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],[28],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+6f10b9ca7b9d,StudentSupport_Guidebook,image,true,0.0,0.0,0.0,0.0,0.0,[],[34],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+41f0bb842378,StudentSupport_Guidebook,image,true,0.0,0.0,0.0,0.0,0.0,[],[34],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+f1f58e2bba10,mmdetection-readthedocs-io-en-v2.18.0,image,true,0.0,0.0,0.0,0.0,0.0,[],[117],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+9eef79a5ec6a,mmdetection-readthedocs-io-en-v2.18.0,text,true,0.0,1.0,1.0,0.2,0.38685280723454163,"[368, 369, 337, 335, 336, 318, 319, 274, 275, 370]",[336],,,,,,,,,
+63b9a7b197e1,mmdetection-readthedocs-io-en-v2.18.0,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[370, 364, 365, 366, 344, 345, 309, 385, 386, 346]",[],,,,,,,,,
+e4f0c64429a4,mmdetection-readthedocs-io-en-v2.18.0,image,true,1.0,1.0,1.0,1.0,1.0,[75],[75],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+5079ab573166,mmdetection-readthedocs-io-en-v2.18.0,text,true,0.0,0.0,0.0,0.0,0.0,[],[229],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+ef0ca0b9a9be,12-15-15-ISIS-and-terrorism-release-final,"image,text",true,0.5,1.0,1.0,1.0,0.8772153153380493,"[11, 12, 1, 2, 3, 14, 13, 25, 26, 24]","[2, 11]",,,,,,,,,
+a09880792a34,12-15-15-ISIS-and-terrorism-release-final,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[11, 12, 1, 2, 3]",[],,,,,,,,,
+95f4fffb7668,12-15-15-ISIS-and-terrorism-release-final,"image,text",true,0.5,1.0,1.0,1.0,0.9197207891481876,"[16, 17, 15, 2]","[15, 16]",,,,,,,,,
+0985ac82a887,12-15-15-ISIS-and-terrorism-release-final,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[16, 17]",[],,,,,,,,,
+e2523ba99d33,12-15-15-ISIS-and-terrorism-release-final,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[3],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+bdf2dc4d2e34,12-15-15-ISIS-and-terrorism-release-final,"image,text",true,1.0,1.0,1.0,1.0,1.0,"[18, 19, 17]",[18],,,,,,,,,
+8de5868e1cd5,PS_2018.01.09_STEM_FINAL,"image,text",true,1.0,1.0,1.0,1.0,1.0,"[44, 1, 2, 11, 12, 30, 31, 53, 54, 32]",[44],,,,,,,,,
+f9bdb36b3f7d,PS_2018.01.09_STEM_FINAL,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+9525cac6a7e1,PS_2018.01.09_STEM_FINAL,"image,table,text",true,0.0,0.0,0.5,0.125,0.19342640361727081,"[14, 15, 8, 13, 83, 84, 77, 78, 80, 81]","[78, 82]",,,,,,,,,
+edf6d57ec8ca,PS_2018.01.09_STEM_FINAL,"image,text",true,0.5,0.5,1.0,1.0,0.7903864795495061,"[9, 59, 66, 11, 12, 69, 7, 6, 68, 10]","[9, 10]",,,,,,,,,
+401d1292c3d0,PS_2018.01.09_STEM_FINAL,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[59],[],,,,,,,,,
+173bccebc9c0,PS_2018.01.09_STEM_FINAL,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],"[115, 116]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+023a09f3ee13,PS_2018.01.09_STEM_FINAL,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+02dd4cfe2767,PS_2018.01.09_STEM_FINAL,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[3, 29, 84]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+00f452323604,e639029d16094ea71d964e2fb953952b,text,true,1.0,1.0,1.0,1.0,1.0,[8],[8],,,,,,,,,
+6ee5ee1d561e,e639029d16094ea71d964e2fb953952b,unanswerable,false,0.0,0.0,0.0,0.0,0.0,[],[13],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+275e9937a951,e639029d16094ea71d964e2fb953952b,text,true,0.0,0.0,0.0,0.0,0.0,[],[5],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+f6bfb6caefd4,e639029d16094ea71d964e2fb953952b,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[20],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+d3073c855930,e639029d16094ea71d964e2fb953952b,"",true,0.0,0.0,0.0,0.0,0.0,[],[1],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+cb20abb5cde0,e639029d16094ea71d964e2fb953952b,image,true,0.0,0.0,0.0,0.0,0.0,[],[1],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0b60a4c4b54d,e639029d16094ea71d964e2fb953952b,"table,text",true,0.5,0.5,0.5,1.0,0.6131471927654584,[5],"[2, 5]",,,,,,,,,
+677e65eb26b0,a5879805d70c854ea4361e43a84e3bb2,text,true,0.0,0.0,0.0,0.0,0.0,[],[14],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+b5aac2cf5f29,a5879805d70c854ea4361e43a84e3bb2,"image,text",true,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+001432f532ab,a5879805d70c854ea4361e43a84e3bb2,text,true,0.0,0.0,0.0,0.0,0.0,[],[14],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+468a4965f0a6,a5879805d70c854ea4361e43a84e3bb2,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+a19e4274cdcd,a5879805d70c854ea4361e43a84e3bb2,text,true,0.0,0.0,0.0,0.0,0.0,[],[1],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+a48aa8214d6c,a5879805d70c854ea4361e43a84e3bb2,text,true,1.0,1.0,1.0,1.0,1.0,"[14, 15]",[14],,,,,,,,,
+819525f64cb2,a5879805d70c854ea4361e43a84e3bb2,unanswerable,false,0.0,0.0,0.0,0.0,0.0,[],[2],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+d0f099bb7728,a5879805d70c854ea4361e43a84e3bb2,text,true,0.0,0.0,0.0,0.0,0.0,[],"[1, 2, 3, 4, 5, 6, 9, 10, 11, 12]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+d38f732d1e57,a5879805d70c854ea4361e43a84e3bb2,text,true,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+7b1b8c4b89ff,a5879805d70c854ea4361e43a84e3bb2,text,true,0.0,0.0,0.0,0.0,0.0,[],"[1, 2, 3, 10]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+d526372c0f8f,earthlinkweb-150213112111-conversion-gate02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[11, 14]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+b356e82d04f7,earthlinkweb-150213112111-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+eacbbe6dd862,earthlinkweb-150213112111-conversion-gate02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[42, 43]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+03491c0c7664,earthlinkweb-150213112111-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+c34f33c5a3f9,earthlinkweb-150213112111-conversion-gate02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[42, 43]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+7c68928c1709,earthlinkweb-150213112111-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+2a9bd1638cf3,earthlinkweb-150213112111-conversion-gate02_95,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],"[37, 38]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+34f3416e0f6e,earthlinkweb-150213112111-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+816d2c3d5105,earthlinkweb-150213112111-conversion-gate02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[5, 24, 25, 26, 27, 28, 31, 44]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+a4a4aea2f358,earthlinkweb-150213112111-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+8785bd0f6e0a,earthlinkweb-150213112111-conversion-gate02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[9, 14]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+b0a391fcf0b5,earthlinkweb-150213112111-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+fe9205727554,competitiveoutcomes-091006065143-phpapp01_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[4, 5]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+cc90f6d4e17a,competitiveoutcomes-091006065143-phpapp01_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[42, 43, 48]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+200fb62471a1,competitiveoutcomes-091006065143-phpapp01_95,"image,table",true,0.0,0.0,0.0,0.0,0.0,[],[4],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+b562ddd41b83,competitiveoutcomes-091006065143-phpapp01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+26deb03ebeff,competitiveoutcomes-091006065143-phpapp01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[10, 12]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+25190b14b130,2023.findings-emnlp.248,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],"[5, 6]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+bea94744b474,2023.findings-emnlp.248,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+fad47b1f01cf,2023.findings-emnlp.248,image,true,0.5,0.5,0.5,1.0,0.6131471927654584,"[9, 18]","[9, 19]",,,,,,,,,
+e3623d53de80,2023.findings-emnlp.248,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[18],[],,,,,,,,,
+50e1d8c954e8,2023.findings-emnlp.248,image,true,0.0,0.0,0.0,0.0,0.0,[],"[14, 15, 16, 17, 18]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+51b775c1b4fb,2023.findings-emnlp.248,table,true,1.0,1.0,1.0,1.0,1.0,"[7, 8, 2, 1]",[7],,,,,,,,,
+fb51ec798907,2023.findings-emnlp.248,"image,text",true,0.5,1.0,1.0,1.0,0.9197207891481876,"[3, 4, 5, 1]","[3, 5]",supported,false,1,1,1.0,1.0,"The Pyke expert system (Frederiksen, 2008), which makes inferences based on the logic programming language, is used for deductive reasoning [2023.findings-emnlp.248:p5:c3].",true,false
+2bdc861565ce,2023.findings-emnlp.248,"table,text",true,0.5,0.5,0.5,1.0,0.6131471927654584,"[6, 2]","[6, 14]",,,,,,,,,
+cd346c653700,2023.acl-long.386,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[2],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+859776b5647d,2023.acl-long.386,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+95b5891a0031,2023.acl-long.386,text,true,1.0,1.0,1.0,1.0,1.0,[4],[4],,,,,,,,,
+30a32de5c5e0,2023.acl-long.386,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[5],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+ee87a427ad76,2023.acl-long.386,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+3ab663252d0c,2023.acl-long.386,"table,text",true,1.0,1.0,1.0,1.0,1.0,"[8, 7]",[8],,,,,,,,,
+c155bf08fb02,2023.acl-long.386,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+0c96677c58cc,2023.acl-long.386,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[7, 8]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+8a42106a4858,2023.acl-long.386,"image,text",true,1.0,1.0,1.0,1.0,1.0,"[7, 6, 8]",[7],,,,,,,,,
+a5798a8e0ee4,DSA-278777,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],[3],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+f1cc809e4b71,DSA-278777,"table,text",true,1.0,1.0,1.0,1.0,1.0,[4],[4],,,,,,,,,
+45e7e2553e31,DSA-278777,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[4],[],,,,,,,,,
+cd4772ec1c06,DSA-278777,"image,table",true,0.0,0.0,0.0,0.0,0.0,[],"[15, 16]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0f0596fb0374,DSA-278777,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[12, 13, 16, 18, 20]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+1892d39ce146,DSA-278777,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[3, 5]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+1608ddc2a949,owners-manual-2170416,image,true,0.0,0.0,0.0,0.0,0.0,[],"[5, 6]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+c434352dcafe,owners-manual-2170416,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[5, 6]",[],,,,,,,,,
+aa9461300417,owners-manual-2170416,text,true,0.0,0.5,0.5,0.3333333333333333,0.3065735963827292,"[2, 4, 7]","[7, 8]",,,,,,,,,
+e4c2ed78d13e,owners-manual-2170416,text,true,0.0,0.0,0.0,0.0,0.0,[],"[10, 13]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+50c8306969c2,owners-manual-2170416,text,true,0.0,0.0,0.0,0.0,0.0,[],[17],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+a066e7dd1723,Campaign_038_Introducing_AC_Whitepaper_v5e,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[20],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+cc835a527142,Campaign_038_Introducing_AC_Whitepaper_v5e,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+56ee39bd36f2,Campaign_038_Introducing_AC_Whitepaper_v5e,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[21],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+16b1865a20a2,Campaign_038_Introducing_AC_Whitepaper_v5e,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+05cffe238386,Campaign_038_Introducing_AC_Whitepaper_v5e,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[22],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+7b9fcb2eb7ac,Campaign_038_Introducing_AC_Whitepaper_v5e,text,true,0.0,0.0,0.0,0.0,0.0,[],"[9, 19, 25, 26, 27, 28]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+cb2d5eec7f7f,Campaign_038_Introducing_AC_Whitepaper_v5e,text,true,0.0,1.0,1.0,0.5,0.6934264036172708,"[8, 5, 6]","[5, 6]",,,,,,,,,
+0839472fa94f,Campaign_038_Introducing_AC_Whitepaper_v5e,text,true,0.0,0.0,0.0,0.0,0.0,[],"[5, 6]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+1a7c0d257532,ISEP_student_handbook_2020,"table,text",true,1.0,1.0,1.0,1.0,1.0,[3],[3],,,,,,,,,
+51910979714e,ISEP_student_handbook_2020,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+bbfd55b9d2b2,ISEP_student_handbook_2020,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+14752b6fb295,ISEP_student_handbook_2020,table,true,0.0,0.0,0.0,0.0,0.0,[],"[3, 4, 5]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+9c497d755648,ISEP_student_handbook_2020,"table,text",true,0.5,0.5,0.5,1.0,0.6131471927654584,[9],"[9, 10]",,,,,,,,,
+8e6c784f5b47,ISEP_student_handbook_2020,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[13],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+cfdfe8910198,f1f5242528411b262be447e61e2eb10f,image,true,0.0,0.0,0.0,0.0,0.0,[],"[3, 4, 6, 7, 8, 9, 11, 12, 20, 1418]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+70fae892ed71,f1f5242528411b262be447e61e2eb10f,unanswerable,false,0.0,0.0,0.0,0.0,0.0,[],[6],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+d0fac3397cda,f1f5242528411b262be447e61e2eb10f,"",true,1.0,1.0,1.0,1.0,1.0,[8],[8],,,,,,,,,
+ee2c7d8265f7,f1f5242528411b262be447e61e2eb10f,text,true,1.0,1.0,1.0,1.0,1.0,[7],[7],,,,,,,,,
+47b034284265,f1f5242528411b262be447e61e2eb10f,image,true,1.0,1.0,1.0,1.0,1.0,"[18, 17]",[18],,,,,,,,,
+fc82e79c72be,f1f5242528411b262be447e61e2eb10f,"",true,0.0,0.0,0.0,0.0,0.0,[],"[3, 14]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+c20ac87d997e,f1f5242528411b262be447e61e2eb10f,image,true,0.0,0.0,0.0,0.0,0.0,[],"[6, 7, 18]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0b47c329e8fb,f1f5242528411b262be447e61e2eb10f,text,true,1.0,1.0,1.0,1.0,1.0,[1],[1],,,,,,,,,
+0fa2c0b4b0ff,936c0e2c2e6c8e0c07c51bfaf7fd0a83,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],"[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+ba8f5d4fc2ab,936c0e2c2e6c8e0c07c51bfaf7fd0a83,table,true,0.0,0.0,0.0,0.0,0.0,[],[5],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+bd1af9c3b057,936c0e2c2e6c8e0c07c51bfaf7fd0a83,"",true,0.0,0.0,0.0,0.0,0.0,[],[7],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0e2ab7a5042d,936c0e2c2e6c8e0c07c51bfaf7fd0a83,"",true,0.0,0.0,0.0,0.0,0.0,[],[14],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+b2c6aba6fe0e,936c0e2c2e6c8e0c07c51bfaf7fd0a83,"",true,0.16666666666666666,0.6666666666666666,1.0,1.0,0.9441592263400607,"[6, 7, 12, 8, 9, 10, 11, 5]","[5, 6, 7, 8, 9, 10]",,,,,,,,,
+4011755675a3,936c0e2c2e6c8e0c07c51bfaf7fd0a83,table,true,0.5,1.0,1.0,1.0,0.9197207891481876,"[13, 11, 12, 14]","[12, 13]",,,,,,,,,
+513e9cc5db01,936c0e2c2e6c8e0c07c51bfaf7fd0a83,text,true,0.0,0.0,0.0,0.0,0.0,[],[14],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+7371368ae434,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,table,true,0.0,0.0,0.0,0.0,0.0,[],[16],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0db18f5c8dc8,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+35b229ce202d,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,table,true,0.0,0.0,0.0,0.0,0.0,[],[16],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+4f35172bae5b,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+a06162b18b8d,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[7, 8]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+6771be4f6da7,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[7, 11, 14]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+79e76b77f530,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[19],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+ec64d1e3f374,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+0ee52363c758,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[8, 9, 10]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+d3f40a63d469,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[14],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+b4d7636bcc51,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[18],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+cf9ca3e461cf,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+aeb9b570773f,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[11, 13]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+aa1c35d90abc,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[1, 2]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+d5afe46082ba,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],[16],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+7a0248092201,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+d13b2f240ab1,2306.05425v1,image,true,0.0,0.0,0.0,0.0,0.0,[],[2],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+9667e98f1b42,2306.05425v1,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+3db5d64a4887,2306.05425v1,image,true,0.0,0.0,0.0,0.0,0.0,[],"[7, 10]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+83c60129e6c0,2306.05425v1,image,true,1.0,1.0,1.0,1.0,1.0,[5],[5],,,,,,,,,
+50b042a13ad2,2306.05425v1,image,true,0.0,0.0,0.0,0.0,0.0,"[9, 8]","[4, 5]",,,,,,,,,
+42b4033fe202,2306.05425v1,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[8, 3, 9, 10, 1]",[],,,,,,,,,
+dc3a5183c2af,2306.05425v1,table,true,1.0,1.0,1.0,1.0,1.0,"[16, 15, 11, 5, 2]",[16],,,,,,,,,
+597b1905b0e8,2306.05425v1,image,true,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0e26a848276e,2306.05425v1,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+d42a06c4382f,2405.09818v1,image,true,0.0,0.0,0.0,0.0,0.0,[],"[6, 7]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+97cea8f36e38,2405.09818v1,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[2],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+9edee8186354,2405.09818v1,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+c22e63f23ee4,2405.09818v1,image,true,0.0,0.0,0.0,0.0,0.0,[],"[3, 4, 5, 10, 11]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+7c8286c8aecf,2405.09818v1,image,true,0.0,0.0,0.0,0.0,0.0,[],"[6, 7]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+2097b598dd25,2405.09818v1,table,true,0.0,0.0,0.0,0.0,0.0,[],[8],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+caee449db858,2405.09818v1,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[6, 7]",[],,,,,,,,,
+6080391e9b8f,2405.09818v1,image,true,0.0,1.0,1.0,0.3333333333333333,0.5,"[7, 5, 6]",[6],,,,,,,,,
+49ee816b2913,Sinopolis-Chengdu,image,true,0.0,0.0,0.0,0.0,0.0,[],[4],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+fbfd4c61040a,Sinopolis-Chengdu,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+7f26c2d6b22c,Sinopolis-Chengdu,image,true,0.0,0.0,0.0,0.0,0.0,[],"[45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+f0d1a1191e76,Sinopolis-Chengdu,image,true,0.0,0.0,0.0,0.0,0.0,[],[8],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+633517e11fca,Sinopolis-Chengdu,image,true,0.0,0.0,0.0,0.0,0.0,"[14, 15, 16, 63, 18, 80, 68, 69, 64, 65]",[13],,,,,,,,,
+b8966cedbad0,Sinopolis-Chengdu,image,true,0.0,0.0,0.0,0.0,0.0,[],[26],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+cadbb3ba4f36,Sinopolis-Chengdu,text,true,0.0,0.0,0.0,0.0,0.0,"[41, 40]","[38, 39]",,,,,,,,,
+780cf1208eb3,san-francisco-11-contents,text,true,0.0,0.0,0.0,0.0,0.0,[],"[16, 17]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+2155bbe34091,san-francisco-11-contents,image,true,0.0,0.0,0.0,0.0,0.0,[],"[289, 290]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+82d69b62a466,san-francisco-11-contents,image,true,0.0,0.0,0.0,0.0,0.0,[],[3],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+b454aabf1961,san-francisco-11-contents,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+92d945f8c8dd,san-francisco-11-contents,image,true,0.0,0.0,0.0,0.0,0.0,[],[288],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+669a037599d2,san-francisco-11-contents,image,true,0.0,0.0,0.0,0.0,0.0,[],"[317, 318]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+fc908d2e205d,san-francisco-11-contents,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+34bd97c6d83e,san-francisco-11-contents,image,true,0.0,0.0,0.0,0.0,0.0,[],[310],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0e0ed928e790,san-francisco-11-contents,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+e7f008d8126c,BRO-GL-MMONEY,image,true,0.0,0.0,0.0,0.0,0.0,[],[6],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+a4964953f921,BRO-GL-MMONEY,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+14f5ff4354a2,BRO-GL-MMONEY,image,true,0.0,0.0,0.0,0.0,0.0,[],[8],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+21168df38845,BRO-GL-MMONEY,image,true,0.0,0.0,0.0,0.0,0.0,[],"[7, 8]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+97ed828932ff,BRO-GL-MMONEY,image,true,1.0,1.0,1.0,1.0,1.0,[7],[7],,,,,,,,,
+c9dec8314c5d,BRO-GL-MMONEY,image,true,0.0,0.0,0.0,0.0,0.0,[],[10],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+7fc1abb282c9,PI_2017.10.04_Automation_FINAL,image,true,1.0,1.0,1.0,1.0,1.0,"[36, 38, 39, 4, 37, 32, 33, 40, 31, 30]",[36],,,,,,,,,
+5a3e80ffdc10,PI_2017.10.04_Automation_FINAL,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[36, 4, 38, 39, 35, 31, 37, 40, 30]",[],,,,,,,,,
+f3b1d35eb8bb,PI_2017.10.04_Automation_FINAL,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[13, 15, 16, 10, 11, 17, 9, 14, 12]",[],,,,,,,,,
+c64284c5bdaa,PI_2017.10.04_Automation_FINAL,"image,text",true,0.0,1.0,1.0,0.3333333333333333,0.5,"[31, 32, 11, 12, 33, 10, 38, 39, 37, 4]",[11],,,,,,,,,
+4b33db750a63,PI_2017.10.04_Automation_FINAL,"image,text",true,0.5,0.5,0.5,1.0,0.6131471927654584,"[12, 14, 15, 13, 10, 17, 18]","[3, 12]",,,,,,,,,
+d2f3e89383c9,PI_2017.10.04_Automation_FINAL,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[4, 5, 6, 7, 8, 9, 10]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+9aa53b40657a,PI_2017.10.04_Automation_FINAL,"image,text",true,0.5,0.5,0.5,1.0,0.6131471927654584,"[42, 43, 41, 44, 48, 49, 50, 45, 40, 5]","[3, 42]",,,,,,,,,
+338ac6968a7f,PI_2018.11.19_algorithms_FINAL,image,true,1.0,1.0,1.0,1.0,1.0,"[22, 23, 24, 21, 7, 8, 9]",[22],,,,,,,,,
+72616543a30f,PI_2018.11.19_algorithms_FINAL,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[22, 23, 24, 21, 7, 8, 9]",[],,,,,,,,,
+e79a8aae85e5,PI_2018.11.19_algorithms_FINAL,image,true,0.0,0.0,0.0,0.0,0.0,[],"[3, 5, 6, 8, 9]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+ff15aba8c911,PI_2018.11.19_algorithms_FINAL,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+6b4002970047,PI_2018.11.19_algorithms_FINAL,image,true,0.0,1.0,1.0,0.3333333333333333,0.5,"[12, 11, 13, 10, 14, 5, 7, 4]",[13],,,,,,,,,
+c3550d903181,PI_2018.11.19_algorithms_FINAL,image,true,1.0,1.0,1.0,1.0,1.0,"[9, 10, 3, 15, 16, 19, 20, 14, 17, 18]",[9],,,,,,,,,
+3ca133ec57ba,PI_2018.11.19_algorithms_FINAL,"image,text",true,0.0,0.5,0.5,0.2,0.23719771276929622,"[14, 4, 5, 10, 15, 16, 13, 7, 3]","[15, 29]",,,,,,,,,
+0b05397d7301,PI_2018.11.19_algorithms_FINAL,"image,text",true,0.5,0.5,0.5,1.0,0.6131471927654584,"[21, 22, 7]","[21, 29]",,,,,,,,,
+aab8db20226f,698bba535087fa9a7f9009e172a7f763,text,true,0.0,0.0,0.0,0.0,0.0,[],"[5, 13, 18, 19]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+530d5c1b6983,698bba535087fa9a7f9009e172a7f763,text,true,0.0,0.0,0.0,0.0,0.0,[],[11],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+c952bdc16dd7,698bba535087fa9a7f9009e172a7f763,table,true,0.0,0.0,0.0,0.0,0.0,[],"[12, 14, 17]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+c2c53d80e28d,698bba535087fa9a7f9009e172a7f763,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],"[7, 17]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+479cfc7a380c,c31e6580d0175ab3f9d99d1ff0bfa000,image,true,0.0,0.0,0.0,0.0,0.0,[],"[6, 7]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+5a508ee536fb,c31e6580d0175ab3f9d99d1ff0bfa000,text,true,0.0,0.0,0.0,0.0,0.0,[],"[7, 11]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+ccdb688832c1,c31e6580d0175ab3f9d99d1ff0bfa000,image,true,0.0,0.0,0.0,0.0,0.0,[],[20],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+ea06e6c1814f,f8d3a162ab9507e021d83dd109118b60,text,true,0.0,0.0,0.0,0.0,0.0,[],[1],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+c5de878e8bb9,f8d3a162ab9507e021d83dd109118b60,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+e191f221a297,f8d3a162ab9507e021d83dd109118b60,text,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[15, 16, 8, 4, 5, 7, 6]",[16],,,,,,,,,
+79564994451d,f8d3a162ab9507e021d83dd109118b60,text,true,0.5,0.5,0.5,1.0,0.6131471927654584,"[2, 3]","[1, 2]",,,,,,,,,
+3b168b1ae92c,f8d3a162ab9507e021d83dd109118b60,text,true,0.0,0.0,0.0,0.0,0.0,[],[7],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+3c31b8724627,f8d3a162ab9507e021d83dd109118b60,text,true,0.25,0.25,0.25,1.0,0.3903800499921017,"[15, 16]","[3, 4, 7, 15]",,,,,,,,,
+6eae446135d6,f8d3a162ab9507e021d83dd109118b60,text,true,0.5,1.0,1.0,1.0,1.0,"[6, 7]","[6, 7]",,,,,,,,,
+776c1267eb13,f8d3a162ab9507e021d83dd109118b60,text,true,1.0,1.0,1.0,1.0,1.0,[10],[10],,,,,,,,,
+e21869b9e708,nielsen2015musicbizpresentation-final-150526143534-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[4],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+d5d9b1681c38,nielsen2015musicbizpresentation-final-150526143534-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[4, 6]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+5831bda1e7b4,nielsen2015musicbizpresentation-final-150526143534-lva1-app6891_95,table,true,0.0,0.0,0.0,0.0,0.0,[],[9],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+ab4f9c43c8b3,nielsen2015musicbizpresentation-final-150526143534-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[6],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+a68b35f5df30,nielsen2015musicbizpresentation-final-150526143534-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[14, 15]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+12926fe1b5c0,nielsen2015musicbizpresentation-final-150526143534-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+451d951ba82a,nielsen2015musicbizpresentation-final-150526143534-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[29, 30, 31, 32, 33, 34, 35]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+6e38a9c33dfe,nielsen2015musicbizpresentation-final-150526143534-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[30, 31, 32, 33, 34, 35]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0a69bb146a39,nielsen2015musicbizpresentation-final-150526143534-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+87becf6c1ca0,dr-vorapptchapter1emissionsources-121120210508-phpapp02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[7],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+344466ec9cc7,dr-vorapptchapter1emissionsources-121120210508-phpapp02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+58701a2859db,dr-vorapptchapter1emissionsources-121120210508-phpapp02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[8],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+745d111471a6,dr-vorapptchapter1emissionsources-121120210508-phpapp02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+2e3fc6687674,dr-vorapptchapter1emissionsources-121120210508-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[19],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+65170eb9c43b,dr-vorapptchapter1emissionsources-121120210508-phpapp02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[16],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+60ea8699d43e,dr-vorapptchapter1emissionsources-121120210508-phpapp02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[40],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+42177710ade8,dr-vorapptchapter1emissionsources-121120210508-phpapp02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[48, 49]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+c5cd052db823,dr-vorapptchapter1emissionsources-121120210508-phpapp02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[55, 58]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0d614f7fe67a,dr-vorapptchapter1emissionsources-121120210508-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[8, 10, 11, 12, 16, 17, 18, 25, 27, 40, 48, 53, 56, 57, 58, 59, 61, 62, 63, 66, 67, 68, 70, 75]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+1c54ce5d9b75,bigdatatrends-120723191058-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[5],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+58e5adca7e29,bigdatatrends-120723191058-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[8],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+679b1583d551,bigdatatrends-120723191058-phpapp02_95,"",true,0.0,0.0,0.0,0.0,0.0,[],[20],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+c1d7628cb5bc,bigdatatrends-120723191058-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[10],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+492e50fc496c,bigdatatrends-120723191058-phpapp02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[27, 28, 29, 30, 31, 32, 33, 34, 35, 36]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+93e8bf263b4c,bigdatatrends-120723191058-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[20],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+031f647374a7,bigdatatrends-120723191058-phpapp02_95,"image,table,text",true,0.0,0.0,0.0,0.0,0.0,[],"[17, 28]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+b23089fd6a84,bigdatatrends-120723191058-phpapp02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+9eb3fd0f6fb1,bigdatatrends-120723191058-phpapp02_95,"image,table,text",true,0.0,0.0,0.0,0.0,0.0,[],"[14, 15, 16, 17, 18, 19, 52]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+b341a250dbad,PP_2021.04.22_voting-access_REPORT,image,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[5, 6, 9, 10, 11, 4, 12, 13]",[6],,,,,,,,,
+d1ae1da21bda,PP_2021.04.22_voting-access_REPORT,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[6, 5, 4, 9, 10, 13, 11, 8]",[],,,,,,,,,
+3691189d2598,PP_2021.04.22_voting-access_REPORT,image,true,1.0,1.0,1.0,1.0,1.0,"[9, 10, 4, 13, 11, 6, 5, 8, 14]",[9],,,,,,,,,
+c11c69201d7d,PP_2021.04.22_voting-access_REPORT,image,true,1.0,1.0,1.0,1.0,1.0,"[11, 8, 10, 12, 13]",[11],,,,,,,,,
+593a3847c2b4,c31e6580d0175ab3f9d99d1ff0bfa000,text,true,0.0,0.0,0.0,0.0,0.0,[],[1],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+c2710e5fe4cb,c31e6580d0175ab3f9d99d1ff0bfa000,text,true,0.0,0.0,0.0,0.0,0.0,[],[1],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+6298d6a884a9,c31e6580d0175ab3f9d99d1ff0bfa000,image,true,0.0,0.0,0.0,0.0,0.0,[],"[8, 9, 10, 11, 12, 13, 15, 16, 17, 18]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+81c74ab70e2a,c31e6580d0175ab3f9d99d1ff0bfa000,text,true,0.0,0.0,0.0,0.0,0.0,[],[12],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+41511f5ad3cd,c31e6580d0175ab3f9d99d1ff0bfa000,"",true,0.0,0.0,0.0,0.0,0.0,[],[6],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+296ec36656ea,c31e6580d0175ab3f9d99d1ff0bfa000,text,true,0.0,0.0,0.0,0.0,0.0,[],[4],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+cae1c6f15937,c31e6580d0175ab3f9d99d1ff0bfa000,text,true,0.0,0.0,0.0,0.0,0.0,[],"[1, 3, 4]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+7a3141621843,f86d073b0d735ac873a65d906ba82758,table,true,1.0,1.0,1.0,1.0,1.0,[13],[13],,,,,,,,,
+4c4ace87eb0e,f86d073b0d735ac873a65d906ba82758,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[13],[],,,,,,,,,
+7df6e2de0de5,f86d073b0d735ac873a65d906ba82758,"",true,0.0,0.0,0.0,0.0,0.0,[],[0],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+db0734928ebf,f86d073b0d735ac873a65d906ba82758,"image,table,text",true,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+fe5e4119be88,f86d073b0d735ac873a65d906ba82758,table,true,1.0,1.0,1.0,1.0,1.0,"[9, 10]",[9],,,,,,,,,
+73e5951218e6,f86d073b0d735ac873a65d906ba82758,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[9],[],,,,,,,,,
+fc0cf37e773d,f86d073b0d735ac873a65d906ba82758,table,true,0.0,0.0,0.0,0.0,0.0,[],"[3, 5]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+16bdf5610e30,f86d073b0d735ac873a65d906ba82758,table,true,1.0,1.0,1.0,1.0,1.0,"[9, 10]",[9],,,,,,,,,
+11d9d53bf06b,f86d073b0d735ac873a65d906ba82758,table,true,0.5,0.5,0.5,1.0,0.6131471927654584,[7],"[6, 7]",,,,,,,,,
+f1ba2a39490d,a4f3ced0696009fec3179f493e4f28c4,text,true,0.0,0.0,0.0,0.0,0.0,[],[1],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+e75a13644e2d,a4f3ced0696009fec3179f493e4f28c4,text,true,0.0,0.0,0.0,0.0,0.0,[],[1],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+5126c9274973,a4f3ced0696009fec3179f493e4f28c4,text,true,0.0,0.0,0.0,0.0,0.0,[],[1],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+dccd796a3999,csewt7zsecmmbzjufbyx-signature-24d91a254426c21c3079384270e1f138dc43a271cfe15d6d520d68205855b2a3-poli-150306115347-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[9],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+951013c9c51c,csewt7zsecmmbzjufbyx-signature-24d91a254426c21c3079384270e1f138dc43a271cfe15d6d520d68205855b2a3-poli-150306115347-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+f4c2c007205f,csewt7zsecmmbzjufbyx-signature-24d91a254426c21c3079384270e1f138dc43a271cfe15d6d520d68205855b2a3-poli-150306115347-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[8],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+96f3351ab484,csewt7zsecmmbzjufbyx-signature-24d91a254426c21c3079384270e1f138dc43a271cfe15d6d520d68205855b2a3-poli-150306115347-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+58c1f58e6f50,csewt7zsecmmbzjufbyx-signature-24d91a254426c21c3079384270e1f138dc43a271cfe15d6d520d68205855b2a3-poli-150306115347-conversion-gate01_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[37, 38, 39, 40, 41]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+617a27194892,csewt7zsecmmbzjufbyx-signature-24d91a254426c21c3079384270e1f138dc43a271cfe15d6d520d68205855b2a3-poli-150306115347-conversion-gate01_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[2, 18, 19]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+d06ae7953196,csewt7zsecmmbzjufbyx-signature-24d91a254426c21c3079384270e1f138dc43a271cfe15d6d520d68205855b2a3-poli-150306115347-conversion-gate01_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[21, 62]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+d87334e31006,b3m5kaeqm2w8n4bwcesw-140602121350-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[9],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+27194a1c97d1,b3m5kaeqm2w8n4bwcesw-140602121350-phpapp02_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[17, 18]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+e7e4f8a5cefa,b3m5kaeqm2w8n4bwcesw-140602121350-phpapp02_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[18, 20]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+39c5a2523f19,b3m5kaeqm2w8n4bwcesw-140602121350-phpapp02_95,text,true,0.0,0.0,0.0,0.0,0.0,[],[21],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+a1028cbc0f0d,disciplined-agile-business-analysis-160218012713_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[1],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+28c2a974dadf,disciplined-agile-business-analysis-160218012713_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+e3a6ff9da57c,disciplined-agile-business-analysis-160218012713_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[2, 3, 38]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+497d6b1e442c,disciplined-agile-business-analysis-160218012713_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[39],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+5e2bf235cae5,disciplined-agile-business-analysis-160218012713_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+27c08cb52160,disciplined-agile-business-analysis-160218012713_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[4],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+00cbbec92898,disciplined-agile-business-analysis-160218012713_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[10, 11]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+8e2c149547b5,2312.04350v3,image,true,0.0,0.0,0.0,0.0,0.0,[],[2],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+2d895832af24,2312.04350v3,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[7, 2]",[],,,,,,,,,
+d807fdafe54c,2312.04350v3,image,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[6, 2]",[2],,,,,,,,,
+38be9637ed08,2312.04350v3,text,true,1.0,1.0,1.0,1.0,1.0,"[3, 2, 4, 23, 10, 5]",[3],,,,,,,,,
+6faa04e00f55,2312.04350v3,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[23, 3, 2, 4, 10, 5]",[],,,,,,,,,
+aae507c2daac,2312.04350v3,image,true,0.0,0.0,0.0,0.0,0.0,[23],[4],,,,,,,,,
+94dbe54aa2c0,2312.04350v3,table,true,1.0,1.0,1.0,1.0,1.0,[8],[8],,,,,,,,,
+a151d46900a1,2305.14160v4,"image,text",true,0.5,1.0,1.0,1.0,1.0,"[3, 4, 11, 1, 9]","[3, 4]",,,,,,,,,
+8e3780daba01,2305.14160v4,"image,text",true,0.5,1.0,1.0,1.0,1.0,"[3, 4, 11, 5, 2, 14, 12]","[3, 4]",,,,,,,,,
+7042188c944e,2305.14160v4,"image,text",true,1.0,1.0,1.0,1.0,1.0,"[4, 14, 12, 13, 11]",[4],,,,,,,,,
+a3f2526a1c32,2305.14160v4,table,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[6, 7, 2, 9, 5, 1]",[7],,,,,,,,,
+31474ce12bf8,2305.14160v4,table,true,NaN,NaN,NaN,NaN,NaN,"[8, 7, 14, 6]",[],,,,,,,,,
+fedbed908365,2305.14160v4,"image,text",true,1.0,1.0,1.0,1.0,1.0,[8],[8],,,,,,,,,
+d856c7996e6a,Guide-for-international-students-web,text,true,0.0,0.0,0.0,0.0,0.0,"[50, 52, 4, 5, 48, 55]",[1],,,,,,,,,
+13872cd69286,Guide-for-international-students-web,"image,text",true,0.0,0.0,0.0,0.0,0.0,[75],[3],,,,,,,,,
+63481025449b,Guide-for-international-students-web,text,true,0.0,0.0,0.0,0.0,0.0,[],"[3, 62, 63, 64, 65, 66]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+ac9a152e1cb8,Guide-for-international-students-web,text,true,1.0,1.0,1.0,1.0,1.0,"[7, 8, 60, 61]",[7],,,,,,,,,
+33e97aa2f208,Guide-for-international-students-web,text,true,1.0,1.0,1.0,1.0,1.0,"[33, 38]",[33],,,,,,,,,
+d3a0e69dc063,Guide-for-international-students-web,text,true,1.0,1.0,1.0,1.0,1.0,[61],[61],,,,,,,,,
+92de37756d97,NUS-Business-School-BBA-Brochure-2024,image,true,1.0,1.0,1.0,1.0,1.0,"[3, 4]",[3],,,,,,,,,
+841ab82859c1,NUS-Business-School-BBA-Brochure-2024,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[3, 4]",[],,,,,,,,,
+23aad5936ecc,NUS-Business-School-BBA-Brochure-2024,text,true,0.0,0.0,0.0,0.0,0.0,[],"[7, 8]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+2474c40fd80a,NUS-Business-School-BBA-Brochure-2024,image,true,0.0,0.0,0.0,0.0,0.0,[],[24],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+f4dee81a0008,NUS-Business-School-BBA-Brochure-2024,image,true,0.0,0.0,0.0,0.0,0.0,[],[22],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+ef84b507bd02,NUS-Business-School-BBA-Brochure-2024,"image,text",true,0.0,0.0,0.0,0.0,0.0,[7],"[11, 16]",,,,,,,,,
+347497c0ad21,2021-Apple-Catalog,"image,text",true,0.0,0.0,0.0,0.0,0.0,[19],[6],,,,,,,,,
+280a1a7fb3e6,2021-Apple-Catalog,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[],abstained,true,0,0,NaN,NaN,Not answerable,true,true
+0d956a1a4974,2021-Apple-Catalog,"image,text",true,0.0,1.0,1.0,0.5,0.6309297535714575,"[21, 22, 24]",[22],,,,,,,,,
+a17aa476b034,2021-Apple-Catalog,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],"[11, 28]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+13778ccd3597,ACTIVISIONBLIZZARD_2019_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],"[69, 70]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0a78421082ee,ACTIVISIONBLIZZARD_2019_10K,"",true,0.0,0.0,0.0,0.0,0.0,[],"[70, 73]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+eb6ba17a8881,ACTIVISIONBLIZZARD_2019_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],"[47, 69]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+cdcf36700f67,ACTIVISIONBLIZZARD_2019_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],"[70, 114]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+139af828cfa9,ACTIVISIONBLIZZARD_2019_10K,text,true,0.0,0.0,0.0,0.0,0.0,[],[29],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+ee1eb736e438,COSTCO_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],[38],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+6d7db546839f,COSTCO_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],[38],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+457a24c5e720,COSTCO_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],"[36, 40]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+3429985f4be9,COSTCO_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],"[38, 53]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+eabc3f34cd0a,COSTCO_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],"[38, 53]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+fdf97712ef65,COSTCO_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],"[36, 38, 40, 53]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+f4e50835d49c,COSTCO_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],[38],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+f5a5ed41824d,COSTCO_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],"[38, 53]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+3ed08f0d9778,COSTCO_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],[38],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+aafd3a26978f,COSTCO_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],"[36, 38]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+ee8e4eb80fd2,COSTCO_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],"[38, 53]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+f5e9b27c5c16,COSTCO_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],"[38, 40]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0088b0a704f3,COSTCO_2021_10K,text,true,0.0,0.0,0.0,0.0,0.0,[55],[29],,,,,,,,,
+239b7c0e0a69,COSTCO_2021_10K,text,true,0.0,0.0,0.0,0.0,0.0,[],[29],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+b8e265876c07,COSTCO_2021_10K,text,true,1.0,1.0,1.0,1.0,1.0,"[9, 4, 5, 7]",[9],,,,,,,,,
+2039ca315f74,COSTCO_2021_10K,table,true,0.0,0.0,1.0,0.14285714285714285,0.3333333333333333,"[40, 41, 3, 23, 24, 18, 19, 5, 6, 20]",[19],,,,,,,,,
+1a4ac8373a3e,NIKE_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],"[59, 61]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0d9c987a1724,NIKE_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],"[59, 61]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+216020b7b9fc,NIKE_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],"[59, 61]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+17ac298cdcd8,NIKE_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],[61],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+f3c02c89415c,NIKE_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],"[59, 61]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+d6a4294e288e,NIKE_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],[61],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+f6652b1693c4,NIKE_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],[61],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+2629dc97288e,NIKE_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],[61],abstained,true,0,0,NaN,NaN,Not answerable,false,true
+9f3a27da8980,NIKE_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,[94],[72],,,,,,,,,
+044462f2083a,NIKE_2021_10K,text,true,1.0,1.0,1.0,1.0,1.0,"[3, 65, 35, 5, 42, 30, 4]",[3],,,,,,,,,
+21acd9533b83,ADOBE_2015_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],"[59, 63]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+0589470773ba,ADOBE_2015_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],"[59, 60]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+3f8fad08226d,ADOBE_2015_10K,table,true,0.0,0.0,0.0,0.0,0.0,[],"[63, 99]",abstained,true,0,0,NaN,NaN,Not answerable,false,true
+aecbe3d745d6,ADOBE_2015_10K,text,true,1.0,1.0,1.0,1.0,1.0,[13],[13],,,,,,,,,
+e45fe6de7d12,3M_2018_10K,table,true,0.0,0.0,0.0,0.0,0.0,"[39, 47, 49]",[60],,,,,,,,,
+515758a33995,3M_2018_10K,text,true,0.0,0.0,0.5,0.16666666666666666,0.21840743681816419,"[32, 15, 126, 6, 125, 4, 124, 28]","[4, 5]",,,,,,,,,
+23963f19e938,3M_2018_10K,table,true,0.0,0.0,0.0,0.0,0.0,"[107, 32]",[104],,,,,,,,,
+437fd17b22a6,3M_2018_10K,text,true,0.0,0.0,0.0,0.0,0.0,[],[64],abstained,true,0,0,NaN,NaN,Not answerable,false,true

@@ -1,0 +1,6 @@
+slice,n,answerable,recall@1,recall@5,recall@10,mrr@10,ndcg@10,run,config_hash
+all,735,0.7714,0.2388,0.4817,0.5458,0.4076,0.4279,no_prefix,eb483c8bd0f8
+text,283,1.0,0.2854,0.5377,0.6089,0.4777,0.4919,no_prefix,eb483c8bd0f8
+table,138,1.0,0.2932,0.5269,0.5972,0.4817,0.4866,no_prefix,eb483c8bd0f8
+image,314,1.0,0.1678,0.4077,0.4615,0.3268,0.347,no_prefix,eb483c8bd0f8
+unanswerable,168,0.0,0.0,0.2,0.2,0.05,0.0861,no_prefix,eb483c8bd0f8

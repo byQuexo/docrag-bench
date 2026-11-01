@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+dist/
+build/
+*.egg-info/
+
+# Tool caches
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Secrets and local config
+.env
+.env.*
+!.env.example
+
+# Data, model weights, local stores, run outputs
+data/
+models/
+qdrant_storage/
+.cache/
+runs/
+# NOTE: results/ is deliberately NOT ignored - committed result tables are the
+# point of the benchmark. Large per-run files can be pruned before committing.
+
+# PDFs: the dataset lives in data/ (ignored above) and the build plan is
+# private. Only the small generated test fixtures are committed.
+*.pdf
+!fixtures/*.pdf
+
+# IDE
+.idea/
+.vscode/

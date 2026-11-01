@@ -1,0 +1,83 @@
+# CI for docrag-bench: lint + types + unit tests, an E2E test against a real
+# Qdrant, and a Docker build check.
+#
+# LEARN: A workflow = YAML in .github/workflows/. GitHub runs it on the events
+# under `on:`. Each job gets a fresh VM ("runner"); jobs run in PARALLEL unless
+# one declares `needs:` on another.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# LEARN: if you push twice quickly, cancel the older run of the same branch
+# instead of wasting runner minutes on an outdated commit.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+    steps:
+      # LEARN: `uses:` runs a reusable action. Pin a version (@v4) so an upstream
+      # change can't silently break (or compromise) your pipeline.
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true # caches downloaded wheels between runs
+
+      # LEARN: --locked fails if uv.lock doesn't match pyproject.toml, so CI
+      # tests exactly the dependency versions you committed (reproducibility).
+      - run: uv sync --locked --extra cpu # CPU onnxruntime: no CUDA wheels in CI
+
+      - name: Lint
+        run: uv run ruff check .
+      - name: Format
+        run: uv run ruff format --check .
+      - name: Types
+        run: uv run mypy src
+      # LEARN: -m "not e2e" deselects tests marked @pytest.mark.e2e; they run in
+      # their own job below, where a Qdrant service exists.
+      - name: Unit tests
+        run: uv run pytest -m "not e2e" -q
+
+  e2e:
+    runs-on: ubuntu-latest
+    # LEARN: `services:` starts Docker containers next to the job, reachable on
+    # localhost via the mapped ports. Same image tag as compose.yaml.
+    services:
+      qdrant:
+        image: qdrant/qdrant:v1.20.0
+        ports:
+          - 6333:6333
+    env:
+      DOCRAG_E2E_QDRANT_URL: http://localhost:6333
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv sync --locked --extra cpu # CPU onnxruntime: no CUDA wheels in CI
+      # LEARN: a container being "started" doesn't mean the app inside is ready.
+      # Poll the readiness endpoint instead of a fixed sleep (faster + reliable).
+      - name: Wait for Qdrant
+        run: |
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:6333/readyz && exit 0
+            sleep 2
+          done
+          echo "Qdrant did not become ready" && exit 1
+      - name: E2E tests
+        run: uv run pytest -m e2e -q
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # LEARN: building (without pushing) in CI catches a broken Dockerfile in
+      # the PR, not on deploy day.
+      - name: Build image
+        run: docker build -t docrag-bench:ci .

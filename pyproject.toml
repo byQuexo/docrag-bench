@@ -1,0 +1,96 @@
+[project]
+name = "docrag-bench"
+version = "0.1.0"
+description = "Benchmark-driven RAG over PDFs with tables: hybrid retrieval, reranking, verified citations."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "anthropic>=2.3",
+    "fastapi>=0.162",
+    "httpx>=0.28",
+    "huggingface-hub>=2.4.0",
+    "numpy>=2.5",
+    "keyring>=25",
+    "polars>=2.1.0",
+    "pydantic>=2.14.2",
+    "pydantic-settings>=2.16.2",
+    "pymupdf>=2.0",
+    "pyyaml>=6.0",
+    "qdrant-client>=1.20",
+    "scikit-learn>=1.9",
+    "tokenizers>=0.23",
+    "uvicorn>=0.54",
+    "rapidocr==3.10.0",
+    "opentelemetry-api>=1.45.2",
+    "opentelemetry-sdk>=1.45.2",
+    "opentelemetry-exporter-otlp-proto-http>=1.45.2",
+]
+
+# Pick exactly ONE runtime: `uv sync --extra cpu` (CI, Docker) or
+# `uv sync --extra gpu` (local NVIDIA GPU; pulls CUDA 13 + cuDNN wheels, no system
+# CUDA install needed). Both packages provide the same `onnxruntime` module, so
+# they must never be installed together - see [tool.uv] conflicts below.
+[project.optional-dependencies]
+cpu = ["onnxruntime>=1.31"]
+gpu = ["onnxruntime-gpu[cuda,cudnn]>=1.31.1"]
+
+[project.scripts]
+docrag = "docrag.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.9,<0.14"]
+build-backend = "uv_build"
+
+[tool.uv]
+conflicts = [[{ extra = "cpu" }, { extra = "gpu" }]]
+# nvidia-cublas 13.8.2+ ships Linux wheels only; pin to the last one with a
+# Windows wheel so `uv sync --extra gpu` works on Windows.
+constraint-dependencies = ["nvidia-cublas<=13.8.0.4; sys_platform == 'win32'"]
+# PyMuPDF 2.0 depends on the CPU `onnxruntime` (for its own layout model). With
+# --extra gpu that would install BOTH runtimes into the same module folder, and
+# whichever is unpacked last wins. This override keeps the CPU package only when
+# the `cpu` extra is selected; onnxruntime-gpu provides the module otherwise.
+override-dependencies = ["onnxruntime>=1.31; extra == 'cpu'"]
+
+[tool.uv.build-backend]
+module-name = "docrag"
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E", "F", "I", "UP", "B"
+]
+
+[tool.mypy]
+strict = true
+plugins = ["pydantic.mypy"]
+# PyMuPDF ships partial type hints; calling its untyped functions is fine.
+untyped_calls_exclude = ["pymupdf"]
+
+[[tool.mypy.overrides]]
+# Libraries without type hints.
+module = ["pymupdf.*", "sklearn.*", "onnxruntime.*", "rapidocr.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["e2e: needs a running Qdrant (DOCRAG_E2E_QDRANT_URL)"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+filterwarnings = [
+    # Expected: the in-memory Qdrant used in unit tests ignores payload indexes.
+    "ignore:Payload indexes have no effect in the local Qdrant:UserWarning",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.4.0",
+    "mypy>=2.4.1",
+    "pytest>=9.2.0",
+    "pytest-asyncio>=1.4.1",
+    "ruff>=0.17.3",
+    "types-pyyaml>=6.0.12.20261030",
+]

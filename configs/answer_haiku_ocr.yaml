@@ -1,0 +1,21 @@
+# One YAML = one row in the results table. See src/docrag/shared/config.py.
+name: answer_haiku_ocr
+embedder: onnx:gte-small
+prefix_headings: true
+ocr: rapidocr            # OCR pages without a text layer (local, GPU)
+retrieval: hybrid_rerank
+scope: doc
+top_k: 10
+prefetch_k: 50
+rrf_k: 60
+reranker: onnx:gte-reranker-modernbert-base
+rerank_threshold: 0.5772    # calibrated per question on dev, with OCR
+context_k: 5
+llm: "openrouter:anthropic/claude-haiku-5.5"
+llm_temperature: null    # Claude 5.5 rejects sampling parameters
+judge: "openrouter:deepseek/deepseek-v4.1-flash"   # different family than the answerer
+judge_temperature: 0.0
+llm_concurrency: 6
+dataset:
+  split: test
+  max_docs: null        # all test documents

@@ -1,0 +1,25 @@
+config_hash: b14870acbede
+name: baseline_vlm
+embedder: onnx:gte-small
+prefix_headings: true
+ocr: vlm
+ocr_model: openrouter:anthropic/claude-haiku-5.5
+ocr_temperature: null
+retrieval: hybrid_rerank
+scope: doc
+top_k: 10
+prefetch_k: 50
+rrf_k: 60
+reranker: onnx:gte-reranker-modernbert-base
+rerank_threshold: 0.6318
+context_k: 5
+llm: null
+judge: null
+llm_temperature: 0.0
+judge_temperature: 0.0
+llm_concurrency: 2
+prompt_version: answer_v1
+dataset:
+  split: test
+  max_docs: null
+  max_questions: null

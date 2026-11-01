@@ -1,0 +1,6 @@
+slice,n,answerable,recall@1,recall@5,recall@10,mrr@10,ndcg@10,run,config_hash
+all,735,0.7714,0.2435,0.4854,0.5513,0.4116,0.4317,modernbert,6b2c8e58f20e
+text,283,1.0,0.2925,0.5448,0.614,0.4856,0.498,modernbert,6b2c8e58f20e
+table,138,1.0,0.2895,0.5325,0.604,0.4766,0.4877,modernbert,6b2c8e58f20e
+image,314,1.0,0.1742,0.4087,0.4595,0.3307,0.348,modernbert,6b2c8e58f20e
+unanswerable,168,0.0,0.0,0.2,0.6,0.1056,0.2176,modernbert,6b2c8e58f20e

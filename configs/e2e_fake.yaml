@@ -1,0 +1,17 @@
+# One YAML = one row in the results table. See src/docrag/shared/config.py.
+name: e2e_fake
+embedder: fake:64
+prefix_headings: true
+retrieval: hybrid_rerank
+scope: doc
+top_k: 10
+prefetch_k: 50
+rrf_k: 60
+reranker: fake:overlap
+rerank_threshold: 0.2    # start value; replace with `docrag calibrate` output
+context_k: 5
+llm: "fake:echo"
+judge: "fake:judge"
+dataset:
+  split: dev
+  max_docs: 10

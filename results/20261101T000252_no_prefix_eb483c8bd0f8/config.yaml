@@ -1,0 +1,22 @@
+config_hash: eb483c8bd0f8
+name: no_prefix
+embedder: onnx:gte-small
+prefix_headings: false
+retrieval: hybrid_rerank
+scope: doc
+top_k: 10
+prefetch_k: 50
+rrf_k: 60
+reranker: onnx:gte-reranker-modernbert-base
+rerank_threshold: 0.6326
+context_k: 5
+llm: null
+judge: null
+llm_temperature: 0.0
+judge_temperature: 0.0
+llm_concurrency: 2
+prompt_version: answer_v1
+dataset:
+  split: test
+  max_docs: null
+  max_questions: null

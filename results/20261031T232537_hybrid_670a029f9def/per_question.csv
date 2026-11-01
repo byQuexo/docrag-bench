@@ -1,0 +1,736 @@
+qid,doc_id,slices,answerable,recall@1,recall@5,recall@10,mrr@10,ndcg@10,top_pages,gold_pages
+6f6a2eab55f3,Independents-Report,text,true,0.0,1.0,1.0,0.5,0.6509209298071326,"[4, 5, 6, 3, 19, 20, 10, 11, 7, 8]","[3, 5]"
+8515c4089459,Independents-Report,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[4, 5, 6, 16, 17, 18, 19, 20, 3, 10]",[]
+2a7bd8fd304c,Independents-Report,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[7, 8, 6, 5, 3, 4, 20, 21, 22, 16]",[]
+c27969eab7b9,Independents-Report,"table,text",true,0.5,1.0,1.0,1.0,0.9197207891481876,"[3, 4, 22, 12, 13, 14, 5, 20, 21, 6]","[3, 22]"
+7b583b6d91d6,Independents-Report,image,true,0.0,0.0,0.0,0.0,0.0,"[10, 11, 19, 20, 4, 5, 21, 22, 6, 3]","[8, 12]"
+18757927eb5e,Independents-Report,"image,text",true,0.14285714285714285,0.2857142857142857,0.7142857142857143,1.0,0.6845988903314878,"[20, 21, 22, 23, 2, 3, 16, 17, 18, 4]","[3, 6, 16, 18, 19, 20, 22]"
+24cf6fe22597,fdac8d1e9ef56519371df7e6532df27d,image,true,0.0,0.0,0.0,0.0,0.0,"[15, 6, 7, 1, 13, 2, 18, 19, 12, 8]",[17]
+756ebf00cb3d,fdac8d1e9ef56519371df7e6532df27d,text,true,1.0,1.0,1.0,1.0,1.0,"[3, 8, 6, 7, 9, 14]",[3]
+b69b88d55982,fdac8d1e9ef56519371df7e6532df27d,text,true,1.0,1.0,1.0,1.0,1.0,"[6, 15, 16, 12, 3, 7, 4, 1, 8]",[6]
+49493a7582c3,fdac8d1e9ef56519371df7e6532df27d,text,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[18, 19, 9, 15, 16, 13, 12, 8, 20, 1]",[19]
+ea7dd13f46e4,fdac8d1e9ef56519371df7e6532df27d,image,true,1.0,1.0,1.0,1.0,1.0,"[2, 3, 6, 7, 10, 1, 12, 13, 4, 8]",[2]
+730d7b31d3e8,fdac8d1e9ef56519371df7e6532df27d,text,true,0.0,0.3,0.4,0.5,0.40348266660099286,"[8, 20, 16, 7, 10, 3, 6, 15]","[9, 10, 11, 12, 13, 14, 15, 16, 19, 20]"
+4b77da9b17ec,fdac8d1e9ef56519371df7e6532df27d,image,true,0.0,0.375,0.75,0.5,0.5954318821015543,"[8, 16, 13, 19, 12, 6, 7, 10, 11, 20]","[10, 11, 12, 14, 15, 16, 19, 20]"
+29fe8de1011d,52b3137455e7ca4df65021a200aef724,text,true,0.0,0.0,0.0,0.0,0.0,"[53, 54, 55, 52, 60, 61, 56, 57, 58, 59]",[10]
+d324c83aedf0,52b3137455e7ca4df65021a200aef724,text,true,0.0,0.0,0.0,0.0,0.0,"[53, 54, 55, 56, 57, 58, 59, 10, 83, 60]",[47]
+f4a9b873071b,52b3137455e7ca4df65021a200aef724,table,true,NaN,NaN,NaN,NaN,NaN,"[10, 52, 53, 54, 55, 64, 65, 66, 56, 57]",[]
+c91c0460734f,52b3137455e7ca4df65021a200aef724,image,true,0.0,1.0,1.0,0.25,0.43067655807339306,"[82, 83, 85, 81, 79, 80, 52, 64, 65, 66]",[81]
+2c107098a152,52b3137455e7ca4df65021a200aef724,image,true,0.0,0.0,0.0,0.0,0.0,"[10, 52, 64, 65, 66, 60, 61, 102, 56, 57]",[101]
+b54217a2f0fc,52b3137455e7ca4df65021a200aef724,image,true,0.0,0.3333333333333333,0.6666666666666666,0.25,0.35853358850813305,"[64, 65, 66, 53, 54, 55, 56, 57, 58, 59]","[24, 53, 56]"
+0a3390e655f6,earlybird-110722143746-phpapp02_95,"image,table",true,0.0,0.0,0.0,0.0,0.0,[],[6]
+db823b48c592,earlybird-110722143746-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[11]
+6dbf93123d98,earlybird-110722143746-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[11, 13, 15, 16, 21, 22, 23, 24, 25, 26, 27, 31, 38]"
+d2d914521f3a,earlybird-110722143746-phpapp02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[14, 19, 20, 33, 37]"
+9cc15e05c276,earlybird-110722143746-phpapp02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[33]
+a6fd345bee55,earlybird-110722143746-phpapp02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+4a9a9a24faed,earlybird-110722143746-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[6, 7, 8, 11, 18, 23, 24, 25, 28, 30]"
+12e9ef562003,earlybird-110722143746-phpapp02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+467035338d7a,earlybird-110722143746-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[26]
+bc78d79f369b,ddoseattle-150627210357-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[12]
+05f9036bba57,ddoseattle-150627210357-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+8f0b95d05665,ddoseattle-150627210357-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[13]
+cdadbb9198d6,ddoseattle-150627210357-lva1-app6891_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[7, 8, 9, 16]"
+809b8934f643,ddoseattle-150627210357-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[49, 50]"
+504b3117ab55,ddoseattle-150627210357-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+122d91be95bf,ddoseattle-150627210357-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[17, 25, 40, 51]"
+6eadde9fa504,ddoseattle-150627210357-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[21, 26, 36, 39, 42, 43, 44, 45]"
+6cecdb1ad002,ddoseattle-150627210357-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[25]
+8cf5f9868629,ddoseattle-150627210357-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+d5faa46d39c1,reportq32015-151009093138-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[7]
+fd86cc1431ce,reportq32015-151009093138-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[9]
+a307ade21e59,reportq32015-151009093138-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[10]
+a87da443e982,reportq32015-151009093138-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[29, 30]"
+3e27f6e1ff93,reportq32015-151009093138-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+8e0bc85eb532,reportq32015-151009093138-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[26, 27]"
+2b620fae99ec,reportq32015-151009093138-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[28, 33]"
+7e4297d8fafe,reportq32015-151009093138-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[7, 15]"
+61f3bae8b65d,reportq32015-151009093138-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+07fa8c06a320,reportq32015-151009093138-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[13, 31]"
+4a9401a08f4a,2312.10997v5,"image,text",true,0.0,1.0,1.0,0.5,0.6309297535714575,"[7, 2, 11, 8, 19, 18, 16, 1, 5]",[2]
+7478748e29cc,2312.10997v5,image,true,1.0,1.0,1.0,1.0,1.0,"[4, 16, 5, 17, 3, 13, 10, 8, 1]",[4]
+fdcaa6d66f5c,2312.10997v5,"table,text",true,0.0,0.5,0.5,0.2,0.23719771276929622,"[8, 7, 4, 1, 6, 11, 12]","[6, 17]"
+9a304b687364,2312.10997v5,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[8, 6, 2, 11, 7, 1, 4, 10]",[]
+8db39c929d55,2312.10997v5,table,true,0.0,1.0,1.0,0.25,0.43067655807339306,"[7, 5, 4, 13, 2, 6, 11, 12, 1]",[13]
+883d852ff510,2312.10997v5,text,true,0.0,0.5,0.5,0.5,0.38685280723454163,"[1, 11, 4, 2, 3, 7, 15]","[10, 11]"
+65dc7e2a7354,2312.10997v5,text,true,0.5,1.0,1.0,1.0,0.8772153153380493,"[10, 7, 5, 9, 2, 20, 16, 1]","[9, 10]"
+8d54328601c9,honor_watch_gs_pro,image,true,0.3333333333333333,1.0,1.0,1.0,0.9674679834891693,"[40, 41, 38, 39, 37, 14, 15, 13, 33, 34]","[39, 40, 41]"
+73187a56213b,honor_watch_gs_pro,image,true,1.0,1.0,1.0,1.0,1.0,"[23, 24, 11, 18, 25, 40, 41, 21, 28, 20]",[23]
+436e301fee93,honor_watch_gs_pro,"image,text",true,0.0,1.0,1.0,0.5,0.6309297535714575,"[15, 16, 17, 29, 30, 21, 40, 41, 14, 32]",[16]
+20f4bab14200,honor_watch_gs_pro,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[15, 16, 17, 40, 41, 29, 30, 32, 33, 38]",[]
+5b493c441795,honor_watch_gs_pro,table,true,0.5,1.0,1.0,1.0,1.0,"[13, 12, 19, 21, 18, 15]","[12, 13]"
+a10bbfb10545,honor_watch_gs_pro,"",true,0.0,0.0,0.0,0.0,0.0,"[24, 25, 23, 22, 28]","[20, 21]"
+9b443bb0693a,watch_d,image,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[16, 15, 17, 18, 13, 14]",[15]
+58d5c3fc224d,watch_d,"image,text",true,1.0,1.0,1.0,1.0,1.0,"[6, 7, 8, 14, 20, 21, 4, 17, 2]",[6]
+cd2a82933755,watch_d,text,true,0.5,1.0,1.0,1.0,1.0,"[9, 10, 3, 23, 24, 2, 4, 15]","[9, 10]"
+a1ad114483c7,watch_d,table,true,0.0,1.0,1.0,0.3333333333333333,0.5,"[9, 10, 3, 26, 15, 11, 14]",[3]
+c4e7f75705d2,watch_d,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[15, 9, 10, 3, 11, 26, 14, 4, 19]",[]
+b7f68b73b001,2024.ug.eprospectus,table,true,1.0,1.0,1.0,1.0,1.0,"[25, 24, 6, 26, 27, 19, 18]",[25]
+307c8509887c,2024.ug.eprospectus,"image,text",true,0.0,1.0,1.0,0.5,0.6309297535714575,"[2, 3, 21, 22, 23]",[3]
+a3920698bb19,2024.ug.eprospectus,"image,text",true,0.0,0.0,1.0,0.14285714285714285,0.3333333333333333,"[10, 18, 23, 17, 13, 21, 22, 2]",[22]
+db7cb298f219,2024.ug.eprospectus,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[10, 23, 18, 2, 13, 21, 17, 3]",[]
+2891ad6f18de,2024.ug.eprospectus,"image,text",true,0.0,0.0,0.0,0.0,0.0,"[7, 5, 6, 22, 25, 21, 26, 27, 2]","[10, 17, 18]"
+e98cd68517c8,2024.ug.eprospectus,text,true,0.5,1.0,1.0,1.0,1.0,"[12, 13, 14, 9, 10, 2, 15]","[12, 13]"
+3854e5e77c4a,Bergen-Brochure-en-2022-23,text,true,0.0,0.25,0.5,0.5,0.3638184934971571,"[7, 12, 5, 1, 44, 4, 18, 10, 11]","[11, 12, 13, 14]"
+e383c70e45d7,Bergen-Brochure-en-2022-23,"image,text",true,0.0,0.0,0.0,0.0,0.0,"[7, 5, 12, 13, 9, 43, 37, 18, 28, 45]",[23]
+6248b70aba12,Bergen-Brochure-en-2022-23,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[17, 18, 10, 11, 44, 19, 7]",[]
+46699a4f4063,Bergen-Brochure-en-2022-23,image,true,0.0,0.5,0.5,0.5,0.38685280723454163,"[18, 10, 7, 44, 35, 36, 31, 17, 2, 43]","[9, 10]"
+5aca40c27e07,Bergen-Brochure-en-2022-23,text,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[33, 32, 34, 35, 36, 31, 39, 38]",[32]
+15adcc7ffefc,Bergen-Brochure-en-2022-23,"image,text",true,1.0,1.0,1.0,1.0,1.0,"[46, 11, 18, 45, 44, 9, 8, 12, 13]",[46]
+41622141a6c4,PG_2020.03.09_US-Germany_FINAL,image,true,1.0,1.0,1.0,1.0,1.0,"[15, 14, 13, 18, 11, 12, 4, 10]",[15]
+73b48d868d45,PG_2020.03.09_US-Germany_FINAL,"image,text",true,0.0,0.5,0.5,0.25,0.2640681225725909,"[16, 17, 18, 11, 12, 3, 15, 14, 9, 10]","[11, 13]"
+484c3c752999,PG_2020.03.09_US-Germany_FINAL,image,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[4, 5, 6, 14, 15, 13]",[5]
+c1c24c4b2495,PG_2020.03.09_US-Germany_FINAL,text,true,0.0,1.0,1.0,0.5,0.6934264036172708,"[5, 6, 17, 18, 4, 7, 16, 10, 11, 8]","[6, 17]"
+e683575933ee,PG_2020.03.09_US-Germany_FINAL,image,true,0.0,0.5,0.75,0.25,0.431992295847858,"[5, 4, 11, 12, 18, 19, 16, 17, 15, 14]","[8, 12, 14, 18]"
+712347c25e50,PG_2020.03.09_US-Germany_FINAL,image,true,1.0,1.0,1.0,1.0,1.0,"[16, 17, 14, 15, 11, 12, 13, 10]",[16]
+f44bab727242,PG_2020.03.09_US-Germany_FINAL,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[16, 17, 11, 13, 14, 12, 10, 15, 6, 7]",[]
+d16c357e6d8f,fd76bbefe469561966e5387aa709c482,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[17, 10, 1, 16, 3, 2, 14, 15, 4, 5]",[]
+9e2b4a974e4d,fd76bbefe469561966e5387aa709c482,text,true,0.0,0.0,1.0,0.1111111111111111,0.3010299956639812,"[16, 14, 15, 17, 2, 3, 4, 5, 1]",[1]
+36b3cdc7a000,fd76bbefe469561966e5387aa709c482,image,true,1.0,1.0,1.0,1.0,1.0,"[3, 8, 15, 16, 2, 9, 10, 13, 17]",[3]
+90a672516ced,fd76bbefe469561966e5387aa709c482,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[8, 15, 13, 14, 16, 17, 7]",[]
+72d86666b9b1,fd76bbefe469561966e5387aa709c482,"image,text",true,0.0,1.0,1.0,0.5,0.6309297535714575,"[2, 3, 4, 5, 1, 7, 14, 15, 9, 17]",[3]
+1984c1367c09,fd76bbefe469561966e5387aa709c482,table,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[8, 7, 13, 15, 9, 10, 17, 16]",[7]
+8a21438b1cd2,379f44022bb27aa53efd5d322c7b57bf,unanswerable,false,0.0,1.0,1.0,0.3333333333333333,0.5,"[15, 1, 10, 2, 6, 16, 17, 7, 5]",[10]
+cc6dcedd2ab4,379f44022bb27aa53efd5d322c7b57bf,text,true,1.0,1.0,1.0,1.0,1.0,"[1, 5, 2, 13, 6, 12, 10]",[1]
+9b79a8985416,379f44022bb27aa53efd5d322c7b57bf,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[9, 5, 1, 16, 13, 2, 17, 12]",[]
+09d8c8f6920a,379f44022bb27aa53efd5d322c7b57bf,text,true,1.0,1.0,1.0,1.0,1.0,"[3, 15, 2, 12, 13, 14, 10, 1, 9]",[3]
+43ea50cad137,379f44022bb27aa53efd5d322c7b57bf,text,true,0.0,0.5,0.5,0.25,0.2640681225725909,"[16, 13, 9, 1, 3, 2, 12, 17]","[1, 5]"
+6e50e0aff5a3,379f44022bb27aa53efd5d322c7b57bf,text,true,0.0,0.14285714285714285,0.2857142857142857,0.2,0.20424960638019765,"[2, 16, 17, 15, 13, 6]","[6, 7, 8, 9, 10, 12, 13]"
+99edf0f05cd5,efd88e41c5f2606c57929cac6c1c0605,text,true,0.0,1.0,1.0,0.25,0.43067655807339306,"[16, 19, 13, 14, 15, 17, 12, 20]",[14]
+8605f175c3d2,efd88e41c5f2606c57929cac6c1c0605,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[14, 15, 16, 13, 17, 5, 19]",[]
+215bd9478864,efd88e41c5f2606c57929cac6c1c0605,table,true,0.0,1.0,1.0,0.2,0.38685280723454163,"[11, 12, 13, 9, 7, 10, 8]",[7]
+ffa7b3c501b7,efd88e41c5f2606c57929cac6c1c0605,table,true,0.0,0.0,0.0,0.0,0.0,"[7, 8, 12, 13, 11, 9, 10]",[6]
+ed33b779cada,efd88e41c5f2606c57929cac6c1c0605,text,true,0.0,0.5,1.0,0.25,0.48247555939075504,"[9, 10, 11, 15, 17, 14, 8, 13]","[14, 15]"
+a81ff447d3cb,efd88e41c5f2606c57929cac6c1c0605,text,true,0.0,0.3333333333333333,0.3333333333333333,0.5,0.32124463208930537,"[13, 11, 12, 9, 4, 5, 10, 7]","[1, 3, 9, 11, 19, 20]"
+2db4bbbd85f8,efd88e41c5f2606c57929cac6c1c0605,"table,text",true,0.0,0.5,1.0,0.5,0.5802792108518124,"[13, 12, 11, 9, 10, 16, 17, 7, 8]","[7, 12]"
+2344bba9256c,finalpresentationdeck-whatwhyhowofcertificationsocial-160324220748_95,table,true,0.0,0.0,0.0,0.0,0.0,[],[12]
+9d51545ca4a6,finalpresentationdeck-whatwhyhowofcertificationsocial-160324220748_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+e4bcfec79895,finalpresentationdeck-whatwhyhowofcertificationsocial-160324220748_95,table,true,0.0,0.0,0.0,0.0,0.0,[],[12]
+581db0785235,finalpresentationdeck-whatwhyhowofcertificationsocial-160324220748_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[10, 11, 12, 13]"
+8d67bd3496c1,finalpresentationdeck-whatwhyhowofcertificationsocial-160324220748_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[24, 25, 26]"
+3a7414063d28,finalpresentationdeck-whatwhyhowofcertificationsocial-160324220748_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+88d65335d3f9,finalpresentationdeck-whatwhyhowofcertificationsocial-160324220748_95,text,true,0.0,0.0,0.0,0.0,0.0,[],[22]
+5fc0dd4d8e0a,finalpresentationdeck-whatwhyhowofcertificationsocial-160324220748_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+f4a8cd4c1b2f,avalaunchpresentationsthatkickasteriskv3copy-150318114804-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[3]
+801fc2084dc8,avalaunchpresentationsthatkickasteriskv3copy-150318114804-conversion-gate01_95,text,true,0.0,0.0,0.0,0.0,0.0,[],[1]
+60af8ed97982,avalaunchpresentationsthatkickasteriskv3copy-150318114804-conversion-gate01_95,text,true,0.0,0.0,0.0,0.0,0.0,[],[6]
+ad06a7794522,avalaunchpresentationsthatkickasteriskv3copy-150318114804-conversion-gate01_95,text,true,0.0,0.0,0.0,0.0,0.0,[],[2]
+b48abb46fba2,asdaaburson-marstellerarabyouthsurvey2014-140407100615-phpapp01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[10]
+5afea30d87a6,asdaaburson-marstellerarabyouthsurvey2014-140407100615-phpapp01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+c51794adf774,asdaaburson-marstellerarabyouthsurvey2014-140407100615-phpapp01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[6, 10]"
+4fdcc227680f,asdaaburson-marstellerarabyouthsurvey2014-140407100615-phpapp01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[11]
+822631450305,asdaaburson-marstellerarabyouthsurvey2014-140407100615-phpapp01_95,text,true,0.0,0.0,0.0,0.0,0.0,[],[33]
+54b58b9f5488,asdaaburson-marstellerarabyouthsurvey2014-140407100615-phpapp01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+4dfbe2ca938e,asdaaburson-marstellerarabyouthsurvey2014-140407100615-phpapp01_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[11, 19, 20, 25, 37]"
+5fdcc710e639,asdaaburson-marstellerarabyouthsurvey2014-140407100615-phpapp01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[20]
+5e0c6c4212d5,2303.08559v2,table,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[8, 9, 21, 10, 2]",[9]
+7a0b93ee1c64,2303.08559v2,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[8, 9, 10, 2, 21, 7]",[]
+02edb90fd445,2303.08559v2,"image,text",true,0.0,0.5,0.5,0.3333333333333333,0.3065735963827292,"[3, 8, 5, 4, 18, 19, 6]","[5, 16]"
+0ce2caa32055,2303.08559v2,text,true,0.0,0.0,0.0,0.0,0.0,"[16, 15, 19, 7, 4, 5, 14, 3]",[0]
+f3565538302b,2303.08559v2,"table,text",true,0.0,0.5,0.5,0.2,0.23719771276929622,"[21, 6, 9, 12, 8, 2, 7, 19]","[8, 29]"
+770afcbd9064,2303.08559v2,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[4, 5, 19, 12, 21, 3, 16, 29]",[]
+dffc5619025d,2303.08559v2,"image,table",true,0.5,0.5,0.5,1.0,0.6131471927654584,"[9, 17, 15, 24, 7, 4, 3]","[8, 9]"
+8fa5ebd1f769,Macbook_air,text,true,0.0,1.0,1.0,0.5,0.7328286204777911,"[44, 45, 49, 50, 53, 54, 48, 47, 41, 42]","[45, 49, 50]"
+f87a5c6cbedb,Macbook_air,image,true,0.0,1.0,1.0,0.25,0.43067655807339306,"[72, 73, 32, 33, 34, 63, 64, 61, 62, 7]",[33]
+e31e3d61e1d9,Macbook_air,image,true,1.0,1.0,1.0,1.0,1.0,"[30, 31, 37, 35, 36, 5, 33, 34, 10, 11]",[30]
+3bfddb5c6862,Macbook_air,text,true,0.0,0.6666666666666666,1.0,0.5,0.6978817289434457,"[6, 66, 67, 65, 75, 68, 73, 74, 35, 36]","[66, 67, 68]"
+3b25eb600098,Macbook_air,"table,text",true,0.5,1.0,1.0,1.0,1.0,"[54, 55, 53, 5, 6, 36, 35, 39, 40, 56]","[54, 55]"
+734efc178181,Macbook_air,image,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[27, 26, 10, 11, 28, 33, 34, 5, 42, 43]",[26]
+f8a737c4c8af,Macbook_air,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[26, 27, 70, 72, 73, 2, 3, 4, 5, 71]",[]
+aa88bf9f54d7,05-03-18-political-release,"image,text",true,0.0,0.5,1.0,0.2,0.45560514958746035,"[9, 10, 7, 8, 3, 4, 5, 11, 6]","[3, 4]"
+05ea265c456d,05-03-18-political-release,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[9, 10, 3, 4, 7, 8, 5, 11, 6]",[]
+2efb0bc79734,05-03-18-political-release,image,true,1.0,1.0,1.0,1.0,1.0,"[5, 6, 4, 7, 3, 9, 10, 11, 8]",[5]
+50849ee1836d,05-03-18-political-release,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[4, 5, 6, 7, 13, 14, 12, 9, 10, 3]",[]
+de1f32ae121c,05-03-18-political-release,"image,text",true,0.0,1.0,1.0,0.5,0.6509209298071326,"[10, 11, 12, 13, 14, 3, 4, 8, 9, 5]","[11, 13]"
+c8fbea4553fd,05-03-18-political-release,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[10, 11, 12, 13, 14, 3, 4, 8, 9, 5]",[]
+67c7edff5488,05-03-18-political-release,"image,text",true,0.5,0.5,1.0,1.0,0.8315546295836225,"[14, 15, 12, 13, 10, 11, 3, 4, 8, 9]","[11, 14]"
+73026b227558,05-03-18-political-release,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[14, 15, 12, 13, 10, 11, 3, 4, 8, 9]",[]
+ba858d0d501b,05-03-18-political-release,"image,text",true,0.5,0.5,1.0,1.0,0.8315546295836225,"[10, 13, 14, 16, 7, 8, 11, 3, 12, 4]","[8, 10]"
+5c36fb254685,05-03-18-political-release,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[10, 13, 14, 11, 16, 7, 8, 3, 4, 5]",[]
+3d76366446a4,05-03-18-political-release,"image,table",true,0.0,0.5,0.5,0.5,0.38685280723454163,"[11, 12, 10, 3, 4, 9, 13, 8, 7]","[12, 17]"
+7ca3c4013fbd,05-03-18-political-release,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[11, 12, 10, 3, 4, 9, 13, 7, 8]",[]
+bd7e11aa6009,PIP_Seniors-and-Tech-Use_040314,"",true,0.0,1.0,1.0,0.5,0.6309297535714575,"[2, 5, 6, 13, 14, 3, 4, 7, 8]",[5]
+f4a60e4de9f7,PIP_Seniors-and-Tech-Use_040314,"image,text",true,0.0,1.0,1.0,0.5,0.6309297535714575,"[5, 6, 3, 4, 7, 10, 11, 24, 14, 15]",[6]
+12c4a31799a3,PIP_Seniors-and-Tech-Use_040314,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[5, 6, 3, 4, 7, 24, 10, 11, 14, 15]",[]
+4758bc513c5e,PIP_Seniors-and-Tech-Use_040314,"image,table,text",true,0.0,0.5,1.0,0.25,0.48247555939075504,"[2, 3, 4, 8, 6, 7, 17, 18, 10, 11]","[7, 8]"
+89c3b15d8f56,PIP_Seniors-and-Tech-Use_040314,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[7, 8, 3, 4, 2, 10, 11, 6, 13, 14]",[]
+968d58da00f7,PIP_Seniors-and-Tech-Use_040314,"table,text",true,0.3333333333333333,0.3333333333333333,1.0,1.0,0.7669719408901708,"[9, 5, 6, 4, 7, 3, 8, 2, 10, 11]","[8, 9, 10]"
+44249e38f97e,PIP_Seniors-and-Tech-Use_040314,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[5, 6, 4, 9, 7, 3, 2, 8, 10, 11]",[]
+1bb47f2d8028,PIP_Seniors-and-Tech-Use_040314,"image,table,text",true,0.0,0.5,0.5,0.5,0.38685280723454163,"[3, 4, 6, 7, 24, 25, 8, 5, 10, 11]","[4, 16]"
+7cd1132eb5d4,PIP_Seniors-and-Tech-Use_040314,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[3, 4, 6, 7, 24, 25, 2, 10, 11, 8]",[]
+00121f2ccc42,PIP_Seniors-and-Tech-Use_040314,table,true,0.0,0.0,0.5,0.14285714285714285,0.20438239758848611,"[9, 6, 7, 8, 24, 25, 18, 19, 4, 5]","[18, 20]"
+2214c4e84476,PIP_Seniors-and-Tech-Use_040314,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[9, 18, 19, 20, 21, 6, 7, 24, 25, 8]",[]
+81cd9983a4d9,PIP_Seniors-and-Tech-Use_040314,"table,text",true,0.0,0.0,1.0,0.14285714285714285,0.3889580943680543,"[2, 3, 8, 4, 6, 7, 17, 18, 16, 10]","[16, 17]"
+6861cb7fdcf3,0b85477387a9d0cc33fca0f4becaa0e5,"image,text",true,0.0,1.0,1.0,0.5,0.6309297535714575,"[12, 2, 7, 6, 5, 10, 15]",[2]
+ee8da3bb7649,0b85477387a9d0cc33fca0f4becaa0e5,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[12, 2, 7, 5, 15, 6, 1]",[]
+02bed8dfc195,0b85477387a9d0cc33fca0f4becaa0e5,text,true,1.0,1.0,1.0,1.0,1.0,"[1, 4, 11, 12, 10, 2]",[1]
+d65da00c81f5,0b85477387a9d0cc33fca0f4becaa0e5,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[1, 11, 10, 12, 7, 14, 4, 13]",[]
+051a8aa3e327,0b85477387a9d0cc33fca0f4becaa0e5,"",true,1.0,1.0,1.0,1.0,1.0,"[7, 3, 14, 6, 4]",[7]
+b530b0e82d0e,0b85477387a9d0cc33fca0f4becaa0e5,image,true,0.2,0.4,0.6,1.0,0.6739577727076379,"[5, 15, 6, 16, 12, 2, 11]","[2, 4, 5, 14, 15]"
+544010e6fc98,0b85477387a9d0cc33fca0f4becaa0e5,image,true,0.0,0.0,0.0,0.0,0.0,"[15, 16, 6, 5, 14, 12, 2]",[9]
+498a06a78937,698bba535087fa9a7f9009e172a7f763,text,true,1.0,1.0,1.0,1.0,1.0,"[3, 4, 5, 14, 15, 1, 12, 19, 17, 13]",[3]
+9c93ad842286,698bba535087fa9a7f9009e172a7f763,text,true,1.0,1.0,1.0,1.0,1.0,"[3, 4, 5, 14, 6, 7, 1, 18, 19, 20]",[3]
+f2e5bc0bb5d9,698bba535087fa9a7f9009e172a7f763,text,true,0.0,1.0,1.0,0.3333333333333333,0.5,"[9, 10, 11, 12, 14, 15, 8]",[11]
+fa0c6b41f28d,698bba535087fa9a7f9009e172a7f763,"image,table,text",true,0.0,0.0,0.5,0.16666666666666666,0.21840743681816419,"[17, 12, 15, 18, 10, 11, 14]","[11, 19]"
+fc061d5f7140,698bba535087fa9a7f9009e172a7f763,text,true,0.0,0.0,0.6666666666666666,0.16666666666666666,0.3084274278260313,"[3, 4, 5, 9, 10, 15, 14, 16, 17, 13]","[12, 15, 17]"
+800cf2e4dbc6,8e7c4cb542ad160f80fb3d795ada35d8,"table,text",true,1.0,1.0,1.0,1.0,1.0,"[8, 9, 3, 4, 5, 10, 12, 17, 11]",[8]
+a5a474f85b8c,8e7c4cb542ad160f80fb3d795ada35d8,"table,text",true,1.0,1.0,1.0,1.0,1.0,"[8, 9, 4, 5, 12, 1, 2, 13, 14]",[8]
+f4b1d1e76a2a,8e7c4cb542ad160f80fb3d795ada35d8,text,true,1.0,1.0,1.0,1.0,1.0,"[15, 10, 13, 12, 3, 4, 16]",[15]
+519e59df9d24,8e7c4cb542ad160f80fb3d795ada35d8,unanswerable,false,0.0,1.0,1.0,0.3333333333333333,0.5,"[1, 10, 2, 4, 5, 12, 9, 17, 15]",[2]
+4d72d26f6169,8e7c4cb542ad160f80fb3d795ada35d8,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[8, 9, 13, 10, 4, 5, 11, 17, 1, 2]",[]
+58c50846d820,8e7c4cb542ad160f80fb3d795ada35d8,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[8, 9, 4, 5, 13, 11, 10, 1, 2]",[]
+053d5135b590,8e7c4cb542ad160f80fb3d795ada35d8,image,true,0.0,0.0,0.5,0.14285714285714285,0.20438239758848611,"[10, 12, 13, 9, 17, 1, 2, 6]","[2, 4]"
+6ef742161809,8e7c4cb542ad160f80fb3d795ada35d8,image,true,0.0,0.6666666666666666,0.6666666666666666,0.5,0.4776237035032179,"[17, 14, 1, 12, 3, 4, 10, 13]","[3, 6, 14]"
+8c33ca502fdf,8e7c4cb542ad160f80fb3d795ada35d8,text,true,0.0,0.25,0.25,0.25,0.16812753627111746,"[15, 3, 4, 6, 1, 2, 14]","[6, 8, 10, 11]"
+c601646f4fa4,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[3]
+94078c7dd5ea,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+f416786369e1,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[3]
+dabc9033773e,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+8501336a2cb8,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],[4]
+25dd846140c6,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+af39ffb27312,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[9]
+c6fb14b60799,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[9, 10]"
+af210151c83f,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,"image,table",true,0.0,0.0,0.0,0.0,0.0,[],"[11, 17]"
+8458038e4a80,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[34]
+e8f52a3b6ef7,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+dff6acff7243,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[31]
+7d6d64aa6ff5,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+e8a32f9165a4,indonesiamobilemarketresearch-ag-150106055934-conversion-gate02_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[18, 19, 20, 21, 23, 25, 26, 27, 28]"
+be31c41d75b6,caltraincapacitymountainview1-150701205750-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[15]
+8f5820335392,caltraincapacitymountainview1-150701205750-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+a0185f14b035,caltraincapacitymountainview1-150701205750-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[19, 21, 23]"
+2d411f677169,caltraincapacitymountainview1-150701205750-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+ea187e02ac2f,caltraincapacitymountainview1-150701205750-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[14]
+1b1cd9329cb3,caltraincapacitymountainview1-150701205750-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[11]
+f12a968b7da7,caltraincapacitymountainview1-150701205750-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+b148c66cfa28,digitalmeasurementframework22feb2011v6novideo-110221233835-phpapp01_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[12]
+2d63ac92a6b8,digitalmeasurementframework22feb2011v6novideo-110221233835-phpapp01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+9a4af15ab778,digitalmeasurementframework22feb2011v6novideo-110221233835-phpapp01_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[16]
+2f6cbe658ef3,digitalmeasurementframework22feb2011v6novideo-110221233835-phpapp01_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[5]
+52c4858ec849,digitalmeasurementframework22feb2011v6novideo-110221233835-phpapp01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+ee45c17dadb6,digitalmeasurementframework22feb2011v6novideo-110221233835-phpapp01_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[11]
+0d49bbf02866,digitalmeasurementframework22feb2011v6novideo-110221233835-phpapp01_95,"image,table,text",true,0.0,0.0,0.0,0.0,0.0,[],"[95, 107]"
+947b05a93133,digitalmeasurementframework22feb2011v6novideo-110221233835-phpapp01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+651830f5af06,digitalmeasurementframework22feb2011v6novideo-110221233835-phpapp01_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[133]
+4cd04e9443fb,2310.07609v1,"image,text",true,1.0,1.0,1.0,1.0,1.0,"[1, 6, 4, 5, 2, 10]",[1]
+4f67d840f619,2310.07609v1,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[6, 1, 4, 5, 2, 10, 3]",[]
+e75f7102819a,2310.07609v1,"image,text",true,0.0,1.0,1.0,0.3333333333333333,0.5,"[7, 9, 2, 8, 3, 1, 4]",[2]
+e2ee3f9680ba,2310.07609v1,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[2, 1, 7, 6, 3, 4, 8]",[]
+648eb3b4528a,2310.07609v1,"image,text",true,0.0,1.0,1.0,0.5,0.6309297535714575,"[10, 5, 2, 3, 4, 6, 7]",[5]
+8d855e09037a,2310.07609v1,"image,text",true,0.3333333333333333,1.0,1.0,1.0,1.0,"[2, 5, 4, 10, 3, 6]","[2, 4, 5]"
+ee7ae6407066,2310.07609v1,text,true,0.5,1.0,1.0,1.0,0.8503449055347546,"[3, 10, 5, 8, 4]","[3, 4]"
+daa1384bf752,2310.07609v1,"table,text",true,1.0,1.0,1.0,1.0,1.0,"[6, 5, 2, 10, 8, 4]",[6]
+bcdea7af9b7c,2303.05039v2,table,true,1.0,1.0,1.0,1.0,1.0,"[4, 3, 8, 6, 5]",[4]
+7720b483b438,2303.05039v2,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[4, 2, 3, 8, 6, 5]",[]
+e7f5a89333aa,2303.05039v2,"",true,1.0,1.0,1.0,1.0,1.0,"[4, 5, 6, 3, 2]",[4]
+7384c26dfda2,2303.05039v2,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[4, 3, 5, 6, 7]",[]
+a82c2b678557,2303.05039v2,"image,table,text",true,0.5,1.0,1.0,1.0,1.0,"[5, 4, 3, 2, 7]","[4, 5]"
+0bfe98022c22,2303.05039v2,"image,table,text",true,0.5,1.0,1.0,1.0,0.9197207891481876,"[5, 7, 6, 4, 8, 3]","[5, 6]"
+7f53a20d7b9f,2303.05039v2,"image,table,text",true,0.5,0.5,0.5,1.0,0.6131471927654584,"[6, 7, 5, 4, 2]","[6, 8]"
+b419838bb68f,2303.05039v2,"image,table,text",true,0.5,1.0,1.0,1.0,0.8772153153380493,"[5, 4, 6, 8, 3]","[5, 8]"
+205350bd3d6e,2305.13186v3,"image,text",true,1.0,1.0,1.0,1.0,1.0,"[2, 5, 23, 4, 22, 14, 13, 17]",[2]
+d0e710526ce9,2305.13186v3,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[2, 5, 22, 17, 23, 13, 14, 4]",[]
+cc843b326075,2305.13186v3,"image,text",true,0.0,1.0,1.0,0.3333333333333333,0.5,"[4, 5, 2, 6, 1, 3]",[2]
+a965858bc7ed,2305.13186v3,"table,text",true,1.0,1.0,1.0,1.0,1.0,"[4, 1, 3, 2, 8, 9, 5]",[4]
+be17f2b099e4,2305.13186v3,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[3, 4, 1, 5, 2, 18, 19, 21, 22]",[]
+eeb08e3c7f04,2305.13186v3,"table,text",true,1.0,1.0,1.0,1.0,1.0,"[4, 21, 6, 1, 13, 3, 2, 22, 20]",[4]
+9c1dc36737fd,2305.13186v3,"image,table,text",true,0.5,1.0,1.0,1.0,1.0,"[5, 4, 1, 2, 3]","[4, 5]"
+db6d89f2831f,2305.13186v3,"image,text",true,0.0,0.1111111111111111,0.2222222222222222,0.3333333333333333,0.20124768870643617,"[2, 21, 17, 18, 19, 22, 3, 5]","[15, 16, 17, 22, 23, 24, 25, 26, 27]"
+4ee6d98ba3f9,91521110100M_4K_UHD_Display_User_Manual_V1.1,"table,text",true,0.0,1.0,1.0,0.5,0.6309297535714575,"[22, 23, 20, 21, 25]",[23]
+7c5aa9f8063a,91521110100M_4K_UHD_Display_User_Manual_V1.1,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[23, 22, 20, 19, 21, 25]",[]
+56c0e33506fe,91521110100M_4K_UHD_Display_User_Manual_V1.1,"table,text",true,1.0,1.0,1.0,1.0,1.0,"[25, 26, 19, 20, 24, 32, 2, 3, 39, 38]",[25]
+0c9c751f07e9,91521110100M_4K_UHD_Display_User_Manual_V1.1,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[25, 26, 19, 20, 24, 32, 38, 2, 3, 39]",[]
+aa5d54a029d4,91521110100M_4K_UHD_Display_User_Manual_V1.1,"image,text",true,0.2,0.8,0.8,1.0,0.8539316501572937,"[24, 25, 26, 2, 27, 3, 34, 37]","[24, 25, 26, 27, 28]"
+031316d6e7b0,91521110100M_4K_UHD_Display_User_Manual_V1.1,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[8, 35, 36, 34, 37, 2, 3, 14]",[]
+0e2cd2487d10,91521110100M_4K_UHD_Display_User_Manual_V1.1,table,true,1.0,1.0,1.0,1.0,1.0,"[29, 23, 21, 22, 35, 36, 33, 20]",[29]
+e9ab7e8d9fd4,91521110100M_4K_UHD_Display_User_Manual_V1.1,"table,text",true,0.5,0.5,0.5,1.0,0.6131471927654584,"[31, 35, 37, 36, 34]","[31, 32]"
+f71c8dd1a869,GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021,"image,text",true,0.0,1.0,1.0,0.25,0.43067655807339306,"[6, 7, 12, 4, 11, 5, 2, 8, 9, 14]",[4]
+8558f19979b0,GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[4, 8, 9, 2, 5, 11, 6, 7, 12, 3]",[]
+ed511b344dfb,GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021,image,true,0.0,1.0,1.0,0.25,0.43067655807339306,"[5, 14, 12, 10, 13, 16, 17, 11, 15]",[10]
+4f6f0e057313,GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021,image,true,0.0,1.0,1.0,0.2,0.38685280723454163,"[5, 14, 13, 12, 10, 11, 15, 16, 17]",[10]
+583826643636,GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021,"image,text",true,0.5,1.0,1.0,1.0,1.0,"[12, 11, 15, 16, 17, 7, 14, 13]","[11, 12]"
+ac1fce7531c5,GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021,image,true,0.0,0.0,0.0,0.0,0.0,"[12, 2, 11, 8, 9, 7, 6, 14, 4, 5]",[16]
+0a9584503612,GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021,"table,text",true,1.0,1.0,1.0,1.0,1.0,"[11, 12, 13, 15, 16, 7, 14]",[11]
+d48d28c4bf03,GPL-Graduate-Studies-Professional-Learning-Brochure-Jul-2021,"table,text",true,1.0,1.0,1.0,1.0,1.0,"[5, 6, 10, 11, 13, 14, 15, 8, 9, 7]",[5]
+ef36a27f3477,welcome-to-nus,"image,text",true,0.0,0.0,0.0,0.0,0.0,"[15, 14, 2, 11, 10, 12, 16, 4, 5]",[9]
+77cdadeede5b,welcome-to-nus,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[14, 11, 12, 2, 16, 5, 4, 9, 8]",[]
+db4f915d4668,welcome-to-nus,text,true,1.0,1.0,1.0,1.0,1.0,"[10, 11, 14, 12, 13, 15, 23, 24, 4, 9]",[10]
+b11f5fe3b668,welcome-to-nus,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[10, 11, 12, 13, 14, 15, 4, 20, 9]",[]
+7593f34bf64b,welcome-to-nus,"image,text",true,0.0,0.5,0.5,0.3333333333333333,0.3065735963827292,"[2, 5, 11, 14, 20, 16, 4, 9, 8]","[11, 12]"
+dcdac1d252d2,welcome-to-nus,text,true,0.5,1.0,1.0,1.0,0.9197207891481876,"[17, 16, 18, 4, 23, 24, 3, 2, 14, 11]","[17, 18]"
+9fc90f653324,welcome-to-nus,text,true,0.0,0.0,1.0,0.125,0.37800210039683896,"[4, 12, 23, 24, 16, 17, 6, 19, 20, 7]","[19, 20]"
+bd6dc38c7a8c,f8d3a162ab9507e021d83dd109118b60,table,true,0.0,0.5,0.5,0.5,0.38685280723454163,"[1, 15, 17, 2, 14]","[15, 16]"
+c9c43643e6f4,f8d3a162ab9507e021d83dd109118b60,text,true,0.3333333333333333,0.6666666666666666,1.0,1.0,0.9217868789962071,"[5, 6, 16, 15, 9, 17, 4]","[4, 5, 6]"
+6afda169204d,e79deb02a0c0e87511080836c5d4347b,text,true,0.0,0.0,0.0,0.0,0.0,"[3, 16, 11, 6, 12, 4, 5, 17]",[2]
+68682b60f111,e79deb02a0c0e87511080836c5d4347b,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[5, 3, 16, 6, 11, 12, 4]",[]
+5b7fe410458a,e79deb02a0c0e87511080836c5d4347b,text,true,0.0,0.0,0.0,0.0,0.0,"[11, 17, 6, 3, 16, 13, 8]",[5]
+8f6765e628a6,e79deb02a0c0e87511080836c5d4347b,text,true,1.0,1.0,1.0,1.0,1.0,"[5, 6, 16, 11]",[5]
+df1719bb7c37,e79deb02a0c0e87511080836c5d4347b,text,true,0.0,0.0,0.0,0.0,0.0,"[4, 11, 9, 10, 13, 14, 17]",[1]
+c9fc69a6b356,e79deb02a0c0e87511080836c5d4347b,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[4, 9, 10, 17, 14, 11, 8]",[]
+73165e9a3c24,e79deb02a0c0e87511080836c5d4347b,image,true,0.0,0.0,0.0,0.0,0.0,"[4, 11, 9, 17, 7, 10, 16, 6]",[1]
+6bacc48d0a69,e79deb02a0c0e87511080836c5d4347b,image,true,0.0,0.0,1.0,0.16666666666666666,0.3562071871080222,"[6, 17, 16, 3, 11, 4]",[4]
+a2e377bff8d6,e79deb02a0c0e87511080836c5d4347b,image,true,1.0,1.0,1.0,1.0,1.0,"[12, 17, 11, 16, 3]",[12]
+42a0723edb3f,e79deb02a0c0e87511080836c5d4347b,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[16, 3, 13, 17, 11, 12]",[]
+295b5d143cf5,e79deb02a0c0e87511080836c5d4347b,text,true,0.0,0.0,0.0,0.0,0.0,"[4, 13, 17, 3, 11, 16, 6]",[5]
+83745083e903,e79deb02a0c0e87511080836c5d4347b,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[4, 17, 16, 6, 3, 13, 11]",[]
+90988de9e2ce,e79deb02a0c0e87511080836c5d4347b,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[17, 4, 9, 10, 12, 11, 6, 5]",[]
+8f23d579004b,e79deb02a0c0e87511080836c5d4347b,table,true,0.5,1.0,1.0,1.0,0.8503449055347546,"[13, 11, 17, 16, 14, 7]","[13, 14]"
+8661b19c7a8b,e79deb02a0c0e87511080836c5d4347b,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[13, 17, 16, 11, 8, 3]",[]
+6ee3ca73ffec,e79deb02a0c0e87511080836c5d4347b,text,true,0.0,0.6,0.6,0.5,0.4912596920895758,"[3, 11, 4, 16, 17, 14]","[7, 11, 13, 16, 17]"
+372d3606b0d6,e79deb02a0c0e87511080836c5d4347b,text,true,0.0,1.0,1.0,0.5,0.6934264036172708,"[11, 7, 9, 12, 4, 5, 15]","[7, 9]"
+c25671df3c79,e79deb02a0c0e87511080836c5d4347b,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[11, 7, 12, 9, 5, 13]",[]
+5bd9b9251d97,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[5]
+a1113612ddc9,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[5]
+fb2e6159e884,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[1, 28, 48]"
+a2687777d68e,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[1]
+ac353efa9b14,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+b1597e6e578e,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+a2521e7d86bc,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[38, 46]"
+962a57253b42,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+fb20cd1e67fe,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[12, 14]"
+a3c2c89c240b,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[39]
+9e1e976919cf,chapter8-geneticscompatibilitymode-141214140247-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+796c93a406a1,ecommerceopportunityindia-141124010546-conversion-gate01_95,text,true,0.0,0.0,0.0,0.0,0.0,[],[4]
+457e440ddbf0,ecommerceopportunityindia-141124010546-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[8, 15]"
+f1113a69f23d,ecommerceopportunityindia-141124010546-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[15]
+41255b0fbbe5,ecommerceopportunityindia-141124010546-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+915a9a24d1f2,ecommerceopportunityindia-141124010546-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[12]
+7f2126937de8,ecommerceopportunityindia-141124010546-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+21bc7b11a30d,ecommerceopportunityindia-141124010546-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[12, 15]"
+6b11b70698ec,ecommerceopportunityindia-141124010546-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+213e14c8a03d,ecommerceopportunityindia-141124010546-conversion-gate01_95,table,true,0.0,0.0,0.0,0.0,0.0,[],[11]
+8e092588f2de,ecommerceopportunityindia-141124010546-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+5e631f962c22,ecommerceopportunityindia-141124010546-conversion-gate01_95,table,true,0.0,0.0,0.0,0.0,0.0,[],"[21, 22]"
+38f375b30104,ecommerceopportunityindia-141124010546-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[1, 26]"
+87134018f0be,catvsdogdlpycon15se-150512122612-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+a44d724c5259,catvsdogdlpycon15se-150512122612-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[11]
+f77804da2243,catvsdogdlpycon15se-150512122612-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[1, 9]"
+13ccb41294d1,catvsdogdlpycon15se-150512122612-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+cb8a030f4e13,catvsdogdlpycon15se-150512122612-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[23]
+36ef128d6f58,catvsdogdlpycon15se-150512122612-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[9, 28]"
+2a20489328d9,catvsdogdlpycon15se-150512122612-lva1-app6891_95,image,true,NaN,NaN,NaN,NaN,NaN,[],[]
+163057ccb207,catvsdogdlpycon15se-150512122612-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[29, 30, 32]"
+251eef1b47cb,catvsdogdlpycon15se-150512122612-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+84517eaaed23,catvsdogdlpycon15se-150512122612-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[58, 60, 61]"
+b904b2b69cd0,catvsdogdlpycon15se-150512122612-lva1-app6891_95,text,true,0.0,0.0,0.0,0.0,0.0,[],[34]
+92923e29a177,catvsdogdlpycon15se-150512122612-lva1-app6891_95,text,true,0.0,0.0,0.0,0.0,0.0,[],[42]
+0e275f2765eb,SnapNTell,table,true,1.0,1.0,1.0,1.0,1.0,"[5, 4, 1, 17, 8, 3]",[5]
+260c8be35cc2,SnapNTell,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[5, 4, 1, 17, 3, 8]",[]
+4c350ec34ae5,SnapNTell,image,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[15, 6, 1, 17, 3, 12, 13, 16, 8, 7]",[6]
+ce22aba6ce01,SnapNTell,table,true,0.0,1.0,1.0,0.3333333333333333,0.5,"[3, 12, 13, 4, 5, 18, 1, 16]",[13]
+aab8b2dfa343,SnapNTell,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[3, 12, 13, 4, 18, 5, 16, 8]",[]
+68be42719eb9,SnapNTell,image,true,0.0,0.25,0.25,0.3333333333333333,0.19519002499605084,"[19, 20, 1, 16, 7, 14, 4, 3]","[1, 6, 13, 15]"
+fdc3ea3e4147,SnapNTell,image,true,0.5,0.5,0.5,1.0,0.6131471927654584,"[19, 13, 20, 7, 1, 3, 14, 4]","[17, 19]"
+cf2a92937745,SnapNTell,table,true,0.5,1.0,1.0,1.0,1.0,"[19, 20, 3, 16, 14, 18, 5]","[19, 20]"
+f58f287a9ca2,RAR,image,true,0.0,1.0,1.0,0.3333333333333333,0.5,"[21, 22, 6, 27, 28, 2, 19, 23, 13, 14]",[6]
+23208fdeaaaf,RAR,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[21, 22, 5, 6, 9, 26, 17, 18]",[]
+2c32a18105cd,RAR,image,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[9, 8, 22, 21, 7, 13]",[8]
+0ac8ef95f678,RAR,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[9, 14, 8, 22, 21, 13, 7]",[]
+0c97c5978e5e,RAR,image,true,0.0,0.0,1.0,0.16666666666666666,0.3562071871080222,"[21, 19, 27, 28, 6, 7, 2, 12, 13, 1]",[7]
+0a9af3752172,RAR,image,true,0.5,1.0,1.0,1.0,0.9197207891481876,"[22, 25, 21, 26, 27, 28, 17, 8, 24, 13]","[21, 22]"
+c5ade0990c57,RAR,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[25, 26, 8, 22, 21, 13, 24, 27, 28]",[]
+49886db7eccb,RAR,table,true,0.0,0.5,1.0,0.25,0.48247555939075504,"[11, 27, 28, 24, 13, 25, 23]","[24, 25]"
+7f77d7be781c,RAR,image,true,0.5,1.0,1.0,1.0,1.0,"[8, 13, 9, 22, 25, 12, 21, 23]","[8, 13]"
+dc09afb30971,STEPBACK,image,true,0.0,0.0,0.0,0.0,0.0,"[5, 7, 6, 33, 2, 12, 22]",[1]
+0a7f41874e08,STEPBACK,table,true,1.0,1.0,1.0,1.0,1.0,"[5, 3, 32, 13, 14, 2, 19, 4, 8]",[5]
+f374aff7dd2f,STEPBACK,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[32, 4, 19, 26, 6, 5, 3, 29]",[]
+0c1c7d66f109,STEPBACK,table,true,0.0,1.0,1.0,0.3333333333333333,0.5,"[7, 12, 6, 5, 8, 4, 13]",[6]
+1a789f094714,STEPBACK,table,true,0.0,0.5,0.5,0.2,0.23719771276929622,"[7, 13, 19, 14, 5, 4, 3]","[5, 6]"
+11dabc6dcf69,STEPBACK,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[7, 13, 19, 14, 5, 4, 3]",[]
+f91941d44cc7,STEPBACK,image,true,0.0,0.0,0.0,0.0,0.0,"[33, 13, 9, 17, 3, 32, 2, 18, 5]","[6, 12]"
+2e50d1a74f3c,STEPBACK,image,true,0.5,1.0,1.0,1.0,0.9197207891481876,"[6, 26, 12, 29, 5, 19, 28, 2]","[6, 12]"
+1775c402b6e2,q1-2023-bilibili-inc-investor-presentation,image,true,1.0,1.0,1.0,1.0,1.0,"[5, 26, 25, 24, 7, 6, 2, 11]",[5]
+069a1d9de08a,q1-2023-bilibili-inc-investor-presentation,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[5, 26, 24, 7, 23, 25, 6]",[]
+2c631b608491,q1-2023-bilibili-inc-investor-presentation,image,true,1.0,1.0,1.0,1.0,1.0,"[7, 8, 9, 5, 6, 15, 13, 24]",[7]
+4b55cef504d5,q1-2023-bilibili-inc-investor-presentation,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[7, 8, 9, 15, 5, 6, 13, 24]",[]
+fd3f20414b64,q1-2023-bilibili-inc-investor-presentation,image,true,0.0,0.0,0.0,0.0,0.0,"[18, 19, 3, 10, 4, 7, 11, 13, 16, 17]",[8]
+434e38653b2c,q1-2023-bilibili-inc-investor-presentation,image,true,0.0,1.0,1.0,0.3333333333333333,0.5,"[18, 19, 9, 3, 13, 10, 16, 17, 11]",[9]
+38518d0f2a54,q1-2023-bilibili-inc-investor-presentation,image,true,0.5,1.0,1.0,1.0,1.0,"[11, 10, 12, 5, 6, 21, 7, 16, 17, 14]","[10, 11]"
+d6e552872017,q1-2023-bilibili-inc-investor-presentation,image,true,0.0,0.0,0.0,0.0,0.0,"[21, 7, 5, 6, 23, 24, 20, 4, 15, 26]","[16, 18]"
+91823227777a,Pew-Research-Center_Hispanic-Identity-Report_12.20.2017,"image,text",true,1.0,1.0,1.0,1.0,1.0,"[5, 6, 12, 19, 20, 25, 21, 18, 22, 23]",[5]
+a0d4af67ce54,Pew-Research-Center_Hispanic-Identity-Report_12.20.2017,image,true,1.0,1.0,1.0,1.0,1.0,"[5, 6, 12, 19, 20, 21, 25, 8, 9, 24]",[5]
+173f44d2acef,Pew-Research-Center_Hispanic-Identity-Report_12.20.2017,table,true,1.0,1.0,1.0,1.0,1.0,"[26, 27, 25, 24, 28, 7, 20, 21, 5]",[26]
+6ab99bef4bea,Pew-Research-Center_Hispanic-Identity-Report_12.20.2017,"image,text",true,0.5,1.0,1.0,1.0,1.0,"[10, 9, 8, 17, 12, 11, 26]","[9, 10]"
+af9b6af1655f,Pew-Research-Center_Hispanic-Identity-Report_12.20.2017,image,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[10, 9, 8, 20, 21, 16, 7, 15, 11, 22]",[9]
+d20445164e4d,Pew-Research-Center_Hispanic-Identity-Report_12.20.2017,image,true,0.0,1.0,1.0,0.3333333333333333,0.5,"[22, 20, 21, 10, 16, 9, 11, 15, 8]",[21]
+f4189d4a3b57,PRE_2022.09.29_NSL-politics_REPORT,"image,text",true,0.0,0.5,1.0,0.5,0.5714285040141098,"[94, 95, 92, 93, 96, 23, 98, 99, 73, 74]","[73, 95]"
+8e36cb3588a1,PRE_2022.09.29_NSL-politics_REPORT,"image,text",true,0.0,1.0,1.0,0.5,0.6509209298071326,"[56, 57, 14, 66, 67, 64, 65, 63, 16, 17]","[57, 66]"
+b753bd1d4a61,PRE_2022.09.29_NSL-politics_REPORT,image,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[98, 97, 96, 99, 22, 23, 21]",[97]
+b753bd1d4a61,PRE_2022.09.29_NSL-politics_REPORT,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[98, 97, 96, 99, 22, 23, 21]",[]
+e4e087c36cd7,PRE_2022.09.29_NSL-politics_REPORT,"image,text",true,0.0,1.0,1.0,0.5,0.6309297535714575,"[85, 86, 87, 82, 83, 84, 17, 18, 19]",[86]
+ad2d286493ee,8dfc21ec151fb9d3578fc32d5c4e5df9,text,true,0.0,1.0,1.0,0.25,0.43067655807339306,"[5, 6, 10, 8, 7, 4]",[8]
+49c341899028,8dfc21ec151fb9d3578fc32d5c4e5df9,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[5, 6, 10, 8, 7]",[]
+703eb0d81aaf,8dfc21ec151fb9d3578fc32d5c4e5df9,text,true,1.0,1.0,1.0,1.0,1.0,"[8, 9, 5, 3, 4, 7]",[8]
+038a0b7a64dd,8dfc21ec151fb9d3578fc32d5c4e5df9,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[1, 5, 6, 9, 4, 3]",[]
+969cee26e1df,8dfc21ec151fb9d3578fc32d5c4e5df9,"image,text",true,0.0,1.0,1.0,0.5,0.6309297535714575,"[11, 18, 10, 9, 8, 4, 3, 12]",[18]
+43c6ae54a188,8dfc21ec151fb9d3578fc32d5c4e5df9,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[11, 10, 8, 18, 4, 3, 9, 15]",[]
+e326c69bad8c,8dfc21ec151fb9d3578fc32d5c4e5df9,"table,text",true,1.0,1.0,1.0,1.0,1.0,"[10, 9, 8, 4, 5]",[10]
+f8bbd95c781b,8dfc21ec151fb9d3578fc32d5c4e5df9,"",true,1.0,1.0,1.0,1.0,1.0,"[8, 9, 5, 3, 4, 7]",[8]
+ffec58fc3542,8dfc21ec151fb9d3578fc32d5c4e5df9,text,true,0.5,1.0,1.0,1.0,1.0,"[1, 2, 15, 11]","[1, 2]"
+1efd6df086c9,8dfc21ec151fb9d3578fc32d5c4e5df9,"table,text",true,0.0,1.0,1.0,0.5,0.6934264036172708,"[11, 9, 10, 15, 12]","[9, 10]"
+a96a137496ef,8dfc21ec151fb9d3578fc32d5c4e5df9,table,true,0.5,1.0,1.0,1.0,1.0,"[9, 10, 15, 5, 11, 13, 12]","[9, 10]"
+fab3fbf792da,8dfc21ec151fb9d3578fc32d5c4e5df9,image,true,0.0,0.0,0.0,0.0,0.0,"[18, 1, 13, 15, 11, 12]",[17]
+7d98930d28c3,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,table,true,0.0,0.0,0.0,0.0,0.0,[],"[10, 13]"
+d43af75ee00f,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+2f432711bb9f,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+26ac794ac584,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[10, 11]"
+15370f13e537,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+b3ab168d33a9,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,table,true,0.0,0.0,0.0,0.0,0.0,[],"[15, 19]"
+9155f2870bc9,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,"image,table",true,0.0,0.0,0.0,0.0,0.0,[],"[15, 18]"
+9a4011fd42ac,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[16]
+aca488808ca6,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[20, 24]"
+7fc6f66b2c44,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+08eb80edd33a,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[13, 18, 23]"
+c050d0b76953,measuringsuccessonfacebooktwitterlinkedin-160317142140_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[20]
+be6b288d18d7,amb-siteaudits-ds15-150204174043-conversion-gate01_95,table,true,0.0,0.0,0.0,0.0,0.0,[],[14]
+94a0f07d50b2,amb-siteaudits-ds15-150204174043-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+28d36c3ca993,amb-siteaudits-ds15-150204174043-conversion-gate01_95,"image,table",true,0.0,0.0,0.0,0.0,0.0,[],[16]
+43798cb6770c,amb-siteaudits-ds15-150204174043-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[2, 8]"
+386fcb27fe69,amb-siteaudits-ds15-150204174043-conversion-gate01_95,"image,table",true,0.0,0.0,0.0,0.0,0.0,[],[23]
+b8bab26f61a0,amb-siteaudits-ds15-150204174043-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[28]
+61eff661ec1c,amb-siteaudits-ds15-150204174043-conversion-gate01_95,table,true,0.0,0.0,0.0,0.0,0.0,[],[25]
+75bbefc89e77,amb-siteaudits-ds15-150204174043-conversion-gate01_95,"image,table",true,0.0,0.0,0.0,0.0,0.0,[],[29]
+6a807d94dbdd,2309.17421v2,image,true,0.0,0.0,0.0,0.0,0.0,"[112, 47, 18, 115, 37, 113, 81, 17, 152]",[153]
+c57bff6bd7f5,2309.17421v2,image,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[142, 143, 144, 121, 134, 122, 127, 123, 124]",[143]
+70bec40a231d,2309.17421v2,image,true,0.0,1.0,1.0,0.3333333333333333,0.5,"[121, 137, 141, 133, 134, 139, 140, 138]",[141]
+fdfb17051fa7,2309.17421v2,image,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[121, 137, 19, 35, 17, 58, 23, 25, 152]",[137]
+4ba887c177ad,2309.17421v2,image,true,0.0,1.0,1.0,0.25,0.43067655807339306,"[129, 130, 132, 131, 6, 128, 54, 127, 121]",[131]
+f8191cb2db67,2309.17421v2,image,true,1.0,1.0,1.0,1.0,1.0,"[118, 117, 6, 116, 34, 35]",[118]
+8a61ef40c627,StudentSupport_Guidebook,"table,text",true,1.0,1.0,1.0,1.0,1.0,"[43, 12, 17, 44, 42, 35, 7, 19, 20]",[43]
+31b59b0af455,StudentSupport_Guidebook,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[43, 12, 17, 42, 44, 7, 6, 21, 19]",[]
+a552fe790344,StudentSupport_Guidebook,image,true,0.0,1.0,1.0,0.25,0.43067655807339306,"[43, 5, 6, 12, 44, 30, 9, 17, 19]",[12]
+7fdcd1e85431,StudentSupport_Guidebook,"table,text",true,1.0,1.0,1.0,1.0,1.0,"[28, 27, 3, 7]",[28]
+6f10b9ca7b9d,StudentSupport_Guidebook,image,true,0.0,0.0,0.0,0.0,0.0,"[3, 6, 35, 17, 40, 14, 19, 16, 43, 30]",[34]
+41f0bb842378,StudentSupport_Guidebook,image,true,0.0,0.0,1.0,0.125,0.31546487678572877,"[13, 35, 11, 3, 14, 17, 36, 34]",[34]
+f1f58e2bba10,mmdetection-readthedocs-io-en-v2.18.0,image,true,0.0,0.0,1.0,0.16666666666666666,0.3562071871080222,"[346, 347, 371, 372, 343, 117, 118, 119, 354, 141]",[117]
+9eef79a5ec6a,mmdetection-readthedocs-io-en-v2.18.0,text,true,0.0,1.0,1.0,0.3333333333333333,0.5,"[337, 335, 336, 368, 369, 344, 345, 274, 275, 330]",[336]
+63b9a7b197e1,mmdetection-readthedocs-io-en-v2.18.0,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[337, 344, 345, 330, 331, 347, 348, 355, 241, 242]",[]
+e4f0c64429a4,mmdetection-readthedocs-io-en-v2.18.0,image,true,1.0,1.0,1.0,1.0,1.0,"[75, 245, 246, 241, 242, 70, 71, 247, 47, 48]",[75]
+5079ab573166,mmdetection-readthedocs-io-en-v2.18.0,text,true,1.0,1.0,1.0,1.0,1.0,"[229, 230, 107, 18, 54, 216, 217, 179, 55, 180]",[229]
+ef0ca0b9a9be,12-15-15-ISIS-and-terrorism-release-final,"image,text",true,0.5,1.0,1.0,1.0,0.8772153153380493,"[11, 12, 1, 2, 3, 13, 14, 24, 25, 4]","[2, 11]"
+a09880792a34,12-15-15-ISIS-and-terrorism-release-final,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[11, 12, 14, 1, 2, 3, 13, 24, 25, 18]",[]
+95f4fffb7668,12-15-15-ISIS-and-terrorism-release-final,"image,text",true,0.5,1.0,1.0,1.0,0.9197207891481876,"[16, 17, 15, 14, 19, 20, 3, 4, 18, 13]","[15, 16]"
+0985ac82a887,12-15-15-ISIS-and-terrorism-release-final,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[16, 17, 15, 14, 13, 3, 4, 19, 20, 21]",[]
+e2523ba99d33,12-15-15-ISIS-and-terrorism-release-final,"image,text",true,0.0,0.0,1.0,0.125,0.31546487678572877,"[27, 20, 14, 28, 22, 9, 12, 3]",[3]
+bdf2dc4d2e34,12-15-15-ISIS-and-terrorism-release-final,"image,text",true,1.0,1.0,1.0,1.0,1.0,"[18, 19, 17, 20, 15, 16]",[18]
+8de5868e1cd5,PS_2018.01.09_STEM_FINAL,"image,text",true,1.0,1.0,1.0,1.0,1.0,"[44, 45, 46, 37, 38, 32, 33, 39, 30, 31]",[44]
+f9bdb36b3f7d,PS_2018.01.09_STEM_FINAL,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[41, 42, 40, 38, 39, 44, 45, 46, 18, 19]",[]
+9525cac6a7e1,PS_2018.01.09_STEM_FINAL,"image,table,text",true,0.0,0.5,1.0,0.3333333333333333,0.5,"[14, 15, 82, 83, 84, 8, 77, 78, 13, 9]","[78, 82]"
+edf6d57ec8ca,PS_2018.01.09_STEM_FINAL,"image,text",true,0.5,0.5,0.5,1.0,0.6131471927654584,"[9, 5, 6, 12, 13, 7, 69, 70, 71, 59]","[9, 10]"
+401d1292c3d0,PS_2018.01.09_STEM_FINAL,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[9, 5, 6, 12, 13, 7, 77, 78, 8, 69]",[]
+173bccebc9c0,PS_2018.01.09_STEM_FINAL,"table,text",true,0.0,0.0,0.0,0.0,0.0,"[38, 37, 43, 44, 39, 45, 46, 41, 42, 18]","[115, 116]"
+023a09f3ee13,PS_2018.01.09_STEM_FINAL,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[38, 37, 39, 44, 45, 46, 43, 18, 19, 67]",[]
+02dd4cfe2767,PS_2018.01.09_STEM_FINAL,"image,text",true,0.0,0.3333333333333333,0.3333333333333333,0.5,0.2960819109658652,"[28, 29, 41, 42, 30, 40, 27, 34]","[3, 29, 84]"
+00f452323604,e639029d16094ea71d964e2fb953952b,text,true,1.0,1.0,1.0,1.0,1.0,"[8, 9, 7, 12, 14, 15, 10, 6]",[8]
+6ee5ee1d561e,e639029d16094ea71d964e2fb953952b,unanswerable,false,0.0,0.0,1.0,0.14285714285714285,0.3333333333333333,"[3, 4, 5, 2, 1, 9, 13, 10, 11, 6]",[13]
+275e9937a951,e639029d16094ea71d964e2fb953952b,text,true,0.0,1.0,1.0,0.3333333333333333,0.5,"[3, 4, 5, 11, 13, 6, 1, 20]",[5]
+f6bfb6caefd4,e639029d16094ea71d964e2fb953952b,"image,text",true,1.0,1.0,1.0,1.0,1.0,"[20, 19, 18, 8, 14, 15, 3, 7, 12, 13]",[20]
+d3073c855930,e639029d16094ea71d964e2fb953952b,"",true,0.0,0.0,0.0,0.0,0.0,"[14, 18, 11, 17, 13, 15, 8, 3, 16]",[1]
+cb20abb5cde0,e639029d16094ea71d964e2fb953952b,image,true,0.0,0.0,1.0,0.125,0.31546487678572877,"[19, 15, 16, 17, 3, 4, 5, 1, 12, 9]",[1]
+0b60a4c4b54d,e639029d16094ea71d964e2fb953952b,"table,text",true,0.0,0.5,0.5,0.3333333333333333,0.3065735963827292,"[7, 8, 5, 6, 12]","[2, 5]"
+677e65eb26b0,a5879805d70c854ea4361e43a84e3bb2,text,true,0.0,0.0,1.0,0.1111111111111111,0.3010299956639812,"[3, 4, 11, 5, 2, 12, 10, 13, 14, 6]",[14]
+b5aac2cf5f29,a5879805d70c854ea4361e43a84e3bb2,"image,text",true,NaN,NaN,NaN,NaN,NaN,"[2, 6, 14, 15, 5, 12, 8, 9, 10, 3]",[]
+001432f532ab,a5879805d70c854ea4361e43a84e3bb2,text,true,1.0,1.0,1.0,1.0,1.0,"[14, 15, 3, 4, 13, 2, 5, 6, 10]",[14]
+468a4965f0a6,a5879805d70c854ea4361e43a84e3bb2,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[14, 15, 13, 3, 4, 2, 5, 6, 10]",[]
+a19e4274cdcd,a5879805d70c854ea4361e43a84e3bb2,text,true,0.0,0.0,1.0,0.14285714285714285,0.3333333333333333,"[3, 4, 2, 5, 13, 14, 1]",[1]
+a48aa8214d6c,a5879805d70c854ea4361e43a84e3bb2,text,true,1.0,1.0,1.0,1.0,1.0,"[14, 15, 13, 1, 6, 8, 3, 4, 2]",[14]
+819525f64cb2,a5879805d70c854ea4361e43a84e3bb2,unanswerable,false,0.0,1.0,1.0,0.5,0.6309297535714575,"[6, 2, 1, 3, 4, 5, 13, 14, 10, 11]",[2]
+d0f099bb7728,a5879805d70c854ea4361e43a84e3bb2,text,true,0.1,0.5,0.6,1.0,0.7273298443105218,"[2, 1, 3, 4, 10, 5]","[1, 2, 3, 4, 5, 6, 9, 10, 11, 12]"
+d38f732d1e57,a5879805d70c854ea4361e43a84e3bb2,text,true,NaN,NaN,NaN,NaN,NaN,"[3, 4, 2, 1, 5, 10]",[]
+7b1b8c4b89ff,a5879805d70c854ea4361e43a84e3bb2,text,true,0.25,0.75,1.0,1.0,0.8756458727267334,"[3, 4, 2, 5, 10, 1, 9]","[1, 2, 3, 10]"
+d526372c0f8f,earthlinkweb-150213112111-conversion-gate02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[11, 14]"
+b356e82d04f7,earthlinkweb-150213112111-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+eacbbe6dd862,earthlinkweb-150213112111-conversion-gate02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[42, 43]"
+03491c0c7664,earthlinkweb-150213112111-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+c34f33c5a3f9,earthlinkweb-150213112111-conversion-gate02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[42, 43]"
+7c68928c1709,earthlinkweb-150213112111-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+2a9bd1638cf3,earthlinkweb-150213112111-conversion-gate02_95,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],"[37, 38]"
+34f3416e0f6e,earthlinkweb-150213112111-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+816d2c3d5105,earthlinkweb-150213112111-conversion-gate02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[5, 24, 25, 26, 27, 28, 31, 44]"
+a4a4aea2f358,earthlinkweb-150213112111-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+8785bd0f6e0a,earthlinkweb-150213112111-conversion-gate02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[9, 14]"
+b0a391fcf0b5,earthlinkweb-150213112111-conversion-gate02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+fe9205727554,competitiveoutcomes-091006065143-phpapp01_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[4, 5]"
+cc90f6d4e17a,competitiveoutcomes-091006065143-phpapp01_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[42, 43, 48]"
+200fb62471a1,competitiveoutcomes-091006065143-phpapp01_95,"image,table",true,0.0,0.0,0.0,0.0,0.0,[],[4]
+b562ddd41b83,competitiveoutcomes-091006065143-phpapp01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+26deb03ebeff,competitiveoutcomes-091006065143-phpapp01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[10, 12]"
+25190b14b130,2023.findings-emnlp.248,"table,text",true,0.5,1.0,1.0,1.0,0.8772153153380493,"[5, 8, 14, 6, 19]","[5, 6]"
+bea94744b474,2023.findings-emnlp.248,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[5, 19, 14, 6, 7, 8, 9]",[]
+fad47b1f01cf,2023.findings-emnlp.248,image,true,0.5,1.0,1.0,1.0,1.0,"[9, 19, 3, 16, 1, 8, 7, 6]","[9, 19]"
+e3623d53de80,2023.findings-emnlp.248,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[9, 3, 16, 19, 7, 1, 8, 6]",[]
+50e1d8c954e8,2023.findings-emnlp.248,image,true,0.2,0.4,1.0,1.0,0.8063273823662358,"[14, 19, 6, 4, 17, 15, 16, 9, 18]","[14, 15, 16, 17, 18]"
+51b775c1b4fb,2023.findings-emnlp.248,table,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[10, 7, 8, 1, 9, 11, 6]",[7]
+fb51ec798907,2023.findings-emnlp.248,"image,text",true,0.5,1.0,1.0,1.0,0.8772153153380493,"[3, 4, 1, 5, 7, 8, 2, 9]","[3, 5]"
+2bdc861565ce,2023.findings-emnlp.248,"table,text",true,0.5,1.0,1.0,1.0,1.0,"[6, 14, 16, 2, 8, 17, 5]","[6, 14]"
+cd346c653700,2023.acl-long.386,"image,text",true,1.0,1.0,1.0,1.0,1.0,"[2, 3, 4, 7, 19, 20, 16, 22, 23, 9]",[2]
+859776b5647d,2023.acl-long.386,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[2, 4, 3, 19, 20, 7, 16, 22, 23, 9]",[]
+95b5891a0031,2023.acl-long.386,text,true,0.0,1.0,1.0,0.25,0.43067655807339306,"[22, 23, 5, 4, 8, 15, 19, 20]",[4]
+30a32de5c5e0,2023.acl-long.386,"image,text",true,0.0,1.0,1.0,0.3333333333333333,0.5,"[15, 16, 5, 4, 19, 20, 14, 7, 23, 24]",[5]
+ee87a427ad76,2023.acl-long.386,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[15, 16, 4, 23, 24, 19, 20, 5, 14, 18]",[]
+3ab663252d0c,2023.acl-long.386,"table,text",true,1.0,1.0,1.0,1.0,1.0,"[8, 7, 6, 5, 11]",[8]
+c155bf08fb02,2023.acl-long.386,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[5, 2, 7, 17, 14, 13, 8, 11, 12]",[]
+0c96677c58cc,2023.acl-long.386,"image,text",true,0.5,1.0,1.0,1.0,1.0,"[8, 7, 4, 2, 6, 5, 15]","[7, 8]"
+8a42106a4858,2023.acl-long.386,"image,text",true,1.0,1.0,1.0,1.0,1.0,"[7, 6, 5, 8, 4]",[7]
+a5798a8e0ee4,DSA-278777,"table,text",true,1.0,1.0,1.0,1.0,1.0,"[3, 6, 14, 15, 17, 18]",[3]
+f1cc809e4b71,DSA-278777,"table,text",true,1.0,1.0,1.0,1.0,1.0,"[4, 5, 17, 14, 11, 12]",[4]
+45e7e2553e31,DSA-278777,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[4, 5, 11, 12, 17, 14]",[]
+cd4772ec1c06,DSA-278777,"image,table",true,0.5,1.0,1.0,1.0,0.8503449055347546,"[15, 20, 21, 17, 16, 14, 18, 5, 4]","[15, 16]"
+0f0596fb0374,DSA-278777,"image,text",true,0.0,0.6,0.8,0.5,0.6278248466415495,"[2, 12, 13, 14, 20, 21, 18, 3]","[12, 13, 16, 18, 20]"
+1892d39ce146,DSA-278777,"image,text",true,0.5,1.0,1.0,1.0,0.8772153153380493,"[3, 2, 14, 5, 15, 12, 13, 17, 18]","[3, 5]"
+1608ddc2a949,owners-manual-2170416,image,true,0.5,1.0,1.0,1.0,1.0,"[5, 6, 19, 14, 15, 21, 17, 23, 16, 22]","[5, 6]"
+c434352dcafe,owners-manual-2170416,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[5, 6, 30, 23, 22, 9, 2, 31, 17]",[]
+aa9461300417,owners-manual-2170416,text,true,0.5,1.0,1.0,1.0,1.0,"[8, 7, 2, 4, 9, 21, 6]","[7, 8]"
+e4c2ed78d13e,owners-manual-2170416,text,true,0.5,1.0,1.0,1.0,1.0,"[10, 13, 14, 15, 12, 11, 17, 28]","[10, 13]"
+50c8306969c2,owners-manual-2170416,text,true,1.0,1.0,1.0,1.0,1.0,"[17, 28, 8, 10, 11, 13, 18, 23, 19]",[17]
+a066e7dd1723,Campaign_038_Introducing_AC_Whitepaper_v5e,"image,text",true,0.0,0.0,0.0,0.0,0.0,"[27, 12, 11, 22, 13, 2, 4, 7, 18, 10]",[20]
+cc835a527142,Campaign_038_Introducing_AC_Whitepaper_v5e,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[27, 12, 22, 11, 13, 2, 18, 3]",[]
+56ee39bd36f2,Campaign_038_Introducing_AC_Whitepaper_v5e,"image,text",true,0.0,0.0,0.0,0.0,0.0,"[22, 23, 20, 27, 13, 24, 9, 18, 3, 6]",[21]
+16b1865a20a2,Campaign_038_Introducing_AC_Whitepaper_v5e,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[22, 23, 20, 9, 13, 24, 3, 27, 5, 6]",[]
+05cffe238386,Campaign_038_Introducing_AC_Whitepaper_v5e,"image,text",true,0.0,0.0,0.0,0.0,0.0,"[8, 7, 9, 5, 6, 13, 27, 17, 12]",[22]
+7b9fcb2eb7ac,Campaign_038_Introducing_AC_Whitepaper_v5e,text,true,0.16666666666666666,0.3333333333333333,0.3333333333333333,1.0,0.4935232796777482,"[9, 19, 23, 24, 21, 22, 13, 3, 12, 17]","[9, 19, 25, 26, 27, 28]"
+cb2d5eec7f7f,Campaign_038_Introducing_AC_Whitepaper_v5e,text,true,0.5,1.0,1.0,1.0,1.0,"[5, 6, 8, 14, 9, 15, 16, 13, 3]","[5, 6]"
+0839472fa94f,Campaign_038_Introducing_AC_Whitepaper_v5e,text,true,0.5,1.0,1.0,1.0,1.0,"[5, 6, 8, 9, 16, 14, 4]","[5, 6]"
+1a7c0d257532,ISEP_student_handbook_2020,"table,text",true,1.0,1.0,1.0,1.0,1.0,"[3, 9, 23, 22, 4, 10]",[3]
+51910979714e,ISEP_student_handbook_2020,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[3, 23, 22, 9, 4, 2, 5]",[]
+bbfd55b9d2b2,ISEP_student_handbook_2020,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[4, 22, 10, 12, 13, 14, 5, 3]",[]
+14752b6fb295,ISEP_student_handbook_2020,table,true,0.3333333333333333,0.6666666666666666,1.0,1.0,0.8072467605676945,"[5, 22, 14, 10, 4, 7, 3, 2]","[3, 4, 5]"
+9c497d755648,ISEP_student_handbook_2020,"table,text",true,0.5,1.0,1.0,1.0,1.0,"[10, 9, 11, 5, 12, 21]","[9, 10]"
+8e6c784f5b47,ISEP_student_handbook_2020,"image,text",true,0.0,1.0,1.0,0.5,0.6309297535714575,"[4, 13, 12, 14, 17, 10, 19]",[13]
+cfdfe8910198,f1f5242528411b262be447e61e2eb10f,image,true,0.0,0.2,0.4,0.3333333333333333,0.34445239307233994,"[16, 19, 6, 7, 18, 5, 3, 14, 12]","[3, 4, 6, 7, 8, 9, 11, 12, 20, 1418]"
+70fae892ed71,f1f5242528411b262be447e61e2eb10f,unanswerable,false,0.0,0.0,0.0,0.0,0.0,"[16, 9, 13, 12, 11, 20, 10, 4]",[6]
+d0fac3397cda,f1f5242528411b262be447e61e2eb10f,"",true,1.0,1.0,1.0,1.0,1.0,"[8, 7, 16, 6, 14]",[8]
+ee2c7d8265f7,f1f5242528411b262be447e61e2eb10f,text,true,1.0,1.0,1.0,1.0,1.0,"[7, 8, 16, 17]",[7]
+47b034284265,f1f5242528411b262be447e61e2eb10f,image,true,1.0,1.0,1.0,1.0,1.0,"[18, 17, 16, 19]",[18]
+fc82e79c72be,f1f5242528411b262be447e61e2eb10f,"",true,0.5,0.5,1.0,1.0,0.8315546295836225,"[14, 11, 7, 12, 20, 3, 18, 8, 9, 4]","[3, 14]"
+c20ac87d997e,f1f5242528411b262be447e61e2eb10f,image,true,0.0,0.3333333333333333,0.6666666666666666,0.25,0.3501483019834802,"[16, 17, 2, 7, 1, 5, 14, 18, 4]","[6, 7, 18]"
+0b47c329e8fb,f1f5242528411b262be447e61e2eb10f,text,true,0.0,0.0,0.0,0.0,0.0,"[20, 7, 8, 3, 12, 18, 11, 9]",[1]
+0fa2c0b4b0ff,936c0e2c2e6c8e0c07c51bfaf7fd0a83,"table,text",true,0.07692307692307693,0.38461538461538464,0.6153846153846154,1.0,0.8701249883466592,"[12, 5, 8, 11, 9, 6, 10, 7]","[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]"
+ba8f5d4fc2ab,936c0e2c2e6c8e0c07c51bfaf7fd0a83,table,true,1.0,1.0,1.0,1.0,1.0,"[5, 4, 3, 2, 12, 14, 1]",[5]
+bd1af9c3b057,936c0e2c2e6c8e0c07c51bfaf7fd0a83,"",true,0.0,1.0,1.0,0.3333333333333333,0.5,"[14, 12, 7, 11, 13, 10, 6, 9]",[7]
+0e2ab7a5042d,936c0e2c2e6c8e0c07c51bfaf7fd0a83,"",true,0.0,1.0,1.0,0.25,0.43067655807339306,"[8, 12, 11, 14, 7, 10, 6, 13]",[14]
+b2c6aba6fe0e,936c0e2c2e6c8e0c07c51bfaf7fd0a83,"",true,0.16666666666666666,0.6666666666666666,1.0,1.0,0.9495662644168644,"[6, 7, 12, 8, 9, 5, 10, 11, 14]","[5, 6, 7, 8, 9, 10]"
+4011755675a3,936c0e2c2e6c8e0c07c51bfaf7fd0a83,table,true,0.0,0.5,1.0,0.2,0.430624116386567,"[6, 8, 10, 9, 12, 11, 7, 13]","[12, 13]"
+513e9cc5db01,936c0e2c2e6c8e0c07c51bfaf7fd0a83,text,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[15, 14, 2, 1, 4, 5, 3]",[14]
+7371368ae434,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,table,true,0.0,0.0,0.0,0.0,0.0,[],[16]
+0db18f5c8dc8,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+35b229ce202d,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,table,true,0.0,0.0,0.0,0.0,0.0,[],[16]
+4f35172bae5b,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+a06162b18b8d,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[7, 8]"
+6771be4f6da7,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[7, 11, 14]"
+79e76b77f530,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[19]
+ec64d1e3f374,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+0ee52363c758,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[8, 9, 10]"
+d3f40a63d469,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[14]
+b4d7636bcc51,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[18]
+cf9ca3e461cf,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+aeb9b570773f,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[11, 13]"
+aa1c35d90abc,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[1, 2]"
+d5afe46082ba,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,"table,text",true,0.0,0.0,0.0,0.0,0.0,[],[16]
+7a0248092201,germanwingsdigitalcrisisanalysis-150403064828-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+d13b2f240ab1,2306.05425v1,image,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[22, 2, 7, 20, 8]",[2]
+9667e98f1b42,2306.05425v1,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[22, 8, 20, 19, 4, 5, 6, 7, 3]",[]
+3db5d64a4887,2306.05425v1,image,true,0.5,0.5,1.0,1.0,0.8175295903539445,"[7, 20, 5, 15, 2, 22, 10, 21]","[7, 10]"
+83c60129e6c0,2306.05425v1,image,true,0.0,1.0,1.0,0.3333333333333333,0.5,"[11, 4, 5, 9, 7, 18, 19, 21, 20, 2]",[5]
+50b042a13ad2,2306.05425v1,image,true,0.0,0.0,0.5,0.14285714285714285,0.20438239758848611,"[8, 9, 2, 3, 10, 1, 4]","[4, 5]"
+42b4033fe202,2306.05425v1,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[8, 9, 3, 2, 4, 10, 1]",[]
+dc3a5183c2af,2306.05425v1,table,true,1.0,1.0,1.0,1.0,1.0,"[16, 4, 5, 11, 8, 15, 7]",[16]
+597b1905b0e8,2306.05425v1,image,true,NaN,NaN,NaN,NaN,NaN,"[7, 18, 21, 10, 20, 15]",[]
+0e26a848276e,2306.05425v1,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[18, 7, 15, 10, 21, 20, 2, 6]",[]
+d42a06c4382f,2405.09818v1,image,true,0.0,0.0,0.5,0.14285714285714285,0.20438239758848611,"[12, 13, 9, 1, 25, 10, 6, 11]","[6, 7]"
+97cea8f36e38,2405.09818v1,"image,text",true,0.0,1.0,1.0,0.3333333333333333,0.5,"[10, 4, 2, 3, 21, 25, 14, 12]",[2]
+9edee8186354,2405.09818v1,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[10, 4, 2, 18, 15, 3, 23, 21, 13, 14]",[]
+c22e63f23ee4,2405.09818v1,image,true,0.0,0.2,0.2,0.3333333333333333,0.16958010263680806,"[9, 24, 10, 25, 26]","[3, 4, 5, 10, 11]"
+7c8286c8aecf,2405.09818v1,image,true,0.5,1.0,1.0,1.0,1.0,"[7, 6, 8, 13, 5, 14, 17, 18]","[6, 7]"
+2097b598dd25,2405.09818v1,table,true,1.0,1.0,1.0,1.0,1.0,"[8, 16, 6, 7, 15, 21, 13, 14]",[8]
+caee449db858,2405.09818v1,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[8, 6, 16, 7, 4, 10, 5]",[]
+6080391e9b8f,2405.09818v1,image,true,0.0,1.0,1.0,0.25,0.43067655807339306,"[7, 8, 5, 6]",[6]
+49ee816b2913,Sinopolis-Chengdu,image,true,0.0,0.0,0.0,0.0,0.0,"[32, 33, 92, 35, 36, 37, 13, 48, 3, 83]",[4]
+fbfd4c61040a,Sinopolis-Chengdu,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[35, 14, 15, 16, 36, 37, 32, 33, 40, 92]",[]
+7f26c2d6b22c,Sinopolis-Chengdu,image,true,0.08333333333333333,0.25,0.5833333333333334,1.0,0.7353797772725617,"[52, 53, 57, 54, 3, 47, 48, 58, 55, 56]","[45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56]"
+f0d1a1191e76,Sinopolis-Chengdu,image,true,0.0,0.0,0.0,0.0,0.0,"[10, 11, 12, 76, 13, 90, 77, 55, 56, 57]",[8]
+633517e11fca,Sinopolis-Chengdu,image,true,0.0,0.0,0.0,0.0,0.0,"[14, 15, 16, 18, 72, 73, 12, 63, 80, 81]",[13]
+b8966cedbad0,Sinopolis-Chengdu,image,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[30, 26, 27, 29, 28, 52, 53, 31]",[26]
+cadbb3ba4f36,Sinopolis-Chengdu,text,true,0.0,0.0,0.0,0.0,0.0,"[40, 41, 42, 44, 45, 75, 76, 33, 34, 92]","[38, 39]"
+780cf1208eb3,san-francisco-11-contents,text,true,0.0,0.0,0.0,0.0,0.0,"[6, 4, 5]","[16, 17]"
+2155bbe34091,san-francisco-11-contents,image,true,0.0,0.0,0.0,0.0,0.0,"[9, 18, 8, 12, 20, 5, 4]","[289, 290]"
+82d69b62a466,san-francisco-11-contents,image,true,0.0,0.0,0.0,0.0,0.0,"[7, 38, 10, 11, 34, 8, 25, 17]",[3]
+b454aabf1961,san-francisco-11-contents,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[39, 34, 35, 31, 32, 33, 22]",[]
+92d945f8c8dd,san-francisco-11-contents,image,true,0.0,0.0,0.0,0.0,0.0,"[7, 31, 17, 27, 25, 35, 21]",[288]
+669a037599d2,san-francisco-11-contents,image,true,0.0,0.0,0.0,0.0,0.0,"[37, 38, 21, 33, 12, 27, 17, 10]","[317, 318]"
+fc908d2e205d,san-francisco-11-contents,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[37, 38, 27, 12, 21, 33, 10, 34]",[]
+34bd97c6d83e,san-francisco-11-contents,image,true,0.0,0.0,0.0,0.0,0.0,"[17, 21, 22, 31, 18, 34, 27, 32, 15]",[310]
+0e0ed928e790,san-francisco-11-contents,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[27, 15, 22, 17, 21, 13, 34, 24, 31]",[]
+e7f008d8126c,BRO-GL-MMONEY,image,true,1.0,1.0,1.0,1.0,1.0,"[6, 7, 11, 4, 8, 16, 15, 9]",[6]
+a4964953f921,BRO-GL-MMONEY,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[6, 7, 4, 11, 5, 16, 8, 15, 9]",[]
+14f5ff4354a2,BRO-GL-MMONEY,image,true,1.0,1.0,1.0,1.0,1.0,"[8, 13, 5, 7, 9, 14, 2, 4]",[8]
+21168df38845,BRO-GL-MMONEY,image,true,0.5,1.0,1.0,1.0,1.0,"[7, 8, 6, 14, 5, 4, 11, 13]","[7, 8]"
+97ed828932ff,BRO-GL-MMONEY,image,true,1.0,1.0,1.0,1.0,1.0,"[7, 6, 8, 12, 11, 9, 5, 13, 14]",[7]
+c9dec8314c5d,BRO-GL-MMONEY,image,true,1.0,1.0,1.0,1.0,1.0,"[10, 9, 16, 4, 11, 6]",[10]
+7fc1abb282c9,PI_2017.10.04_Automation_FINAL,image,true,1.0,1.0,1.0,1.0,1.0,"[36, 4, 37, 38, 39, 30, 31, 32, 33, 40]",[36]
+5a3e80ffdc10,PI_2017.10.04_Automation_FINAL,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[36, 4, 37, 38, 39, 31, 32, 33, 34, 40]",[]
+f3b1d35eb8bb,PI_2017.10.04_Automation_FINAL,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[15, 16, 13, 14, 9, 10, 17]",[]
+c64284c5bdaa,PI_2017.10.04_Automation_FINAL,"image,text",true,0.0,1.0,1.0,0.25,0.43067655807339306,"[31, 32, 33, 11, 12, 10, 37, 38, 34, 36]",[11]
+4b33db750a63,PI_2017.10.04_Automation_FINAL,"image,text",true,0.5,0.5,0.5,1.0,0.6131471927654584,"[12, 13, 14, 17, 18, 15, 10]","[3, 12]"
+d2f3e89383c9,PI_2017.10.04_Automation_FINAL,"image,text",true,0.0,0.2857142857142857,0.2857142857142857,0.3333333333333333,0.2558209594125084,"[12, 16, 6, 7, 18, 19, 28, 29, 58, 59]","[4, 5, 6, 7, 8, 9, 10]"
+9aa53b40657a,PI_2017.10.04_Automation_FINAL,"image,text",true,0.0,0.5,0.5,0.5,0.38685280723454163,"[41, 42, 43, 44, 40, 45, 48, 46, 47]","[3, 42]"
+338ac6968a7f,PI_2018.11.19_algorithms_FINAL,image,true,1.0,1.0,1.0,1.0,1.0,"[22, 23, 21, 24, 7, 8, 9, 6, 25]",[22]
+72616543a30f,PI_2018.11.19_algorithms_FINAL,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[22, 23, 24, 21, 7, 8, 9, 6, 27, 25]",[]
+e79a8aae85e5,PI_2018.11.19_algorithms_FINAL,image,true,0.0,0.0,0.2,0.16666666666666666,0.1208113026994942,"[15, 22, 23, 27, 28, 9, 29, 24, 26, 7]","[3, 5, 6, 8, 9]"
+ff15aba8c911,PI_2018.11.19_algorithms_FINAL,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[22, 23, 15, 27, 28, 7, 8, 9, 26, 10]",[]
+6b4002970047,PI_2018.11.19_algorithms_FINAL,image,true,0.0,1.0,1.0,0.25,0.43067655807339306,"[11, 12, 14, 13, 15]",[13]
+c3550d903181,PI_2018.11.19_algorithms_FINAL,image,true,1.0,1.0,1.0,1.0,1.0,"[9, 10, 15, 3, 16, 11, 4, 5]",[9]
+3ca133ec57ba,PI_2018.11.19_algorithms_FINAL,"image,text",true,0.0,0.5,0.5,0.3333333333333333,0.3065735963827292,"[14, 10, 15, 16, 17, 11, 12, 13, 5]","[15, 29]"
+0b05397d7301,PI_2018.11.19_algorithms_FINAL,"image,text",true,0.5,0.5,0.5,1.0,0.6131471927654584,"[21, 22, 7, 8, 9, 27, 28, 6, 26, 23]","[21, 29]"
+aab8db20226f,698bba535087fa9a7f9009e172a7f763,text,true,0.0,0.25,0.5,0.3333333333333333,0.32531670832675136,"[3, 4, 5, 15, 16, 14, 19, 7, 8, 12]","[5, 13, 18, 19]"
+530d5c1b6983,698bba535087fa9a7f9009e172a7f763,text,true,0.0,1.0,1.0,0.3333333333333333,0.5,"[9, 10, 11, 12, 15, 14, 8, 3, 4, 5]",[11]
+c952bdc16dd7,698bba535087fa9a7f9009e172a7f763,table,true,0.0,0.3333333333333333,0.6666666666666666,0.25,0.3501483019834802,"[3, 4, 5, 14, 9, 10, 16, 17, 19, 20]","[12, 14, 17]"
+c2c53d80e28d,698bba535087fa9a7f9009e172a7f763,"table,text",true,0.0,0.5,0.5,0.25,0.2640681225725909,"[15, 16, 12, 17, 18, 14]","[7, 17]"
+479cfc7a380c,c31e6580d0175ab3f9d99d1ff0bfa000,image,true,0.0,0.5,0.5,0.5,0.38685280723454163,"[4, 6, 11, 12, 3, 20, 17, 16, 15]","[6, 7]"
+5a508ee536fb,c31e6580d0175ab3f9d99d1ff0bfa000,text,true,0.5,0.5,0.5,1.0,0.6131471927654584,"[11, 12, 4, 20, 10, 6, 3, 17, 18]","[7, 11]"
+ccdb688832c1,c31e6580d0175ab3f9d99d1ff0bfa000,image,true,0.0,0.0,0.0,0.0,0.0,"[3, 5, 6, 16, 17, 4, 11, 18, 13, 15]",[20]
+ea06e6c1814f,f8d3a162ab9507e021d83dd109118b60,text,true,0.0,0.0,1.0,0.14285714285714285,0.3333333333333333,"[13, 11, 12, 9, 5, 14, 1, 15, 16]",[1]
+c5de878e8bb9,f8d3a162ab9507e021d83dd109118b60,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[8, 13, 12, 11, 3, 2, 1]",[]
+e191f221a297,f8d3a162ab9507e021d83dd109118b60,text,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[15, 16, 5, 6, 4, 9, 7, 8]",[16]
+79564994451d,f8d3a162ab9507e021d83dd109118b60,text,true,0.0,0.5,0.5,0.2,0.23719771276929622,"[7, 5, 15, 16, 2, 3, 4, 10, 11, 12]","[1, 2]"
+3b168b1ae92c,f8d3a162ab9507e021d83dd109118b60,text,true,0.0,1.0,1.0,0.3333333333333333,0.5,"[15, 16, 7, 6, 3, 4, 9, 5]",[7]
+3c31b8724627,f8d3a162ab9507e021d83dd109118b60,text,true,0.25,0.75,1.0,1.0,0.9438661545147247,"[3, 4, 14, 15, 16, 7, 8]","[3, 4, 7, 15]"
+6eae446135d6,f8d3a162ab9507e021d83dd109118b60,text,true,0.5,1.0,1.0,1.0,1.0,"[7, 6, 3, 8, 15, 16, 5, 2]","[6, 7]"
+776c1267eb13,f8d3a162ab9507e021d83dd109118b60,text,true,0.0,1.0,1.0,0.2,0.38685280723454163,"[15, 16, 6, 7, 10, 11, 4, 5, 12, 13]",[10]
+e21869b9e708,nielsen2015musicbizpresentation-final-150526143534-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[4]
+d5d9b1681c38,nielsen2015musicbizpresentation-final-150526143534-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[4, 6]"
+5831bda1e7b4,nielsen2015musicbizpresentation-final-150526143534-lva1-app6891_95,table,true,0.0,0.0,0.0,0.0,0.0,[],[9]
+ab4f9c43c8b3,nielsen2015musicbizpresentation-final-150526143534-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[6]
+a68b35f5df30,nielsen2015musicbizpresentation-final-150526143534-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[14, 15]"
+12926fe1b5c0,nielsen2015musicbizpresentation-final-150526143534-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+451d951ba82a,nielsen2015musicbizpresentation-final-150526143534-lva1-app6891_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[29, 30, 31, 32, 33, 34, 35]"
+6e38a9c33dfe,nielsen2015musicbizpresentation-final-150526143534-lva1-app6891_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[30, 31, 32, 33, 34, 35]"
+0a69bb146a39,nielsen2015musicbizpresentation-final-150526143534-lva1-app6891_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+87becf6c1ca0,dr-vorapptchapter1emissionsources-121120210508-phpapp02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[7]
+344466ec9cc7,dr-vorapptchapter1emissionsources-121120210508-phpapp02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+58701a2859db,dr-vorapptchapter1emissionsources-121120210508-phpapp02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[8]
+745d111471a6,dr-vorapptchapter1emissionsources-121120210508-phpapp02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+2e3fc6687674,dr-vorapptchapter1emissionsources-121120210508-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[19]
+65170eb9c43b,dr-vorapptchapter1emissionsources-121120210508-phpapp02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[16]
+60ea8699d43e,dr-vorapptchapter1emissionsources-121120210508-phpapp02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[40]
+42177710ade8,dr-vorapptchapter1emissionsources-121120210508-phpapp02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[48, 49]"
+c5cd052db823,dr-vorapptchapter1emissionsources-121120210508-phpapp02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[55, 58]"
+0d614f7fe67a,dr-vorapptchapter1emissionsources-121120210508-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[8, 10, 11, 12, 16, 17, 18, 25, 27, 40, 48, 53, 56, 57, 58, 59, 61, 62, 63, 66, 67, 68, 70, 75]"
+1c54ce5d9b75,bigdatatrends-120723191058-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[5]
+58e5adca7e29,bigdatatrends-120723191058-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[8]
+679b1583d551,bigdatatrends-120723191058-phpapp02_95,"",true,0.0,0.0,0.0,0.0,0.0,[],[20]
+c1d7628cb5bc,bigdatatrends-120723191058-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[10]
+492e50fc496c,bigdatatrends-120723191058-phpapp02_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[27, 28, 29, 30, 31, 32, 33, 34, 35, 36]"
+93e8bf263b4c,bigdatatrends-120723191058-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[20]
+031f647374a7,bigdatatrends-120723191058-phpapp02_95,"image,table,text",true,0.0,0.0,0.0,0.0,0.0,[],"[17, 28]"
+b23089fd6a84,bigdatatrends-120723191058-phpapp02_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+9eb3fd0f6fb1,bigdatatrends-120723191058-phpapp02_95,"image,table,text",true,0.0,0.0,0.0,0.0,0.0,[],"[14, 15, 16, 17, 18, 19, 52]"
+b341a250dbad,PP_2021.04.22_voting-access_REPORT,image,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[4, 6, 9, 10, 5, 13, 12, 11, 8]",[6]
+d1ae1da21bda,PP_2021.04.22_voting-access_REPORT,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[4, 6, 9, 10, 5, 8, 13, 12, 11]",[]
+3691189d2598,PP_2021.04.22_voting-access_REPORT,image,true,1.0,1.0,1.0,1.0,1.0,"[9, 10, 4, 6, 8, 13, 5, 11]",[9]
+c11c69201d7d,PP_2021.04.22_voting-access_REPORT,image,true,1.0,1.0,1.0,1.0,1.0,"[11, 8, 9, 10, 12, 13, 15]",[11]
+593a3847c2b4,c31e6580d0175ab3f9d99d1ff0bfa000,text,true,0.0,0.0,0.0,0.0,0.0,"[6, 3, 4, 16, 17, 11, 18, 13, 20, 12]",[1]
+c2710e5fe4cb,c31e6580d0175ab3f9d99d1ff0bfa000,text,true,0.0,0.0,0.0,0.0,0.0,"[6, 17, 16, 4, 11, 3, 18, 13, 15, 8]",[1]
+6298d6a884a9,c31e6580d0175ab3f9d99d1ff0bfa000,image,true,0.0,0.2,0.7,0.5,0.599976751690748,"[6, 17, 16, 3, 4, 12, 11, 15, 18, 13]","[8, 9, 10, 11, 12, 13, 15, 16, 17, 18]"
+81c74ab70e2a,c31e6580d0175ab3f9d99d1ff0bfa000,text,true,1.0,1.0,1.0,1.0,1.0,"[12, 13, 4, 20, 9, 5, 15, 11, 8, 10]",[12]
+41511f5ad3cd,c31e6580d0175ab3f9d99d1ff0bfa000,"",true,1.0,1.0,1.0,1.0,1.0,"[6, 4, 20, 15, 18, 11, 12, 17, 8]",[6]
+296ec36656ea,c31e6580d0175ab3f9d99d1ff0bfa000,text,true,1.0,1.0,1.0,1.0,1.0,"[4, 3, 11, 12, 20, 6, 17, 15, 16]",[4]
+cae1c6f15937,c31e6580d0175ab3f9d99d1ff0bfa000,text,true,0.3333333333333333,0.6666666666666666,0.6666666666666666,1.0,0.7653606369886217,"[3, 4, 6, 16, 17, 11, 15, 13, 18, 12]","[1, 3, 4]"
+7a3141621843,f86d073b0d735ac873a65d906ba82758,table,true,1.0,1.0,1.0,1.0,1.0,"[13, 11, 17, 16, 12, 1, 14]",[13]
+4c4ace87eb0e,f86d073b0d735ac873a65d906ba82758,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[13, 11, 16, 17, 12, 1]",[]
+7df6e2de0de5,f86d073b0d735ac873a65d906ba82758,"",true,0.0,0.0,0.0,0.0,0.0,"[1, 11, 13, 14, 17, 8, 2]",[0]
+db0734928ebf,f86d073b0d735ac873a65d906ba82758,"image,table,text",true,NaN,NaN,NaN,NaN,NaN,"[18, 19, 13, 7, 20, 16, 12]",[]
+fe5e4119be88,f86d073b0d735ac873a65d906ba82758,table,true,1.0,1.0,1.0,1.0,1.0,"[9, 18, 16, 10, 17, 19]",[9]
+73e5951218e6,f86d073b0d735ac873a65d906ba82758,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[9, 17, 18, 10, 19, 16, 12]",[]
+fc0cf37e773d,f86d073b0d735ac873a65d906ba82758,table,true,0.0,1.0,1.0,0.25,0.5012658353418871,"[7, 6, 2, 5, 3, 4, 8]","[3, 5]"
+16bdf5610e30,f86d073b0d735ac873a65d906ba82758,table,true,1.0,1.0,1.0,1.0,1.0,"[9, 16, 8, 18, 10, 14, 15, 19]",[9]
+11d9d53bf06b,f86d073b0d735ac873a65d906ba82758,table,true,0.5,1.0,1.0,1.0,1.0,"[6, 7, 5, 4]","[6, 7]"
+f1ba2a39490d,a4f3ced0696009fec3179f493e4f28c4,text,true,0.0,1.0,1.0,0.3333333333333333,0.5,"[7, 6, 1, 3, 17, 5, 2, 8, 15, 13]",[1]
+e75a13644e2d,a4f3ced0696009fec3179f493e4f28c4,text,true,0.0,0.0,0.0,0.0,0.0,"[13, 14, 3, 9, 10, 4, 5, 6, 8, 12]",[1]
+5126c9274973,a4f3ced0696009fec3179f493e4f28c4,text,true,0.0,1.0,1.0,0.2,0.38685280723454163,"[3, 4, 15, 5, 1, 10, 11, 8, 6, 7]",[1]
+dccd796a3999,csewt7zsecmmbzjufbyx-signature-24d91a254426c21c3079384270e1f138dc43a271cfe15d6d520d68205855b2a3-poli-150306115347-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[9]
+951013c9c51c,csewt7zsecmmbzjufbyx-signature-24d91a254426c21c3079384270e1f138dc43a271cfe15d6d520d68205855b2a3-poli-150306115347-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+f4c2c007205f,csewt7zsecmmbzjufbyx-signature-24d91a254426c21c3079384270e1f138dc43a271cfe15d6d520d68205855b2a3-poli-150306115347-conversion-gate01_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[8]
+96f3351ab484,csewt7zsecmmbzjufbyx-signature-24d91a254426c21c3079384270e1f138dc43a271cfe15d6d520d68205855b2a3-poli-150306115347-conversion-gate01_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+58c1f58e6f50,csewt7zsecmmbzjufbyx-signature-24d91a254426c21c3079384270e1f138dc43a271cfe15d6d520d68205855b2a3-poli-150306115347-conversion-gate01_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[37, 38, 39, 40, 41]"
+617a27194892,csewt7zsecmmbzjufbyx-signature-24d91a254426c21c3079384270e1f138dc43a271cfe15d6d520d68205855b2a3-poli-150306115347-conversion-gate01_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[2, 18, 19]"
+d06ae7953196,csewt7zsecmmbzjufbyx-signature-24d91a254426c21c3079384270e1f138dc43a271cfe15d6d520d68205855b2a3-poli-150306115347-conversion-gate01_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[21, 62]"
+d87334e31006,b3m5kaeqm2w8n4bwcesw-140602121350-phpapp02_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[9]
+27194a1c97d1,b3m5kaeqm2w8n4bwcesw-140602121350-phpapp02_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[17, 18]"
+e7e4f8a5cefa,b3m5kaeqm2w8n4bwcesw-140602121350-phpapp02_95,text,true,0.0,0.0,0.0,0.0,0.0,[],"[18, 20]"
+39c5a2523f19,b3m5kaeqm2w8n4bwcesw-140602121350-phpapp02_95,text,true,0.0,0.0,0.0,0.0,0.0,[],[21]
+a1028cbc0f0d,disciplined-agile-business-analysis-160218012713_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[1]
+28c2a974dadf,disciplined-agile-business-analysis-160218012713_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+e3a6ff9da57c,disciplined-agile-business-analysis-160218012713_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],"[2, 3, 38]"
+497d6b1e442c,disciplined-agile-business-analysis-160218012713_95,image,true,0.0,0.0,0.0,0.0,0.0,[],[39]
+5e2bf235cae5,disciplined-agile-business-analysis-160218012713_95,unanswerable,false,NaN,NaN,NaN,NaN,NaN,[],[]
+27c08cb52160,disciplined-agile-business-analysis-160218012713_95,"image,text",true,0.0,0.0,0.0,0.0,0.0,[],[4]
+00cbbec92898,disciplined-agile-business-analysis-160218012713_95,image,true,0.0,0.0,0.0,0.0,0.0,[],"[10, 11]"
+8e2c149547b5,2312.04350v3,image,true,0.0,0.0,1.0,0.16666666666666666,0.3562071871080222,"[9, 6, 19, 7, 3, 2, 4, 22, 23]",[2]
+2d895832af24,2312.04350v3,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[9, 6, 7, 2, 22, 23, 8, 19, 3, 4]",[]
+d807fdafe54c,2312.04350v3,image,true,0.0,1.0,1.0,0.3333333333333333,0.5,"[6, 7, 2, 25, 5, 4]",[2]
+38be9637ed08,2312.04350v3,text,true,1.0,1.0,1.0,1.0,1.0,"[3, 23, 4, 2, 10]",[3]
+6faa04e00f55,2312.04350v3,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[3, 23, 10, 2, 4]",[]
+aae507c2daac,2312.04350v3,image,true,0.0,1.0,1.0,0.25,0.43067655807339306,"[23, 9, 3, 4, 5, 20, 22, 6, 19, 7]",[4]
+94dbe54aa2c0,2312.04350v3,table,true,0.0,1.0,1.0,0.2,0.38685280723454163,"[24, 9, 25, 6, 8]",[8]
+a151d46900a1,2305.14160v4,"image,text",true,0.5,1.0,1.0,1.0,1.0,"[3, 4, 2, 5, 11, 14]","[3, 4]"
+8e3780daba01,2305.14160v4,"image,text",true,0.5,1.0,1.0,1.0,1.0,"[3, 4, 2, 11, 14, 12, 5]","[3, 4]"
+7042188c944e,2305.14160v4,"image,text",true,0.0,1.0,1.0,0.5,0.6309297535714575,"[14, 4, 11, 12, 7, 2, 13, 3]",[4]
+a3f2526a1c32,2305.14160v4,table,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[6, 7, 5, 2, 14, 13, 9]",[7]
+31474ce12bf8,2305.14160v4,table,true,NaN,NaN,NaN,NaN,NaN,"[6, 7, 9, 5, 8, 2]",[]
+fedbed908365,2305.14160v4,"image,text",true,1.0,1.0,1.0,1.0,1.0,"[8, 15, 11, 4, 6, 16, 14, 7]",[8]
+d856c7996e6a,Guide-for-international-students-web,text,true,0.0,0.0,0.0,0.0,0.0,"[37, 68, 48, 75, 7, 8, 76, 45, 3, 29]",[1]
+13872cd69286,Guide-for-international-students-web,"image,text",true,0.0,0.0,0.0,0.0,0.0,"[75, 22, 66, 32, 31, 7, 8, 26]",[3]
+63481025449b,Guide-for-international-students-web,text,true,0.0,0.3333333333333333,0.5,0.3333333333333333,0.38941412718428836,"[67, 68, 66, 64, 16, 65, 31]","[3, 62, 63, 64, 65, 66]"
+ac9a152e1cb8,Guide-for-international-students-web,text,true,1.0,1.0,1.0,1.0,1.0,"[7, 8, 60, 61, 4, 5, 42, 14, 15, 9]",[7]
+33e97aa2f208,Guide-for-international-students-web,text,true,1.0,1.0,1.0,1.0,1.0,"[33, 32, 34, 45, 36, 48, 55, 54, 24, 37]",[33]
+d3a0e69dc063,Guide-for-international-students-web,text,true,1.0,1.0,1.0,1.0,1.0,"[61, 55, 57, 58, 37, 36, 70, 31, 25, 54]",[61]
+92de37756d97,NUS-Business-School-BBA-Brochure-2024,image,true,1.0,1.0,1.0,1.0,1.0,"[3, 4, 10, 11, 2, 19, 20, 21, 9]",[3]
+841ab82859c1,NUS-Business-School-BBA-Brochure-2024,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[3, 4, 10, 11, 23, 24, 16, 2, 12]",[]
+23aad5936ecc,NUS-Business-School-BBA-Brochure-2024,text,true,0.0,1.0,1.0,0.5,0.6934264036172708,"[9, 7, 8, 16, 10, 11]","[7, 8]"
+2474c40fd80a,NUS-Business-School-BBA-Brochure-2024,image,true,0.0,1.0,1.0,0.3333333333333333,0.5,"[3, 23, 24, 16, 4, 5, 13, 22, 2, 9]",[24]
+f4dee81a0008,NUS-Business-School-BBA-Brochure-2024,image,true,0.0,1.0,1.0,0.25,0.43067655807339306,"[20, 4, 5, 22, 3, 18, 23, 12, 13]",[22]
+ef84b507bd02,NUS-Business-School-BBA-Brochure-2024,"image,text",true,0.0,1.0,1.0,0.5,0.6934264036172708,"[10, 11, 16, 17, 7, 9, 22, 12]","[11, 16]"
+347497c0ad21,2021-Apple-Catalog,"image,text",true,0.0,0.0,0.0,0.0,0.0,"[20, 18, 34, 23, 35, 36, 19, 37, 17, 48]",[6]
+280a1a7fb3e6,2021-Apple-Catalog,unanswerable,false,NaN,NaN,NaN,NaN,NaN,"[20, 18, 34, 19, 35, 36, 17, 45, 23, 47]",[]
+0d956a1a4974,2021-Apple-Catalog,"image,text",true,0.0,1.0,1.0,0.3333333333333333,0.5,"[23, 21, 22, 20, 24, 49, 50, 32, 33]",[22]
+a17aa476b034,2021-Apple-Catalog,"table,text",true,0.5,0.5,0.5,1.0,0.6131471927654584,"[28, 29, 25, 26, 30, 27, 33, 34, 32]","[11, 28]"
+13778ccd3597,ACTIVISIONBLIZZARD_2019_10K,table,true,0.0,0.0,0.0,0.0,0.0,"[173, 174, 109, 175, 71, 72, 73, 74]","[69, 70]"
+0a78421082ee,ACTIVISIONBLIZZARD_2019_10K,"",true,0.0,0.0,0.0,0.0,0.0,"[173, 175, 34, 35, 113, 174]","[70, 73]"
+eb6ba17a8881,ACTIVISIONBLIZZARD_2019_10K,table,true,0.0,0.0,0.0,0.0,0.0,"[173, 175, 198, 174, 42, 113, 197]","[47, 69]"
+cdcf36700f67,ACTIVISIONBLIZZARD_2019_10K,table,true,0.0,0.0,0.0,0.0,0.0,"[175, 174, 173, 73, 74, 113]","[70, 114]"
+139af828cfa9,ACTIVISIONBLIZZARD_2019_10K,text,true,0.0,1.0,1.0,0.25,0.43067655807339306,"[173, 28, 174, 29, 164, 109, 119, 120, 124]",[29]
+ee1eb736e438,COSTCO_2021_10K,table,true,0.0,0.0,1.0,0.16666666666666666,0.3562071871080222,"[41, 19, 20, 3, 21, 38, 39, 67, 2, 66]",[38]
+6d7db546839f,COSTCO_2021_10K,table,true,0.0,1.0,1.0,0.2,0.38685280723454163,"[36, 37, 39, 40, 38, 3, 41, 2, 34, 35]",[38]
+457a24c5e720,COSTCO_2021_10K,table,true,0.0,0.5,0.5,0.3333333333333333,0.3065735963827292,"[2, 3, 40, 41, 67, 37, 38, 76, 63, 7]","[36, 40]"
+3429985f4be9,COSTCO_2021_10K,table,true,0.0,0.0,0.5,0.16666666666666666,0.21840743681816419,"[31, 51, 52, 36, 37, 38, 39, 40, 3, 43]","[38, 53]"
+eabc3f34cd0a,COSTCO_2021_10K,table,true,0.0,0.5,0.5,0.2,0.23719771276929622,"[36, 37, 39, 40, 38, 41, 2, 3, 20, 21]","[38, 53]"
+fdf97712ef65,COSTCO_2021_10K,table,true,0.0,0.5,0.75,0.5,0.5319460297682747,"[3, 38, 39, 40, 41, 37, 20, 21, 36, 2]","[36, 38, 40, 53]"
+f4e50835d49c,COSTCO_2021_10K,table,true,0.0,1.0,1.0,0.2,0.38685280723454163,"[36, 37, 39, 40, 38, 41, 34, 35, 3, 2]",[38]
+f5a5ed41824d,COSTCO_2021_10K,table,true,0.0,0.5,0.5,0.2,0.23719771276929622,"[31, 43, 51, 52, 38, 39, 47, 48, 20, 21]","[38, 53]"
+3ed08f0d9778,COSTCO_2021_10K,table,true,0.0,1.0,1.0,0.25,0.43067655807339306,"[47, 48, 3, 38, 39, 34, 35, 40, 41, 20]",[38]
+aafd3a26978f,COSTCO_2021_10K,table,true,0.0,0.5,0.5,0.25,0.2640681225725909,"[2, 34, 35, 36, 37, 41, 39, 40, 20, 21]","[36, 38]"
+ee8e4eb80fd2,COSTCO_2021_10K,table,true,0.0,0.5,0.5,0.25,0.2640681225725909,"[2, 41, 37, 38, 20, 21, 36, 3, 39, 40]","[38, 53]"
+f5e9b27c5c16,COSTCO_2021_10K,table,true,0.0,0.5,1.0,0.3333333333333333,0.5,"[29, 39, 40, 3, 54, 36, 41, 38, 33, 47]","[38, 40]"
+0088b0a704f3,COSTCO_2021_10K,text,true,0.0,1.0,1.0,0.2,0.38685280723454163,"[49, 50, 20, 21, 29, 30, 40, 41, 3, 2]",[29]
+239b7c0e0a69,COSTCO_2021_10K,text,true,0.0,0.0,0.0,0.0,0.0,"[20, 21, 49, 50, 3, 38, 39, 40, 36, 37]",[29]
+b8e265876c07,COSTCO_2021_10K,text,true,0.0,0.0,0.0,0.0,0.0,"[40, 41, 37, 38, 76, 34, 35, 36, 39, 20]",[9]
+2039ca315f74,COSTCO_2021_10K,table,true,0.0,0.0,1.0,0.1111111111111111,0.3010299956639812,"[40, 41, 3, 23, 24, 4, 47, 48, 19, 20]",[19]
+1a4ac8373a3e,NIKE_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,"[71, 89, 31, 39, 36, 34, 4, 40, 42]","[59, 61]"
+0d9c987a1724,NIKE_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,"[31, 34, 35, 88, 38, 26, 95, 85, 93, 65]","[59, 61]"
+216020b7b9fc,NIKE_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,"[31, 69, 95, 89, 26, 72, 9, 6, 74, 77]","[59, 61]"
+17ac298cdcd8,NIKE_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,"[67, 95, 84, 72, 62, 94, 73, 85]",[61]
+f3c02c89415c,NIKE_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,"[67, 95, 84, 90, 37, 38, 62, 69, 83, 72]","[59, 61]"
+d6a4294e288e,NIKE_2021_10K,table,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[89, 61, 73, 76, 34, 83, 31, 4, 62]",[61]
+f6652b1693c4,NIKE_2021_10K,table,true,0.0,0.0,0.0,0.0,0.0,"[67, 95, 72, 73, 94, 84, 62, 85]",[61]
+2629dc97288e,NIKE_2021_10K,table,true,0.0,0.0,1.0,0.16666666666666666,0.3562071871080222,"[34, 38, 35, 26, 74, 61, 9, 90, 6, 67]",[61]
+9f3a27da8980,NIKE_2021_10K,table,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[95, 72, 94, 83, 61]",[72]
+044462f2083a,NIKE_2021_10K,text,true,1.0,1.0,1.0,1.0,1.0,"[3, 65, 89, 4, 90, 43, 37]",[3]
+21acd9533b83,ADOBE_2015_10K,table,true,0.0,0.0,0.0,0.0,0.0,"[104, 40, 41, 42, 105, 30, 10, 64, 51, 9]","[59, 63]"
+0589470773ba,ADOBE_2015_10K,table,true,0.0,0.0,0.0,0.0,0.0,"[32, 33, 16, 38, 70, 34, 35, 66, 39, 97]","[59, 60]"
+3f8fad08226d,ADOBE_2015_10K,table,true,0.0,1.0,1.0,0.3333333333333333,0.5706417189553201,"[78, 56, 99, 63, 54, 55, 40, 41, 51, 57]","[63, 99]"
+aecbe3d745d6,ADOBE_2015_10K,text,true,1.0,1.0,1.0,1.0,1.0,"[13, 25, 36, 32, 33, 11, 7, 8, 65, 66]",[13]
+e45fe6de7d12,3M_2018_10K,table,true,0.0,1.0,1.0,0.5,0.6309297535714575,"[59, 60, 83, 44, 100, 43, 49, 90, 46]",[60]
+515758a33995,3M_2018_10K,text,true,0.0,1.0,1.0,0.5,0.6240505200038379,"[32, 4, 125, 124, 5, 47, 6]","[4, 5]"
+23963f19e938,3M_2018_10K,table,true,0.0,0.0,0.0,0.0,0.0,"[107, 66, 109, 105, 108, 101, 67]",[104]
+437fd17b22a6,3M_2018_10K,text,true,0.0,0.0,0.0,0.0,0.0,"[37, 90, 101, 31, 38, 48, 109, 25]",[64]
