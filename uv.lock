@@ -408,7 +408,7 @@ requires-dist = [
     { name = "opentelemetry-exporter-otlp-proto-http", specifier = ">=1.45.2" },
     { name = "opentelemetry-sdk", specifier = ">=1.45.2" },
     { name = "polars", specifier = ">=2.1.0" },
-    { name = "pydantic", specifier = ">=2.14.2" },
+    { name = "pydantic", specifier = ">=2.11" },
     { name = "pydantic-settings", specifier = ">=2.16.2" },
     { name = "pymupdf", specifier = ">=2.0" },
     { name = "pyyaml", specifier = ">=6.0" },

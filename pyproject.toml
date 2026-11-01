@@ -14,7 +14,7 @@ dependencies = [
     "numpy>=2.5",
     "keyring>=25",
     "polars>=2.1.0",
-    "pydantic>=2.14.2",
+    "pydantic>=2.11",  # >=2.11, <=2.12.5 must stay possible: HF Spaces install gradio[mcp]
     "pydantic-settings>=2.16.2",
     "pymupdf>=2.0",
     "pyyaml>=6.0",
