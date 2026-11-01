@@ -5,4 +5,5 @@ docrag-bench[cpu,demo] @ git+https://github.com/byQuexo/docrag-bench.git
 torch>=2.8,<2.14       # the versions ZeroGPU supports
 transformers>=5.8,<6   # Qwen3.5 / Qwen3.8 model classes
 accelerate
+kernels>=0.17.2,<0.18  # GPU kernels for the FP8 weights (transformers requires this range)
 spaces
