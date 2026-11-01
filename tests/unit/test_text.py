@@ -5,9 +5,6 @@ import pytest
 from docrag.shared.text import normalize, tokenize
 
 
-# LEARN: @pytest.mark.parametrize runs the same test once per tuple - like JUnit's
-# @ParameterizedTest or a table-driven test in Go/Rust. Each case shows up as its
-# own test in the report, so one failing case doesn't hide the others.
 @pytest.mark.parametrize(
     ("raw", "expected"),
     [

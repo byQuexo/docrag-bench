@@ -10,8 +10,6 @@ from docrag.shared.cache import Cache, bytes_hash
 from docrag.shared.schema import Block, Chunk
 from docrag.shared.timing import timed
 
-# LEARN: one logger per module, named after the module ("docrag.ingest.pipeline").
-# Configure handlers/levels once at the entry point (cli.py), never in libraries.
 log = logging.getLogger(__name__)
 
 
@@ -34,7 +32,6 @@ def parse_pdf(
             return [Block.model_validate(b) for b in cached]
     blocks = parser.parse(data, doc_id)
     if cache is not None:
-        # LEARN: model_dump(mode="json") -> dict of JSON-safe types.
         cache.set_json("parse", key, [b.model_dump(mode="json") for b in blocks])
     return blocks
 
@@ -47,9 +44,6 @@ def ingest_pdf(
     parser_name: str = "pymupdf",
     cache: Cache | None = None,
 ) -> list[Chunk]:
-    # LEARN: the bare `*` makes every parameter after it keyword-only:
-    # ingest_pdf(p, prefix_headings=False) works, ingest_pdf(p, "x", False) doesn't.
-    # It prevents mixing up boolean flags by position.
     doc_id = doc_id or path.stem
     blocks = parse_pdf(path, doc_id, get_parser(parser_name), cache)
     chunks = chunk_blocks(blocks, ChunkerOptions(prefix_headings=prefix_headings))

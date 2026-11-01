@@ -25,8 +25,7 @@ class DatasetConfig(BaseModel):
 
 
 class ExperimentConfig(BaseModel):
-    # LEARN: extra="forbid" turns typos into errors: `top_kk: 5` in the YAML fails
-    # validation instead of being silently ignored (and you measuring the default).
+    # Typos fail validation (`top_kk: 5`) instead of silently measuring the default.
     model_config = ConfigDict(extra="forbid")
 
     name: str
@@ -68,14 +67,11 @@ class ExperimentConfig(BaseModel):
     def config_hash(self) -> str:
         # `name` is just a label; two configs that measure the same thing get the
         # same hash even if named differently.
-        # LEARN: model_dump(exclude=...) -> plain dict, minus the given fields.
         return stable_hash(self.model_dump(exclude={"name"}))[:12]
 
     @classmethod
     def from_yaml(cls, path: Path | str) -> "ExperimentConfig":
-        # LEARN: @classmethod receives the class (`cls`) instead of an instance:
-        # an alternative constructor, like a static factory method in Java.
-        # yaml.safe_load (never yaml.load) can't construct arbitrary Python objects.
+        # yaml.safe_load (never yaml.load): it can't construct arbitrary Python objects.
         with open(path, encoding="utf-8") as f:
             data = yaml.safe_load(f)
         return cls.model_validate(data)

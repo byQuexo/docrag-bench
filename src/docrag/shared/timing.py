@@ -32,8 +32,7 @@ _DURATIONS: defaultdict[str, list[float]] = defaultdict(list)
 
 
 # The flag of the innermost running @timed call (None outside of one).
-# LEARN: a ContextVar, not a plain global: with asyncio, many timed calls run
-# interleaved on one thread, and each must only ever see its own flag.
+# A ContextVar, not a global: concurrent async calls each see only their own flag.
 _CACHE_HIT: ContextVar[list[bool] | None] = ContextVar("docrag_cache_hit", default=None)
 
 
@@ -82,10 +81,6 @@ def timed(
     only joining one. Works for normal functions and ``async def`` functions.
     """
 
-    # LEARN: A decorator with an argument is a function returning a decorator:
-    #   @timed("embed")  ==  func = timed("embed")(func)
-    # ParamSpec `P` keeps the wrapped function's exact signature for mypy, so
-    # wrapper(*args, **kwargs) is still type-checked at call sites.
     def decorator(func: Callable[P, R]) -> Callable[P, R]:
         if inspect.iscoroutinefunction(func):
 
@@ -103,8 +98,7 @@ def timed(
 
             return async_wrapper  # type: ignore[return-value]
 
-        # LEARN: functools.wraps copies __name__, __doc__ etc. from func to wrapper,
-        # otherwise every decorated function would show up as "wrapper" in traces.
+        # functools.wraps keeps the real function name (traces don't say "wrapper").
         @functools.wraps(func)
         def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:
             # perf_counter: monotonic, high resolution. Never use time.time() to

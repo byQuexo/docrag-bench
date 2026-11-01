@@ -83,17 +83,13 @@ def create_app(
 ) -> FastAPI:
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
-        # LEARN: code before `yield` runs at startup, after it at shutdown -
-        # the modern replacement for @app.on_event("startup"/"shutdown").
         yield
         await service.proxy.aclose()
 
-    # LEARN: FastAPI (0.162+) has built-in OpenTelemetry: once a global
-    # TracerProvider exists (setup_tracing in `docrag serve`), every request gets
-    # an HTTP server span "POST /query" (route, status code, and it continues a
-    # caller's trace from the W3C `traceparent` header) plus endpoint and
-    # serialization spans. Without a provider it stays off. We only exclude the
-    # health check: a probe every few seconds would bury the real traces.
+    # FastAPI (0.162+) traces requests itself once a global TracerProvider exists
+    # (setup_tracing in `docrag serve`): an HTTP span per request, continuing a
+    # caller's `traceparent`. The health check is excluded so probes don't bury
+    # the real traces.
     app = FastAPI(
         title="docrag-bench",
         version="0.1.0",
@@ -113,9 +109,6 @@ def create_app(
     async def health() -> dict[str, str]:
         return {"status": "ok"}
 
-    # LEARN: FastAPI reads the type hints: `body: QueryRequest` means "parse and
-    # validate the JSON body as QueryRequest" (422 with details if invalid), and
-    # `-> QueryResponse` becomes the documented response schema in /docs.
     @app.post("/query")
     async def query(body: QueryRequest, request: Request) -> QueryResponse:
         start = time.perf_counter()

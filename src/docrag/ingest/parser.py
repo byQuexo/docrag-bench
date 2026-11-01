@@ -26,10 +26,8 @@ import pymupdf
 
 from docrag.shared.schema import Block
 
-# LEARN: typing.Protocol = structural typing, exactly like a TS interface or a Go
-# interface: any class with these attributes/methods "is" a Parser, no
-# `implements` or inheritance needed. mypy checks it statically.
-# Compare with abc.ABC (used for llm/base.py), which is nominal (must subclass).
+# Structural typing: any class with these members is a Parser, no inheritance
+# needed (unlike llm/base.py, where Provider shares real code).
 
 
 class Parser(Protocol):
@@ -41,8 +39,6 @@ class Parser(Protocol):
 
 # --- registry --------------------------------------------------------------
 
-# LEARN: A dict from name to factory function is the simplest "plugin registry".
-# Callable[[], Parser] = "a function taking no args and returning a Parser".
 _REGISTRY: dict[str, Callable[[], Parser]] = {}
 
 
@@ -54,8 +50,6 @@ def get_parser(name: str = "pymupdf") -> Parser:
     try:
         return _REGISTRY[name]()
     except KeyError:
-        # LEARN: `raise X from None` hides the original KeyError from the traceback;
-        # `from err` would chain it. Use `from None` when the new error says it all.
         raise ValueError(
             f"Unknown parser {name!r}; known: {sorted(_REGISTRY)}"
         ) from None
@@ -123,15 +117,11 @@ class PyMuPdfParser:
     name = "pymupdf"
     version = "1"
 
-    # LEARN: class-level constants act as tunable defaults; tests or a subclass can
-    # override them without touching the parse logic.
     heading_ratio = 1.15  # font size >= body size * ratio -> heading candidate
     max_heading_chars = 120
     margin_ratio = 0.06  # top/bottom 6% of the page = header/footer zone
 
     def parse(self, pdf: bytes, doc_id: str) -> list[Block]:
-        # LEARN: `with` = context manager (try-with-resources in Java, `using` in C#,
-        # Drop in Rust). The document is closed even if parsing raises.
         with pymupdf.open(stream=pdf, filetype="pdf") as doc:
             pages = [page.get_text("dict") for page in doc]
             body_size = self._body_font_size(pages)
@@ -233,8 +223,6 @@ class PyMuPdfParser:
             for tb in self._iter_text_blocks(page)
             if self._is_heading(tb, body_size)
         }
-        # LEARN: a set comprehension {...} above, then sorted() returns a new list.
-        # enumerate() yields (index, value) pairs, like .entries() in JS.
         return {size: level for level, size in enumerate(sorted(sizes, reverse=True))}
 
     def _page_items(

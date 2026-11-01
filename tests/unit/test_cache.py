@@ -16,8 +16,6 @@ def test_stable_hash_changes_with_content() -> None:
     assert bytes_hash(b"a") != bytes_hash(b"b")
 
 
-# LEARN: `tmp_path` is a built-in fixture: a fresh, empty directory per test
-# (a pathlib.Path), deleted later by pytest. No manual temp-file cleanup needed.
 def test_roundtrip_bytes_and_json(tmp_path: Path) -> None:
     cache = Cache(tmp_path / "sub" / "c.sqlite")  # parent dirs are created
     cache.set_bytes("embed", "k", b"\x00\x01")

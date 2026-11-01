@@ -1,9 +1,8 @@
 # syntax=docker/dockerfile:1
 # Image for the docrag API (and CLI), including the built web UI.
 #
-# LEARN: multi-stage build. Stage 1 ("builder") has uv and creates the virtualenv;
-# stage 2 copies ONLY the finished .venv. Build tools and caches never reach the
-# final image, so it's smaller and has less attack surface.
+# Multi-stage: Node and the build tools never reach the final image, only the
+# built UI and the finished .venv.
 
 # Stage 1: build the React UI into static files (ui/dist). Only the result is
 # copied into the final image: no Node.js at runtime.
@@ -28,9 +27,7 @@ ENV UV_COMPILE_BYTECODE=1 \
 
 WORKDIR /app
 
-# LEARN: layer caching. Docker reuses a layer if its inputs didn't change.
-# Installing dependencies BEFORE copying the source means editing a .py file
-# doesn't reinstall every dependency - only the last layers rebuild.
+# Dependencies before the source: editing code doesn't reinstall dependencies.
 COPY pyproject.toml uv.lock README.md LICENSE ./
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --locked --extra cpu --no-dev --no-install-project --no-editable
@@ -43,8 +40,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 
 FROM python:3.12-slim AS runtime
 
-# LEARN: never run a server as root in a container. If the app is compromised,
-# the attacker gets an unprivileged user, not root inside the container.
+# Run as an unprivileged user, not root.
 RUN useradd --create-home --uid 10001 app
 WORKDIR /app
 

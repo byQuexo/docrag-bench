@@ -68,8 +68,6 @@ def doc_split(doc_id: str, dev_share: float = 0.3) -> Literal["dev", "test"]:
 def load_questions(qa_glob: str) -> list[EvalQuestion]:
     df = pl.read_parquet(qa_glob)
     out: list[EvalQuestion] = []
-    # LEARN: iter_rows(named=True) yields one dict per row. Fine for ~1k rows;
-    # for millions you'd stay in polars' vectorized expressions instead.
     for row in df.iter_rows(named=True):
         doc_id = row["doc_id"].removesuffix(".pdf")
         sources = [str(s) for s in parse_list(row["evidence_sources"])]

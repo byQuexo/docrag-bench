@@ -60,10 +60,8 @@ class VlmOcrEngine:
         # edited prompt must never reuse old transcriptions.
         self.version = self.version_string(route)
         self._prompt = load_prompt(PROMPT_VERSION)
-        # LEARN: a dedicated event loop in a daemon thread. run_forever() keeps it
-        # alive; run_coroutine_threadsafe() hands it work from any other thread and
-        # returns a concurrent.futures.Future we can block on with .result().
-        # daemon=True: the thread never keeps the process alive at exit.
+        # A dedicated event loop in a daemon thread: the sync ingest code hands it
+        # coroutines with run_coroutine_threadsafe() and blocks on .result().
         self._loop = asyncio.new_event_loop()
         self._thread = threading.Thread(target=self._loop.run_forever, daemon=True)
         self._thread.start()

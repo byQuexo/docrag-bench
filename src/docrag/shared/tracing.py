@@ -46,10 +46,8 @@ AttrValue = str | bool | int | float
 
 
 def tracer() -> trace.Tracer:
-    # LEARN: looked up on every call, not stored in a module global at import
-    # time. trace.get_tracer() before setup returns a *proxy* that starts
-    # forwarding to the real provider once setup_tracing() installs one, but
-    # calling it lazily keeps that subtlety out of the picture entirely.
+    # Looked up per call (not cached at import), so it always uses the provider
+    # installed by setup_tracing().
     return trace.get_tracer(TRACER_NAME)
 
 
@@ -67,10 +65,8 @@ def root_span(
     Use this at the entry points of the query path; ``@timed`` spans below it
     then attach automatically via the context (contextvars).
     """
-    # LEARN: start_as_current_span() is a context manager: it makes the span the
-    # "current" one for everything called inside the `with` (even across
-    # `await` and asyncio.to_thread, because the context lives in a contextvar),
-    # ends it on exit, and records an exception + ERROR status if one escapes.
+    # The span is current for everything inside the `with` (also across await and
+    # asyncio.to_thread), ends on exit, and records an escaping exception as ERROR.
     with tracer().start_as_current_span(
         name, attributes={SPAN_KIND: kind, **(attributes or {})}
     ) as span:
@@ -150,10 +146,7 @@ def setup_tracing(
     """
     if endpoint is None and exporter is None:
         return False
-    # LEARN: imported here, not at the top: the SDK is only needed by processes
-    # that actually export. Everything else depends on the small, stable
-    # `opentelemetry-api` only (the API/SDK split is OTel's core design, like
-    # SLF4J vs Logback in Java).
+    # SDK imported only here: everything else depends on the small opentelemetry-api.
     from opentelemetry.sdk.resources import Resource
     from opentelemetry.sdk.trace import TracerProvider
     from opentelemetry.sdk.trace.export import (

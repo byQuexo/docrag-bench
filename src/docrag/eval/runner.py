@@ -82,7 +82,7 @@ def question_row(
     }
     if result is not None:
         all_cits = result.citations
-        row |= {  # LEARN: `|=` merges a dict into another (3.9+), like Object.assign.
+        row |= {
             "status": result.status,
             "abstained": result.status == "abstained",
             # Abstained by the rerank gate (no LLM call) vs. by the LLM itself.

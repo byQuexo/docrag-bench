@@ -75,8 +75,6 @@ def verify(question: str, answer: Answer, context: list[Chunk]) -> AnswerResult:
 
     verified_ids = {c.id for c in citations if c.verified}
     # Remove inline markers that point to rejected citations.
-    # LEARN: re.sub accepts a function: it's called per match and its return value
-    # replaces the match. Here: keep "[id]" only if the id was verified.
     cleaned = _INLINE_ID.sub(
         lambda m: m.group(0) if m.group(1) in verified_ids else "", answer.answer
     ).strip()

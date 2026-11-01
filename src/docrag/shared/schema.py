@@ -10,9 +10,6 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-# LEARN: `Literal[...]` is like a TS string-literal union: type: "text" | "table".
-# Pydantic enforces it at runtime too, so Block(type="pic") raises ValidationError.
-# A type alias keeps the three places that need it in sync.
 BlockType = Literal["text", "table", "image"]
 # Where the text came from. "ocr"/"vlm" text is only as trustworthy as the model
 # that read it, so the eval reports it separately.
@@ -26,9 +23,6 @@ class Block(BaseModel):
     reconstruct them. This is the main lesson borrowed from RAG-Anything.
     """
 
-    # LEARN: `frozen=True` makes instances immutable (like a Java record or a Rust
-    # struct without `mut`). Assigning block.text = "x" raises an error, and frozen
-    # models are hashable, so they can go into sets / dict keys.
     model_config = ConfigDict(frozen=True)
 
     doc_id: str
@@ -60,8 +54,6 @@ class Chunk(BaseModel):
 
     @property
     def pages(self) -> list[int]:
-        # LEARN: @property turns a method into a read-only attribute:
-        # chunk.pages instead of chunk.pages(). Like a TS getter.
         return list(range(self.page_start, self.page_end + 1))
 
 

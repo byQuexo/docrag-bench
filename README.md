@@ -9,7 +9,7 @@
 
 ![Benchmark dashboard](docs/assets/dashboard.png)
 
-*Dashboard design (numbers from before the `answer_v3` run). The web UI in [`ui/`](ui/README.md) renders this view live from `results/`.*
+*The benchmark dashboard of the [web UI](ui/README.md): every number is computed live from `results/`.*
 
 ## TL;DR
 
@@ -120,7 +120,7 @@ flowchart LR
 
 ![Chat with sources](docs/assets/chat.png)
 
-*Chat UI design (example data): answer with page citations, retrieved evidence with chunk type and rerank score, and an explicit "Not answerable".*
+*Chat with sources (a real question from the benchmark): the answer with `[p.X]` citations, the verified quotes, and the retrieved evidence after reranking with chunk type and score. If the document doesn't contain the answer, it says "Not answerable" and why.*
 
 ## Results
 
@@ -307,12 +307,6 @@ DOCRAG_E2E_QDRANT_URL=http://localhost:6333 uv run pytest -m e2e   # needs Qdran
 ```
 
 CI (GitHub Actions) runs lint, types, unit tests and the lesson notebooks; an end-to-end test against a Qdrant service container; and a Docker build.
-
-Comments starting with `# LEARN:` explain Python for readers new to it. To strip them before reuse:
-
-```bash
-uv run python -c "import re,pathlib;[p.write_text(re.sub(r'(?m)^[ \t]*# LEARN:.*\n(?:[ \t]*# (?!LEARN:).*\n)*','',p.read_text(encoding='utf-8')),encoding='utf-8') for p in pathlib.Path('src').rglob('*.py')]"
-```
 </details>
 
 ## License

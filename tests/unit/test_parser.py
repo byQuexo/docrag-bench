@@ -8,9 +8,6 @@ from docrag.ingest.parser import get_parser
 from docrag.shared.schema import Block
 
 
-# LEARN: scope="module" = build once per test FILE and share it, like JUnit's
-# @BeforeAll. Fine here because Blocks are frozen (immutable) - no test can
-# change the shared object and break another test.
 @pytest.fixture(scope="module")
 def blocks(tiny_pdf: Path) -> list[Block]:
     return get_parser("pymupdf").parse(tiny_pdf.read_bytes(), "tiny")
@@ -47,8 +44,5 @@ def test_reading_order_is_increasing(blocks: list[Block]) -> None:
 
 
 def test_unknown_parser_name() -> None:
-    # LEARN: pytest.raises is a context manager asserting an exception is raised
-    # inside the block (assertThrows in JUnit, expect(...).toThrow in Jest).
-    # `match` is a regex searched in the error message.
     with pytest.raises(ValueError, match="Unknown parser"):
         get_parser("docling")

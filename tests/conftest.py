@@ -1,11 +1,4 @@
-"""Shared pytest fixtures.
-
-LEARN: a *fixture* is a function pytest calls for you and passes into any test
-that names it as a parameter: `def test_x(tiny_chunks): ...`. It's dependency
-injection for tests - like JUnit's @BeforeEach + constructor injection, but
-per-parameter. `scope="session"` builds it once for the whole run (expensive
-setup like parsing a PDF); the default scope builds it fresh for every test.
-"""
+"""Shared pytest fixtures. Expensive ones (parsing the PDF) are session-scoped."""
 
 import json
 from pathlib import Path
@@ -44,7 +37,6 @@ def tiny_questions() -> list[dict[str, Any]]:
 
 @pytest.fixture(scope="session")
 def tiny_chunks(tiny_pdf: Path) -> list[Chunk]:
-    # LEARN: fixtures can depend on other fixtures, just by naming them.
     return ingest_pdf(tiny_pdf, "tiny")
 
 

@@ -82,7 +82,6 @@ class OpenAICompatProvider(Provider):
                     "strict": True,
                 },
             }
-        # LEARN: `{**a, **b}` merges dicts (later keys win), like {...a, ...b} in JS.
         return {**body, **self._extra_body}
 
     async def _call(self, native: dict[str, Any]) -> Any:

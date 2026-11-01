@@ -43,8 +43,6 @@ def test_prefix_only_changes_embed_text(tiny_pdf: Path) -> None:
 
 
 def test_ids_stable_across_runs(tiny_pdf: Path) -> None:
-    # LEARN: `==` on Pydantic models compares field values (like a Java record's
-    # equals), so this checks every field of every chunk, not object identity.
     assert ingest_pdf(tiny_pdf, "tiny") == ingest_pdf(tiny_pdf, "tiny")
 
 
@@ -60,8 +58,6 @@ def test_section_change_starts_new_chunk() -> None:
 
 def test_paragraph_across_pages_keeps_both_pages() -> None:
     blocks = [_text(4, "first half", ["S"], 0), _text(5, "second half", ["S"], 1)]
-    # LEARN: `(chunk,) = xs` unpacks a 1-element sequence and raises ValueError
-    # if there are 0 or 2+ elements - a compact "exactly one" assertion.
     (chunk,) = chunk_blocks(blocks)
     assert (chunk.page_start, chunk.page_end) == (4, 5)
     assert chunk.id == "d:p4:c0"

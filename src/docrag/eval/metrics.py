@@ -21,8 +21,7 @@ def ranked_pages(hits: list[Hit], doc_id: str | None = None) -> list[int]:
     seen: dict[tuple[str, int], None] = {}
     for hit in hits:
         for page in hit.chunk.pages:
-            # LEARN: a dict keeps insertion order (guaranteed since 3.7), so
-            # dict.fromkeys / setdefault is the idiomatic "ordered set".
+            # dict = ordered set (insertion order is guaranteed).
             seen.setdefault((hit.chunk.doc_id, page), None)
     pages: list[int] = []
     for i, (doc, page) in enumerate(seen):

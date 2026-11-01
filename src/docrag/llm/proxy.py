@@ -123,9 +123,6 @@ class LLMProxy:
             self.cache.set_json("llm", key, completion.model_dump())
         return completion
 
-    # LEARN: `[T: BaseModel]` declares a type parameter bounded by BaseModel:
-    # "T is some subclass of BaseModel". structured(..., schema=Answer) is then
-    # typed as returning Answer, not just BaseModel (Java: <T extends BaseModel>).
     async def structured[T: BaseModel](
         self,
         route: str,

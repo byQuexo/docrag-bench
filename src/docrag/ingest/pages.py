@@ -25,8 +25,8 @@ def safe_pdf_path(pdf_dir: Path, doc_id: str) -> Path:
         raise UnsafePathError(f"invalid doc_id {doc_id!r}")
     base = pdf_dir.resolve()
     path = (base / f"{doc_id}.pdf").resolve()
-    # LEARN: Path.is_relative_to (3.9+) checks containment after resolve(), which
-    # also resolves symlinks and "..". Never check with string startswith().
+    # Containment checked after resolve() (also resolves symlinks and "..");
+    # never with string startswith().
     if not path.is_relative_to(base):
         raise UnsafePathError(f"{doc_id!r} escapes {base}")
     # Check existence ourselves: pymupdf raises its OWN FileNotFoundError class

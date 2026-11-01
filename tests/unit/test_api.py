@@ -29,10 +29,6 @@ def client(
     retriever = Retriever(embeddings, memory_store, config, FakeReranker())
     service = AnswerService(retriever, LLMProxy({"fake": FakeProvider()}), "fake:m")
     app = create_app(service, pdf_dir=tiny_pdf.parent)
-    # LEARN: TestClient calls the ASGI app in-process (no server, no port), like
-    # Spring's MockMvc or supertest in Node. Used as a context manager, it also
-    # runs the app's startup/shutdown (lifespan). A fixture that `yield`s gets
-    # its teardown code run after the test - pytest's version of try/finally.
     with TestClient(app) as c:
         yield c
 

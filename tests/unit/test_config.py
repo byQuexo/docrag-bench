@@ -31,8 +31,6 @@ def test_hash_ignores_name_but_not_settings() -> None:
     assert len(a.config_hash()) == 12
 
 
-# LEARN: parametrize over files found at collection time: adding a new YAML to
-# configs/ automatically adds a test case for it. `ids=` names each case.
 @pytest.mark.parametrize(
     "path", sorted(CONFIG_DIR.glob("*.yaml")), ids=lambda p: p.name
 )

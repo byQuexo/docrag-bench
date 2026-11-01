@@ -32,8 +32,7 @@ from docrag.store.retriever import Retriever
 
 QDRANT_URL = os.environ.get("DOCRAG_E2E_QDRANT_URL")
 
-# LEARN: `pytestmark` applies marks to every test in the module. skipif turns
-# the whole file into "skipped" (not "failed") when there's no Qdrant around.
+# Skipped (not failed) when no Qdrant is available.
 pytestmark = [
     pytest.mark.e2e,
     pytest.mark.skipif(not QDRANT_URL, reason="set DOCRAG_E2E_QDRANT_URL"),

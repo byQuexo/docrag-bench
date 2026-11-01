@@ -100,9 +100,6 @@ class _Pending:
 def chunk_blocks(
     blocks: list[Block], options: ChunkerOptions | None = None
 ) -> list[Chunk]:
-    # LEARN: never use a mutable default like `options=ChunkerOptions()` in the
-    # signature: Python evaluates defaults ONCE at definition time, so every call
-    # would share the same object. The `None` + "create inside" idiom avoids that.
     opts = options or ChunkerOptions()
     chunks: list[Chunk] = []
     # Per-page counter so IDs read doc:p<page>:c<n> with n restarting on each page.
@@ -116,9 +113,6 @@ def chunk_blocks(
         kind: BlockType,
         origin: Origin = "text",
     ) -> None:
-        # LEARN: a nested function ("closure") can read variables of the enclosing
-        # function (chunks, next_index, opts) - like a JS closure. It can mutate
-        # the list/dict objects; rebinding a name would need `nonlocal`.
         page_start, page_end = min(pages), max(pages)
         key = f"{doc_id}:{page_start}"
         idx = next_index[key]
@@ -142,7 +136,7 @@ def chunk_blocks(
     pending = _Pending()
 
     def flush() -> None:
-        nonlocal pending  # LEARN: needed because we REBIND `pending` below.
+        nonlocal pending
         if pending.texts:
             text = "\n".join(pending.texts)
             emit(
@@ -155,8 +149,6 @@ def chunk_blocks(
             )
         pending = _Pending()
 
-    # LEARN: sorted(..., key=lambda b: ...) sorts by a computed key; lambda is an
-    # anonymous single-expression function, like `b => b.order` in TS.
     for block in sorted(blocks, key=lambda b: (b.doc_id, b.order)):
         # OCR'd pages have no headings (section_path == []), so "same section"
         # would glue consecutive slides into one chunk. For OCR text the page is

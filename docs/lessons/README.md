@@ -52,22 +52,6 @@ For each lesson:
 Lesson 10 collects 60+ interview questions across the whole project. Go through it
 again the evening before an interview.
 
-## The `# LEARN:` comments
-
-Comments in the code that start with `# LEARN:` explain Python itself (syntax,
-idioms, pitfalls), often comparing it to TypeScript, Java or Rust. All other comments
-explain *this project* (why a design is the way it is).
-
-Before publishing the repo you can strip the LEARN comments with:
-
-```powershell
-uv run python -c "import re,pathlib;[p.write_text(re.sub(r'(?m)^[ \t]*# LEARN:.*\n(?:[ \t]*#(?! [A-Z][a-z]+:).*\n)*','',p.read_text('utf-8')),'utf-8') for p in pathlib.Path('src').rglob('*.py')]"
-```
-
-Run `uv run ruff check . && uv run pytest` afterwards and check `git diff`, since
-a LEARN comment that continues onto lines also meant for the project would be
-removed too.
-
 ## Quick command reference
 
 ```powershell

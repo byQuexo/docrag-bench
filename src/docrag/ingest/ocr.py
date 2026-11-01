@@ -73,8 +73,8 @@ class RapidOcrEngine:
         return f"1:{version('rapidocr')}"
 
     def __init__(self, min_score: float = 0.5) -> None:
-        # LEARN: importing inside __init__ keeps RapidOCR (and OpenCV) optional:
-        # the module imports fine without it, and only creating the engine needs it.
+        # Imported here so the module loads without RapidOCR/OpenCV; only creating
+        # the engine needs them.
         import rapidocr
 
         from docrag.embed.onnx import _providers
@@ -90,9 +90,8 @@ class RapidOcrEngine:
         self.min_score = min_score
 
     def ocr(self, png: bytes) -> list[OcrLine]:
-        # LEARN: `Any` opts this one value out of type checking. RapidOCR types its
-        # return as a union of 4 output classes; we know which one a full
-        # det+rec call returns, and mypy can't narrow it for us.
+        # RapidOCR types its result as a union of 4 classes; a full det+rec call
+        # returns this one, which mypy can't narrow.
         result: Any = self._engine(png)
         if result.boxes is None:  # nothing found on the page
             return []

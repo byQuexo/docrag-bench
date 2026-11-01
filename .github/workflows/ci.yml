@@ -1,9 +1,6 @@
 # CI for docrag-bench: lint + types + unit tests, an E2E test against a real
 # Qdrant, and a Docker build check.
 #
-# LEARN: A workflow = YAML in .github/workflows/. GitHub runs it on the events
-# under `on:`. Each job gets a fresh VM ("runner"); jobs run in PARALLEL unless
-# one declares `needs:` on another.
 name: ci
 
 on:
@@ -11,8 +8,7 @@ on:
     branches: [main]
   pull_request:
 
-# LEARN: if you push twice quickly, cancel the older run of the same branch
-# instead of wasting runner minutes on an outdated commit.
+# Cancel an outdated run when the same branch is pushed again.
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
@@ -21,16 +17,13 @@ jobs:
   lint-test:
     runs-on: ubuntu-latest
     steps:
-      # LEARN: `uses:` runs a reusable action. Pin a version (@v4) so an upstream
-      # change can't silently break (or compromise) your pipeline.
       - uses: actions/checkout@v4
 
       - uses: astral-sh/setup-uv@v6
         with:
           enable-cache: true # caches downloaded wheels between runs
 
-      # LEARN: --locked fails if uv.lock doesn't match pyproject.toml, so CI
-      # tests exactly the dependency versions you committed (reproducibility).
+      # --locked: CI tests exactly the committed dependency versions.
       - run: uv sync --locked --extra cpu # CPU onnxruntime: no CUDA wheels in CI
 
       - name: Lint
@@ -39,8 +32,7 @@ jobs:
         run: uv run ruff format --check .
       - name: Types
         run: uv run mypy src
-      # LEARN: -m "not e2e" deselects tests marked @pytest.mark.e2e; they run in
-      # their own job below, where a Qdrant service exists.
+      # E2E tests run in their own job, which has a Qdrant service.
       - name: Unit tests
         run: uv run pytest -m "not e2e" -q
       # Execute the lesson SOLUTION notebooks so they can't rot when the code
@@ -50,8 +42,7 @@ jobs:
 
   e2e:
     runs-on: ubuntu-latest
-    # LEARN: `services:` starts Docker containers next to the job, reachable on
-    # localhost via the mapped ports. Same image tag as compose.yaml.
+    # Same Qdrant image tag as compose.yaml.
     services:
       qdrant:
         image: qdrant/qdrant:v1.20.0
@@ -65,8 +56,7 @@ jobs:
         with:
           enable-cache: true
       - run: uv sync --locked --extra cpu # CPU onnxruntime: no CUDA wheels in CI
-      # LEARN: a container being "started" doesn't mean the app inside is ready.
-      # Poll the readiness endpoint instead of a fixed sleep (faster + reliable).
+      # Wait for Qdrant's readiness endpoint instead of a fixed sleep.
       - name: Wait for Qdrant
         run: |
           for i in $(seq 1 30); do
@@ -81,7 +71,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      # LEARN: building (without pushing) in CI catches a broken Dockerfile in
-      # the PR, not on deploy day.
+      # Build only (no push): catches a broken Dockerfile in the PR.
       - name: Build image
         run: docker build -t docrag-bench:ci .

@@ -29,9 +29,6 @@ def stable_hash(*parts: Any) -> str:
 
     ``sort_keys=True`` matters: {"a":1,"b":2} and {"b":2,"a":1} must hash the same.
     """
-    # LEARN: `*parts` collects all positional args into a tuple (like Java varargs
-    # or TS `...parts`). `default=str` tells json how to encode things it doesn't
-    # know (e.g. Path objects) instead of raising TypeError.
     payload = json.dumps(parts, sort_keys=True, ensure_ascii=False, default=str)
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
@@ -46,8 +43,6 @@ class Cache:
     def __init__(self, path: Path | str) -> None:
         self._path = str(path)
         if self._path != ":memory:":
-            # LEARN: parents=True is `mkdir -p`; exist_ok=True means "no error if it
-            # already exists". Path(...).parent is the containing folder.
             Path(self._path).parent.mkdir(parents=True, exist_ok=True)
         # check_same_thread=False: FastAPI and asyncio.to_thread may touch the cache
         # from worker threads. The lock below makes that safe.
@@ -68,8 +63,7 @@ class Cache:
             row = self._conn.execute(
                 "SELECT value FROM kv WHERE ns = ? AND key = ?", (ns, key)
             ).fetchone()
-        # LEARN: the `?` placeholders are parameter binding: never build SQL with
-        # f-strings from data (SQL injection), same rule as in Java's JDBC.
+        # Parameter binding only: never build SQL from data with f-strings.
         return None if row is None else bytes(row[0])
 
     def set_bytes(self, ns: str, key: str, value: bytes) -> None:

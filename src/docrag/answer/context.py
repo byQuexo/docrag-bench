@@ -36,9 +36,8 @@ def load_prompt(version: str) -> str:
     The version is part of every cache key through the prompt text itself, so
     editing a prompt = new file name = old cached answers are not reused.
     """
-    # LEARN: importlib.resources reads files shipped INSIDE the package, so it
-    # works the same from the repo, an installed wheel or the Docker image -
-    # unlike paths relative to the current working directory.
+    # importlib.resources reads files shipped inside the package, so prompts load
+    # the same from the repo, an installed wheel or the Docker image.
     return (resources.files("docrag.prompts") / f"{version}.txt").read_text(
         encoding="utf-8"
     )

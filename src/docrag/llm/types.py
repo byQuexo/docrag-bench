@@ -28,9 +28,6 @@ class ImagePart(BaseModel):
         return cls(data=base64.b64encode(png).decode("ascii"))
 
 
-# LEARN: a "discriminated union": Pydantic looks at the `type` field to decide
-# which class to parse a dict into - like a TS union narrowed on `kind`, or a Rust
-# enum with variants. Annotated[..., Field(discriminator=...)] declares it.
 ContentPart = Annotated[TextPart | ImagePart, Field(discriminator="type")]
 
 

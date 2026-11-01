@@ -35,14 +35,11 @@ class AnswerService:
         doc_ids: list[str] | None = None,
         history: list[Message] | None = None,
     ) -> tuple[AnswerResult, list[Hit]]:
-        # LEARN: embedding/reranking is CPU-bound, synchronous code. Calling it
-        # directly inside an `async def` would block the event loop, so every other
-        # request in the FastAPI server would wait. asyncio.to_thread runs it in a
-        # worker thread (ONNX Runtime releases the GIL while computing).
+        # Embedding/reranking is CPU-bound sync code: run it in a worker thread so the
+        # event loop (other API requests) isn't blocked. ONNX Runtime releases the GIL.
         tracing.annotate({"input.value": question, "docrag.llm_route": self.llm_route})
-        # LEARN: asyncio.to_thread copies the current contextvars into the worker
-        # thread, so the "retrieve" span opened over there still knows its parent.
-        # A plain ThreadPoolExecutor.submit() would NOT do that (orphaned spans).
+        # asyncio.to_thread copies the contextvars into the worker thread, so the
+        # "retrieve" span there keeps its parent (a plain executor submit would not).
         hits = await asyncio.to_thread(self.retriever.retrieve, question, doc_ids)
         cfg = self.retriever.config
         context_hits = hits[: cfg.context_k]

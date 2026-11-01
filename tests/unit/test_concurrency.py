@@ -5,8 +5,6 @@ import asyncio
 from docrag.shared.concurrency import bounded_gather
 
 
-# LEARN: with pytest-asyncio in "auto" mode, an `async def test_...` is run inside
-# an event loop automatically - like an async test in Jest returning a Promise.
 async def test_limit_is_enforced() -> None:
     running = 0
     peak = 0

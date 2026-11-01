@@ -56,8 +56,6 @@ def _cmd_eval(args: argparse.Namespace) -> None:
     cache = Cache(settings.cache_path)
     for path in args.configs:
         config = ExperimentConfig.from_yaml(path)
-        # LEARN: asyncio.run() starts an event loop, runs one coroutine to the end
-        # and closes the loop - the bridge from sync code (CLI) into async code.
         run_dir = asyncio.run(run_experiment(config, settings, cache))
         print(f"{config.name}: {run_dir}")
     print(summarize(settings.results_dir))
@@ -237,9 +235,7 @@ def main(argv: list[str] | None = None) -> None:
     args.func(args)
 
 
-# LEARN: this block only runs when the file is executed directly
-# (`python -m docrag.cli`), not when it's imported. On Windows it is REQUIRED
-# for multiprocessing: child processes re-import the main module, and without
-# the guard each child would start the whole program again.
+# Required on Windows for multiprocessing: worker processes re-import this
+# module, and without the guard each one would start the program again.
 if __name__ == "__main__":
     main(sys.argv[1:])

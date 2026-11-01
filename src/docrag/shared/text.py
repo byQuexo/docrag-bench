@@ -32,8 +32,7 @@ def normalize(text: str) -> str:
     >>> normalize("The  “Revenue”\\nwas infor-\\nmative")
     'the "revenue" was informative'
     """
-    # LEARN: NFKC turns compatibility characters into canonical ones, e.g. the
-    # ligature "ﬁ" (one char, common in PDFs) into "fi" (two chars).
+    # NFKC turns ligatures common in PDFs ("ﬁ", one char) into plain letters ("fi").
     text = unicodedata.normalize("NFKC", text)
     text = _HYPHEN_BREAK.sub(r"\1\2", text)
     text = text.translate(_TRANSLATE).lower()
@@ -52,6 +51,4 @@ STOPWORDS = frozenset(
 
 def tokenize(text: str) -> list[str]:
     """Lowercase word tokens without stopwords. Numbers like 1,500 or 3.3 stay whole."""
-    # LEARN: a "list comprehension": [expr for x in xs if cond]. It's the Python
-    # equivalent of xs.filter(cond).map(expr) and is used everywhere.
     return [t for t in _TOKEN.findall(normalize(text)) if t not in STOPWORDS]

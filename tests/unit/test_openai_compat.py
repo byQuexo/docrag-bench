@@ -27,9 +27,6 @@ def _ok(content: str, **message_extra: Any) -> httpx.Response:
     )
 
 
-# LEARN: httpx.MockTransport routes every request to a Python function instead of
-# the network - a fake server in-process. Compare: MockWebServer (OkHttp) in
-# Java, msw/nock in JS. No sockets, no flakiness, and we can inspect requests.
 async def test_request_body_and_response_mapping() -> None:
     seen: list[httpx.Request] = []
 

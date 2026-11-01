@@ -21,7 +21,6 @@ VALID = json.dumps({"answer": "ok", "evidence": []})
 def scripted(*replies: str) -> FakeProvider:
     """A FakeProvider that returns the given replies in order."""
     it = iter(replies)
-    # LEARN: a lambda ignoring its arguments; next(it) pulls the next reply.
     return FakeProvider(responder=lambda messages, schema: next(it))
 
 
@@ -80,10 +79,7 @@ async def test_second_failure_raises_and_is_counted() -> None:
 
 
 async def test_budget_cap(monkeypatch: pytest.MonkeyPatch) -> None:
-    # LEARN: monkeypatch replaces an attribute for the duration of ONE test and
-    # restores it afterwards (like jest.spyOn(...).mockReturnValue or Mockito).
-    # We patch the name where it is LOOKED UP (docrag.llm.proxy), not where
-    # it is defined - the most common mocking mistake in Python.
+    # Patch the name where it is looked up (docrag.llm.proxy), not where it's defined.
     monkeypatch.setattr("docrag.llm.proxy.cost_eur", lambda route, usage: 0.6)
     proxy = LLMProxy({"fake": FakeProvider()}, budget_eur=1.0)
     await proxy.chat("fake:m", [Message(role="user", content="1")])

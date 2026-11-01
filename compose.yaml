@@ -5,8 +5,7 @@
 # Traces from CLI runs on the host (`docrag ask`/`eval`): start phoenix, then
 #   DOCRAG_OTEL_ENDPOINT=http://127.0.0.1:6006/v1/traces uv run docrag ask ...
 #
-# LEARN: services on the same compose network reach each other by service name,
-# which is why the API uses http://qdrant:6333 while your host uses localhost.
+# Services reach each other by name (http://qdrant:6333); the host uses localhost.
 services:
   qdrant:
     image: qdrant/qdrant:v1.20.0 # pinned: same version as CI

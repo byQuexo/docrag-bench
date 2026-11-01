@@ -19,17 +19,12 @@ from typing import Self
 from pydantic import AliasChoices, Field, SecretStr, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-# LEARN: Path(__file__) is the path of THIS .py file. .parents[3] walks up:
-# shared -> docrag -> src -> repo root. pathlib.Path is the modern replacement for
-# os.path string juggling; `/` joins paths: ROOT / "data".
 ROOT = Path(__file__).resolve().parents[3]
 
 
 class Settings(BaseSettings):
-    # LEARN: pydantic-settings reads each field from the environment. With the
-    # prefix, `qdrant_location` is filled from DOCRAG_QDRANT_LOCATION, and a local
-    # `.env` file is read too (it's in .gitignore). Types are validated, so
-    # DOCRAG_EMBED_BATCH_SIZE=abc fails loudly at startup instead of deep inside.
+    # Fields come from DOCRAG_* environment variables (and a local .env), validated
+    # at startup: DOCRAG_EMBED_BATCH_SIZE=abc fails here, not deep inside a run.
     model_config = SettingsConfigDict(
         env_prefix="DOCRAG_", env_file=".env", extra="ignore"
     )
@@ -51,10 +46,8 @@ class Settings(BaseSettings):
     # Ollama / LM Studio / vLLM all speak the OpenAI format.
     ollama_base_url: str = "http://localhost:11434/v1"
 
-    # LEARN: SecretStr hides the value in repr()/logs: print(settings) shows
-    # '**********'. You must call .get_secret_value() explicitly to use it.
-    # AliasChoices: accept OPENAI_API_KEY (what every tool uses) or the prefixed
-    # DOCRAG_OPENAI_API_KEY, so you don't need to duplicate keys in your shell.
+    # SecretStr hides the value in repr()/logs; use .get_secret_value() explicitly.
+    # AliasChoices accepts OPENAI_API_KEY as well as DOCRAG_OPENAI_API_KEY.
     openai_api_key: SecretStr | None = Field(
         default=None,
         validation_alias=AliasChoices("OPENAI_API_KEY", "DOCRAG_OPENAI_API_KEY"),
@@ -96,9 +89,8 @@ class Settings(BaseSettings):
     # Look up missing API keys in the OS credential store (set False in CI/tests).
     use_keyring: bool = True
 
-    # LEARN: a model_validator(mode="after") runs once all fields are set, like a
-    # post-construct hook. We use it to fill API keys that the environment didn't
-    # provide from the OS credential store.
+    # Runs once all fields are set: fills API keys the environment didn't provide
+    # from the OS credential store.
     @model_validator(mode="after")
     def _keys_from_os_keyring(self) -> Self:
         if not self.use_keyring:
@@ -145,9 +137,7 @@ def _keyring_lookup(name: str) -> str | None:
         return None
 
 
-# LEARN: @lru_cache on a zero-arg function = a lazy singleton. The first call
-# builds Settings (reads env), every later call returns the same object.
-# Tests can call get_settings.cache_clear() to force a re-read.
+# Lazy singleton; tests call get_settings.cache_clear() to re-read the env.
 @lru_cache
 def get_settings() -> Settings:
     return Settings()

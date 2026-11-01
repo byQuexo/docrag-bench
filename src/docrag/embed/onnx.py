@@ -151,7 +151,5 @@ class OnnxEmbedder:
             # Mean over real tokens only: padding must not dilute the average.
             m = mask[:, :, None].astype(np.float32)
             pooled = (hidden * m).sum(axis=1) / np.clip(m.sum(axis=1), 1e-9, None)
-        # LEARN: onnxruntime returns untyped arrays (Any); the annotated local
-        # variable tells mypy what we know the type to be.
         result: Vectors = pooled.astype(np.float32)
         return result

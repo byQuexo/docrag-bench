@@ -15,9 +15,7 @@ RESULT_RELEVANT = ["src", "configs", "pyproject.toml", "uv.lock"]
 
 def _git(root: Path, *args: str) -> str | None:
     try:
-        # LEARN: subprocess.run with a list of args (no shell=True) never goes
-        # through a shell, so nothing in the arguments can be interpreted as a
-        # command. check=True raises CalledProcessError on a non-zero exit code.
+        # Argument list, no shell: nothing in the arguments can run as a command.
         out = subprocess.run(
             ["git", *args],
             cwd=root,

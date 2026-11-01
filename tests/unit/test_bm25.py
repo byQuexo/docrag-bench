@@ -31,6 +31,4 @@ def test_stopwords_and_empty() -> None:
 def test_query_vector_unique_terms_weight_one() -> None:
     q = query_sparse_vector("Revenue revenue Europe")
     assert sorted(q.indices) == sorted({term_id("revenue"), term_id("europe")})
-    # LEARN: pytest.approx compares floats with a tolerance - never use == on
-    # floats computed by arithmetic (0.1 + 0.2 != 0.3).
     assert q.values == pytest.approx([1.0, 1.0])

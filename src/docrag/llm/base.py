@@ -13,10 +13,9 @@ from docrag.llm.types import ChatCompletion, Message
 
 
 class Provider(ABC):
-    # LEARN: ABC + @abstractmethod = an abstract class (Java `abstract class`).
-    # Instantiating a subclass that forgot to implement a method raises TypeError
-    # immediately. We use nominal inheritance here (unlike the Parser Protocol)
-    # because Provider has a real shared method, chat(), the "template method".
+    # Nominal inheritance (not a Protocol like Parser): Provider has a real shared
+    # method, chat(), the template method. A subclass that misses an abstract
+    # method fails at instantiation.
 
     name: str
 

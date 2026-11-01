@@ -17,8 +17,8 @@ log = logging.getLogger(__name__)
 
 
 def _parse_worker(args: tuple[Path, str]) -> tuple[str, list[Block]]:
-    # LEARN: must be a top-level function: ProcessPoolExecutor sends work to other
-    # processes by pickling it, and closures/lambdas can't be pickled.
+    # Top-level on purpose: ProcessPoolExecutor pickles the work, and closures
+    # can't be pickled.
     path, doc_id = args
     return doc_id, parse_pdf(path, doc_id, get_parser(), cache=None)
 
@@ -45,10 +45,8 @@ def index_documents(
     log.info("indexing %d documents into %s", len(todo), store.collection)
 
     # 1) Parse what isn't cached, in parallel processes.
-    # LEARN: Why processes and not threads? Parsing is CPU-bound Python code, and
-    # CPython's GIL lets only one thread run Python bytecode at a time. Separate
-    # processes each have their own interpreter + GIL, so 4 workers ~ 4x faster.
-    # (asyncio wouldn't help either: it's for waiting on I/O, not for computing.)
+    # Processes, not threads: parsing is CPU-bound Python, and the GIL would
+    # serialize threads. Each process has its own interpreter.
     parser = get_parser()
     blocks_by_doc: dict[str, list[Block]] = {}
     uncached: list[tuple[Path, str]] = []
@@ -70,9 +68,8 @@ def index_documents(
 
         if workers > 1 and len(uncached) > 1:
             with ProcessPoolExecutor(max_workers=workers) as pool:
-                # LEARN: as_completed yields futures in FINISH order, so a fast
-                # document isn't stuck waiting behind a slow 300-page one
-                # (pool.map would yield in INPUT order).
+                # as_completed yields in finish order, so a fast document isn't
+                # stuck behind a slow 300-page one.
                 futures = [pool.submit(_parse_worker, args) for args in uncached]
                 for future in as_completed(futures):
                     done(*future.result())

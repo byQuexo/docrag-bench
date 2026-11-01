@@ -17,9 +17,6 @@ from docrag.shared import timing, tracing
 from docrag.shared.cache import Cache, stable_hash
 from docrag.shared.timing import timed
 
-# LEARN: a type alias for "2-D float32 numpy array". numpy arrays are the Python
-# equivalent of a typed contiguous buffer (Rust Vec<f32> with a shape on top).
-# Vector math on them runs in C, which is why ML code in Python is fast enough.
 Vectors = npt.NDArray[np.float32]
 
 
@@ -33,8 +30,6 @@ class Embedder(Protocol):
 
 def l2_normalize(vectors: Vectors) -> Vectors:
     """Scale each row to length 1, so dot product == cosine similarity."""
-    # LEARN: numpy "broadcasting": norms has shape (n, 1), vectors (n, dim); the
-    # division applies each row's norm to every column of that row. No loops.
     norms = np.linalg.norm(vectors, axis=1, keepdims=True)
     return (vectors / np.clip(norms, 1e-12, None)).astype(np.float32)
 
@@ -64,7 +59,6 @@ class EmbeddingService:
             if raw is None:
                 missing.append(i)
             else:
-                # LEARN: np.frombuffer views raw bytes as an array without copying.
                 out[i] = np.frombuffer(raw, dtype=np.float32)
 
         if not missing:
@@ -72,12 +66,10 @@ class EmbeddingService:
         for start in range(0, len(missing), self.batch_size):
             idx = missing[start : start + self.batch_size]
             vecs = l2_normalize(self.embedder.embed([texts[i] for i in idx]))
-            # LEARN: "fancy indexing": out[[3, 7, 9]] = vecs writes 3 rows at once.
             out[idx] = vecs
             if self.cache:
                 for i, vec in zip(idx, vecs, strict=True):
-                    # LEARN: zip(..., strict=True) raises if lengths differ instead
-                    # of silently stopping at the shorter one (ruff rule B905).
+                    # strict=True: fail loudly if the lengths ever differ.
                     self.cache.set_bytes("embed", self._key(texts[i]), vec.tobytes())
         tracing.annotate(
             {

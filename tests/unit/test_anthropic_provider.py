@@ -44,9 +44,6 @@ def test_to_native_without_schema(provider: AnthropicProvider) -> None:
 
 
 def _response(stop_reason: str, *blocks: SimpleNamespace) -> SimpleNamespace:
-    # LEARN: SimpleNamespace builds an ad-hoc object with attributes - a quick
-    # stand-in for the SDK's response class (duck typing: from_native only
-    # reads .content, .usage, .stop_reason, .model).
     return SimpleNamespace(
         model="claude-haiku-5-5",
         stop_reason=stop_reason,
