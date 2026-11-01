@@ -258,7 +258,12 @@ the winner ran on test:
   p = 0.0001). 11 of the 18 lost answers *do* say the premise is false ("the cartoon
   has no elephant") but then add a related fact instead of answering exactly
   "Not answerable"; the rest answer a near-miss (a 2013 survey for a 2020 question).
-  A follow-up prompt that targets exactly this (`answer_v3`) is being tested on dev.
+  A follow-up prompt targets exactly this (`answer_v3`: "answer exactly what was
+  asked; if the premise is false, answer exactly *Not answerable*"). On dev it wins
+  the unanswerable questions back (0.797 → 0.878, 6 gained, 0 lost, p = 0.031, now
+  above the baseline's 0.824) at a small, non-significant cost on answerable ones
+  (0.434 → 0.415). Overall it ties `answer_v2` on dev (0.514 vs 0.512) with a better
+  balance; it has not been run on test yet.
 
 - **Faithfulness correction (2026-11-01), in two steps.** (1) The first version
   averaged a rule placeholder (`faithful=True`) for every abstention, which reported
@@ -275,7 +280,7 @@ the winner ran on test:
 - Judge failures (invalid JSON from the judge after one retry) are counted now:
   2–3 of 735 per run, excluded from "correct" and visible as `judge_failed`.
 - Cost of all LLM calls in this project (answers, judges, VLM OCR, the abstention
-  experiment): **~2.95 EUR** (OpenRouter-reported).
+  experiment): **~3.25 EUR** (OpenRouter-reported).
 
 Per-query latency on GPU: search ~1 ms (Qdrant), query embedding ~5 ms,
 reranking 50 candidates ~0.6 s including tokenization (8.1 s on CPU before).
