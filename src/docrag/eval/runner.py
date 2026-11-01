@@ -281,6 +281,8 @@ async def _evaluate(
         judged = await bounded_gather((coro for _, coro in jobs), limit=4)
         for (i, _), verdict in zip(jobs, judged.results, strict=True):
             verdicts[i] = verdict
+        if judged.n_failed:
+            log.warning("%d judge calls failed: %s", judged.n_failed, judged.errors[:3])
 
     rows = []
     for q, res, verdict in zip(questions, answered.results, verdicts, strict=True):
@@ -299,7 +301,12 @@ async def _evaluate(
             rows.append(row)
         else:
             result, hits = res
-            rows.append(question_row(q, hits, result, verdict) | {"failed": False})
+            row = question_row(q, hits, result, verdict) | {"failed": False}
+            if config.judge:
+                # The JUDGE failed (not the system): `correct` stays empty, which
+                # is right for the mean, but it must be visible and counted.
+                row["judge_failed"] = verdict is None
+            rows.append(row)
     return rows
 
 

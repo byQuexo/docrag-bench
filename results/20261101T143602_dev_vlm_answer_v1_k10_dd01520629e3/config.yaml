@@ -1,0 +1,26 @@
+config_hash: dd01520629e3
+name: dev_vlm_answer_v1_k10
+embedder: onnx:gte-small
+prefix_headings: true
+ocr: vlm
+ocr_model: openrouter:anthropic/claude-haiku-5.5
+ocr_temperature: null
+retrieval: hybrid_rerank
+scope: doc
+top_k: 10
+prefetch_k: 50
+rrf_k: 60
+reranker: onnx:gte-reranker-modernbert-base
+rerank_threshold: 0.6318
+context_k: 10
+llm: openrouter:anthropic/claude-haiku-5.5
+judge: openrouter:deepseek/deepseek-v4.1-flash
+llm_temperature: null
+judge_temperature: 0.0
+llm_concurrency: 6
+prompt_version: answer_v1
+judge_prompt_version: judge_v2
+dataset:
+  split: dev
+  max_docs: null
+  max_questions: null

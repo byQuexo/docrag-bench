@@ -205,6 +205,7 @@ async def test_failed_answers_count_as_wrong(
     by_qid = {r["qid"]: r for r in rows}
     assert by_qid["bad"]["failed"] is True and by_qid["bad"]["correct"] is False
     assert by_qid["ok"]["failed"] is False
+    assert by_qid["ok"]["judge_failed"] is False
     metrics = aggregate(rows).filter(slice="all").row(0, named=True)
     assert metrics["failed"] == 0.5
     assert metrics["correct"] == 0.5  # before the fix: 1.0 (failure dropped)
