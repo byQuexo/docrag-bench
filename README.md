@@ -217,21 +217,21 @@ One YAML in `configs/` = one row in the results table; the config hash is writte
 The code was written by Claude; architecture, evaluation and review are by Tim. The lessons were built from that process: each explains one stage, and each notebook lets you rebuild a piece of it with the real modules (offline, fakes only, a few seconds per notebook).
 
 <p align="center">
-  <a href="docs/lessons/00_setup_and_tooling.md"><img alt="Lesson 00: Setup and tooling" src="docs/assets/readme/lesson-00.svg" width="136"></a>
-  <a href="docs/lessons/01_shared_foundations.md"><img alt="Lesson 01: Shared foundations" src="docs/assets/readme/lesson-01.svg" width="136"></a>
-  <a href="docs/lessons/02_ingest.md"><img alt="Lesson 02: Ingest" src="docs/assets/readme/lesson-02.svg" width="136"></a>
-  <a href="docs/lessons/03_embeddings_and_search.md"><img alt="Lesson 03: Embeddings and hybrid search" src="docs/assets/readme/lesson-03.svg" width="136"></a>
-  <a href="docs/lessons/04_rerank_and_threshold.md"><img alt="Lesson 04: Reranking and the threshold" src="docs/assets/readme/lesson-04.svg" width="136"></a>
-  <a href="docs/lessons/05_llm_proxy.md"><img alt="Lesson 05: The LLM proxy" src="docs/assets/readme/lesson-05.svg" width="136"></a>
-  <a href="docs/lessons/06_answer_and_verify.md"><img alt="Lesson 06: Answers and Verify" src="docs/assets/readme/lesson-06.svg" width="136"></a>
+  <a href="docs/lessons/00_setup_and_tooling.md"><img alt="Lesson 00: Setup and tooling" src="docs/assets/readme/lesson-00.svg" width="13%"></a>
+  <a href="docs/lessons/01_shared_foundations.md"><img alt="Lesson 01: Shared foundations" src="docs/assets/readme/lesson-01.svg" width="13%"></a>
+  <a href="docs/lessons/02_ingest.md"><img alt="Lesson 02: Ingest" src="docs/assets/readme/lesson-02.svg" width="13%"></a>
+  <a href="docs/lessons/03_embeddings_and_search.md"><img alt="Lesson 03: Embeddings and hybrid search" src="docs/assets/readme/lesson-03.svg" width="13%"></a>
+  <a href="docs/lessons/04_rerank_and_threshold.md"><img alt="Lesson 04: Reranking and the threshold" src="docs/assets/readme/lesson-04.svg" width="13%"></a>
+  <a href="docs/lessons/05_llm_proxy.md"><img alt="Lesson 05: The LLM proxy" src="docs/assets/readme/lesson-05.svg" width="13%"></a>
+  <a href="docs/lessons/06_answer_and_verify.md"><img alt="Lesson 06: Answers and Verify" src="docs/assets/readme/lesson-06.svg" width="13%"></a>
   <br>
-  <a href="docs/lessons/07_api_and_threads.md"><img alt="Lesson 07: API and threads" src="docs/assets/readme/lesson-07.svg" width="136"></a>
-  <a href="docs/lessons/08_eval.md"><img alt="Lesson 08: Evaluation" src="docs/assets/readme/lesson-08.svg" width="136"></a>
-  <a href="docs/lessons/09_testing_ci_docker.md"><img alt="Lesson 09: Testing, CI, Docker" src="docs/assets/readme/lesson-09.svg" width="136"></a>
-  <a href="docs/lessons/10_interview_prep.md"><img alt="Lesson 10: Interview prep" src="docs/assets/readme/lesson-10.svg" width="136"></a>
-  <a href="docs/lessons/11_gpu_secrets_security.md"><img alt="Lesson 11: GPU, secrets, security" src="docs/assets/readme/lesson-11.svg" width="136"></a>
-  <a href="docs/lessons/12_ocr.md"><img alt="Lesson 12: OCR" src="docs/assets/readme/lesson-12.svg" width="136"></a>
-  <a href="docs/lessons/13_tracing.md"><img alt="Lesson 13: Tracing" src="docs/assets/readme/lesson-13.svg" width="136"></a>
+  <a href="docs/lessons/07_api_and_threads.md"><img alt="Lesson 07: API and threads" src="docs/assets/readme/lesson-07.svg" width="13%"></a>
+  <a href="docs/lessons/08_eval.md"><img alt="Lesson 08: Evaluation" src="docs/assets/readme/lesson-08.svg" width="13%"></a>
+  <a href="docs/lessons/09_testing_ci_docker.md"><img alt="Lesson 09: Testing, CI, Docker" src="docs/assets/readme/lesson-09.svg" width="13%"></a>
+  <a href="docs/lessons/10_interview_prep.md"><img alt="Lesson 10: Interview prep" src="docs/assets/readme/lesson-10.svg" width="13%"></a>
+  <a href="docs/lessons/11_gpu_secrets_security.md"><img alt="Lesson 11: GPU, secrets, security" src="docs/assets/readme/lesson-11.svg" width="13%"></a>
+  <a href="docs/lessons/12_ocr.md"><img alt="Lesson 12: OCR" src="docs/assets/readme/lesson-12.svg" width="13%"></a>
+  <a href="docs/lessons/13_tracing.md"><img alt="Lesson 13: Tracing" src="docs/assets/readme/lesson-13.svg" width="13%"></a>
 </p>
 
 <details>
