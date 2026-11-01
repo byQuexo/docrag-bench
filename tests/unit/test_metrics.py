@@ -99,3 +99,23 @@ def test_ndcg_matches_sklearn_when_all_gold_pages_were_ranked() -> None:
     assert ndcg_at_k(pages, gold, 10) == pytest.approx(
         ndcg_score(y_true, y_score, k=10)
     )
+
+
+def test_pages_of_other_documents_never_count_as_gold() -> None:
+    other = Hit(
+        chunk=_hit(2, 2).chunk.model_copy(update={"doc_id": "other"}),
+        score=1.0,
+        source="dense",
+    )
+    hits = [other, _hit(5, 5)]
+    # Without doc_id, page 2 of "other" would look like gold page 2.
+    assert ranked_pages(hits) == [2, 5]
+    pages = ranked_pages(hits, doc_id="d")
+    assert pages[1] == 5 and pages[0] < 0, "other doc keeps its rank, never matches"
+    assert recall_at_k(pages, {2}, 10) == 0.0
+    assert mrr_at_k(pages, {5}) == pytest.approx(1 / 2), (
+        "the other doc pushed it to rank 2"
+    )
+    cit = Citation(id="other:p2:c0", quote="q", doc_id="other", page=2, verified=True)
+    assert citation_precision([cit], {2}) == 1.0
+    assert citation_precision([cit], {2}, doc_id="d") == 0.0

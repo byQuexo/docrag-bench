@@ -45,6 +45,7 @@ class Settings(BaseSettings):
     models_dir: Path = ROOT / "models" / "hf"
     cache_path: Path = ROOT / ".cache" / "docrag.sqlite"
     results_dir: Path = ROOT / "results"
+    ui_dir: Path = ROOT / "ui" / "dist"  # built web UI (npm run build); optional
 
     embed_batch_size: int = 32
     # Ollama / LM Studio / vLLM all speak the OpenAI format.

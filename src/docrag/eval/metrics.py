@@ -11,15 +11,23 @@ from docrag.answer.schema import Citation
 from docrag.shared.schema import Hit
 
 
-def ranked_pages(hits: list[Hit]) -> list[int]:
-    """Chunks -> unique pages in rank order. A chunk on pages 4-5 yields 4, then 5."""
-    seen: dict[int, None] = {}
+def ranked_pages(hits: list[Hit], doc_id: str | None = None) -> list[int]:
+    """Chunks -> unique pages in rank order. A chunk on pages 4-5 yields 4, then 5.
+
+    With ``doc_id`` (needed when search spans several documents, scope "corpus"),
+    pages of OTHER documents keep their rank position but get a placeholder that
+    can never match a gold page: page 5 of another PDF is not page 5 of this one.
+    """
+    seen: dict[tuple[str, int], None] = {}
     for hit in hits:
         for page in hit.chunk.pages:
             # LEARN: a dict keeps insertion order (guaranteed since 3.7), so
             # dict.fromkeys / setdefault is the idiomatic "ordered set".
-            seen.setdefault(page, None)
-    return list(seen)
+            seen.setdefault((hit.chunk.doc_id, page), None)
+    pages: list[int] = []
+    for i, (doc, page) in enumerate(seen):
+        pages.append(page if doc_id is None or doc == doc_id else -(i + 1))
+    return pages
 
 
 def recall_at_k(pages: list[int], gold: set[int], k: int) -> float:
@@ -64,8 +72,18 @@ def ndcg_at_k(pages: list[int], gold: set[int], k: int = 10) -> float:
     return dcg / idcg
 
 
-def citation_precision(citations: list[Citation], gold: set[int]) -> float:
-    """Share of citations that point at a gold evidence page (NaN if none)."""
+def citation_precision(
+    citations: list[Citation], gold: set[int], doc_id: str | None = None
+) -> float:
+    """Share of citations that point at a gold evidence page (NaN if none).
+
+    With ``doc_id``, a citation must also be in that document (scope "corpus").
+    """
     if not citations:
         return float("nan")
-    return sum(1 for c in citations if c.page in gold) / len(citations)
+    hits = sum(
+        1
+        for c in citations
+        if c.page in gold and (doc_id is None or c.doc_id == doc_id)
+    )
+    return hits / len(citations)

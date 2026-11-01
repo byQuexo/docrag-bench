@@ -10,6 +10,7 @@ from dataclasses import dataclass
 from docrag.answer.context import load_prompt, render_context
 from docrag.answer.schema import NOT_ANSWERABLE, Answer, AnswerResult
 from docrag.answer.verify import verify
+from docrag.llm.pricing import cost_eur
 from docrag.llm.proxy import LLMProxy
 from docrag.llm.types import Message
 from docrag.shared import tracing
@@ -88,13 +89,20 @@ class AnswerService:
             *(history or []),
             Message(role="user", content=question),
         ]
-        parsed, _ = await self.proxy.structured(
+        parsed, completion = await self.proxy.structured(
             self.llm_route,
             messages,
             Answer,
             temperature=self.retriever.config.llm_temperature,
         )
-        result = verify(question, parsed, [h.chunk for h in context_hits])
+        usage = completion.usage
+        result = verify(question, parsed, [h.chunk for h in context_hits]).model_copy(
+            update={
+                "input_tokens": usage.input_tokens,
+                "output_tokens": usage.output_tokens,
+                "cost_eur": cost_eur(self.llm_route, usage),
+            }
+        )
         tracing.annotate(
             {"output.value": result.answer, "docrag.status": result.status}
         )

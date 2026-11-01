@@ -12,6 +12,9 @@ qdrant_storage
 results
 runs
 notebooks
+demo
+ui/node_modules
+ui/dist
 **/__pycache__
 .mypy_cache
 .ruff_cache

@@ -1,0 +1,42 @@
+{
+  "wall_seconds": 269.7,
+  "code": {
+    "commit": "ef2a510487a8490fa63c7d4bddd58b432c20ffa4",
+    "dirty": true
+  },
+  "index": {
+    "collection": "chunks__onnx-gte-small__384__pfx__ocr-vlm-openrouter-anthropic-claude-haiku-5.5__vc98b4614",
+    "parser": "pymupdf:1",
+    "chunker": "1",
+    "prefix_headings": "True",
+    "embedder": "gte-small:1:17e1f347:onnx/model.onnx",
+    "ocr": "vlm:1:openrouter:anthropic/claude-haiku-5.5:ocr_vlm_v1"
+  },
+  "latency": {
+    "embed_cached": {
+      "n": 735.0,
+      "p50_ms": 0.09059999138116837,
+      "p95_ms": 0.11951006017625329
+    },
+    "parse_cached": {
+      "n": 93.0,
+      "p50_ms": 3.6715001333504915,
+      "p95_ms": 20.859859976917498
+    },
+    "rerank": {
+      "n": 735.0,
+      "p50_ms": 354.0107998996973,
+      "p95_ms": 449.97293995693326
+    },
+    "retrieve": {
+      "n": 735.0,
+      "p50_ms": 361.37080006301403,
+      "p95_ms": 457.63165005482733
+    },
+    "search": {
+      "n": 735.0,
+      "p50_ms": 6.7680999636650085,
+      "p95_ms": 7.666519982740282
+    }
+  }
+}

@@ -45,6 +45,11 @@ class AnswerResult(BaseModel):
     citations: list[Citation]  # ALL citations, each marked verified or not
     context_ids: list[str]  # chunks that were shown to the LLM
     abstained_before_llm: bool = False  # nothing passed the rerank threshold
+    # Usage of the answer call (0 when abstained before the LLM). Cost is what
+    # the call costs uncached, priced from its usage (shown per answer in the UI).
+    input_tokens: int = 0
+    output_tokens: int = 0
+    cost_eur: float = 0.0
 
     @property
     def verified_citations(self) -> list[Citation]:

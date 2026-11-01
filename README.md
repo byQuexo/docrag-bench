@@ -9,7 +9,7 @@
 
 ![Benchmark dashboard](docs/assets/dashboard.png)
 
-*Dashboard design. Its numbers are from before the `answer_v3` run; the web UI that renders this view live from `results/` is in progress.*
+*Dashboard design (numbers from before the `answer_v3` run). The web UI in [`ui/`](ui/README.md) renders this view live from `results/`.*
 
 ## TL;DR
 
@@ -48,7 +48,7 @@ docker compose up -d qdrant && uv run docrag eval configs/baseline.yaml
 - **Ask one question:** `uv run docrag ask --config configs/answer_haiku_vlm_v3.yaml --doc <doc_id> "question"`
 - **API:** `uv run docrag serve --config configs/answer_haiku_vlm_v3.yaml` → http://127.0.0.1:8000/docs
 - **Run the Gradio demo locally:** `uv sync --extra cpu --extra demo`, then `uv run python demo/app.py` → http://127.0.0.1:7860
-- **Start the web UI:** coming soon
+- **Start the web UI:** `cd ui && npm install && npm run build`, then `uv run docrag serve --config configs/answer_haiku_vlm_v3.yaml` → http://127.0.0.1:8000 (chat) and http://127.0.0.1:8000/#dashboard. Or `docker compose up -d`, same URL. For UI development: `npm run dev` in `ui/` (port 5173, proxies the API).
 
 <details>
 <summary>More setup: LLM providers, Qdrant without Docker, tracing</summary>
@@ -64,7 +64,7 @@ Keys can go in a git-ignored `.env` or the OS keyring (`uv run keyring set docra
 
 **Qdrant without Docker:** `DOCRAG_QDRANT_LOCATION=./qdrant_storage` uses the embedded mode. It's brute-force search, fine for a few documents.
 
-**Everything in Docker:** `docker compose up -d` starts Qdrant, the API on port 8000 and Phoenix on port 6006.
+**Everything in Docker:** `docker compose up -d` starts Qdrant, the API with the web UI on port 8000 and Phoenix on port 6006. Answers need `OPENROUTER_API_KEY` in `.env` (no OS keyring in the container).
 
 **Tracing:** with `DOCRAG_OTEL_ENDPOINT=http://127.0.0.1:6006/v1/traces`, every `serve` request, `ask` call and `eval` question becomes an OpenTelemetry trace in Phoenix (embed, search, rerank, the LLM call with tokens and cost, Verify). Ingest is deliberately not traced.
 </details>
@@ -157,6 +157,7 @@ Test split: 735 questions over 93 documents (split by document; everything tuned
 
 - **OCR.** 28 of 134 PDFs are image-only (mostly slide decks); without OCR the system can't see them. OCR takes recall@10 over all questions from 0.550 to 0.776, the biggest single gain in the project. The vision LLM beats RapidOCR mainly on charts (correct 0.220 → 0.309), because it binds numbers to their labels. It cost 0.42 EUR for 1,390 pages.
 - **Abstention.** The first answer runs abstained on ~43% of answerable questions, although the gold page was often in the top 5. A new column (`abstained_before_llm`) showed the rerank gate stops only 2.8%; the LLM itself was saying "Not answerable". Variants were compared on dev, only the winners ran on test. `answer_v2` (combine passages, read tables, do arithmetic) + 10 chunks answers more (answerable +48/−7, p < 0.0001) but also answers questions whose premise is false (unanswerable 1 gained, 18 lost). `answer_v3` adds "answer exactly what was asked; false premise → *Not answerable*": unanswerable back to 0.929 (+25/−0 vs v2), answerable 0.430 (3 gained, 25 lost vs v2). v2 and v3 tie overall (p = 0.78); v3 is the headline because it abstains honestly and has the best citation precision (its faithfulness is also highest, but see the judge caveat above).
+- **Chatbot mode (search all documents).** All numbers above search only the question's own PDF. Asking across all 134 indexed PDFs, like a company chatbot (`scope: corpus`, `configs/corpus_vlm.yaml`), recall@10 drops from 0.776 to **0.599** [0.546, 0.655]: −0.177, CI [−0.211, −0.143] (text-layer 0.755 → 0.567, scanned 0.834 → 0.687). Answer quality in this mode is not benchmarked yet. The web UI and the API support it ("All documents").
 - **Answer-model comparison:** planned (same retrieval and judge, only the answer model changes).
 
 ## Learnings
@@ -166,6 +167,7 @@ Test split: 735 questions over 93 documents (split by document; everything tuned
 - **Hybrid search beats BM25 (recall@10 +0.040, significant) and dense at the top of the ranking** (MRR +0.044, significant); against dense on recall@10 the gain is not significant.
 - **The LLM abstains, not the threshold.** Only 2.8% of answerable questions were stopped by the rerank gate. The fix was the prompt.
 - **Check the judge before you trust the score.** A quote-only judge (`judge_v1`) put faithfulness at 0.46–0.50; with the full cited passages (`judge_v2`) it is 0.83–0.89. Against human labels, though, `judge_v2` agrees on correctness (κ 0.77) but its faithfulness verdicts are at chance level (κ 0.06). Earlier, averaging abstentions as "faithful" had made a metric artifact look like an OCR effect.
+- **Knowing the document is worth 18 points of recall.** Searching all 134 PDFs instead of the right one drops recall@10 from 0.776 to 0.599. A chatbot over many documents needs better retrieval (or document routing) before it matches the per-document numbers.
 - **One number hides trade-offs.** v2 and v3 have the same overall correctness, but v2 gets 3.9 points more answerable questions right and v3 14.9 points more unanswerable ones.
 
 <details>
@@ -251,14 +253,14 @@ Solutions are in `notebooks/lessons/solutions/`; CI executes them so they stay i
 - Heading detection is a font-size heuristic; decorative text produces noisy heading chains.
 - PyMuPDF is **AGPL-3.0**, which matters for closed-source redistribution.
 - BM25 tokenization is English-only, without stemming; term IDs are `crc32` hashes (rare collisions possible).
-- Threads are in-memory and lost on restart. Follow-up questions are not rewritten before retrieval.
+- Threads are in-memory and lost on restart. Follow-up questions are not rewritten before retrieval. Searching all documents at once retrieves clearly worse than searching the right one (recall@10 0.599 vs 0.776).
 - Qdrant's embedded mode is brute force and slow beyond roughly 20k chunks; use the Docker server for full runs.
 </details>
 
 <details>
 <summary>Future work</summary>
 
-- **Next:** answer-model comparison; a more reliable faithfulness check (a second judge model, or more human labels); a model-based support check (LettuceDetect) as a second Verify stage; the web UI; deploying the demo as a Space.
+- **Next:** answer-model comparison; a more reliable faithfulness check (a second judge model, or more human labels); a model-based support check (LettuceDetect) as a second Verify stage; deploying the demo as a Space.
 - **Later:** a judge panel across providers; Promptfoo as an eval gate in CI; Redis for threads and cache; a ColPali-style visual retriever; German as an evaluation axis.
 </details>
 
@@ -282,6 +284,7 @@ docrag-bench/
 │   ├── wiring.py   # builds the object graph from settings + config
 │   └── cli.py      # `docrag` command
 ├── demo/          # Gradio demo (local or Hugging Face Space)
+├── ui/            # web UI: chat with sources + benchmark dashboard (Vite, React)
 ├── notebooks/lessons/  # interactive lessons (+ solutions/)
 ├── docs/lessons/       # lesson texts
 ├── tests/          # unit/ against fakes, e2e/ against a real Qdrant

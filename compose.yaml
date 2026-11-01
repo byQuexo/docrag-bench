@@ -64,7 +64,10 @@ services:
       - ./models:/app/models # ONNX models (downloaded once, reused)
       - ./.cache:/app/.cache # parse/embedding/LLM cache
       - ./configs:/app/configs:ro
-    command: ["docrag", "serve", "--config", "configs/baseline.yaml", "--host", "0.0.0.0"]
+      - ./results:/app/results:ro # the dashboard reads the runs from here
+    # Web UI + API on http://localhost:8000. Answers need OPENROUTER_API_KEY in .env
+    # (there is no OS keyring inside the container).
+    command: ["docrag", "serve", "--config", "configs/answer_haiku_vlm_v3.yaml", "--host", "0.0.0.0"]
 
 volumes:
   qdrant_storage:

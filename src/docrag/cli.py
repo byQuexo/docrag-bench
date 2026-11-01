@@ -158,7 +158,14 @@ def _cmd_serve(args: argparse.Namespace) -> None:
         settings, ExperimentConfig.from_yaml(args.config), Cache(settings.cache_path)
     )
     uvicorn.run(
-        create_app(service, pdf_dir=settings.pdf_dir), host=args.host, port=args.port
+        create_app(
+            service,
+            pdf_dir=settings.pdf_dir,
+            results_dir=settings.results_dir,
+            ui_dir=settings.ui_dir,
+        ),
+        host=args.host,
+        port=args.port,
     )
 
 

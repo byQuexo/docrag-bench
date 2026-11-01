@@ -23,6 +23,7 @@ from opentelemetry.trace import SpanContext
 
 from docrag.answer.schema import AnswerResult
 from docrag.answer.service import AnswerService
+from docrag.eval import overview
 from docrag.eval.dataset import EvalQuestion, load_questions, select
 from docrag.eval.judge import JudgeVerdict, judge, judged_by_llm
 from docrag.eval.metrics import (
@@ -32,7 +33,6 @@ from docrag.eval.metrics import (
     ranked_pages,
     recall_at_k,
 )
-from docrag.eval.stats import doc_bootstrap_ci
 from docrag.ingest.indexer import index_documents
 from docrag.ingest.parser import get_parser
 from docrag.ingest.pipeline import parse_pdf
@@ -62,7 +62,7 @@ def question_row(
 ) -> dict[str, Any]:
     """All per-question numbers. NaN = "not applicable" (excluded from means)."""
     gold = set(q.evidence_pages)
-    pages = ranked_pages(hits)
+    pages = ranked_pages(hits, q.doc_id)
     nan = float("nan")
     row: dict[str, Any] = {
         "qid": q.qid,
@@ -91,12 +91,14 @@ def question_row(
             "n_citations": len(all_cits),
             "n_verified": len(result.verified_citations),
             # Verify OFF: every citation the LLM produced counts.
-            "cit_precision_verify_off": citation_precision(all_cits, gold)
+            "cit_precision_verify_off": citation_precision(all_cits, gold, q.doc_id)
             if gold
             else nan,
             # Verify ON: only citations that survived Verify count.
             "cit_precision_verify_on": (
-                citation_precision(result.verified_citations, gold) if gold else nan
+                citation_precision(result.verified_citations, gold, q.doc_id)
+                if gold
+                else nan
             ),
             "answer": result.answer,
         }
@@ -373,11 +375,8 @@ def _ci(run_dir: Path, col: str) -> str | None:
     df = pl.read_csv(path, infer_schema_length=0)
     if col not in df.columns:
         return None
-    # Booleans come back as "true"/"false", NaN as "NaN"; empty = not applicable.
-    raw = df[col].str.to_lowercase().replace({"true": "1", "false": "0", "": "nan"})
-    values = raw.fill_null("nan").cast(pl.Float64).to_list()
-    _, lo, hi = doc_bootstrap_ci(values, df["doc_id"].to_list())
-    return None if math.isnan(lo) else f"[{lo:.3f}, {hi:.3f}]"
+    interval = overview.ci(df, col)
+    return None if interval is None else f"[{interval['lo']:.3f}, {interval['hi']:.3f}]"
 
 
 def summarize(results_dir: Path) -> str:
