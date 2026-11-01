@@ -17,9 +17,9 @@ jobs:
   lint-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: astral-sh/setup-uv@v6
+      - uses: astral-sh/setup-uv@v10
         with:
           enable-cache: true # caches downloaded wheels between runs
 
@@ -51,8 +51,8 @@ jobs:
     env:
       DOCRAG_E2E_QDRANT_URL: http://localhost:6333
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10
         with:
           enable-cache: true
       - run: uv sync --locked --extra cpu # CPU onnxruntime: no CUDA wheels in CI
@@ -70,7 +70,7 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       # Build only (no push): catches a broken Dockerfile in the PR.
       - name: Build image
         run: docker build -t docrag-bench:ci .
