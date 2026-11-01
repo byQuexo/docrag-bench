@@ -179,6 +179,35 @@ Axes covered by the configs:
 
 For the final numbers set `dataset.split: test` and a larger `max_docs`.
 
+### 8. Case study: the abstention experiment
+
+The first answer runs abstained on ~43% of answerable questions. How it was
+investigated is a template for any "why is metric X bad?" question:
+
+1. **Measure the cause instead of guessing.** Two causes were possible: the rerank
+   gate (abstain before the LLM) or the LLM itself. `per_question.csv` didn't say
+   which, so the runner now writes `abstained_before_llm` and `top_score`. Result:
+   the gate stops only ~2–3% of answerable questions. The LLM was the cause.
+2. **Choose on dev, report on test.** Four variants (prompt `answer_v1`/`answer_v2`
+   × `context_k` 5/10) ran on the dev split (`configs/dev_vlm_answer_*.yaml`). Only
+   the winner ran on test. Comparing four variants on test and reporting the best
+   would be tuning on the test set, the same mistake the threshold calibration avoids.
+3. **Test the difference, paired.** Both variants answer the *same* questions, so
+   the right test is McNemar's: only the questions where they disagree count.
+   `answer_v2` + 10 chunks vs. the baseline on dev: 19 gained, 6 lost, p = 0.015.
+   On test: 49 gained, 25 lost, p = 0.007.
+4. **Split the result by slice.** The overall +3.2 points hides a trade-off:
+   answerable questions +7.2 (48 gained, 7 lost), unanswerable −10.1 (1 gained,
+   18 lost). Reading the 18 lost answers showed two patterns: the model says the
+   premise is false *in prose* and adds a related fact (the exact-string abstention
+   check doesn't see it), or it answers a near-miss (2013 data for a 2020 question).
+   That diagnosis became the next experiment (`answer_v3`), again on dev first.
+
+Along the way the judge got fixed too: `judge_v1` saw only the short quotes, so
+answers that went beyond a 5-word quote looked unfaithful (0.46–0.50). `judge_v2`
+sees the full cited passages (0.83–0.89). Changing the judge changes the measuring
+instrument, so every row in the results table was re-judged with it.
+
 ## Why this design
 
 > - **Page level, not chunk level:** the ground truth is pages, and it keeps different
@@ -265,5 +294,16 @@ text-only retriever can't see, and the image slice makes that explicit and motiv
 visual retriever as future work. (fill in from results/)
 
 **Q: What was the most surprising result?**
-A: (fill in from results/: e.g. BM25 vs dense on tables, effect of the heading prefix,
-abstention rate on unanswerable questions.)
+A: That two plausible-looking numbers were measurement artifacts. Faithfulness first
+"dropped with OCR" (0.84 → 0.78), but only because abstentions counted as faithful
+and OCR produced fewer of them. Then the corrected number (0.46) was low because the
+judge saw only 5-word quotes; with the full passages it's 0.83–0.89. And the high
+abstention rate wasn't the rerank threshold (as I assumed) but the prompt: "Do not
+guess" made the model give up on table questions it could answer. Lesson: check the
+instrument before you tune the system.
+
+**Q: How did you decide that a prompt change really helped?**
+A: Variants compared on dev only, winner run once on test, paired McNemar test on
+the questions where the two variants disagree (test: 49 vs 25, p = 0.007), and the
+result split by slice, which showed the cost: unanswerable questions got worse
+(18 vs 1). A single "correct" number would have hidden that.

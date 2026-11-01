@@ -146,6 +146,9 @@ async def run_experiment(
 ) -> Path:
     timing.reset()
     started = time.perf_counter()
+    # Captured at the START: a run takes minutes, and files edited meanwhile
+    # (e.g. the next prompt) must not mark this run as made from dirty code.
+    code = code_version(ROOT)
     questions = select(
         load_questions(settings.qa_glob), config.dataset, settings.pdf_dir
     )
@@ -187,7 +190,9 @@ async def run_experiment(
         "collection": retriever.store.collection,
         **index_components(config, retriever.embeddings.embedder),
     }
-    run_dir = _write_results(config, settings.results_dir, rows, proxy, started, index)
+    run_dir = _write_results(
+        config, settings.results_dir, rows, proxy, started, index, code
+    )
     log.info("results written to %s", run_dir)
     return run_dir
 
@@ -317,6 +322,7 @@ def _write_results(
     proxy: LLMProxy | None,
     started: float,
     index: dict[str, str],
+    code: dict[str, str | bool | None],
 ) -> Path:
     stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%S")
     run_dir = results_dir / f"{stamp}_{config.name}_{config.config_hash()}"
@@ -339,7 +345,7 @@ def _write_results(
         "wall_seconds": round(time.perf_counter() - started, 1),
         # Which code produced these numbers. Without it, runs made with older
         # code are indistinguishable from current ones (same config hash).
-        "code": code_version(ROOT),
+        "code": code,
         "index": index,
         "latency": timing.snapshot(),
     }

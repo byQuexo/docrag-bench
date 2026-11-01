@@ -222,7 +222,8 @@ How to read it:
   Bigger than hybrid search, reranking or a 2x larger embedding model combined.
 * `no_text_layer` correct without OCR is 0.282, not 0: those are the unanswerable
   questions on image-only documents, where abstaining is correct.
-* **Faithfulness does NOT drop** (0.458 → 0.461 over judged answers). The first
+* **Faithfulness does NOT drop** (0.458 → 0.461 over judged answers with
+  `judge_v1`; 0.829 → 0.843 with `judge_v2`, which sees the full passages). The first
   version of this lesson said "0.842 → 0.782, because OCR text is noisier". That
   was a metric bug: every abstention counted as faithful, and OCR simply produced
   fewer abstentions (0.693 → 0.574), so the average fell. A plausible story
@@ -383,6 +384,9 @@ transcriptions against the images.
 
 Same pipeline, same test questions, only the OCR engine differs. Each variant has
 its own collection and its own threshold calibrated on dev (0.577 vs 0.632).
+(These numbers come from the first judge, `judge_v1`. Re-judged with `judge_v2`,
+"correct" moves by less than one point and faithfulness is 0.83–0.89; see the
+README results table and lesson 08, section 8.)
 
 | | recall@10 all | recall@10 `no_text_layer` | correct all | correct chart/figure | correct `no_text_layer` | faithful | cost |
 |---|---|---|---|---|---|---|---|
@@ -397,7 +401,8 @@ How to read it:
 * **The answer quality gap is bigger than the retrieval gap**: on charts, correct
   goes 0.213 → 0.306 (+44% relative). Retrieval finds the right slide with both
   engines; only the VLM text says which number belongs to which bar.
-* **Faithfulness doesn't drop** with the VLM (0.461 vs 0.495, judged answers only). There is no
+* **Faithfulness doesn't drop** with the VLM (0.461 vs 0.495 with `judge_v1`;
+  0.843 vs 0.885 with `judge_v2`). There is no
   sign of widespread hallucination at this level. But the judge only checks the
   answer against the *chunk text*, not against the image, so a hallucinated
   transcription would be invisible to it. The honest statement: "no measured

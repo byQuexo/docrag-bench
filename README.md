@@ -223,38 +223,59 @@ OCR is by far the biggest single improvement in this project: +21 points recall@
 overall, from 0 to 0.78 on image-only documents. It also lifts the chart/figure
 slice, since many of those questions are about slides.
 
-**Answers** (Claude Haiku 5.5 via OpenRouter, judge DeepSeek V4.1 Flash, every
-answer judged; "correct" counts abstaining on an unanswerable question as correct;
-"faithful" is the share of answers the judge model actually read, i.e. answerable
-and not abstained):
+**Answers** (test split, Claude Haiku 5.5 via OpenRouter, judge DeepSeek V4.1 Flash
+with `judge_v2`, every answer judged; "correct" counts abstaining on an unanswerable
+question as correct; "faithful" is the share of answers the judge model actually
+read, i.e. answerable and not abstained):
 
 | variant | correct | correct (text) | correct (table) | correct (chart/figure) | correct (`no_text_layer`) | correct (unanswerable) | abstained | faithful | citation precision, Verify off / on |
 |---|---|---|---|---|---|---|---|---|---|
-| hybrid + rerank + LLM | 0.392 | 0.297 | 0.261 | 0.102 | 0.282 | 0.929 | 0.693 | 0.458 | 0.670 / 0.679 |
-| + OCR (RapidOCR) | 0.464 | 0.378 | 0.377 | 0.213 | 0.526 | 0.905 | 0.574 | 0.461 | 0.733 / 0.742 |
-| **+ OCR (vision LLM)** | **0.501** | **0.399** | 0.377 | **0.306** | **0.653** | 0.881 | 0.531 | 0.495 | 0.751 / 0.763 |
+| hybrid + rerank + LLM | 0.398 | 0.301 | 0.272 | 0.105 | 0.282 | 0.929 | 0.694 | 0.829 | 0.668 / 0.677 |
+| + OCR (RapidOCR) | 0.471 | 0.387 | 0.390 | 0.220 | 0.531 | 0.905 | 0.577 | 0.843 | 0.731 / 0.740 |
+| + OCR (vision LLM) | 0.508 | 0.408 | 0.390 | 0.309 | 0.653 | **0.881** | 0.529 | **0.885** | 0.755 / 0.762 |
+| **+ prompt `answer_v2`, 10 chunks** | **0.540** | **0.498** | **0.566** | **0.357** | **0.667** | 0.780 | 0.426 | 0.851 | 0.764 / 0.764 |
 
 The vision LLM beats local OCR mainly where **charts** are involved (chart/figure
-slice correct 0.213 → 0.306, image-only documents 0.526 → 0.653): it binds numbers
+slice correct 0.220 → 0.309, image-only documents 0.531 → 0.653): it binds numbers
 to their labels ("XL: Subscribers 58.3") instead of returning a loose list of
 values. It cost **0.42 EUR for 1,390 pages** (~0.0003 EUR/page); RapidOCR is free
-and local. Faithfulness doesn't drop (0.461 vs 0.495), but VLM text is model
-output, so every chunk carries `origin="vlm"` (see lesson 12 on the trust problem).
+and local. VLM text is model output, so every chunk carries `origin="vlm"` (see
+lesson 12 on the trust problem).
 
-- **Faithfulness correction (2026-11-01).** The first version averaged a rule
-  placeholder (`faithful=True`) for every abstention and every answer to an
-  unanswerable question. With 50–70% abstentions that reported 0.78–0.84. Over the
-  answers the judge actually read, it is **0.46–0.50**. That low value is now the
-  main open question. One suspect is the judge prompt: the judge sees only the
-  short verified quotes, not the full chunks, so a correct answer that goes beyond
-  a 5-word quote can look unfaithful.
+**The abstention experiment.** Haiku abstained on ~43% of answerable questions,
+and for ~63% of those the gold page was in the top 5. A new column
+(`abstained_before_llm`) showed the rerank gate stops only ~2–3% of answerable
+questions; the rest are the LLM saying "Not answerable". Four variants were compared
+on the **dev** split (prompt `answer_v1`/`answer_v2` × 5/10 context chunks), and only
+the winner ran on test:
 
+- `answer_v2` ("answer when the passages contain the information, even if you have
+  to combine passages, read a table or do simple arithmetic") + 10 chunks won on dev
+  (correct 0.473 → 0.512, paired McNemar p = 0.015).
+- On test: correct 0.508 → **0.540** (p = 0.007). Answerable questions gain a lot
+  (48 newly correct, 7 lost, p < 0.0001), tables most of all (0.390 → 0.566).
+- **The trade-off:** unanswerable questions drop 0.881 → 0.780 (1 gained, 18 lost,
+  p = 0.0001). 11 of the 18 lost answers *do* say the premise is false ("the cartoon
+  has no elephant") but then add a related fact instead of answering exactly
+  "Not answerable"; the rest answer a near-miss (a 2013 survey for a 2020 question).
+  A follow-up prompt that targets exactly this (`answer_v3`) is being tested on dev.
+
+- **Faithfulness correction (2026-11-01), in two steps.** (1) The first version
+  averaged a rule placeholder (`faithful=True`) for every abstention, which reported
+  0.78–0.84 mostly from abstentions. (2) Over judged answers only, the quote-only
+  judge (`judge_v1`) gave 0.46–0.50, but it saw only the 5-word quotes, so any answer
+  that went beyond a quote looked unfaithful. `judge_v2` sees the full cited
+  passages: **0.83–0.89**. The `judge_v2` judge also shifts "correct" slightly
+  (e.g. 0.501 → 0.508), so all rows above were re-judged with it.
 - The **abstain gate** (rerank threshold calibrated per question on dev: 0.633,
-  and 0.577 with OCR) is conservative: it gets unanswerable questions right ~90% of
-  the time, but still abstains on many answerable ones. The biggest remaining lever.
+  and 0.577 with OCR) is not the bottleneck: on the VLM collection it stops ~3% of
+  answerable questions before the LLM.
 - **Verify** raises citation precision slightly (+1 pt) at zero cost; its main job is
   removing invented IDs and paraphrased quotes, not finding better pages.
-- Cost of all LLM calls in this project (answers, judges, VLM OCR): **~1.00 EUR** (OpenRouter-reported).
+- Judge failures (invalid JSON from the judge after one retry) are counted now:
+  2–3 of 735 per run, excluded from "correct" and visible as `judge_failed`.
+- Cost of all LLM calls in this project (answers, judges, VLM OCR, the abstention
+  experiment): **~2.95 EUR** (OpenRouter-reported).
 
 Per-query latency on GPU: search ~1 ms (Qdrant), query embedding ~5 ms,
 reranking 50 candidates ~0.6 s including tokenization (8.1 s on CPU before).
