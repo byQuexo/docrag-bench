@@ -33,7 +33,7 @@ names ending in `_95`). PyMuPDF reads the PDF's *text layer*, and these have non
 |---|---|
 | PDFs without a text layer | 28 of 134 |
 | pages | 1,521 of 6,492 |
-| questions affected | 255 of 1,091 (213 of 744 in the test split) |
+| questions affected | 255 of 1,091 (213 of 735 in the test split) |
 
 For those questions the system could only abstain. That's a hard ceiling on every
 number, and it's invisible unless you look at the logs, which is why the eval

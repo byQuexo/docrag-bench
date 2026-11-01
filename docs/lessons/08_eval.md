@@ -20,7 +20,7 @@ configs/x.yaml ─▶ ExperimentConfig ─▶ select questions (split, limits)
 
 ### 1. Dataset quirks (`eval/dataset.py`)
 
-MMLongBench-Doc (Hugging Face `yubo2333/MMLongBench-Doc`): 1091 questions, 135 PDFs
+MMLongBench-Doc (Hugging Face `yubo2333/MMLongBench-Doc`): 1091 questions over 135 documents (134 PDFs downloadable)
 (134 on disk), each question is about **one** document.
 
 - `evidence_pages` and `evidence_sources` are **strings** like `"[19, 20]"` and

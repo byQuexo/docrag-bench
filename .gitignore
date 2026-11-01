@@ -35,3 +35,6 @@ runs/
 # IDE
 .idea/
 .vscode/
+
+# Local working plans (not part of the repo)
+docs/plans/

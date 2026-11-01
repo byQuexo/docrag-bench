@@ -294,7 +294,7 @@ that makes your machine unusable is a bad benchmark.
 
 All 134 PDFs: **13,653 chunks**. But **28 PDFs produced no chunks at all.** They
 are image-only: slide decks exported as pictures, with no text layer. That's
-**255 of 1091 questions** (213 of 744 in the test split) that a text-only parser
+**255 of 1091 questions** (213 of 735 in the test split) that a text-only parser
 cannot answer. The pipeline handles it gracefully: no chunks → no hits → abstain
 before the LLM call (0 cost). But it's a hard ceiling on the score, and the
 motivation for OCR (lesson 12).

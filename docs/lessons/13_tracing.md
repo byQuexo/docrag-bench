@@ -205,7 +205,7 @@ The health check is excluded: a container probe every 10 seconds would produce
 
 ### Eval: one trace per question, not per run
 
-A run with 744 questions as one trace would be one giant unreadable tree. Instead,
+A run with 735 questions as one trace would be one giant unreadable tree. Instead,
 each question is its own trace with filterable attributes (`docrag.run`,
 `docrag.config_hash`, `docrag.qid`, `docrag.slices`, `docrag.answerable`). In
 Phoenix you can then filter, for example, "run `answer_haiku`, slice `table`,

@@ -32,6 +32,7 @@ from docrag.eval.metrics import (
     ranked_pages,
     recall_at_k,
 )
+from docrag.eval.stats import doc_bootstrap_ci
 from docrag.ingest.indexer import index_documents
 from docrag.ingest.parser import get_parser
 from docrag.ingest.pipeline import parse_pdf
@@ -364,6 +365,21 @@ def _write_results(
     return run_dir
 
 
+def _ci(run_dir: Path, col: str) -> str | None:
+    """95% CI of a per-question metric, bootstrapped over documents (seed 0)."""
+    path = run_dir / "per_question.csv"
+    if not path.exists():
+        return None
+    df = pl.read_csv(path, infer_schema_length=0)
+    if col not in df.columns:
+        return None
+    # Booleans come back as "true"/"false", NaN as "NaN"; empty = not applicable.
+    raw = df[col].str.to_lowercase().replace({"true": "1", "false": "0", "": "nan"})
+    values = raw.fill_null("nan").cast(pl.Float64).to_list()
+    _, lo, hi = doc_bootstrap_ci(values, df["doc_id"].to_list())
+    return None if math.isnan(lo) else f"[{lo:.3f}, {hi:.3f}]"
+
+
 def summarize(results_dir: Path) -> str:
     """Combine the newest run per config into one Markdown table (slice = all)."""
     latest: dict[str, Path] = {}
@@ -372,19 +388,30 @@ def summarize(results_dir: Path) -> str:
         latest[name] = metrics_file  # sorted by timestamp -> newest wins
     if not latest:
         return "(no results yet)"
-    frames = [pl.read_csv(p).filter(pl.col("slice") == "all") for p in latest.values()]
+    frames = [
+        pl.read_csv(p)
+        .filter(pl.col("slice") == "all")
+        .with_columns(
+            pl.lit(_ci(p.parent, "recall@10")).alias("recall@10 95% CI"),
+            pl.lit(_ci(p.parent, "correct")).alias("correct 95% CI"),
+        )
+        for p in latest.values()
+    ]
     df = pl.concat(frames, how="diagonal_relaxed")
     cols = [
         c
         for c in [
             "run",
+            "config_hash",  # tells apart runs with the same name (e.g. another judge)
             "n",
             "recall@1",
             "recall@5",
             "recall@10",
+            "recall@10 95% CI",
             "mrr@10",
             "ndcg@10",
             "correct",
+            "correct 95% CI",
             "faithful",
             "cit_precision_verify_off",
             "cit_precision_verify_on",
