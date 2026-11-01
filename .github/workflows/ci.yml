@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: astral-sh/setup-uv@v10
+      - uses: astral-sh/setup-uv@v10.3.0 # exact: setup-uv publishes no moving major tag
         with:
           enable-cache: true # caches downloaded wheels between runs
 
@@ -52,7 +52,7 @@ jobs:
       DOCRAG_E2E_QDRANT_URL: http://localhost:6333
     steps:
       - uses: actions/checkout@v7
-      - uses: astral-sh/setup-uv@v10
+      - uses: astral-sh/setup-uv@v10.3.0 # exact: setup-uv publishes no moving major tag
         with:
           enable-cache: true
       - run: uv sync --locked --extra cpu # CPU onnxruntime: no CUDA wheels in CI
