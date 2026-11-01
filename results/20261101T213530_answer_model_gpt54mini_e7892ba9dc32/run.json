@@ -1,0 +1,72 @@
+{
+  "wall_seconds": 724.8,
+  "code": {
+    "commit": "34468b83a34e4cadaaad8f455d10f7e130512b07",
+    "dirty": false
+  },
+  "index": {
+    "collection": "chunks__onnx-gte-small__384__pfx__ocr-vlm-openrouter-anthropic-claude-haiku-5.5__vc98b4614",
+    "parser": "pymupdf:1",
+    "chunker": "1",
+    "prefix_headings": "True",
+    "embedder": "gte-small:1:17e1f347:onnx/model.onnx",
+    "ocr": "vlm:1:openrouter:anthropic/claude-haiku-5.5:ocr_vlm_v1"
+  },
+  "latency": {
+    "answer": {
+      "n": 735.0,
+      "p50_ms": 2607.094000093639,
+      "p95_ms": 4825.505590066311
+    },
+    "embed_cached": {
+      "n": 735.0,
+      "p50_ms": 0.1012999564409256,
+      "p95_ms": 0.1568099949508905
+    },
+    "llm": {
+      "n": 1127.0,
+      "p50_ms": 1392.005099914968,
+      "p95_ms": 6952.821220061742
+    },
+    "llm_cached": {
+      "n": 23.0,
+      "p50_ms": 0.3546997904777527,
+      "p95_ms": 0.6966700078919529
+    },
+    "parse_cached": {
+      "n": 93.0,
+      "p50_ms": 3.2906001433730125,
+      "p95_ms": 20.07408002391457
+    },
+    "rerank": {
+      "n": 735.0,
+      "p50_ms": 1256.0058000963181,
+      "p95_ms": 3316.9777999864887
+    },
+    "retrieve": {
+      "n": 735.0,
+      "p50_ms": 1261.3858999684453,
+      "p95_ms": 3324.3594899773593
+    },
+    "search": {
+      "n": 735.0,
+      "p50_ms": 6.624999921768904,
+      "p95_ms": 25.421390007250004
+    },
+    "verify": {
+      "n": 714.0,
+      "p50_ms": 0.21520012523978949,
+      "p95_ms": 0.8547099540010097
+    }
+  },
+  "llm": {
+    "calls": 1127,
+    "cache_hits": 23,
+    "input_tokens": 2380366,
+    "output_tokens": 405541,
+    "cost_eur_billed": 1.8944,
+    "cost_eur_full": 1.9012,
+    "validation_retries": 10,
+    "validation_failures": 1
+  }
+}

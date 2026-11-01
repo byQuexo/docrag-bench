@@ -16,7 +16,7 @@ const ci = (x: Interval | null) =>
 function setupLabel(r: Run) {
   const s = r.setup;
   const parts = [s.retrieval ?? "", s.ocr && s.ocr !== "none" ? `OCR: ${s.ocr}` : "no OCR"];
-  if (s.llm) parts.push(`${s.prompt_version} · ${s.context_k} chunks`);
+  if (s.llm) parts.push(`${s.prompt_version} · ${s.context_k} chunks · ${s.llm.split(/[:/]/).pop()}`);
   if (s.embedder && !s.embedder.endsWith("gte-small")) parts.push(s.embedder);
   if (s.prefix_headings === false) parts.push("no heading prefix");
   if (s.scope === "corpus") parts.push("searches ALL documents");
@@ -49,13 +49,18 @@ export function Dashboard() {
   const test = data.runs.filter((r) => r.split === "test");
   const answerRuns = test.filter((r) => r.correct);
   const best = answerRuns.reduce<Run | null>((b, r) => (!b || r.correct!.mean > b.correct!.mean ? r : b), null);
-  const bestRecall = test.reduce<Run | null>(
+  // Retrieval runs only: answer runs on the same index differ just by GPU jitter.
+  const retrievalRuns = test.filter((r) => !r.setup.llm && r.setup.scope !== "corpus");
+  const bestRecall = retrievalRuns.reduce<Run | null>(
     (b, r) => (!b || (r.recall_at_10?.mean ?? 0) > (b.recall_at_10?.mean ?? 0) ? r : b),
     null,
   );
   const agreement = data.judge_agreement[0];
-  const chart = answerRuns.map((r) => ({
-    name: r.name.replace("answer_", ""),
+  // The pipeline progression with the benchmark's answer model (Haiku); the
+  // answer-model comparison is in the table.
+  const haikuRuns = answerRuns.filter((r) => (r.setup.llm ?? "").includes("claude-haiku"));
+  const chart = haikuRuns.map((r) => ({
+    name: r.name.replace("answer_haiku", "haiku").replace("haiku_", ""),
     "recall@10": r.recall_at_10?.mean,
     recallErr: r.recall_at_10 ? [r.recall_at_10.mean - r.recall_at_10.lo, r.recall_at_10.hi - r.recall_at_10.mean] : 0,
     correct: r.correct?.mean,
@@ -71,7 +76,7 @@ export function Dashboard() {
       (r.setup.embedder ?? "").endsWith("gte-small"),
   );
   // Abstention experiment: answer runs on the vision-LLM index.
-  const abstention = answerRuns.filter((r) => r.setup.ocr === "vlm");
+  const abstention = haikuRuns.filter((r) => r.setup.ocr === "vlm");
 
   return (
     <div className="page">
@@ -153,7 +158,7 @@ export function Dashboard() {
 
       <div className="grid3">
         <section className="card">
-          <h2>recall@10 and correct by answer run</h2>
+          <h2>recall@10 and correct (Haiku pipeline)</h2>
           <ResponsiveContainer width="100%" height={260}>
             <BarChart data={chart} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
               <CartesianGrid stroke="#262a36" vertical={false} />

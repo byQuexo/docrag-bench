@@ -162,15 +162,17 @@ Test split: 735 questions over 93 documents (split by document; everything tuned
 
   | answer model | correct | vs Haiku | unanswerable | failed answers* | LLM p50 / p95 | EUR per 100 questions |
   |---|---|---|---|---|---|---|
-  | **Claude Haiku 5.5** | **0.544** [0.501, 0.590] | – | 0.929 | 0.0% | 2.2 s / 7.4 s | 0.09 |
+  | **Claude Haiku 5.5** | **0.544** [0.501, 0.590] | – | 0.929 | 0.0% | 2.2 s / 7.4 s | **0.09** |
+  | Gemini 3.8 Flash | 0.536 [0.493, 0.580] | −0.8 pts (p = 0.47, n.s.) | 0.935 | 0.1% | 4.6 s / 16 s | 0.51 |
   | Qwen3.8-27B | 0.521 [0.479, 0.566] | −2.3 pts (p = 0.036) | 0.839 | 6.8% | 5.0 s / 49 s | 0.37 |
-  | Qwen3.8 Flash | 0.518 [0.473, 0.566] | −2.6 pts (p = 0.010) | 0.815 | 6.1% | 10.1 s / 68 s | 0.14 |
+  | Qwen3.8 Flash | 0.520 [0.475, 0.568] | −2.4 pts (p = 0.020) | 0.827 | 5.6% | 10.1 s / 68 s | 0.14 |
+  | GPT-5.4 mini | 0.473 [0.432, 0.516] | −7.1 pts (p < 0.001) | 0.667 | 0.0% | 1.4 s / 7.0 s | 0.26 |
   | Qwen3.5-9B | 0.434 [0.392, 0.478] | −11.0 pts (p < 0.001) | 0.875 | 0.0% | 0.9 s / 5.9 s | 0.01 |
   | Mistral Small 2603 | 0.423 [0.385, 0.462] | −12.1 pts (p < 0.001) | 0.780 | 0.0% | 1.0 s / 6.4 s | 0.07 |
 
-  \* empty or invalid JSON after one retry, counted as wrong. The Qwen3.8 models are reasoning models: with the same 4,096-token limit as every other model, they sometimes spend it all on hidden reasoning and return nothing; Qwen3.8 Flash's count also includes a few provider rate-limit errors. Gemini 3.8 Flash and GPT-5.4 mini are not in the table yet: the runs stopped at the OpenRouter key's monthly limit.
+  \* empty or invalid JSON after one retry, counted as wrong. The Qwen3.8 models are reasoning models: with the same 4,096-token limit as every other model, they sometimes spend it all on hidden reasoning and return nothing. (Provider rate-limit errors were re-run from the cache, so they don't count.)
 
-  Two caveats: `answer_v3` was developed with Haiku, so other models may do better with their own prompt; and there is one judge model. Haiku is the best *and* one of the cheapest options here. The closest open models trail by 2–3 points, are slower and fail on ~6–7% of questions. Qwen3.5-9B often gets the answer right but rarely quotes verbatim: Verify rejected the citations of 93% of its answers, so they come back as `unsupported`. That is exactly what Verify is for.
+  Two caveats: `answer_v3` was developed with Haiku, so other models may do better with their own prompt; and there is one judge model. Haiku and Gemini 3.8 Flash are statistically tied; Gemini has the best faithfulness and citation precision, but costs about 5.6× as much. GPT-5.4 mini mostly loses on unanswerable questions: it answers where it should abstain (0.667 vs 0.929). The best open models trail Haiku by 2–3 points, are slower and fail on ~6–7% of questions. Qwen3.5-9B often gets the answer right but rarely quotes verbatim: Verify rejected the citations of 93% of its answers, so they come back as `unsupported`. That is exactly what Verify is for.
 
 ## Learnings
 
@@ -187,7 +189,7 @@ Test split: 735 questions over 93 documents (split by document; everything tuned
 <summary>More notes on the results</summary>
 
 - **Judge reliability:** judge failures (invalid JSON after one retry) are counted (`judge_failed`, 2–3 of 735 per run). Agreement with human labels is measured with `docrag label-sample` → `docrag label` → `docrag judge-agreement`; the 50 labels are in `results/human_labels/`. Faithfulness was the hard part for the human too: when retrieval missed part of the evidence, "every claim is in the cited passages" depends on how strictly the passages are read.
-- **Costs:** `run.json` reports `cost_eur_billed` (what was charged; cache hits are free) and `cost_eur_full` (cache hits priced from their stored usage, comparable across runs). The `answer_v3` test run: 0.67 EUR full. All LLM calls in the project so far: ~3.90 EUR.
+- **Costs:** `run.json` reports `cost_eur_billed` (what was charged; cache hits are free) and `cost_eur_full` (cache hits priced from their stored usage, comparable across runs). The `answer_v3` test run: 0.67 EUR full. All LLM calls in the project so far, including the answer-model comparison: ~14 EUR.
 - **Dataset quirks:** 1,091 questions, 135 documents in the QA set, 134 PDFs downloadable (744 test questions in the split, 735 with a PDF). One question appears twice on the same document with contradictory gold answers ("46%" and "Not answerable"); paired tests align runs by row, not by question ID.
 - **Reproducibility:** re-running a config from the cache gives the same metrics; 2 of 735 answers were regenerated because retrieval returned a slightly different chunk set (probably GPU nondeterminism, not verified).
 - **Latency (GPU, `answer_v3`):** search p50 6 ms, rerank p50 499 ms, LLM p50 2.2 s, whole answer p50 2.8 s / p95 6.2 s.
@@ -273,7 +275,7 @@ Solutions are in `notebooks/lessons/solutions/`; CI executes them so they stay i
 <details>
 <summary>Future work</summary>
 
-- **Next:** Gemini 3.8 Flash and GPT-5.4 mini in the answer-model comparison; a more reliable faithfulness check (a second judge model, or more human labels); a model-based support check (LettuceDetect) as a second Verify stage; deploying the demo as a Space.
+- **Next:** a more reliable faithfulness check (a second judge model, or more human labels); a model-based support check (LettuceDetect) as a second Verify stage; deploying the demo as a Space.
 - **Later:** a judge panel across providers; Promptfoo as an eval gate in CI; Redis for threads and cache; a ColPali-style visual retriever; German as an evaluation axis.
 </details>
 
