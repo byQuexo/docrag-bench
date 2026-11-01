@@ -1,0 +1,20 @@
+# Demo config: the headline setup (answer_v3, 10 chunks, hybrid + rerank), but with
+# local RapidOCR instead of the vision-LLM OCR, so uploads cost nothing to index
+# and it runs on a CPU Space. The threshold is the one calibrated for RapidOCR
+# (configs/answer_haiku_ocr.yaml). This exact combination was not benchmarked
+# as a whole: the closest results rows are answer_haiku_ocr and answer_haiku_vlm_v3.
+name: demo
+embedder: onnx:gte-small
+prefix_headings: true
+ocr: rapidocr
+retrieval: hybrid_rerank
+scope: doc
+top_k: 10
+prefetch_k: 50
+rrf_k: 60
+reranker: onnx:gte-reranker-modernbert-base
+rerank_threshold: 0.5772
+context_k: 10
+prompt_version: answer_v3
+llm: "openrouter:anthropic/claude-haiku-5.5"
+llm_temperature: null    # Claude 5.5 rejects sampling parameters

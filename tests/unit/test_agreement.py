@@ -146,3 +146,40 @@ def test_interactive_labeling_saves_and_resumes(tmp_path: Path) -> None:
         "true",
         "true",
     ]
+
+
+def test_labeling_waits_when_the_file_is_locked(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from docrag.eval import agreement
+
+    path = tmp_path / "labels.csv"
+    pl.DataFrame(
+        {
+            "qid": ["a"],
+            "question": ["q"],
+            "gold_answer": ["g"],
+            "system_answer": ["s"],
+            "cited_passages": ["p"],
+            "human_correct": [""],
+            "human_faithful": [""],
+        }
+    ).write_csv(path)
+    real_replace = Path.replace
+    calls = {"n": 0}
+
+    def flaky_replace(self: Path, target: Path) -> Path:
+        calls["n"] += 1
+        if calls["n"] == 1:  # first save: Excel holds the file
+            raise PermissionError("locked")
+        return real_replace(self, target)
+
+    monkeypatch.setattr(Path, "replace", flaky_replace)
+    messages: list[str] = []
+    answers = iter(["y", "", "n"])  # y, Enter to retry, n
+    n = agreement.label_interactive(
+        path, ask=lambda _: next(answers), show=messages.append
+    )
+    assert n == 2 and any("open in another program" in m for m in messages)
+    saved = pl.read_csv(path, infer_schema_length=0).row(0, named=True)
+    assert (saved["human_correct"], saved["human_faithful"]) == ("true", "false")

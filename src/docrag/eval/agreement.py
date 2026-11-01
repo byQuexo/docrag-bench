@@ -138,8 +138,30 @@ def label_interactive(
             if answer != "s":
                 row[col] = "true" if answer == "y" else "false"
                 set_count += 1
-                pl.DataFrame(rows).write_csv(path, include_bom=True)
+                _save(rows, path, ask, show)
     return set_count
+
+
+def _save(
+    rows: list[dict[str, Any]],
+    path: Path,
+    ask: Callable[[str], str],
+    show: Callable[[str], None],
+) -> None:
+    """Write atomically (temp file + replace); wait while another program locks it.
+
+    Excel keeps an open CSV locked on Windows. Instead of crashing (and losing
+    the answer just given), ask the user to close it and try again.
+    """
+    tmp = path.with_suffix(".tmp")
+    pl.DataFrame(rows).write_csv(tmp, include_bom=True)
+    while True:
+        try:
+            tmp.replace(path)  # atomic: the CSV is never half-written
+            return
+        except PermissionError:
+            show(f"Can't save: {path.name} is open in another program (Excel?).")
+            ask("Close it there, then press Enter to retry: ")
 
 
 def judge_agreement(run_dir: Path, labels_csv: Path) -> dict[str, dict[str, float]]:

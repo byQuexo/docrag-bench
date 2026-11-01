@@ -17,7 +17,7 @@ Measured on [MMLongBench-Doc](https://huggingface.co/datasets/yubo2333/MMLongBen
 
 | | |
 |---|---|
-| **0.544 correct** [0.501, 0.590] | with verified citations; faithfulness 0.891, citation precision 0.790 |
+| **0.544 correct** [0.501, 0.590] | with verified citations (citation precision 0.790); the judge agrees with human labels on 46/50 (Cohen's κ 0.77) |
 | **Scanned PDFs: recall@10 0.000 → 0.776 → 0.834** | no OCR → local RapidOCR → vision LLM (152 questions on 23 image-only PDFs) |
 | **+3.6 points correct** (0.508 → 0.544, McNemar p = 0.002) | from the abstention experiment: the prompt, not the threshold, was the problem |
 
@@ -25,7 +25,7 @@ Measured on [MMLongBench-Doc](https://huggingface.co/datasets/yubo2333/MMLongBen
 
 ## Try it
 
-**Live demo:** coming soon (Hugging Face Space, Gradio).
+**Live demo:** coming soon (Hugging Face Space). Until then, run the same Gradio demo locally: pick a sample PDF or upload your own, ask a question, and see the answer with verified page citations, the retrieved evidence and the cited page ([demo/README.md](demo/README.md)).
 
 ## Two ways to use this repo
 
@@ -47,7 +47,7 @@ docker compose up -d qdrant && uv run docrag eval configs/baseline.yaml
 
 - **Ask one question:** `uv run docrag ask --config configs/answer_haiku_vlm_v3.yaml --doc <doc_id> "question"`
 - **API:** `uv run docrag serve --config configs/answer_haiku_vlm_v3.yaml` → http://127.0.0.1:8000/docs
-- **Run the Gradio demo locally:** coming soon
+- **Run the Gradio demo locally:** `uv sync --extra cpu --extra demo`, then `uv run python demo/app.py` → http://127.0.0.1:7860
 - **Start the web UI:** coming soon
 
 <details>
@@ -138,6 +138,8 @@ Test split: 735 questions over 93 documents (split by document; everything tuned
 
 "Correct" counts abstaining on an unanswerable question as correct. "Faithful" is averaged over the answers the judge model read (answerable, not abstained). Citation precision is the share of verified citations that point at a gold evidence page.
 
+**How far the judge can be trusted:** `judge_v2` agreement with human labels (50 answers, blind): **correct 46/50 (Cohen's κ 0.77)**, **faithful 40/50 (Cohen's κ 0.06)**. "Correct" is reliable; the "faithful" column is not reliable for single answers (judge and human each mark 10–14% as unfaithful, but rarely the same ones), so read it as a rough trend at best.
+
 **Retrieval** (recall@10; documents with a text layer: 413 answerable questions; scanned: 152):
 
 | variant | recall@1 | recall@10 | MRR@10 | recall@10, scanned PDFs |
@@ -154,7 +156,7 @@ Test split: 735 questions over 93 documents (split by document; everything tuned
 **Experiments**
 
 - **OCR.** 28 of 134 PDFs are image-only (mostly slide decks); without OCR the system can't see them. OCR takes recall@10 over all questions from 0.550 to 0.776, the biggest single gain in the project. The vision LLM beats RapidOCR mainly on charts (correct 0.220 → 0.309), because it binds numbers to their labels. It cost 0.42 EUR for 1,390 pages.
-- **Abstention.** The first answer runs abstained on ~43% of answerable questions, although the gold page was often in the top 5. A new column (`abstained_before_llm`) showed the rerank gate stops only 2.8%; the LLM itself was saying "Not answerable". Variants were compared on dev, only the winners ran on test. `answer_v2` (combine passages, read tables, do arithmetic) + 10 chunks answers more (answerable +48/−7, p < 0.0001) but also answers questions whose premise is false (unanswerable 1 gained, 18 lost). `answer_v3` adds "answer exactly what was asked; false premise → *Not answerable*": unanswerable back to 0.929 (+25/−0 vs v2), answerable 0.430 (3 gained, 25 lost vs v2). v2 and v3 tie overall (p = 0.78); v3 is the headline because it abstains honestly and has the best faithfulness and citation precision.
+- **Abstention.** The first answer runs abstained on ~43% of answerable questions, although the gold page was often in the top 5. A new column (`abstained_before_llm`) showed the rerank gate stops only 2.8%; the LLM itself was saying "Not answerable". Variants were compared on dev, only the winners ran on test. `answer_v2` (combine passages, read tables, do arithmetic) + 10 chunks answers more (answerable +48/−7, p < 0.0001) but also answers questions whose premise is false (unanswerable 1 gained, 18 lost). `answer_v3` adds "answer exactly what was asked; false premise → *Not answerable*": unanswerable back to 0.929 (+25/−0 vs v2), answerable 0.430 (3 gained, 25 lost vs v2). v2 and v3 tie overall (p = 0.78); v3 is the headline because it abstains honestly and has the best citation precision (its faithfulness is also highest, but see the judge caveat above).
 - **Answer-model comparison:** planned (same retrieval and judge, only the answer model changes).
 
 ## Learnings
@@ -163,13 +165,13 @@ Test split: 735 questions over 93 documents (split by document; everything tuned
 - **Reranker, heading prefix and a 2× larger embedding model: no significant effect on retrieval.** Paired differences in recall@10 are within ±0.005, every CI includes 0; even the reranker's recall@1 gain (+0.028) is not significant. The reranker still costs ~0.5 s per query on GPU (p50 499 ms).
 - **Hybrid search beats BM25 (recall@10 +0.040, significant) and dense at the top of the ranking** (MRR +0.044, significant); against dense on recall@10 the gain is not significant.
 - **The LLM abstains, not the threshold.** Only 2.8% of answerable questions were stopped by the rerank gate. The fix was the prompt.
-- **Check the judge before you trust the score.** A quote-only judge (`judge_v1`) put faithfulness at 0.46–0.50; with the full cited passages (`judge_v2`) it is 0.83–0.89. Earlier, averaging abstentions as "faithful" had made a metric artifact look like an OCR effect.
+- **Check the judge before you trust the score.** A quote-only judge (`judge_v1`) put faithfulness at 0.46–0.50; with the full cited passages (`judge_v2`) it is 0.83–0.89. Against human labels, though, `judge_v2` agrees on correctness (κ 0.77) but its faithfulness verdicts are at chance level (κ 0.06). Earlier, averaging abstentions as "faithful" had made a metric artifact look like an OCR effect.
 - **One number hides trade-offs.** v2 and v3 have the same overall correctness, but v2 gets 3.9 points more answerable questions right and v3 14.9 points more unanswerable ones.
 
 <details>
 <summary>More notes on the results</summary>
 
-- **Judge reliability:** judge failures (invalid JSON after one retry) are counted (`judge_failed`, 2–3 of 735 per run). Agreement with human labels is measured with `docrag label-sample` → `docrag label` → `docrag judge-agreement` (Cohen's kappa); the human labels are not done yet.
+- **Judge reliability:** judge failures (invalid JSON after one retry) are counted (`judge_failed`, 2–3 of 735 per run). Agreement with human labels is measured with `docrag label-sample` → `docrag label` → `docrag judge-agreement`; the 50 labels are in `results/human_labels/`. Faithfulness was the hard part for the human too: when retrieval missed part of the evidence, "every claim is in the cited passages" depends on how strictly the passages are read.
 - **Costs:** `run.json` reports `cost_eur_billed` (what was charged; cache hits are free) and `cost_eur_full` (cache hits priced from their stored usage, comparable across runs). The `answer_v3` test run: 0.67 EUR full. All LLM calls in the project so far: ~3.90 EUR.
 - **Dataset quirks:** 1,091 questions, 135 documents in the QA set, 134 PDFs downloadable (744 test questions in the split, 735 with a PDF). One question appears twice on the same document with contradictory gold answers ("46%" and "Not answerable"); paired tests align runs by row, not by question ID.
 - **Reproducibility:** re-running a config from the cache gives the same metrics; 2 of 735 answers were regenerated because retrieval returned a slightly different chunk set (probably GPU nondeterminism, not verified).
@@ -256,7 +258,7 @@ Solutions are in `notebooks/lessons/solutions/`; CI executes them so they stay i
 <details>
 <summary>Future work</summary>
 
-- **Next:** answer-model comparison; human labels for the judge (Cohen's kappa); a model-based support check (LettuceDetect) as a second Verify stage; the Gradio demo and the web UI.
+- **Next:** answer-model comparison; a more reliable faithfulness check (a second judge model, or more human labels); a model-based support check (LettuceDetect) as a second Verify stage; the web UI; deploying the demo as a Space.
 - **Later:** a judge panel across providers; Promptfoo as an eval gate in CI; Redis for threads and cache; a ColPali-style visual retriever; German as an evaluation axis.
 </details>
 
@@ -279,6 +281,7 @@ docrag-bench/
 │   ├── prompts/    # versioned prompt files
 │   ├── wiring.py   # builds the object graph from settings + config
 │   └── cli.py      # `docrag` command
+├── demo/          # Gradio demo (local or Hugging Face Space)
 ├── notebooks/lessons/  # interactive lessons (+ solutions/)
 ├── docs/lessons/       # lesson texts
 ├── tests/          # unit/ against fakes, e2e/ against a real Qdrant

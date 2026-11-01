@@ -1,0 +1,3 @@
+# Hugging Face Space: installs the package (CPU ONNX Runtime + Gradio) from GitHub.
+# The repository must be public. Locally, use `uv sync --extra cpu --extra demo`.
+docrag-bench[cpu,demo] @ git+https://github.com/byQuexo/docrag-bench.git

@@ -38,3 +38,7 @@ runs/
 
 # Local working plans (not part of the repo)
 docs/plans/
+
+# Gradio demo when installed as a Space (models/cache next to the app)
+demo/.models/
+demo/.cache/

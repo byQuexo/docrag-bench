@@ -35,6 +35,9 @@ dependencies = [
 [project.optional-dependencies]
 cpu = ["onnxruntime>=1.31"]
 gpu = ["onnxruntime-gpu[cuda,cudnn]>=1.31.1"]
+demo = [
+    "gradio>=6.31.0",
+]
 
 [project.scripts]
 docrag = "docrag.cli:main"
