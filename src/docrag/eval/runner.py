@@ -41,7 +41,7 @@ from docrag.shared import timing, tracing
 from docrag.shared.cache import Cache
 from docrag.shared.concurrency import bounded_gather
 from docrag.shared.config import ExperimentConfig
-from docrag.shared.provenance import code_version
+from docrag.shared.provenance import code_version, require_clean
 from docrag.shared.schema import Hit
 from docrag.shared.settings import ROOT, Settings
 from docrag.store.retriever import Retriever
@@ -145,13 +145,19 @@ def aggregate(rows: list[dict[str, Any]]) -> pl.DataFrame:
 
 
 async def run_experiment(
-    config: ExperimentConfig, settings: Settings, cache: Cache
+    config: ExperimentConfig,
+    settings: Settings,
+    cache: Cache,
+    *,
+    allow_dirty: bool = False,
 ) -> Path:
-    timing.reset()
-    started = time.perf_counter()
     # Captured at the START: a run takes minutes, and files edited meanwhile
     # (e.g. the next prompt) must not mark this run as made from dirty code.
-    code = code_version(ROOT)
+    # Checked before any work (or API spend): a run from uncommitted code can't
+    # be attributed to a commit, so it is refused unless explicitly allowed.
+    code = require_clean(code_version(ROOT), allow_dirty=allow_dirty)
+    timing.reset()
+    started = time.perf_counter()
     questions = select(
         load_questions(settings.qa_glob), config.dataset, settings.pdf_dir
     )
