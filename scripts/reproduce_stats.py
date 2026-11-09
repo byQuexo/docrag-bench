@@ -16,12 +16,14 @@ import io
 import json
 import math
 import sys
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
 import polars as pl
 
 from docrag.eval.agreement import _bool, judge_agreement, read_labels
+from docrag.eval.metrics import mrr_at_k, ndcg_at_k, recall_at_k
 from docrag.eval.overview import run_dirs, run_name, values
 from docrag.eval.stats import doc_bootstrap_ci, mcnemar
 
@@ -171,8 +173,38 @@ def paired(r: Results, a: str, b: str, which: str = "all") -> str:
         )
         if not (math.isnan(x) or math.isnan(y))
     ]
+    if r.df(a)["qid"].to_list() != r.df(b)["qid"].to_list():
+        raise ValueError(f"{a} and {b} don't list the same questions in order")
     w, losses, p = mcnemar([x for x, _ in pairs], [y for _, y in pairs])
     return f"+{w}/−{losses}, McNemar {p_str(p)}"
+
+
+def consistency(r: Results) -> list[str]:
+    """Stored per-question retrieval metrics vs. today's metric code on the stored
+    rankings (top_pages, gold_pages). 0 mismatches = no metric drift since the run."""
+    out = ["## Consistency: stored retrieval metrics vs current metric code", ""]
+    checks: dict[str, Callable[[list[int], set[int]], float]] = {
+        "recall@1": lambda p, g: recall_at_k(p, g, 1),
+        "recall@10": lambda p, g: recall_at_k(p, g, 10),
+        "mrr@10": lambda p, g: mrr_at_k(p, g, 10) if g else math.nan,
+        "ndcg@10": lambda p, g: ndcg_at_k(p, g, 10),
+    }
+    bad = total = 0
+    for df in r.frames.values():
+        for row in df.iter_rows(named=True):
+            pages, gold = (
+                json.loads(row["top_pages"]),
+                set(json.loads(row["gold_pages"])),
+            )
+            for col, f in checks.items():
+                stored, now = float(row[col]), f(pages, gold)
+                total += 1
+                same = (math.isnan(stored) and math.isnan(now)) or abs(
+                    stored - now
+                ) < 1e-9
+                bad += not same
+    out.append(f"- {bad} mismatches in {total} values over {len(r.frames)} runs")
+    return out + [""]
 
 
 def diff_ci(r: Results, a: str, b: str, col: str, which: str = "all") -> str:
@@ -194,6 +226,21 @@ def abstention(r: Results) -> list[str]:
     )
     gate = mean(values(r.part(v3, "answerable"), "abstained_before_llm"))
     out.append(f"- v3: answerable questions stopped by the rerank gate: {gate:.3f}")
+    out += ["", "Dev split (where the variants were compared):", ""]
+    d1, d2, d3 = (
+        "dev_vlm_answer_v1_k5",
+        "dev_vlm_answer_v2_k10",
+        "dev_vlm_answer_v3_k10",
+    )
+    for name in (d1, d2, d3):
+        cells = ", ".join(
+            f"{w} {fmt(mean(values(r.part(name, w), 'correct')))}"
+            for w in ("all", "answerable", "unanswerable")
+        )
+        out.append(f"- {name}: correct {cells}")
+    for label, a, b in [("v2_k10 vs v1_k5", d1, d2), ("v3_k10 vs v2_k10", d2, d3)]:
+        for which in ("all", "answerable", "unanswerable"):
+            out.append(f"- dev {label}, {which}: {paired(r, a, b, which)}")
     return out + [""]
 
 
@@ -314,7 +361,8 @@ def judge(r: Results) -> list[str]:
 def report(results_dir: Path) -> str:
     r = Results(results_dir)
     lines = ["# Recomputed statistics (scripts/reproduce_stats.py)", ""]
-    for section in (split, answers, abstention, retrieval, models, judge, provenance):
+    sections = (split, answers, abstention, retrieval, models, judge)
+    for section in (*sections, consistency, provenance):
         lines += section(r)
     return "\n".join(lines)
 
