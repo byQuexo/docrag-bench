@@ -223,7 +223,9 @@ How to read it:
 * `no_text_layer` correct without OCR is 0.282, not 0: those are the unanswerable
   questions on image-only documents, where abstaining is correct.
 * **Faithfulness does NOT drop** (0.458 → 0.461 over judged answers with
-  `judge_v1`; 0.829 → 0.843 with `judge_v2`, which sees the full passages). The first
+  `judge_v1`; 0.829 → 0.843 with `judge_v2`, which sees the full passages). Weak
+  evidence: `judge_v2`'s faithfulness verdicts later turned out to agree with human
+  labels only at chance level (κ 0.06). The first
   version of this lesson said "0.842 → 0.782, because OCR text is noisier". That
   was a metric bug: every abstention counted as faithful, and OCR simply produced
   fewer abstentions (0.693 → 0.574), so the average fell. A plausible story
@@ -402,8 +404,8 @@ How to read it:
   goes 0.213 → 0.306 (+44% relative). Retrieval finds the right slide with both
   engines; only the VLM text says which number belongs to which bar.
 * **Faithfulness doesn't drop** with the VLM (0.461 vs 0.495 with `judge_v1`;
-  0.843 vs 0.885 with `judge_v2`). There is no
-  sign of widespread hallucination at this level. But the judge only checks the
+  0.843 vs 0.885 with `judge_v2`). Treat this as weak: the judge's faithfulness
+  verdicts agree with human labels only at chance level (κ 0.06). But the judge only checks the
   answer against the *chunk text*, not against the image, so a hallucinated
   transcription would be invisible to it. The honest statement: "no measured
   harm, not proven absent".
@@ -495,7 +497,8 @@ everywhere and send only pages with detected charts to the VLM, show the page
 image next to VLM-derived citations, and spot-check transcriptions.
 
 **Q: How do you know the vision LLM didn't hallucinate?**
-I don't fully. Faithfulness stayed at the RapidOCR level, but the judge compares
+I don't. The judge's faithfulness score stayed at the RapidOCR level, but that
+score agrees with human labels only at chance level (κ 0.06), and the judge compares
 against chunk text, not the image. Every chunk carries `origin="vlm"`, the prompt
 forbids invention, and the next step is a sampled manual check of chart numbers
 against page images to get a real error rate.

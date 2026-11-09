@@ -350,9 +350,9 @@ Docling on a few PDFs before committing to PyMuPDF; add query rewriting for thre
 (Personalize.)
 
 **60. Where did you use AI tools, and how do you make sure you understand the code?**
-Be honest: the first version was built with an AI pair programmer, with learning comments
-and lessons. I then went through every module, ran the exercises, and can explain and
-modify each design decision; the tests and the benchmark are how I verify changes.
+Be honest: the project was developed in an agentic development workflow. Say concretely
+how you reviewed and verified the code; the tests and the benchmark are the objective
+checks. (Personalize.)
 
 **61. How do you know your system works?**
 Unit tests against fakes, one E2E against a real Qdrant in CI, mypy strict, and the
