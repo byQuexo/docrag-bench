@@ -1,7 +1,7 @@
 """Command line entry point: `uv run docrag <command>`.
 
 docrag ingest    --config configs/baseline.yaml [--docs N]
-docrag eval      configs/a.yaml configs/b.yaml ...
+docrag eval      configs/a.yaml configs/b.yaml ... [--allow-dirty]
 docrag summary
 docrag calibrate --config configs/baseline.yaml
 docrag ask       --config configs/baseline.yaml --doc <doc_id> "question"
@@ -50,13 +50,19 @@ def _cmd_ingest(args: argparse.Namespace) -> None:
 
 def _cmd_eval(args: argparse.Namespace) -> None:
     from docrag.eval.runner import run_experiment, summarize
+    from docrag.shared.provenance import DirtyTreeError
 
     settings = get_settings()
     setup_tracing(settings.otel_endpoint, service_name="docrag-eval")
     cache = Cache(settings.cache_path)
     for path in args.configs:
         config = ExperimentConfig.from_yaml(path)
-        run_dir = asyncio.run(run_experiment(config, settings, cache))
+        try:
+            run_dir = asyncio.run(
+                run_experiment(config, settings, cache, allow_dirty=args.allow_dirty)
+            )
+        except DirtyTreeError as e:
+            sys.exit(f"docrag eval: refusing to run: {e}")
         print(f"{config.name}: {run_dir}")
     print(summarize(settings.results_dir))
 
@@ -192,6 +198,12 @@ def main(argv: list[str] | None = None) -> None:
 
     p = sub.add_parser("eval", help="run one or more experiment configs")
     p.add_argument("configs", type=Path, nargs="+")
+    p.add_argument(
+        "--allow-dirty",
+        action="store_true",
+        help="run despite uncommitted changes in src/, configs/, pyproject.toml, "
+        "uv.lock (recorded as dirty in run.json)",
+    )
     p.set_defaults(func=_cmd_eval)
 
     p = sub.add_parser("summary", help="print the results table")

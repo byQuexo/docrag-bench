@@ -201,12 +201,17 @@ investigated is a template for any "why is metric X bad?" question:
    18 lost). Reading the 18 lost answers showed two patterns: the model says the
    premise is false *in prose* and adds a related fact (the exact-string abstention
    check doesn't see it), or it answers a near-miss (2013 data for a 2020 question).
-   That diagnosis became the next experiment (`answer_v3`), again on dev first.
+   That diagnosis became the next experiment (`answer_v3`), checked on dev first.
+   Note what that means: the diagnosis came from *test-split* errors, and v3 was
+   later picked over v2 with both test results in view. So v3's test number is not
+   an independent held-out estimate; v2's is (chosen on dev, run once on test).
 
 Along the way the judge got fixed too: `judge_v1` saw only the short quotes, so
 answers that went beyond a 5-word quote looked unfaithful (0.46–0.50). `judge_v2`
 sees the full cited passages (0.83–0.89). Changing the judge changes the measuring
-instrument, so every row in the results table was re-judged with it.
+instrument, so every row in the results table was re-judged with it. Checked against
+50 human labels, though, `judge_v2`'s faithfulness verdicts agree only at chance
+level (Cohen's κ 0.06; correctness: κ 0.77), so 0.83–0.89 is not a validated number.
 
 ## Why this design
 
@@ -285,7 +290,9 @@ CSV of 50 judged answers (question, gold, answer, full cited passages, no verdic
 I label them one by one in the terminal (`docrag label <csv>`, y/n per answer,
 resumable), and `docrag judge-agreement <run> <csv>` reports raw agreement and Cohen's
 κ (agreement corrected for chance) for `correct` and `faithful` (`eval/agreement.py`).
-A panel of judges from different model families would be the next step.
+Result on 50 answers: correct 46/50, κ 0.77; faithful 40/50, κ 0.06, i.e. chance
+level, so faithfulness is not used as evidence. A second judge model or more labels
+would be the next step.
 
 **Q: How is a run reproducible?**
 A: The config is saved with its hash; parse, embed and LLM results are cached by content and
@@ -310,4 +317,6 @@ instrument before you tune the system.
 A: Variants compared on dev only, winner run once on test, paired McNemar test on
 the questions where the two variants disagree (test: 49 vs 25, p = 0.007), and the
 result split by slice, which showed the cost: unanswerable questions got worse
-(18 vs 1). A single "correct" number would have hidden that.
+(18 vs 1). A single "correct" number would have hidden that. The follow-up,
+`answer_v3`, broke that protocol: it was designed from those test errors and chosen
+with test results in view, so I don't claim a held-out result for it.
