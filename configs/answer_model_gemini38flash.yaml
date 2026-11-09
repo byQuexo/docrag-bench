@@ -12,7 +12,7 @@ rrf_k: 60
 reranker: onnx:gte-reranker-modernbert-base
 rerank_threshold: 0.6318    # calibrated per question on dev, with VLM OCR
 context_k: 10              # chosen on dev (abstention experiment)
-prompt_version: answer_v3  # designed on dev error analysis (dev: unanswerable 0.797 -> 0.878 vs v2)
+prompt_version: answer_v3  # from answer_v2's TEST-split errors, checked on dev (unanswerable 0.797 -> 0.878 vs v2)
 llm: "openrouter:google/gemini-3.8-flash"
 llm_temperature: 0.0
 judge: "openrouter:deepseek/deepseek-v4.1-flash"   # different family than the answerer
