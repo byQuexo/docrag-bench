@@ -84,6 +84,27 @@ class Settings(BaseSettings):
     # exports traces (see shared/tracing.py for why).
     otel_endpoint: str | None = None
 
+    # Langfuse (optional, off unless both keys are set): the same spans are also
+    # exported to Langfuse over OTLP. Off by default for a reason: spans hold
+    # questions, prompts and document text, and Langfuse Cloud is a third party.
+    langfuse_public_key: str | None = Field(
+        default=None,
+        validation_alias=AliasChoices(
+            "LANGFUSE_PUBLIC_KEY", "DOCRAG_LANGFUSE_PUBLIC_KEY"
+        ),
+    )
+    langfuse_secret_key: SecretStr | None = Field(
+        default=None,
+        validation_alias=AliasChoices(
+            "LANGFUSE_SECRET_KEY", "DOCRAG_LANGFUSE_SECRET_KEY"
+        ),
+    )
+    # EU cloud by default; https://us.cloud.langfuse.com or a self-hosted URL.
+    langfuse_host: str = Field(
+        default="https://cloud.langfuse.com",
+        validation_alias=AliasChoices("LANGFUSE_HOST", "DOCRAG_LANGFUSE_HOST"),
+    )
+
     # Logs: "text" for a terminal, "json" (one object per line) for containers.
     log_format: Literal["text", "json"] = "text"
     log_level: str = "INFO"
@@ -129,6 +150,7 @@ _API_KEY_FIELDS = (
     "mistral_api_key",
     "openrouter_api_key",
     "deepseek_api_key",
+    "langfuse_secret_key",
 )
 KEYRING_SERVICE = "docrag"
 

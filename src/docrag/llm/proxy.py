@@ -22,7 +22,7 @@ from dataclasses import dataclass, field
 from pydantic import BaseModel, ValidationError
 
 from docrag.llm.base import Provider
-from docrag.llm.pricing import cost_eur
+from docrag.llm.pricing import cost_eur, cost_usd
 from docrag.llm.types import ChatCompletion, Message, json_schema_for
 from docrag.shared import timing, tracing
 from docrag.shared.cache import Cache, stable_hash
@@ -265,6 +265,11 @@ def _trace_request(
     attrs: dict[str, object] = {
         "llm.provider": route.partition(":")[0],
         "llm.model_name": model,
+        # OpenTelemetry GenAI conventions, read by Langfuse (and most other
+        # LLM tools); the llm.* keys above are OpenInference, read by Phoenix.
+        "gen_ai.system": route.partition(":")[0],
+        "gen_ai.request.model": model,
+        "gen_ai.request.temperature": temperature,
         "llm.invocation_parameters": json.dumps(
             {
                 "temperature": temperature,
@@ -295,6 +300,11 @@ def _trace_response(route: str, completion: ChatCompletion, cache_hit: bool) -> 
             # what the call WOULD cost on a cold cache.
             "docrag.cache_hit": cache_hit,
             "docrag.cost_eur": 0.0 if cache_hit else cost_eur(route, u),
+            "gen_ai.response.model": completion.model,
+            "gen_ai.usage.input_tokens": u.input_tokens,
+            "gen_ai.usage.output_tokens": u.output_tokens,
+            # Langfuse's cost field is USD; a cache hit was not billed.
+            "gen_ai.usage.cost": 0.0 if cache_hit else cost_usd(route, u),
         }
     )
 

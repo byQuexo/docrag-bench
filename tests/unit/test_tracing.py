@@ -4,8 +4,10 @@ All tests run against an InMemorySpanExporter (fixture `spans` in conftest.py),
 so no collector is needed.
 """
 
+import base64
 from pathlib import Path
 
+import pytest
 from fastapi.testclient import TestClient
 from opentelemetry.sdk.trace import ReadableSpan
 from opentelemetry.sdk.trace.export.in_memory_span_exporter import (
@@ -145,3 +147,50 @@ def test_api_request_is_the_trace_root(
 
 def test_setup_without_endpoint_is_off() -> None:
     assert tracing.setup_tracing(None) is False
+
+
+def test_otel_sdk_disabled_wins_over_an_endpoint(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setenv("OTEL_SDK_DISABLED", "true")
+    assert tracing.setup_tracing("http://127.0.0.1:6006/v1/traces") is False
+
+
+def test_langfuse_target_endpoint_and_basic_auth() -> None:
+    target = tracing.LangfuseTarget("https://cloud.langfuse.com/", "pk-lf-1", "sk-lf-2")
+    assert target.endpoint == "https://cloud.langfuse.com/api/public/otel/v1/traces"
+    scheme, token = target.headers["Authorization"].split()
+    assert scheme == "Basic"
+    assert base64.b64decode(token).decode() == "pk-lf-1:sk-lf-2"
+    assert target.headers["x-langfuse-ingestion-version"] == "4"
+
+
+def test_llm_span_has_langfuse_and_gen_ai_attributes_and_every_span_has_session(
+    spans: InMemorySpanExporter,
+    memory_store: QdrantStore,
+    embeddings: EmbeddingService,
+) -> None:
+    app = create_app(_service(memory_store, embeddings))
+    with TestClient(app) as client:
+        body = client.post(
+            "/query", json={"question": QUESTION, "doc_ids": ["tiny"]}
+        ).json()
+    named = _by_name(spans)
+    llm = named["llm"].attributes or {}
+    assert llm["langfuse.observation.type"] == "generation"
+    assert llm["gen_ai.request.model"] == "m"
+    assert llm["gen_ai.usage.input_tokens"] == llm["llm.token_count.prompt"]
+    assert llm["gen_ai.usage.cost"] == 0.0  # the fake provider is free
+    assert (named["retrieve"].attributes or {})["langfuse.observation.type"] == (
+        "retriever"
+    )
+    # Every pipeline span carries the session (= thread) id, also the ones
+    # started in worker threads (embed, search, rerank). FastAPI's own
+    # dependency/serialization spans run outside the handler and do not.
+    ours = [
+        s
+        for s in spans.get_finished_spans()
+        if not s.name.startswith(("POST", "fastapi."))
+    ]
+    assert {s.name for s in ours} >= {"query", "answer", "retrieve", "embed", "llm"}
+    assert {(s.attributes or {}).get("session.id") for s in ours} == {body["thread_id"]}

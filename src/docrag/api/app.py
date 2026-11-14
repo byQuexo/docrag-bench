@@ -179,13 +179,16 @@ def create_app(
         # the request. session.id = thread id on both: Phoenix groups all turns
         # of a conversation under "Sessions".
         tracing.annotate({"session.id": thread_id})
-        with tracing.root_span(
-            "query",
-            attributes={
-                "session.id": thread_id,
-                "input.value": body.question,
-                "docrag.history_turns": len(history) // 2,
-            },
+        with (
+            tracing.session(thread_id),
+            tracing.root_span(
+                "query",
+                attributes={
+                    "session.id": thread_id,
+                    "input.value": body.question,
+                    "docrag.history_turns": len(history) // 2,
+                },
+            ),
         ):
             try:
                 # One deadline for the whole request, retries included: a client

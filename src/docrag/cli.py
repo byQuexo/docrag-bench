@@ -20,10 +20,22 @@ from pathlib import Path
 from docrag.shared.cache import Cache
 from docrag.shared.config import ExperimentConfig
 from docrag.shared.logs import setup_logging
-from docrag.shared.settings import get_settings
-from docrag.shared.tracing import setup_tracing
+from docrag.shared.settings import Settings, get_settings
+from docrag.shared.tracing import LangfuseTarget, setup_tracing
 
 log = logging.getLogger("docrag")
+
+
+def _setup_tracing(settings: Settings, service_name: str) -> None:
+    """Phoenix if DOCRAG_OTEL_ENDPOINT is set, Langfuse if both keys are set."""
+    langfuse = None
+    if settings.langfuse_public_key and settings.langfuse_secret_key:
+        langfuse = LangfuseTarget(
+            settings.langfuse_host,
+            settings.langfuse_public_key,
+            settings.langfuse_secret_key.get_secret_value(),
+        )
+    setup_tracing(settings.otel_endpoint, service_name, langfuse=langfuse)
 
 
 def _cmd_ingest(args: argparse.Namespace) -> None:
@@ -54,7 +66,7 @@ def _cmd_eval(args: argparse.Namespace) -> None:
     from docrag.shared.provenance import DirtyTreeError
 
     settings = get_settings()
-    setup_tracing(settings.otel_endpoint, service_name="docrag-eval")
+    _setup_tracing(settings, "docrag-eval")
     cache = Cache(settings.cache_path)
     for path in args.configs:
         config = ExperimentConfig.from_yaml(path)
@@ -124,7 +136,7 @@ def _cmd_ask(args: argparse.Namespace) -> None:
     from docrag.wiring import build_answer_service
 
     settings = get_settings()
-    setup_tracing(settings.otel_endpoint, service_name="docrag-ask")
+    _setup_tracing(settings, "docrag-ask")
     service = build_answer_service(
         settings, ExperimentConfig.from_yaml(args.config), Cache(settings.cache_path)
     )
@@ -158,7 +170,7 @@ def _cmd_serve(args: argparse.Namespace) -> None:
     settings = get_settings()
     # _cmd_ingest deliberately never calls setup_tracing: no traces for the
     # offline batch job (its timings go to the logs / run.json instead).
-    setup_tracing(settings.otel_endpoint, service_name="docrag-api")
+    _setup_tracing(settings, "docrag-api")
     service = build_answer_service(
         settings, ExperimentConfig.from_yaml(args.config), Cache(settings.cache_path)
     )

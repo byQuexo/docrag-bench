@@ -27,13 +27,17 @@ _warned: set[str] = set()
 
 
 def cost_eur(route: str, usage: Usage) -> float:
+    return cost_usd(route, usage) * USD_TO_EUR
+
+
+def cost_usd(route: str, usage: Usage) -> float:
+    """USD, as billed: what Langfuse expects (it reports all costs in USD)."""
     if usage.cost_usd is not None:  # the provider told us what it billed
-        return usage.cost_usd * USD_TO_EUR
+        return usage.cost_usd
     price = PRICES_USD_PER_MTOK.get(route)
     if price is None:
         if not route.startswith(_FREE_PROVIDERS) and route not in _warned:
             _warned.add(route)
             log.warning("no price for %s - counting it as 0 EUR", route)
         return 0.0
-    usd = usage.input_tokens / 1e6 * price[0] + usage.output_tokens / 1e6 * price[1]
-    return usd * USD_TO_EUR
+    return usage.input_tokens / 1e6 * price[0] + usage.output_tokens / 1e6 * price[1]
