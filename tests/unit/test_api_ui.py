@@ -100,4 +100,4 @@ def test_built_ui_is_served_at_root_without_shadowing_the_api(
     app = create_app(_service(memory_store, embeddings), ui_dir=ui)
     with TestClient(app) as client:
         assert "<title>docrag</title>" in client.get("/").text
-        assert client.get("/health").json() == {"status": "ok"}
+        assert client.get("/healthz").json() == {"status": "ok"}

@@ -127,7 +127,7 @@ def test_api_request_is_the_trace_root(
         body = client.post(
             "/query", json={"question": QUESTION, "doc_ids": ["tiny"]}
         ).json()
-        client.get("/health")
+        client.get("/healthz")
     named = _by_name(spans)
     # FastAPI's own HTTP server span is the root of the trace ...
     http = named["POST /query"]

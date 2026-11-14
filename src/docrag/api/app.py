@@ -9,14 +9,15 @@ If a built web UI exists (``ui/dist``, see ui/README.md), it is served at ``/``.
 """
 
 import asyncio
+import logging
 import time
-from collections.abc import AsyncIterator
+from collections.abc import AsyncIterator, Awaitable, Callable
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import Response
+from fastapi.responses import JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
@@ -29,6 +30,13 @@ from docrag.llm.types import Message, ProviderError
 from docrag.shared import tracing
 from docrag.shared.schema import Hit
 from docrag.threads.store import InMemoryThreadStore, ThreadStore
+
+log = logging.getLogger(__name__)
+access_log = logging.getLogger("docrag.access")
+
+# Probe endpoints: polled every few seconds by Docker/Kubernetes. They get no
+# trace and no access-log line, or they would bury the real requests.
+PROBES = frozenset({"/healthz", "/readyz"})
 
 
 class QueryRequest(BaseModel):
@@ -80,6 +88,9 @@ def create_app(
     pdf_dir: Path | None = None,
     results_dir: Path | None = None,
     ui_dir: Path | None = None,
+    *,
+    request_timeout_s: float = 150.0,
+    readiness_timeout_s: float = 2.0,
 ) -> FastAPI:
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
@@ -88,13 +99,13 @@ def create_app(
 
     # FastAPI (0.162+) traces requests itself once a global TracerProvider exists
     # (setup_tracing in `docrag serve`): an HTTP span per request, continuing a
-    # caller's `traceparent`. The health check is excluded so probes don't bury
-    # the real traces.
+    # caller's `traceparent`. Probes are excluded so they don't bury the real
+    # traces.
     app = FastAPI(
         title="docrag-bench",
         version="0.1.0",
         lifespan=lifespan,
-        telemetry={"exclude": lambda scope: scope.get("path") == "/health"},
+        telemetry={"exclude": lambda scope: scope.get("path") in PROBES},
     )
     # app.state holds the "singletons" of this app instance. No module-level
     # globals, so two apps (e.g. in tests) never share state.
@@ -105,9 +116,56 @@ def create_app(
     app.state.documents = None  # computed on first request
     app.state.results_cache = (None, None)  # (results folder listing, overview)
 
-    @app.get("/health")
-    async def health() -> dict[str, str]:
+    @app.middleware("http")
+    async def access_logger(
+        request: Request, call_next: Callable[[Request], Awaitable[Response]]
+    ) -> Response:
+        """One structured line per request (runs inside the request's trace, so
+        the JSON log line carries its trace_id)."""
+        start = time.perf_counter()
+        response = await call_next(request)
+        if request.url.path not in PROBES:
+            access_log.info(
+                "%s %s %d",
+                request.method,
+                request.url.path,
+                response.status_code,
+                extra={
+                    "method": request.method,
+                    "path": request.url.path,
+                    "status": response.status_code,
+                    "duration_ms": round((time.perf_counter() - start) * 1000, 1),
+                },
+            )
+        return response
+
+    @app.get("/healthz")
+    async def healthz() -> dict[str, str]:
+        """Liveness: the process serves HTTP. Checks NO dependencies on purpose:
+        if Qdrant is down, restarting this container would not fix it, and a
+        liveness probe that fails then would restart every replica in a loop."""
         return {"status": "ok"}
+
+    @app.get("/readyz")
+    async def readyz(request: Request) -> JSONResponse:
+        """Readiness: can this instance answer queries right now? Kubernetes only
+        routes traffic to ready pods, so a Qdrant outage takes the pod out of the
+        Service instead of letting every /query fail."""
+        store = request.app.state.service.retriever.store
+        try:
+            ok = await asyncio.wait_for(
+                asyncio.to_thread(store.ping), timeout=readiness_timeout_s
+            )
+        except TimeoutError:
+            ok, reason = False, f"qdrant: no answer within {readiness_timeout_s}s"
+        except Exception as err:  # connection refused, auth error, ...
+            ok, reason = False, f"qdrant: {type(err).__name__}: {err}"
+        else:
+            reason = "" if ok else f"collection {store.collection!r} missing"
+        if not ok:
+            log.warning("not ready: %s", reason)
+            return JSONResponse({"status": "unavailable", "reason": reason}, 503)
+        return JSONResponse({"status": "ready", "collection": store.collection})
 
     @app.post("/query")
     async def query(body: QueryRequest, request: Request) -> QueryResponse:
@@ -130,9 +188,16 @@ def create_app(
             },
         ):
             try:
-                result, hits = await request.app.state.service.answer(
-                    body.question, doc_ids=body.doc_ids, history=history
-                )
+                # One deadline for the whole request, retries included: a client
+                # gets a clear 504 instead of a connection that hangs.
+                async with asyncio.timeout(request_timeout_s):
+                    result, hits = await request.app.state.service.answer(
+                        body.question, doc_ids=body.doc_ids, history=history
+                    )
+            except TimeoutError as err:
+                raise HTTPException(
+                    504, f"no answer within {request_timeout_s:g} s"
+                ) from err
             except BudgetExceededError as err:
                 raise HTTPException(402, str(err)) from err
             except (ProviderError, StructuredOutputError) as err:
