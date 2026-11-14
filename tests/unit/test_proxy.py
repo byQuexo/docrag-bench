@@ -34,7 +34,7 @@ def test_resolve_splits_on_first_colon_only() -> None:
 
 @pytest.mark.parametrize("route", ["ollama", "ollama:", "missing:model"])
 def test_resolve_errors(route: str) -> None:
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match=r"route must look like|not configured"):
         LLMProxy({"ollama": FakeProvider()}).resolve(route)
 
 
@@ -97,5 +97,5 @@ async def test_budget_cap(monkeypatch: pytest.MonkeyPatch) -> None:
     ],
 )
 async def test_message_order_is_checked(messages: list[Message]) -> None:
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match=r"system messages|at least one user"):
         await LLMProxy({"fake": FakeProvider()}).chat("fake:m", messages)

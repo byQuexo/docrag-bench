@@ -88,7 +88,7 @@ def main() -> None:
 
     # Image-only copy: render each page to PNG and place it as a full-page image.
     scanned = pymupdf.open()
-    for page in doc:
+    for page in doc.pages():
         png = page.get_pixmap(matrix=pymupdf.Matrix(2, 2)).tobytes("png")
         new = scanned.new_page(width=page.rect.width, height=page.rect.height)
         new.insert_image(new.rect, stream=png)

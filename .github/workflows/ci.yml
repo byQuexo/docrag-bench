@@ -31,7 +31,7 @@ jobs:
       - name: Format
         run: uv run ruff format --check .
       - name: Types
-        run: uv run mypy src
+        run: uv run mypy src tests scripts
       # E2E tests run in their own job, which has a Qdrant service.
       - name: Unit tests
         run: uv run pytest -m "not e2e" -q

@@ -66,8 +66,20 @@ target-version = "py312"
 
 [tool.ruff.lint]
 select = [
-    "E", "F", "I", "UP", "B"
+    "E", "F", "I", "UP", "B",
+    "ASYNC",  # blocking calls (time.sleep, open, sync HTTP) inside async functions
+    "RUF",    # ruff's own checks (unused noqa, mutable class defaults, ...)
+    "SIM",    # simplifiable code
+    "PT",     # pytest style: precise pytest.raises, fixtures
 ]
+# PT018 wants `assert a and b` split into two asserts. pytest already shows both
+# operands of a failing `and`, so the rewrite adds lines without adding information.
+# SIM905 wants str.split() on a literal replaced by a list literal; the word
+# block in shared/text.py (STOPWORDS) is easier to read as it is.
+ignore = ["PT018", "SIM905"]
+# Typographic characters that are intentional: text normalization tables
+# (shared/text.py) and human-readable report output (scripts/reproduce_stats.py).
+allowed-confusables = ["‘", "’", "–", "−", " "]
 
 [tool.ruff.lint.per-file-ignores]
 # Lesson notebooks: long assert messages are fine. Exercise notebooks (not the
@@ -103,8 +115,17 @@ dev = [
     "ipykernel>=7.4.0",
     "mypy>=2.4.1",
     "nbmake>=1.5.5",
+    "pre-commit>=4.7.0",
     "pytest>=9.2.0",
     "pytest-asyncio>=1.4.1",
+    "pytest-cov>=7.1.0",
     "ruff>=0.17.3",
+    "testcontainers[qdrant]>=4.15.0",
     "types-pyyaml>=6.0.12.20261030",
 ]
+
+[tool.pydantic-mypy]
+# Type-check model constructors like dataclasses: Model(x="1") for an int field
+# is an error, and unknown keyword arguments are rejected.
+init_forbid_extra = true
+init_typed = true

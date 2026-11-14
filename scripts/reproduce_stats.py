@@ -123,7 +123,7 @@ def provenance(r: Results) -> list[str]:
         code = r.info(name).get("code") or {}
         commit = (code.get("commit") or "")[:7] or "not recorded"
         out.append(f"| `{d.name}` | {commit} | {code.get('dirty', '–')} |")
-    return out + [""]
+    return [*out, ""]
 
 
 def split(r: Results) -> list[str]:
@@ -160,7 +160,7 @@ def answers(r: Results) -> list[str]:
             str(int(sum(x == 1.0 for x in values(r.df(name), "judge_failed")))),
         ]
         out.append(f"| {label} | " + " | ".join(cells) + " |")
-    return out + [""]
+    return [*out, ""]
 
 
 def paired(r: Results, a: str, b: str, which: str = "all") -> str:
@@ -204,7 +204,7 @@ def consistency(r: Results) -> list[str]:
                 ) < 1e-9
                 bad += not same
     out.append(f"- {bad} mismatches in {total} values over {len(r.frames)} runs")
-    return out + [""]
+    return [*out, ""]
 
 
 def diff_ci(r: Results, a: str, b: str, col: str, which: str = "all") -> str:
@@ -241,7 +241,7 @@ def abstention(r: Results) -> list[str]:
     for label, a, b in [("v2_k10 vs v1_k5", d1, d2), ("v3_k10 vs v2_k10", d2, d3)]:
         for which in ("all", "answerable", "unanswerable"):
             out.append(f"- dev {label}, {which}: {paired(r, a, b, which)}")
-    return out + [""]
+    return [*out, ""]
 
 
 def retrieval(r: Results) -> list[str]:
@@ -287,7 +287,7 @@ def retrieval(r: Results) -> list[str]:
         f"{fmt(mean(values(r.part('corpus_vlm', 'text_layer'), 'recall@10')))}, "
         f"scanned {fmt(mean(values(r.part('corpus_vlm', 'scanned'), 'recall@10')))}"
     )
-    return out + [""]
+    return [*out, ""]
 
 
 def models(r: Results) -> list[str]:
@@ -355,7 +355,7 @@ def judge(r: Results) -> list[str]:
             f"- marked unfaithful: human {sum(human)}/{joined.height}, "
             f"judge {sum(judge_f)}/{joined.height}, both {both}"
         )
-    return out + [""]
+    return [*out, ""]
 
 
 def report(results_dir: Path) -> str:

@@ -1,0 +1,52 @@
+# Fast checks before each commit. Install once: `uv run pre-commit install`
+# Run on everything: `uv run pre-commit run --all-files`
+#
+# ruff, mypy and the lock check are LOCAL hooks that run through `uv run`, so
+# they use exactly the versions pinned in uv.lock - the same ones CI uses. The
+# usual remote ruff-pre-commit hook pins its own ruff version, which can drift
+# from the lock file and make "green locally, red in CI" possible.
+# results/ holds committed benchmark outputs: they must stay byte-for-byte as the
+# eval run wrote them, so the whitespace fixers never touch them.
+exclude: ^results/
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+        # k8s manifests and compose files may hold several documents.
+        args: [--allow-multiple-documents]
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: [--maxkb=1024]
+      - id: detect-private-key
+
+  - repo: local
+    hooks:
+      - id: ruff-check
+        name: ruff check
+        entry: uv run ruff check --fix
+        language: system
+        types_or: [python, pyi, jupyter]
+      - id: ruff-format
+        name: ruff format
+        entry: uv run ruff format
+        language: system
+        types_or: [python, pyi, jupyter]
+      - id: mypy
+        name: mypy (strict)
+        # Whole project, not just the staged files: a change in one module can
+        # break the types of another.
+        entry: uv run mypy src tests scripts
+        language: system
+        types: [python]
+        pass_filenames: false
+      - id: uv-lock
+        name: uv.lock matches pyproject.toml
+        entry: uv lock --check
+        language: system
+        files: ^(pyproject\.toml|uv\.lock)$
+        pass_filenames: false

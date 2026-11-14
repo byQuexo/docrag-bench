@@ -19,7 +19,7 @@ def test_parse_list() -> None:
 def test_parse_list_rejects_code_and_non_lists(evil: str) -> None:
     # literal_eval refuses function calls (ValueError) - this is WHY we don't
     # use eval(). A dict literal parses but isn't a list.
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match=r"malformed node|expected a list"):
         parse_list(evil)
 
 

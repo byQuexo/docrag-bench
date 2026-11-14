@@ -19,7 +19,7 @@ from docrag.embed.base import Vectors
 from docrag.shared import tracing
 from docrag.shared.config import RetrievalMode
 from docrag.shared.ids import chunk_point_id
-from docrag.shared.schema import Chunk, Hit
+from docrag.shared.schema import Chunk, Hit, HitSource
 from docrag.shared.timing import timed
 from docrag.store.bm25 import doc_sparse_vector, query_sparse_vector
 
@@ -125,6 +125,7 @@ class QdrantStore:
         doc_ids: list[str] | None = None,
     ) -> list[Hit]:
         flt = _doc_filter(doc_ids) if doc_ids else None
+        source: HitSource
         sparse = query_sparse_vector(query_text)
         has_terms = bool(sparse.indices)
 
