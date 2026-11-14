@@ -40,8 +40,17 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 
 FROM python:3.12-slim AS runtime
 
-# Run as an unprivileged user, not root.
-RUN useradd --create-home --uid 10001 app
+LABEL org.opencontainers.image.title="docrag-bench" \
+      org.opencontainers.image.description="Hybrid RAG over PDFs with verified citations (API + web UI)" \
+      org.opencontainers.image.source="https://github.com/byQuexo/docrag-bench" \
+      org.opencontainers.image.licenses="MIT"
+
+# Run as an unprivileged user, not root. Only the model and cache folders are
+# written at runtime; they belong to that user. This is also what lets
+# Kubernetes run the container with readOnlyRootFilesystem (deploy/k8s).
+RUN useradd --create-home --uid 10001 app \
+    && mkdir -p /app/models /app/.cache \
+    && chown app:app /app/models /app/.cache
 WORKDIR /app
 
 COPY --from=builder --chown=app:app /app/.venv /app/.venv
@@ -51,17 +60,25 @@ COPY --from=ui --chown=app:app /ui/dist ./ui/dist
 
 # The package is installed non-editable, so point it at the app's folders.
 # results/ is mounted at runtime (compose) for the dashboard.
+# Logs as one JSON object per line, for the container's log collector.
 ENV PATH="/app/.venv/bin:$PATH" \
     PYTHONUNBUFFERED=1 \
     DOCRAG_UI_DIR=/app/ui/dist \
-    DOCRAG_RESULTS_DIR=/app/results
+    DOCRAG_RESULTS_DIR=/app/results \
+    DOCRAG_MODELS_DIR=/app/models/hf \
+    DOCRAG_CACHE_PATH=/app/.cache/docrag.sqlite \
+    DOCRAG_LOG_FORMAT=json \
+    DOCRAG_USE_KEYRING=false
 
 USER app
 EXPOSE 8000
 
-# python:slim has no curl; use Python's stdlib for the health check.
-HEALTHCHECK --interval=30s --timeout=5s --start-period=60s \
-    CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')" || exit 1
+# python:slim has no curl; use Python's stdlib for the health check. Liveness
+# only (/healthz): Docker restarts an unhealthy container, and a restart would
+# not fix an unreachable Qdrant. Kubernetes routes on /readyz instead.
+# start-period: the first start downloads the ONNX models (~560 MB).
+HEALTHCHECK --interval=30s --timeout=5s --start-period=300s \
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/healthz')" || exit 1
 
 # Serving needs a config with an `llm` route (baseline.yaml is retrieval-only).
 CMD ["docrag", "serve", "--config", "configs/answer_haiku_vlm_v3.yaml", "--host", "0.0.0.0"]

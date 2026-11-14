@@ -1,0 +1,163 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: docrag-api
+  labels:
+    app.kubernetes.io/name: docrag-api
+spec:
+  selector:
+    app.kubernetes.io/name: docrag-api
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docrag-api
+  labels:
+    app.kubernetes.io/name: docrag-api
+spec:
+  # ONE replica on purpose: conversation threads live in process memory
+  # (threads/store.py). A second replica would not know a thread created on the
+  # first. Scaling out needs a shared thread store (e.g. Redis) first.
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0 # the old pod serves until the new one is ready
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: docrag-api
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: docrag-api
+    spec:
+      automountServiceAccountToken: false # the app never talks to the k8s API
+      terminationGracePeriodSeconds: 30 # > uvicorn's 20 s graceful shutdown
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001 # the `app` user from the Dockerfile
+        runAsGroup: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      # The API creates its collection at start-up and exits if Qdrant is not
+      # there yet (seen on the first rollout: two CrashLoop restarts). Waiting
+      # here makes the start order explicit, like depends_on in compose.
+      initContainers:
+        - name: wait-for-qdrant
+          image: docrag-bench # same image: no extra pull, Python is there
+          command:
+            - python
+            - -c
+            - |
+              import os, time, urllib.request
+              url = os.environ["DOCRAG_QDRANT_LOCATION"].rstrip("/") + "/readyz"
+              for _ in range(120):
+                  try:
+                      urllib.request.urlopen(url, timeout=2)
+                      break
+                  except Exception:
+                      time.sleep(2)
+              else:
+                  raise SystemExit(f"{url} not ready after 4 minutes")
+          envFrom:
+            - configMapRef:
+                name: docrag-config
+          resources:
+            requests: {cpu: 10m, memory: 32Mi}
+            limits: {cpu: 100m, memory: 64Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: [ALL]
+      containers:
+        - name: api
+          image: docrag-bench
+          # $(DOCRAG_CONFIG) is filled from the ConfigMap by Kubernetes.
+          args:
+            - docrag
+            - serve
+            - --config
+            - $(DOCRAG_CONFIG)
+            - --host
+            - 0.0.0.0
+          ports:
+            - name: http
+              containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: docrag-config
+            - secretRef:
+                name: docrag-secrets
+                optional: true # the fake-model config (kind) needs no keys
+          # Startup: the server listens only after the ONNX models are loaded
+          # (downloaded on first start, ~560 MB). Up to 10 minutes, so a slow
+          # download is not mistaken for a hung process.
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 5
+            failureThreshold: 120
+          # Liveness: the process answers HTTP. No dependency checks, or a
+          # Qdrant outage would restart the API in a loop for nothing.
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
+          # Readiness: Qdrant reachable and the collection exists. While not
+          # ready, the Service sends this pod no traffic.
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: http
+            periodSeconds: 5
+            timeoutSeconds: 3 # > DOCRAG_READINESS_TIMEOUT_S (2 s)
+            failureThreshold: 2
+          lifecycle:
+            # Give the endpoints controller a moment to take the pod out of the
+            # Service before SIGTERM, so no new request hits a stopping server.
+            preStop:
+              exec:
+                command: [sleep, "5"]
+          resources:
+            # A starting point, not a measurement under load: gte-small and the
+            # ModernBERT reranker are loaded in memory and reranking is
+            # CPU-bound. Check `kubectl top pod` with real traffic and adjust.
+            requests:
+              cpu: 500m
+              memory: 1Gi
+            limits:
+              cpu: "2"
+              memory: 3Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: [ALL]
+          # The only writable paths (the root filesystem is read-only):
+          volumeMounts:
+            - name: models # ONNX models, downloaded at first start
+              mountPath: /app/models
+            - name: cache # parse/embedding/LLM cache (SQLite)
+              mountPath: /app/.cache
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        # emptyDir: re-downloaded when the pod is replaced. A PVC (or baking the
+        # models into the image) avoids that; kept simple here.
+        - name: models
+          emptyDir: {}
+        - name: cache
+          emptyDir: {}
+        - name: tmp
+          emptyDir: {}

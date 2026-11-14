@@ -20,11 +20,32 @@ docrag-bench answers questions over long PDFs (reports, papers, slide decks, sca
 
 **Where it fits in my portfolio.** [Warden](https://github.com/byQuexo/warden) (an MCP security gateway in Rust) is the central project, [Steward](https://github.com/byQuexo/steward) the illustrative demo, and [agent-approval-gate](https://github.com/byQuexo/agent-approval-gate) its smaller predecessor. docrag-bench is the evidence of methodical evaluation work: a fixed split, paired tests, bootstrap intervals, a judge checked against human labels, and every number traceable to a file in [`results/`](results/).
 
+## Architecture
+
+```mermaid
+flowchart LR
+  Client(["Client / web UI"]) -->|"POST /query"| API
+  subgraph Pod["docrag-api: FastAPI, one container"]
+    API["Routes<br/>/query · /healthz · /readyz"] --> Svc["AnswerService"]
+    Svc --> Ret["Retriever<br/>embed (ONNX) → hybrid search → rerank (ONNX)"]
+    Svc --> Proxy["LLMProxy<br/>timeout · retries · cache · budget cap"]
+    Svc --> Verify["Verify<br/>citations checked in code"]
+  end
+  Ret -->|"timeout, retries"| Qdrant[("Qdrant<br/>dense + BM25 vectors")]
+  Proxy -->|"timeout, retries, Retry-After"| LLM["LLM provider<br/>OpenRouter · Anthropic · Ollama · ..."]
+  Pod -.->|"OTLP spans (optional)"| Traces["Phoenix and/or Langfuse"]
+  Pod -.->|"JSON logs with trace_id"| Logs["stdout"]
+  Ingest["docrag ingest (offline)"] --> Qdrant
+  Gate["CI eval gate<br/>38 fixed dev questions"] -.->|"same code path"| Svc
+```
+
+Request path: retrieve (embed, hybrid search, rerank), abstain if nothing relevant, answer with structured citations, verify them. The benchmark (`docrag eval`) and the CI gate call the same `AnswerService` as the API. Deployment details: [docs/deploy.md](docs/deploy.md).
+
 ## What it is
 
 - **Problem.** RAG systems over long PDFs usually return an answer as a plain string, so you can't tell which sentence came from where, and claims like "reranking helps" or "the bigger model is better" are rarely measured with uncertainty.
 - **What it gives you.** (1) Answers with structured evidence; every citation is checked in pure code (is the chunk ID one the model was given? is the quote verbatim in it?), and the system says "Not answerable" instead of guessing. (2) A benchmark harness: one YAML in [`configs/`](configs/) = one run; each run writes its config, per-question CSV, metrics and provenance to `results/`; intervals and paired tests are recomputed from those files with one command.
-- **Scope: what it is not.** Not a production service (threads are in memory, no auth, single node). Not a general RAG framework. Not a leaderboard or state-of-the-art claim on MMLongBench-Doc. Not an independent held-out evaluation of the final prompt (see [limits](#how-far-to-trust-these-numbers)). Its "faithfulness" score is not a validated metric. English only.
+- **Scope: what it is not.** Not a hardened multi-tenant service: it runs as a container with probes, timeouts, retries, JSON logs and traces (see [Production readiness](#production-readiness)), but threads live in memory (one replica), there is no auth, and indexing is a manual step. Not a general RAG framework. Not a leaderboard or state-of-the-art claim on MMLongBench-Doc. Not an independent held-out evaluation of the final prompt (see [limits](#how-far-to-trust-these-numbers)). Its "faithfulness" score is not a validated metric. English only.
 
 ## Try it
 
@@ -193,6 +214,33 @@ Run folders: `results/*_dense_*`, `*_bm25_*`, `*_hybrid_*`, `*_baseline_*`, `*_n
 - **One number hides trade-offs.** v2 and v3 have the same overall correctness, but v2 gets 3.9 points more answerable questions right and v3 14.9 points more unanswerable ones. → [lesson 08](docs/lessons/08_eval.md)
 </details>
 
+## Production readiness
+
+What exists in this repository today, and where to check it. Anything not in this list is not there; the gaps are under [What is missing](#what-is-missing).
+
+| Area | What is in place | Where |
+|---|---|---|
+| Packaging and quality | uv with a lock file; ruff (incl. async and pytest rules); mypy `--strict` on `src`, `tests` and `scripts` with typed pydantic constructors; pre-commit running the locked tool versions | [`pyproject.toml`](pyproject.toml), [`.pre-commit-config.yaml`](.pre-commit-config.yaml) |
+| Configuration | one pydantic-settings class, validated at start-up; secrets as `SecretStr` from env, `.env` or the OS keyring | [`settings.py`](src/docrag/shared/settings.py), [`.env.example`](.env.example) |
+| Health | `/healthz` (liveness, no dependencies) and `/readyz` (Qdrant reachable within 2 s and the collection exists, else 503) | [`api/app.py`](src/docrag/api/app.py) |
+| Failure handling | timeouts on every LLM and Qdrant call; retries with exponential backoff and jitter on transient errors only, honouring `Retry-After`; one deadline per request (504); Qdrant outage → 503; LLM budget cap | [`retry.py`](src/docrag/shared/retry.py), [`qdrant.py`](src/docrag/store/qdrant.py), [`openai_compat.py`](src/docrag/llm/openai_compat.py) |
+| Logs | JSON lines with `trace_id`/`span_id`, one access line per request (probes excluded) | [`logs.py`](src/docrag/shared/logs.py) |
+| Traces | OpenTelemetry spans request → retrieve (embed, search, rerank) → LLM (model, tokens, cost) → verify, exported to Phoenix and/or Langfuse; off unless configured, `OTEL_SDK_DISABLED=true` turns it off | [`tracing.py`](src/docrag/shared/tracing.py), [lesson 13](docs/lessons/13_tracing.md) |
+| Tests | <!--N_TESTS--> unit tests against fakes; integration tests against a real Qdrant started by testcontainers; line and branch coverage reported in CI with a floor of 80% | [`tests/`](tests/) |
+| Quality gate | CI fails when recall@10 or the LLM-judged share of correct answers on a fixed set of 38 dev-split questions drops below its threshold; results uploaded as a CI artifact | [`ci.yml`](.github/workflows/ci.yml), [`fixtures/ci_gate.yaml`](fixtures/ci_gate.yaml) |
+| Container | multi-stage image, non-root user, health check, JSON logs by default; compose starts the API only after Qdrant is healthy | [`Dockerfile`](Dockerfile), [`compose.yaml`](compose.yaml) |
+| Kubernetes | Deployment + Service, Qdrant StatefulSet with a volume, startup/liveness/readiness probes, resource limits, read-only root filesystem under the `restricted` Pod Security Standard; deployed to kind in CI and smoke-tested | [`deploy/k8s/`](deploy/k8s/), [`docs/deploy.md`](docs/deploy.md) |
+
+<!--GATE-->
+
+### What is missing
+
+- **One replica only.** Conversation threads are kept in process memory and lost on restart; scaling out needs a shared store (e.g. Redis) first.
+- **No authentication, rate limiting, ingress or TLS** in front of the API, and no Qdrant API key in the manifests.
+- **Indexing is manual** (`docrag ingest`); there is no Kubernetes Job for it, and the models are downloaded at pod start into an `emptyDir`.
+- **No metrics endpoint** (Prometheus) and no alerting; observability is logs and traces.
+- **The CI gate is small on purpose**: 38 questions catch a broken pipeline, not a drift of a few points, and the restored LLM cache means a silent change on the provider's side is not detected. Resource requests and limits are a starting point, not measured under load.
+
 ## Quickstart
 
 Requirements: Python 3.12, [uv](https://docs.astral.sh/uv/), Docker for Qdrant. Works on Windows and Linux/macOS.
@@ -227,7 +275,7 @@ Keys can go in a git-ignored `.env` or the OS keyring (`uv run keyring set docra
 
 **Everything in Docker:** `docker compose up -d` starts Qdrant, the API with the web UI on port 8000 and Phoenix on port 6006. Answers need `OPENROUTER_API_KEY` in `.env` (no OS keyring in the container).
 
-**Tracing:** with `DOCRAG_OTEL_ENDPOINT=http://127.0.0.1:6006/v1/traces`, every `serve` request, `ask` call and `eval` question becomes an OpenTelemetry trace in Phoenix (embed, search, rerank, the LLM call with tokens and cost, Verify). Ingest is deliberately not traced.
+**Tracing:** with `DOCRAG_OTEL_ENDPOINT=http://127.0.0.1:6006/v1/traces`, every `serve` request, `ask` call and `eval` question becomes an OpenTelemetry trace in Phoenix (embed, search, rerank, the LLM call with tokens and cost, Verify). With `LANGFUSE_PUBLIC_KEY` and `LANGFUSE_SECRET_KEY` the same spans also go to Langfuse. Ingest is deliberately not traced.
 </details>
 
 <details>
@@ -311,6 +359,7 @@ Solutions are in `notebooks/lessons/solutions/`; CI executes them so they stay i
 - BM25 tokenization is English-only, without stemming; term IDs are `crc32` hashes (rare collisions possible).
 - Threads are in-memory and lost on restart. Follow-up questions are not rewritten before retrieval. Searching all documents at once retrieves clearly worse than searching the right one (recall@10 0.599 vs 0.776).
 - Qdrant's embedded mode is brute force and slow beyond roughly 20k chunks; use the Docker server for full runs.
+- Operations: one API replica (threads in memory), no auth or rate limiting, manual indexing, no metrics endpoint (see [What is missing](#what-is-missing)).
 
 <details>
 <summary>Design decisions</summary>
@@ -334,7 +383,7 @@ Solutions are in `notebooks/lessons/solutions/`; CI executes them so they stay i
 <summary>Future work</summary>
 
 - **Next:** a held-out check of `answer_v3` on questions it was not selected on; a more reliable faithfulness check (a second judge model, or more human labels, on the headline run); a model-based support check (LettuceDetect) as a second Verify stage.
-- **Later:** a judge panel across providers; Promptfoo as an eval gate in CI; Redis for threads and cache; a ColPali-style visual retriever; German as an evaluation axis.
+- **Later:** a judge panel across providers; Redis for threads and cache (then more than one API replica); a ColPali-style visual retriever; German as an evaluation axis.
 </details>
 
 <details>
@@ -356,14 +405,15 @@ docrag-bench/
 │   ├── prompts/    # versioned prompt files
 │   ├── wiring.py   # builds the object graph from settings + config
 │   └── cli.py      # `docrag` command
-├── scripts/        # data download, reproduce_stats.py (README numbers from results/)
+├── scripts/        # data download, reproduce_stats.py (README numbers from results/), CI eval gate
 ├── demo/           # Gradio demo (local or Hugging Face Space)
 ├── ui/             # web UI: chat with sources + benchmark dashboard (Vite, React)
 ├── notebooks/lessons/  # interactive lessons (+ solutions/)
 ├── docs/lessons/       # lesson texts
-├── tests/          # unit/ against fakes, e2e/ against a real Qdrant
+├── tests/          # unit/ against fakes, e2e/ against a real Qdrant (testcontainers)
 ├── configs/        # one YAML per experiment
 ├── results/        # per run: config.yaml, metrics.csv, per_question.csv, run.json
+├── deploy/k8s/     # kustomize base (API, Qdrant) + kind overlay, smoke test
 ├── compose.yaml    # Qdrant + API + Phoenix
 └── pyproject.toml  # uv, ruff, mypy (strict), pytest
 ```
@@ -373,15 +423,15 @@ docrag-bench/
 <summary>Development</summary>
 
 ```bash
-uv run ruff check . && uv run ruff format --check .
-uv run mypy src                                   # strict mode
-uv run pytest -m "not e2e"                        # unit tests, no services needed
+uv run pre-commit install                         # once: ruff, mypy, lock check on every commit
+uv run pre-commit run --all-files                 # the same by hand
+uv run pytest --cov                               # unit + integration (starts Qdrant via Docker) + coverage
+uv run pytest -m "not e2e"                        # unit tests only, no Docker needed
 uv run pytest --nbmake notebooks/lessons/solutions # lesson notebooks
-DOCRAG_E2E_QDRANT_URL=http://localhost:6333 uv run pytest -m e2e   # needs Qdrant
 uv run python scripts/reproduce_stats.py          # README statistics from results/
 ```
 
-CI (GitHub Actions) runs lint, types, unit tests and the lesson notebooks; an end-to-end test against a Qdrant service container; and a Docker build.
+CI (GitHub Actions) has three jobs: `lint-test` (ruff, mypy strict, unit and testcontainers integration tests with coverage in the job summary, lesson notebooks), `eval-gate` (the quality gate above, after `lint-test` passes) and `deploy-smoke` (builds the image, deploys it to kind with `deploy/k8s`, checks rollout, probes and one query). See [docs/deploy.md](docs/deploy.md) and [lesson 14](docs/lessons/14_operability.md).
 </details>
 
 ## License

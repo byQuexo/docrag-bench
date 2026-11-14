@@ -23,10 +23,11 @@ design decision in an interview.
 | 11 | [GPU, secrets, security, OpenRouter](11_gpu_secrets_security.md) | [exercise](../../notebooks/lessons/11_gpu_secrets_security.ipynb) · [solution](../../notebooks/lessons/solutions/11_gpu_secrets_security.ipynb) | `embed/onnx.py`, `shared/settings.py`, `llm/openai_compat.py`, `compose.yaml`, `pyproject.toml` | after M5 |
 | 12 | [OCR for PDFs without a text layer](12_ocr.md) | [exercise](../../notebooks/lessons/12_ocr.ipynb) · [solution](../../notebooks/lessons/solutions/12_ocr.ipynb) | `ingest/ocr.py`, `ingest/indexer.py`, `ingest/chunker.py`, `eval/runner.py` | after M5 |
 | 13 | [Tracing with OpenTelemetry + Phoenix](13_tracing.md) | [exercise](../../notebooks/lessons/13_tracing.ipynb) · [solution](../../notebooks/lessons/solutions/13_tracing.ipynb) | `shared/tracing.py`, `shared/timing.py`, `api/app.py`, `eval/runner.py`, `compose.yaml` | M6 |
+| 14 | [Making the service operable](14_operability.md) | - | `shared/retry.py`, `shared/logs.py`, `api/app.py`, `ci.yml` (eval gate), `deploy/k8s`, `Dockerfile` | after M6 |
 
 ## Interactive notebooks
 
-Every lesson except 10 has a notebook in `notebooks/lessons/`: 2-4 small steps where
+Every lesson except 10 and 14 has a notebook in `notebooks/lessons/`: 2-4 small steps where
 you type 1-5 lines yourself (`# TODO`), each followed by a check cell with `assert`s
 that give a hint when something's off. They import the real `docrag` code, use only
 `fixtures/` and the fake providers, and run offline in seconds. Solutions are in
@@ -56,8 +57,8 @@ again the evening before an interview.
 
 ```powershell
 uv sync --extra gpu   # or --extra cpu; installs exactly what uv.lock says
-uv run pytest                                  # all tests (e2e skipped without Qdrant)
-uv run ruff check . ; uv run mypy src          # lint + types
+uv run pytest                                  # all tests (e2e start Qdrant via Docker, skipped without)
+uv run pre-commit run --all-files             # ruff, mypy --strict (src tests scripts), lock check
 docker compose up -d qdrant                    # start Qdrant on :6333
 uv run docrag ingest --config configs/baseline.yaml --docs 10
 uv run docrag calibrate --config configs/baseline.yaml

@@ -50,3 +50,8 @@ def test_exceptions_and_odd_values_never_break_logging() -> None:
     out = json.loads(JsonFormatter().format(record))
     assert "RuntimeError: boom" in out["exc_info"]
     assert out["path"].startswith("<object")
+
+
+def test_uvicorn_color_message_is_dropped() -> None:
+    out = json.loads(JsonFormatter().format(_record(color_message="\x1b[1mx\x1b[0m")))
+    assert "color_message" not in out

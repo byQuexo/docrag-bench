@@ -28,6 +28,7 @@ _STANDARD = set(logging.LogRecord("", 0, "", 0, "", (), None).__dict__) | {
     "message",
     "asctime",
     "taskName",
+    "color_message",  # uvicorn's copy of msg with ANSI colour codes
 }
 
 # Third-party libraries that are chatty at INFO.
