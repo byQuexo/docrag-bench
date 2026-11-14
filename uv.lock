@@ -449,6 +449,7 @@ dev = [
     { name = "pytest-cov" },
     { name = "ruff" },
     { name = "testcontainers", extra = ["qdrant"] },
+    { name = "types-docker" },
     { name = "types-pyyaml" },
 ]
 
@@ -490,6 +491,7 @@ dev = [
     { name = "pytest-cov", specifier = ">=7.1.0" },
     { name = "ruff", specifier = ">=0.17.3" },
     { name = "testcontainers", extras = ["qdrant"], specifier = ">=4.15.0" },
+    { name = "types-docker", specifier = ">=7.2.0.20261102" },
     { name = "types-pyyaml", specifier = ">=6.0.12.20261030" },
 ]
 
@@ -2544,6 +2546,19 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/03/51/d33db42cc72ffd8c30777547b42d01f0cbf9d95a770457698d0174b3ed71/typer-0.27.3.tar.gz", hash = "sha256:d0396f770a560ab1b0a8504e13b5f254b728cedb05c61cf0359e944e50ce8901", size = 205303, upload-time = "2026-10-06T17:24:16.61Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/07/ea/2e31b67051e91a133189e9c000c222502ddc6969856416de0d095de4c0b0/typer-0.27.3-py3-none-any.whl", hash = "sha256:e50022f28b82a86313e54501317a1db64bf8f8d036ff8cfe5ca7e47675454aff", size = 123312, upload-time = "2026-10-06T17:24:15.054Z" },
+]
+
+[[package]]
+name = "types-docker"
+version = "7.2.0.20261102"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "requests" },
+    { name = "urllib3" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/fa/67/8d93779ea6562cc34c264dbbf98019958e6c788ba631a126401cab2b4613/types_docker-7.2.0.20261102.tar.gz", hash = "sha256:af141295dfc2760f2452fed89988ecfd86e2a66411206eb7c190aadc41d10e12", size = 37461, upload-time = "2026-11-02T08:32:04.415Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/bb/f5/28cee3a471bf9ead6d2cefc2c9b27c6ac8dc19bd8c8077731487101b9457/types_docker-7.2.0.20261102-py3-none-any.whl", hash = "sha256:a5fda816dfc909be4a65892c87983ca007e461cb6fb46aba6481547304de0ebe", size = 51418, upload-time = "2026-11-02T08:32:02.96Z" },
 ]
 
 [[package]]

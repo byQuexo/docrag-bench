@@ -79,17 +79,21 @@ the yield is teardown.
 
 ### 5. The E2E test (`tests/e2e/`)
 
-Marked `@pytest.mark.e2e` and skipped unless `DOCRAG_E2E_QDRANT_URL` is set. It runs the
-real parser on `fixtures/tiny.pdf`, writes into a **real Qdrant server**, and queries through
-the real FastAPI app with fake embedder/LLM. That proves wiring + server
-behavior (payload index, sparse IDF, RRF on the server) without model downloads in CI.
-
-Locally:
+Marked `@pytest.mark.e2e`. A module-scoped fixture starts a throwaway Qdrant container with
+**testcontainers** (same image tag as `compose.yaml`), so the only requirement is a running
+Docker; without Docker the tests are skipped. It runs the real parser on `fixtures/tiny.pdf`,
+writes into a **real Qdrant server**, and queries through the real FastAPI app with fake
+embedder/LLM. That proves wiring + server behavior (payload index, sparse IDF, RRF on the
+server, `/readyz`, "a 404 is not retried") without model downloads in CI.
 
 ```powershell
-docker compose up -d qdrant
-$env:DOCRAG_E2E_QDRANT_URL = "http://localhost:6333"; uv run pytest -m e2e
+uv run pytest -m e2e
 ```
+
+Why testcontainers rather than a CI `services:` container (the earlier version): the same
+command works on a laptop and in CI, every run gets a fresh server, and the container is
+removed even when a test fails. CI now runs unit and integration tests in one `pytest` call,
+so the coverage report counts both.
 
 ### 6. CI (`.github/workflows/ci.yml`)
 

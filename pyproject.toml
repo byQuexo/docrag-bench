@@ -121,6 +121,7 @@ dev = [
     "pytest-cov>=7.1.0",
     "ruff>=0.17.3",
     "testcontainers[qdrant]>=4.15.0",
+    "types-docker>=7.2.0.20261102",
     "types-pyyaml>=6.0.12.20261030",
 ]
 
@@ -129,3 +130,19 @@ dev = [
 # is an error, and unknown keyword arguments are rejected.
 init_forbid_extra = true
 init_typed = true
+
+[tool.coverage.run]
+source = ["docrag"]
+# Branch coverage: an `if` whose else-path never ran counts as half-tested.
+branch = true
+
+[tool.coverage.report]
+# The floor sits a few points under what CI measured when it was introduced
+# (see the CI job summary), so a PR that drops tests fails but noise doesn't.
+fail_under = 80
+skip_covered = true
+show_missing = true
+exclude_also = [
+    "if __name__ == .__main__.:",
+    'raise AssertionError\("unreachable"\)',
+]

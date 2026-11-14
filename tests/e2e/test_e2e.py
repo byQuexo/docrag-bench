@@ -1,15 +1,16 @@
 """End-to-end: real parser + real Qdrant server + real FastAPI app.
 
 Only the models are faked (embedder, reranker, LLM), so CI needs no downloads
-or API keys. Runs only when DOCRAG_E2E_QDRANT_URL is set, e.g. in CI against
-the Qdrant service container, or locally:
+or API keys. Qdrant runs in a throwaway container started by testcontainers
+(same image tag as compose.yaml), so the test needs nothing but Docker:
 
-    docker compose up -d qdrant
-    $env:DOCRAG_E2E_QDRANT_URL = "http://localhost:6333"   # PowerShell
     uv run pytest -m e2e
+
+Why testcontainers instead of a CI service container: the same command works
+on a laptop and in CI, each run gets a fresh server, and the container is
+removed afterwards even if a test fails. Without Docker the tests are skipped.
 """
 
-import os
 import uuid
 from collections.abc import Iterator
 from pathlib import Path
@@ -17,6 +18,7 @@ from typing import Any
 
 import pytest
 from fastapi.testclient import TestClient
+from qdrant_client.http.exceptions import UnexpectedResponse
 
 from docrag.answer.service import AnswerService
 from docrag.api.app import create_app
@@ -30,25 +32,41 @@ from docrag.shared.config import ExperimentConfig
 from docrag.store.qdrant import QdrantStore, make_client
 from docrag.store.retriever import Retriever
 
-QDRANT_URL = os.environ.get("DOCRAG_E2E_QDRANT_URL")
+# Keep in sync with compose.yaml and deploy/k8s: test what is deployed.
+QDRANT_IMAGE = "qdrant/qdrant:v1.20.0"
 
-# Skipped (not failed) when no Qdrant is available.
-pytestmark = [
-    pytest.mark.e2e,
-    pytest.mark.skipif(not QDRANT_URL, reason="set DOCRAG_E2E_QDRANT_URL"),
-]
+pytestmark = pytest.mark.e2e
+
+
+def _docker_available() -> bool:
+    try:
+        import docker
+
+        docker.from_env().ping()
+        return True
+    except Exception:
+        return False
 
 
 @pytest.fixture(scope="module")
-def store() -> Iterator[QdrantStore]:
-    assert QDRANT_URL is not None
-    client = make_client(QDRANT_URL)
-    # Unique name: parallel CI jobs or a crashed earlier run can't collide.
+def qdrant_url() -> Iterator[str]:
+    if not _docker_available():
+        pytest.skip("Docker is not running")
+    from testcontainers.community.qdrant import QdrantContainer
+
+    # `with` stops and removes the container, also when a test failed.
+    with QdrantContainer(QDRANT_IMAGE) as qdrant:
+        yield f"http://{qdrant.rest_host_address}"
+
+
+@pytest.fixture(scope="module")
+def store(qdrant_url: str) -> Iterator[QdrantStore]:
+    client = make_client(qdrant_url)
     name = f"e2e_{uuid.uuid4().hex[:8]}"
     store = QdrantStore(client, name, dim=64)
     store.ensure_collection()
     yield store
-    client.delete_collection(name)  # teardown runs even if tests failed
+    client.delete_collection(name)
 
 
 @pytest.fixture(scope="module")
@@ -110,3 +128,22 @@ def test_every_fixture_question_retrieves_its_page(
     )
     pages = {p for h in hits for p in h.chunk.pages}
     assert set(q["evidence_pages"]) <= pages
+
+
+def test_readyz_against_a_real_qdrant(client: TestClient) -> None:
+    r = client.get("/readyz")
+    assert r.status_code == 200, r.text
+    assert r.json()["status"] == "ready"
+
+
+def test_missing_collection_fails_fast_without_retries(qdrant_url: str) -> None:
+    """A 404 is a config error, not a hiccup: no backoff, the error at once."""
+    import time
+
+    store = QdrantStore(make_client(qdrant_url), "does_not_exist", dim=64, retries=3)
+    start = time.perf_counter()
+    with pytest.raises(UnexpectedResponse) as err:
+        store.count()
+    assert err.value.status_code == 404
+    assert time.perf_counter() - start < 1.0
+    assert store.ping() is False

@@ -1,5 +1,5 @@
-# CI for docrag-bench: lint + types + unit tests, an E2E test against a real
-# Qdrant, and a Docker build check.
+# CI for docrag-bench: lint + types, unit and integration tests with coverage,
+# and a Docker build check.
 #
 name: ci
 
@@ -13,9 +13,14 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+# Least privilege: no job needs to write to the repository.
+permissions:
+  contents: read
+
 jobs:
   lint-test:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7
 
@@ -30,42 +35,29 @@ jobs:
         run: uv run ruff check .
       - name: Format
         run: uv run ruff format --check .
-      - name: Types
+      - name: Types (mypy --strict)
         run: uv run mypy src tests scripts
-      # E2E tests run in their own job, which has a Qdrant service.
-      - name: Unit tests
-        run: uv run pytest -m "not e2e" -q
+      # Unit tests AND the integration tests (marker e2e): those start a real
+      # Qdrant via testcontainers on the runner's Docker. One run, so coverage
+      # counts both. Fails below [tool.coverage.report] fail_under.
+      - name: Tests with coverage
+        run: uv run pytest -q --cov --cov-report=xml --cov-report=term
+      - name: Coverage summary
+        if: always()
+        run: |
+          echo "## Coverage (unit + integration, lines and branches)" >> "$GITHUB_STEP_SUMMARY"
+          uv run coverage report --format=markdown >> "$GITHUB_STEP_SUMMARY" || true
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage
+          path: coverage.xml
+          if-no-files-found: ignore
       # Execute the lesson SOLUTION notebooks so they can't rot when the code
       # changes. The exercise notebooks are incomplete on purpose and not run.
       - name: Lesson notebooks
         run: uv run pytest --nbmake notebooks/lessons/solutions -q
-
-  e2e:
-    runs-on: ubuntu-latest
-    # Same Qdrant image tag as compose.yaml.
-    services:
-      qdrant:
-        image: qdrant/qdrant:v1.20.0
-        ports:
-          - 6333:6333
-    env:
-      DOCRAG_E2E_QDRANT_URL: http://localhost:6333
-    steps:
-      - uses: actions/checkout@v7
-      - uses: astral-sh/setup-uv@v10.3.0 # exact: setup-uv publishes no moving major tag
-        with:
-          enable-cache: true
-      - run: uv sync --locked --extra cpu # CPU onnxruntime: no CUDA wheels in CI
-      # Wait for Qdrant's readiness endpoint instead of a fixed sleep.
-      - name: Wait for Qdrant
-        run: |
-          for i in $(seq 1 30); do
-            curl -sf http://localhost:6333/readyz && exit 0
-            sleep 2
-          done
-          echo "Qdrant did not become ready" && exit 1
-      - name: E2E tests
-        run: uv run pytest -m e2e -q
 
   docker:
     runs-on: ubuntu-latest
