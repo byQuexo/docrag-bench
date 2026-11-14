@@ -8,6 +8,7 @@ from typing import Any
 
 import pytest
 from fastapi.testclient import TestClient
+from qdrant_client.http.exceptions import ResponseHandlingException
 
 from docrag.answer.service import AnswerService
 from docrag.api.app import create_app
@@ -126,3 +127,19 @@ def test_access_log_has_fields_and_skips_probes(
     assert record["path"] == "/query"
     assert record["status"] == 200
     assert record["duration_ms"] > 0
+
+
+def test_qdrant_outage_during_query_is_503(
+    memory_store: QdrantStore,
+    embeddings: EmbeddingService,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    def down(**kwargs: Any) -> Any:
+        raise ResponseHandlingException(ConnectionError("refused"))
+
+    monkeypatch.setattr(memory_store, "search", down)
+    app = create_app(_service(memory_store, embeddings, FakeProvider()))
+    with TestClient(app) as client:
+        r = client.post("/query", json={"question": QUESTION, "doc_ids": ["tiny"]})
+    assert r.status_code == 503
+    assert r.json()["detail"] == "search backend unavailable"

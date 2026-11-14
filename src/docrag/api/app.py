@@ -20,6 +20,7 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
+from qdrant_client.http.exceptions import ApiException as QdrantError
 
 from docrag.answer.schema import AnswerResult
 from docrag.answer.service import AnswerService
@@ -201,6 +202,11 @@ def create_app(
                 raise HTTPException(
                     504, f"no answer within {request_timeout_s:g} s"
                 ) from err
+            except QdrantError as err:
+                # Raised only after the store's own retries gave up. 503 = "try
+                # again later", and /readyz now reports the same outage.
+                log.error("search backend failed: %s", err)
+                raise HTTPException(503, "search backend unavailable") from err
             except BudgetExceededError as err:
                 raise HTTPException(402, str(err)) from err
             except (ProviderError, StructuredOutputError) as err:

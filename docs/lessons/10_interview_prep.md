@@ -163,9 +163,10 @@ redistributing the PDFs (the repo doesn't include them).
 ## C. "What happens when…?"
 
 **29. …Qdrant is down?**
-The retriever's search call raises a connection error, which surfaces as HTTP 500. In
-production I'd map it to 503 with Retry-After and add a readiness probe that checks
-Qdrant; `/health` is liveness only.
+Every Qdrant call retries transient errors (connection, 429, 5xx) with jittered
+backoff. When the retries give up, `/query` returns 503 and `/readyz` returns 503, so the
+pod leaves the Service. `/healthz` stays 200: a restart would not fix Qdrant, and a
+liveness probe tied to a dependency restarts every replica in a loop.
 
 **30. …the LLM returns invalid JSON twice?**
 The first failure triggers one retry including the validation error. A second failure raises
