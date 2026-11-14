@@ -15,13 +15,12 @@ agreement corrected for chance: 0 = chance level, 1 = perfect.
 
 import json
 import re
-from collections.abc import Callable
+from collections.abc import Callable, Sequence
 from pathlib import Path
 from typing import Any
 
 import polars as pl
 from qdrant_client import QdrantClient
-from sklearn.metrics import cohen_kappa_score
 
 from docrag.eval.dataset import EvalQuestion
 from docrag.shared.ids import chunk_point_id
@@ -164,6 +163,25 @@ def _save(
             ask("Close it there, then press Enter to retry: ")
 
 
+def cohen_kappa(a: Sequence[bool], b: Sequence[bool]) -> float:
+    """Cohen's kappa for two raters with yes/no labels.
+
+    kappa = (p_o - p_e) / (1 - p_e): p_o is the observed agreement, p_e the
+    agreement expected by chance from each rater's own yes-rate. Written out
+    instead of importing scikit-learn for one function (scikit-learn + scipy
+    are ~190 MB in the Docker image); tests cross-check it against sklearn.
+    """
+    n = len(a)
+    if n == 0 or n != len(b):
+        raise ValueError("need two non-empty label lists of the same length")
+    p_o = sum(x == y for x, y in zip(a, b, strict=True)) / n
+    yes_a, yes_b = sum(a) / n, sum(b) / n
+    p_e = yes_a * yes_b + (1 - yes_a) * (1 - yes_b)
+    if p_e == 1.0:  # both raters used one and the same label only
+        return float("nan")
+    return (p_o - p_e) / (1 - p_e)
+
+
 def judge_agreement(run_dir: Path, labels_csv: Path) -> dict[str, dict[str, float]]:
     """Agreement + Cohen's kappa per field, over the rows a human has labeled."""
     labels = read_labels(labels_csv)
@@ -185,7 +203,7 @@ def judge_agreement(run_dir: Path, labels_csv: Path) -> dict[str, dict[str, floa
         agree = sum(j == h for j, h in pairs)
         # Undefined when both raters only ever use the same single label.
         kappa = (
-            float(cohen_kappa_score(human_v, judge_v, labels=[False, True]))
+            cohen_kappa(human_v, judge_v)
             if len(set(human_v) | set(judge_v)) == 2
             else float("nan")
         )
