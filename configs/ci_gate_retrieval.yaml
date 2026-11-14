@@ -1,0 +1,22 @@
+# CI quality gate, retrieval part only: identical to ci_gate.yaml without the
+# LLM and judge. Used for pull requests from forks, which GitHub runs without
+# repository secrets (no OpenRouter key). The judge gate then reports SKIPPED,
+# never PASSED.
+name: ci_gate_retrieval
+embedder: onnx:gte-small
+prefix_headings: true
+ocr: none
+retrieval: hybrid_rerank
+scope: doc
+top_k: 10
+prefetch_k: 50
+rrf_k: 60
+reranker: onnx:gte-reranker-modernbert-base
+rerank_threshold: 0.6326
+context_k: 10
+prompt_version: answer_v3
+llm: null
+judge: null
+dataset:
+  split: dev
+  max_docs: null

@@ -47,3 +47,4 @@ demo/.cache/
 ui/node_modules/
 ui/dist/
 coverage.xml
+gate-results/

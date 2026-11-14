@@ -59,10 +59,118 @@ jobs:
       - name: Lesson notebooks
         run: uv run pytest --nbmake notebooks/lessons/solutions -q
 
-  docker:
+  # Quality gate: the real pipeline (ONNX embedder + reranker, Claude Haiku
+  # answers, DeepSeek judge) on a fixed set of 38 dev-split questions. Fails the
+  # build when recall@10 or the judged share of correct answers drops below the
+  # thresholds in fixtures/ci_gate.yaml. Runs after lint-test, so broken code
+  # never spends API money.
+  eval-gate:
+    needs: lint-test
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    services:
+      qdrant:
+        image: qdrant/qdrant:v1.20.0 # same tag as compose.yaml and deploy/k8s
+        ports:
+          - 6333:6333
+    env:
+      DOCRAG_QDRANT_LOCATION: http://127.0.0.1:6333
+      DOCRAG_PDF_DIR: data/ci_gate/documents
+      DOCRAG_QA_GLOB: data/ci_gate/data/*.parquet
+      DOCRAG_RESULTS_DIR: gate-results
+      DOCRAG_MODELS_DIR: models/hf
+      DOCRAG_CACHE_PATH: .cache/docrag.sqlite
+      DOCRAG_USE_KEYRING: "false" # no OS keyring on a runner
+      # Hard stop for API spend per run (a cold run costs a few cents). The key
+      # itself also has a credit limit set at OpenRouter.
+      DOCRAG_BUDGET_EUR: "0.50"
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      # GitHub gives no secrets to pull requests from forks.
+      FORK_PR: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork }}
     steps:
       - uses: actions/checkout@v7
-      # Build only (no push): catches a broken Dockerfile in the PR.
+      - uses: astral-sh/setup-uv@v10.3.0 # exact: setup-uv publishes no moving major tag
+        with:
+          enable-cache: true
+      - run: uv sync --locked --extra cpu
+
+      # ONNX models (~560 MB) downloaded once, then restored.
+      - name: Cache ONNX models
+        uses: actions/cache@v6
+        with:
+          path: models/hf
+          key: onnx-gte-small-gte-reranker-modernbert-base-v1
+      # Parse/embedding/LLM cache. Its keys are content hashes (prompt, context,
+      # model, schema), so a restored older cache can never return a stale
+      # answer: changed inputs simply miss. Unchanged inputs replay, which keeps
+      # the gate stable and cheap when only unrelated code changed.
+      - name: Cache docrag
+        uses: actions/cache@v6
+        with:
+          path: .cache
+          key: docrag-cache-${{ github.run_id }}
+          restore-keys: docrag-cache-
+
+      - name: Download the gate documents
+        run: uv run python scripts/download_gate_data.py data/ci_gate
+      - name: Wait for Qdrant
+        run: |
+          for i in $(seq 1 30); do
+            curl -sf http://127.0.0.1:6333/readyz && exit 0
+            sleep 2
+          done
+          echo "Qdrant did not become ready" && exit 1
+
+      - name: Choose gate config
+        run: |
+          if [ "$FORK_PR" = "true" ]; then
+            echo "Fork PR: no API key, retrieval gate only (judge gate SKIPPED)."
+            echo "GATE_CONFIG=configs/ci_gate_retrieval.yaml" >> "$GITHUB_ENV"
+            echo "GATE_FLAGS=" >> "$GITHUB_ENV"
+          elif [ -z "$OPENROUTER_API_KEY" ]; then
+            echo "::error::secret OPENROUTER_API_KEY is not set" && exit 1
+          else
+            echo "GATE_CONFIG=configs/ci_gate.yaml" >> "$GITHUB_ENV"
+            echo "GATE_FLAGS=--require-judge" >> "$GITHUB_ENV"
+          fi
+      - name: Run eval
+        run: uv run docrag eval "$GATE_CONFIG"
+      - name: Check thresholds
+        run: uv run python scripts/eval_gate.py gate-results/*/ $GATE_FLAGS
+      - name: Upload eval results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: eval-gate-results
+          path: gate-results/
+          if-no-files-found: ignore
+
+  # Build the image (no push) and deploy it to a throwaway kind cluster with the
+  # manifests from deploy/k8s: rollout, probes, security context and one /query.
+  deploy-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
       - name: Build image
-        run: docker build -t docrag-bench:ci .
+        run: docker build -t docrag-bench:kind .
+      - name: Image size
+        run: |
+          docker image inspect docrag-bench:kind --format '{{.Size}}' \
+            | awk '{printf "Image size (uncompressed): %.0f MB\n", $1/1e6}' \
+            | tee -a "$GITHUB_STEP_SUMMARY"
+      - uses: helm/kind-action@v1.15.2
+        with:
+          cluster_name: docrag
+      - name: Load image into kind
+        run: kind load docker-image docrag-bench:kind --name docrag
+      - name: Deploy
+        run: kubectl apply -k deploy/k8s/overlays/kind
+      - name: Smoke test
+        run: bash deploy/k8s/smoke.sh
+      - name: Cluster state on failure
+        if: failure()
+        run: |
+          kubectl -n docrag get all
+          kubectl -n docrag describe pods
+          kubectl -n docrag logs deployment/docrag-api --tail=100 || true

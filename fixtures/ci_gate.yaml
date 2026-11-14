@@ -1,0 +1,29 @@
+# The CI quality gate's fixed eval set and its thresholds.
+# Used by scripts/download_gate_data.py and scripts/eval_gate.py.
+
+# MMLongBench-Doc on Hugging Face, pinned to one revision so the questions can
+# never change under the gate.
+dataset:
+  repo: yubo2333/MMLongBench-Doc
+  revision: 2ff6aa9237fc777b6627dc57a486e9225ac5fb86
+
+# Four small dev-split PDFs with a text layer (15-23 pages each): 38 questions,
+# 9 of them unanswerable on purpose. Small enough for a CPU runner in minutes.
+documents:
+  - 7c3f6204b3241f142f0f8eb8e1fefe7a
+  - PH_2016.06.08_Economy-Final
+  - afe620b9beac86c1027b96d31d396407
+  - tacl_a_00660
+expected_questions: 38
+
+# The build fails below these. Set a margin under the values measured when the
+# gate was introduced (scripts/eval_gate.py prints both), because with 38
+# questions one question moves `correct` by 2.6 points and recall@10 (29
+# answerable questions) by up to 3.4: the gate catches breakage, not drift.
+#
+# First measurement (2026-11-14, local run, embedded Qdrant): recall@10 0.748
+# [95% CI 0.615, 0.879], correct 0.500 [0.267, 0.692]. The CIs are that wide
+# with 38 questions, so the thresholds sit about 3-4 questions below.
+thresholds:
+  recall@10: 0.65
+  correct: 0.40

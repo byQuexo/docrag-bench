@@ -1,0 +1,27 @@
+# CI quality gate: the served pipeline (baseline retrieval + answer_v3 + real
+# judge) on a small FIXED set of dev-split documents. Run by the eval-gate job;
+# thresholds and the document list live in fixtures/ci_gate.yaml.
+#
+# Dev split on purpose: a gate that is checked on every push is a tuning signal,
+# and tuning on the test split would contaminate the headline numbers.
+name: ci_gate
+embedder: onnx:gte-small
+prefix_headings: true
+ocr: none                  # the gate documents all have a text layer
+retrieval: hybrid_rerank
+scope: doc
+top_k: 10
+prefetch_k: 50
+rrf_k: 60
+reranker: onnx:gte-reranker-modernbert-base
+rerank_threshold: 0.6326   # calibrated on dev without OCR (baseline.yaml)
+context_k: 10
+prompt_version: answer_v3
+llm: "openrouter:anthropic/claude-haiku-5.5"
+llm_temperature: null      # Claude 5.5 rejects sampling parameters
+judge: "openrouter:deepseek/deepseek-v4.1-flash"   # different family than the answerer
+judge_temperature: 0.0
+llm_concurrency: 6
+dataset:
+  split: dev
+  max_docs: null           # = every PDF on disk; CI downloads only the gate documents
