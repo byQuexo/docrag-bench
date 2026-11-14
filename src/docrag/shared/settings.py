@@ -14,7 +14,7 @@ secret can never leak into a results file.
 import logging
 from functools import lru_cache
 from pathlib import Path
-from typing import Self
+from typing import Literal, Self
 
 from pydantic import AliasChoices, Field, SecretStr, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -83,6 +83,23 @@ class Settings(BaseSettings):
     # None (default) = tracing off. Only serve/ask/eval read it; ingest never
     # exports traces (see shared/tracing.py for why).
     otel_endpoint: str | None = None
+
+    # Logs: "text" for a terminal, "json" (one object per line) for containers.
+    log_format: Literal["text", "json"] = "text"
+    log_level: str = "INFO"
+
+    # Timeouts and retries for the calls that leave the process. Retries use
+    # exponential backoff with jitter (shared/retry.py) and only fire on
+    # transient errors (timeouts, connection errors, 429, 5xx).
+    llm_timeout_s: float = Field(default=120.0, gt=0)  # per attempt
+    llm_max_retries: int = Field(default=2, ge=0)
+    qdrant_timeout_s: float = Field(default=30.0, gt=0)
+    qdrant_max_retries: int = Field(default=2, ge=0)
+    # Whole /query request, all retries included. Past it the API answers 504
+    # instead of keeping the client waiting.
+    request_timeout_s: float = Field(default=150.0, gt=0)
+    # /readyz gives Qdrant this long to answer before reporting "not ready".
+    readiness_timeout_s: float = Field(default=2.0, gt=0)
 
     # Hard stop for paid API usage per process (EUR). See llm/proxy.py.
     budget_eur: float = 5.0

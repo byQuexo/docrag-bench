@@ -199,9 +199,12 @@ class LLMProxy:
         from docrag.llm.fake import FakeProvider
         from docrag.llm.openai_compat import OpenAICompatProvider
 
+        timeout, retries = settings.llm_timeout_s, settings.llm_max_retries
         providers: dict[str, Provider] = {
             "fake": FakeProvider(),
-            "ollama": OpenAICompatProvider("ollama", settings.ollama_base_url),
+            "ollama": OpenAICompatProvider(
+                "ollama", settings.ollama_base_url, timeout=timeout, max_retries=retries
+            ),
         }
         # Only providers with a key are registered; a route to a missing one fails
         # with a clear message in resolve().
@@ -218,7 +221,11 @@ class LLMProxy:
         for name, (url, key) in openai_compatible.items():
             if key is not None:
                 providers[name] = OpenAICompatProvider(
-                    name, url, key.get_secret_value()
+                    name,
+                    url,
+                    key.get_secret_value(),
+                    timeout=timeout,
+                    max_retries=retries,
                 )
         # OpenRouter: one key, hundreds of models, OpenAI format.
         # Route: "openrouter:anthropic/claude-haiku-5-5" (model = vendor/model).
@@ -227,6 +234,8 @@ class LLMProxy:
                 "openrouter",
                 "https://openrouter.ai/api/v1",
                 settings.openrouter_api_key.get_secret_value(),
+                timeout=timeout,
+                max_retries=retries,
                 extra_body={
                     # Only route to upstream hosts that support every parameter
                     # we send - above all response_format/json_schema. Otherwise
@@ -238,7 +247,9 @@ class LLMProxy:
             )
         if settings.anthropic_api_key is not None:
             providers["anthropic"] = AnthropicProvider(
-                settings.anthropic_api_key.get_secret_value()
+                settings.anthropic_api_key.get_secret_value(),
+                timeout=timeout,
+                max_retries=retries,
             )
         return cls(providers, cache=cache, budget_eur=settings.budget_eur)
 

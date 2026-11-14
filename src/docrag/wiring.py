@@ -69,7 +69,8 @@ def build_store(
         fingerprint=stable_hash(components)[:8],
     )
     log.info("collection %s <- %s", name, components)
-    store = QdrantStore(make_client(settings.qdrant_location), name, embedder.dim)
+    client = make_client(settings.qdrant_location, timeout=settings.qdrant_timeout_s)
+    store = QdrantStore(client, name, embedder.dim, retries=settings.qdrant_max_retries)
     store.ensure_collection()
     return store
 

@@ -69,14 +69,55 @@ async def test_retries_429_then_succeeds(monkeypatch: pytest.MonkeyPatch) -> Non
         sleeps.append(seconds)
 
     # Don't actually wait for the exponential backoff in a unit test.
-    monkeypatch.setattr("docrag.llm.openai_compat.asyncio.sleep", fake_sleep)
+    monkeypatch.setattr("docrag.shared.retry.asyncio.sleep", fake_sleep)
     responses = iter([httpx.Response(429, text="slow down"), _ok("fine")])
     provider = OpenAICompatProvider(
         "t", "http://x/v1", transport=httpx.MockTransport(lambda r: next(responses))
     )
     completion = await provider.chat("m", [Message(role="user", content="q")])
     assert completion.content == "fine"
-    assert sleeps == [1]
+    # Full jitter: a random wait between 0 and 1 s before the first retry.
+    assert len(sleeps) == 1 and 0 <= sleeps[0] <= 1
+
+
+async def test_retry_after_header_sets_the_wait(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    sleeps: list[float] = []
+
+    async def fake_sleep(seconds: float) -> None:
+        sleeps.append(seconds)
+
+    monkeypatch.setattr("docrag.shared.retry.asyncio.sleep", fake_sleep)
+    responses = iter(
+        [httpx.Response(429, headers={"Retry-After": "3"}, text="x"), _ok("fine")]
+    )
+    provider = OpenAICompatProvider(
+        "t", "http://x/v1", transport=httpx.MockTransport(lambda r: next(responses))
+    )
+    await provider.chat("m", [Message(role="user", content="q")])
+    assert sleeps == [3.0]
+
+
+async def test_connection_errors_become_provider_errors_after_retries(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    async def no_sleep(seconds: float) -> None:
+        pass
+
+    monkeypatch.setattr("docrag.shared.retry.asyncio.sleep", no_sleep)
+    calls: list[int] = []
+
+    def refuse(request: httpx.Request) -> httpx.Response:
+        calls.append(1)
+        raise httpx.ConnectError("refused")
+
+    provider = OpenAICompatProvider(
+        "t", "http://x/v1", max_retries=2, transport=httpx.MockTransport(refuse)
+    )
+    with pytest.raises(ProviderError, match="ConnectError"):
+        await provider.chat("m", [Message(role="user", content="q")])
+    assert len(calls) == 3
 
 
 async def test_non_retryable_error_raises() -> None:

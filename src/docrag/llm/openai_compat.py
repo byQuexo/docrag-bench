@@ -7,7 +7,6 @@ We use plain httpx instead of the `openai` SDK on purpose: the conversion is
 the point of this module, and httpx.MockTransport makes it trivially testable.
 """
 
-import asyncio
 import re
 from typing import Any
 
@@ -23,8 +22,22 @@ from docrag.llm.types import (
     Usage,
     json_schema_for,
 )
+from docrag.shared.retry import parse_retry_after, retry_async
 
 _RETRY_STATUS = {408, 409, 429, 500, 502, 503, 504}
+
+
+class _TransientStatus(Exception):
+    """An HTTP status worth retrying (rate limit, overload, gateway trouble)."""
+
+    def __init__(self, resp: httpx.Response) -> None:
+        super().__init__(f"HTTP {resp.status_code}: {resp.text[:500]}")
+        self.retry_after = parse_retry_after(resp.headers)
+
+
+def _is_transient(err: Exception) -> bool:
+    # TransportError = connection refused/reset, DNS, and all httpx timeouts.
+    return isinstance(err, httpx.TransportError | _TransientStatus)
 
 
 class OpenAICompatProvider(Provider):
@@ -85,25 +98,27 @@ class OpenAICompatProvider(Provider):
         return {**body, **self._extra_body}
 
     async def _call(self, native: dict[str, Any]) -> Any:
-        for attempt in range(self._max_retries + 1):
-            try:
-                resp = await self._client.post("chat/completions", json=native)
-            except httpx.TransportError as err:  # connection refused, timeout, ...
-                if attempt == self._max_retries:
-                    raise ProviderError(f"{self.name}: {err!r}") from err
-            else:
-                if resp.status_code < 400:
-                    return resp.json()
-                if (
-                    resp.status_code not in _RETRY_STATUS
-                    or attempt == self._max_retries
-                ):
-                    raise ProviderError(
-                        f"{self.name}: HTTP {resp.status_code}: {resp.text[:500]}"
-                    )
-            # Exponential backoff: 1s, 2s, 4s ... (rate limits recover with time).
-            await asyncio.sleep(2**attempt)
-        raise AssertionError("unreachable")
+        async def attempt() -> Any:
+            resp = await self._client.post("chat/completions", json=native)
+            if resp.status_code < 400:
+                return resp.json()
+            if resp.status_code in _RETRY_STATUS:
+                raise _TransientStatus(resp)
+            # 400/401/403/404...: retrying sends the same broken request again.
+            raise ProviderError(
+                f"{self.name}: HTTP {resp.status_code}: {resp.text[:500]}"
+            )
+
+        try:
+            return await retry_async(
+                attempt,
+                retries=self._max_retries,
+                is_transient=_is_transient,
+                # A 429 usually says when to come back; that beats our guess.
+                retry_after=lambda err: getattr(err, "retry_after", None),
+            )
+        except (httpx.TransportError, _TransientStatus) as err:
+            raise ProviderError(f"{self.name}: {err!r}") from err
 
     def from_native(self, model: str, raw: Any) -> ChatCompletion:
         choice = raw["choices"][0]

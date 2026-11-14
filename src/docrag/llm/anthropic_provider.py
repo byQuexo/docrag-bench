@@ -31,9 +31,20 @@ from docrag.llm.types import (
 class AnthropicProvider(Provider):
     name = "anthropic"
 
-    def __init__(self, api_key: str | None, max_tokens: int = 16000) -> None:
-        # The SDK retries 429/5xx/connection errors itself (max_retries=2).
-        self._client = anthropic.AsyncAnthropic(api_key=api_key)
+    def __init__(
+        self,
+        api_key: str | None,
+        max_tokens: int = 16000,
+        *,
+        timeout: float = 120.0,
+        max_retries: int = 2,
+    ) -> None:
+        # The SDK already retries 429/5xx/connection errors with backoff and
+        # honours Retry-After; we only pass our limits instead of its defaults
+        # (10 minute timeout).
+        self._client = anthropic.AsyncAnthropic(
+            api_key=api_key, timeout=timeout, max_retries=max_retries
+        )
         self._max_tokens = max_tokens
 
     def to_native(
