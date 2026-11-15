@@ -169,11 +169,19 @@ jobs:
       # Load BOTH images into the node, so nothing is pulled inside the cluster:
       # the kind node pulls from Docker Hub anonymously, and shared runner IPs
       # hit its rate limit now and then (one run failed with ImagePullBackOff).
+      # Qdrant is a multi-platform image: `kind load docker-image` imports the
+      # whole index and fails on the platforms the runner never downloaded
+      # ("content digest ... not found"), so only linux/amd64 is exported.
       - name: Load images into kind
         run: |
           QDRANT=qdrant/qdrant:v1.20.0-unprivileged # same tag as deploy/k8s/base
-          for i in 1 2 3; do docker pull -q "$QDRANT" && break; sleep $((i * 10)); done
-          kind load docker-image docrag-bench:kind "$QDRANT" --name docrag
+          for i in 1 2 3; do
+            docker pull -q --platform linux/amd64 "$QDRANT" && break
+            sleep $((i * 10))
+          done
+          docker save --platform linux/amd64 -o "$RUNNER_TEMP/qdrant.tar" "$QDRANT"
+          kind load image-archive "$RUNNER_TEMP/qdrant.tar" --name docrag
+          kind load docker-image docrag-bench:kind --name docrag
       - name: Deploy
         run: kubectl apply -k deploy/k8s/overlays/kind
       - name: Smoke test
