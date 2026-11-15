@@ -24,6 +24,7 @@ configMapGenerator:
       - DOCRAG_CONFIG=configs/answer_haiku_vlm_v3.yaml
       - DOCRAG_QDRANT_LOCATION=http://qdrant:6333
       - DOCRAG_LOG_FORMAT=json
+      - DOCRAG_ENVIRONMENT=production
       - DOCRAG_USE_KEYRING=false
       - DOCRAG_MODELS_DIR=/app/models/hf
       - DOCRAG_CACHE_PATH=/app/.cache/docrag.sqlite

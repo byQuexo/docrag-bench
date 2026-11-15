@@ -112,7 +112,36 @@ Spans existed already (lesson 13). New:
   keys are set; `OTEL_SDK_DISABLED=true` turns everything off.
 
 *Privacy*: spans contain the question, the prompt and document text. Langfuse
-Cloud is a third party, which is why it is off by default.
+Cloud is a third party, which is why it is off by default, and
+`DOCRAG_TRACE_CONTENT=false` drops every text attribute while keeping the
+structure, ids, scores, tokens and cost.
+
+**Audited against a real trace**, following the Langfuse skill's workflow (run
+the path, fetch the stored trace, compare with the best-practices page, fix,
+repeat). The first real trace showed what tests against an in-memory exporter
+could not:
+
+- `search` arrived as a plain `SPAN`: OpenTelemetry keeps 128 attributes per
+  span and drops the **oldest** ones first, which were the type keys set at span
+  start (50 candidates x 3 attributes). Fix: `SpanLimits(max_span_attributes=512)`.
+- The generation had no input: Langfuse does not read OpenInference's
+  `llm.input_messages.*`. Fix: also write `langfuse.observation.input` as a
+  role-labelled message list, up to 64k characters (the prompt with its context
+  is exactly what the model saw).
+- Retrieval and verify spans had no input/output, so a reviewer could not see
+  what was retrieved. Fix: question in, ranked ids and scores (or the verdict) out.
+- The trace name was `answer`, environment `default`, no tags. Fix: stable,
+  verb-first trace names on the root (`answer-question`, `eval-question`), and
+  environment/release/entry-point tag on every span via the span processor.
+  Span names stay: they are also the latency keys in `run.json`.
+- API traces had FastAPI's internal dependency/serialization spans and a root
+  without input/output. Fix: `operation_spans: False`, question and answer on
+  the root span (Langfuse uses the root's I/O as the trace's).
+
+Not done, on purpose: judge verdicts as Langfuse *scores* (needs the Langfuse
+API, not OTLP), Langfuse prompt management (prompts are versioned files under
+`src/docrag/prompts/` and part of the config hash), and capturing model
+reasoning (dropped by design; it is never treated as answer text).
 
 ## 7. The eval gate: a quality check that can fail the build
 

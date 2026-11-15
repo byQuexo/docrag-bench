@@ -121,9 +121,17 @@ kubectl apply -k deploy/k8s/base               # set the image under `images:` f
 - **Traces**: OpenTelemetry, off unless an exporter is configured:
   `DOCRAG_OTEL_ENDPOINT` (Phoenix, any OTLP/HTTP collector) and/or
   `LANGFUSE_PUBLIC_KEY` + `LANGFUSE_SECRET_KEY` (+ `LANGFUSE_HOST`).
-  `OTEL_SDK_DISABLED=true` turns all of them off. A query becomes one trace:
-  HTTP request → `query` → `answer` → `retrieve` (`embed`, `search`, `rerank`)
-  → `llm` (model, tokens, cost) → `verify`.
+  `OTEL_SDK_DISABLED=true` turns all of them off. A query becomes one trace,
+  named `answer-question`: HTTP request (question in, answer out) → `query` →
+  `answer` → `retrieve` (`embed`, `search`, `rerank`) → `llm` (role-labelled
+  messages, model, tokens, cost) → `verify`. Every span carries the session
+  (thread id), `DOCRAG_ENVIRONMENT` (`production` in `deploy/k8s/base`),
+  `DOCRAG_RELEASE` and the entry point as a tag (`api`, `ask`, `eval`).
+  `DOCRAG_TRACE_CONTENT=false` keeps questions, prompts, answers and document
+  text out of the traces (structure, timings, ids, scores, tokens and cost
+  stay). Checked against a live Langfuse Cloud project on 2026-11-15;
+  `scripts/langfuse_trace_audit.py` prints the latest trace as a tree for the
+  same check.
 - **Timeouts and retries**: see the `DOCRAG_*_TIMEOUT_S` / `*_MAX_RETRIES`
   settings. `/query` answers 504 past `DOCRAG_REQUEST_TIMEOUT_S` and 503 when
   Qdrant is unreachable after its retries.
