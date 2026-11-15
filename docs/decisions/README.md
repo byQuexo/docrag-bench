@@ -28,3 +28,9 @@ has a written answer that can be checked.
 | [0004](0004-ocr-separate-pass.md) | OCR as a separate pass: RapidOCR, a vision LLM as the second engine | Accepted | 2026-11-01 |
 | [0005](0005-verify-citations-in-code.md) | Citations are verified in code, not by an LLM | Accepted | 2026-11-01 |
 | [0006](0006-own-llm-proxy.md) | Our own LLM proxy with a content-addressed cache and a budget cap | Accepted | 2026-11-01 |
+| | **Evaluation** | | |
+| [0007](0007-document-split-and-statistics.md) | Split by document, page-level metrics, CIs over documents, paired tests | Accepted | 2026-11-01 |
+| [0008](0008-llm-judge-with-human-calibration.md) | LLM-as-judge after rules, from another model family, checked against human labels | Accepted | 2026-11-01 |
+| [0009](0009-refuse-dirty-benchmark-runs.md) | Benchmark runs refuse to start from a dirty working tree | Accepted | 2026-11-09 |
+| [0010](0010-ci-eval-gate.md) | CI eval gate on fixed dev-split questions, thresholds with a margin | Accepted | 2026-11-14 |
+| [0011](0011-real-judge-in-ci.md) | A real judge in CI with a spend cap; fork PRs report the judge as skipped | Accepted | 2026-11-14 |
