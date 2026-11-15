@@ -71,7 +71,7 @@ def _split_table(block: Block, max_words: int) -> list[str]:
     pieces: list[str] = []
     current: list[str] = []
     for row in rows:
-        if current and _words("\n".join(current + [row])) > budget:
+        if current and _words("\n".join([*current, row])) > budget:
             pieces.append("\n".join(prefix + current))
             current = []
         current.append(row)

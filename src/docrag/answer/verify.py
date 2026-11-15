@@ -106,6 +106,16 @@ def verify(question: str, answer: Answer, context: list[Chunk]) -> AnswerResult:
             or None,
         }
     )
+    tracing.set_io(
+        input=[{"id": c.id, "quote": c.quote} for c in citations],
+        output={
+            "status": status,
+            "verified": [c.id for c in citations if c.verified],
+            "rejected": [
+                {"id": c.id, "reason": c.reason} for c in citations if not c.verified
+            ],
+        },
+    )
     return AnswerResult(
         question=question,
         answer=cleaned,

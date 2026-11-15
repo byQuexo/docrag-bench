@@ -19,10 +19,32 @@ from pathlib import Path
 
 from docrag.shared.cache import Cache
 from docrag.shared.config import ExperimentConfig
-from docrag.shared.settings import get_settings
-from docrag.shared.tracing import setup_tracing
+from docrag.shared.logs import setup_logging
+from docrag.shared.settings import Settings, get_settings
+from docrag.shared.tracing import LangfuseTarget, TraceContext, setup_tracing
 
 log = logging.getLogger("docrag")
+
+
+def _setup_tracing(settings: Settings, service_name: str) -> None:
+    """Phoenix if DOCRAG_OTEL_ENDPOINT is set, Langfuse if both keys are set."""
+    langfuse = None
+    if settings.langfuse_public_key and settings.langfuse_secret_key:
+        langfuse = LangfuseTarget(
+            settings.langfuse_host,
+            settings.langfuse_public_key,
+            settings.langfuse_secret_key.get_secret_value(),
+        )
+    context = TraceContext(
+        environment=settings.environment,
+        release=settings.release,
+        # "docrag-api" -> tag "api": which entry point produced the trace.
+        tags=(service_name.removeprefix("docrag-"),),
+        capture_content=settings.trace_content,
+    )
+    setup_tracing(
+        settings.otel_endpoint, service_name, langfuse=langfuse, context=context
+    )
 
 
 def _cmd_ingest(args: argparse.Namespace) -> None:
@@ -53,7 +75,7 @@ def _cmd_eval(args: argparse.Namespace) -> None:
     from docrag.shared.provenance import DirtyTreeError
 
     settings = get_settings()
-    setup_tracing(settings.otel_endpoint, service_name="docrag-eval")
+    _setup_tracing(settings, "docrag-eval")
     cache = Cache(settings.cache_path)
     for path in args.configs:
         config = ExperimentConfig.from_yaml(path)
@@ -93,7 +115,7 @@ def _cmd_label_sample(args: argparse.Namespace) -> None:
     if out.exists():  # never overwrite labels someone spent an hour on
         sys.exit(f"{out} exists; delete it or pass --out")
     questions = {q.qid: q for q in load_questions(settings.qa_glob)}
-    client = make_client(settings.qdrant_location)
+    client = make_client(settings.qdrant_location, settings.qdrant_timeout_s)
     sample = label_sample(args.run, questions, client, n=args.n, seed=args.seed)
     out.parent.mkdir(parents=True, exist_ok=True)
     sample.write_csv(out, include_bom=True)  # BOM: Excel then reads UTF-8 correctly
@@ -123,7 +145,7 @@ def _cmd_ask(args: argparse.Namespace) -> None:
     from docrag.wiring import build_answer_service
 
     settings = get_settings()
-    setup_tracing(settings.otel_endpoint, service_name="docrag-ask")
+    _setup_tracing(settings, "docrag-ask")
     service = build_answer_service(
         settings, ExperimentConfig.from_yaml(args.config), Cache(settings.cache_path)
     )
@@ -157,7 +179,7 @@ def _cmd_serve(args: argparse.Namespace) -> None:
     settings = get_settings()
     # _cmd_ingest deliberately never calls setup_tracing: no traces for the
     # offline batch job (its timings go to the logs / run.json instead).
-    setup_tracing(settings.otel_endpoint, service_name="docrag-api")
+    _setup_tracing(settings, "docrag-api")
     service = build_answer_service(
         settings, ExperimentConfig.from_yaml(args.config), Cache(settings.cache_path)
     )
@@ -167,19 +189,24 @@ def _cmd_serve(args: argparse.Namespace) -> None:
             pdf_dir=settings.pdf_dir,
             results_dir=settings.results_dir,
             ui_dir=settings.ui_dir,
+            request_timeout_s=settings.request_timeout_s,
+            readiness_timeout_s=settings.readiness_timeout_s,
         ),
         host=args.host,
         port=args.port,
+        # Keep the logging set up in main() (JSON in containers) instead of
+        # uvicorn's own config; the app logs one access line per request itself.
+        log_config=None,
+        access_log=False,
+        # On SIGTERM (Kubernetes rolling update), finish in-flight requests for
+        # up to 20 s; the pod's terminationGracePeriodSeconds (30 s) is larger.
+        timeout_graceful_shutdown=20,
     )
 
 
 def main(argv: list[str] | None = None) -> None:
-    logging.basicConfig(
-        level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s"
-    )
-    # Third-party libraries are chatty at INFO.
-    for noisy in ("httpx", "httpx2", "httpcore", "huggingface_hub"):
-        logging.getLogger(noisy).setLevel(logging.WARNING)
+    settings = get_settings()
+    setup_logging(settings.log_format, settings.log_level)
 
     parser = argparse.ArgumentParser(
         prog="docrag",

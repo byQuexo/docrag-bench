@@ -1,6 +1,7 @@
 """bounded_gather: concurrency limit, error collection, order."""
 
 import asyncio
+from collections.abc import Awaitable
 
 from docrag.shared.concurrency import bounded_gather
 
@@ -36,6 +37,6 @@ async def test_errors_are_collected_and_order_kept() -> None:
 
 
 async def test_empty_input() -> None:
-    result = await bounded_gather([], limit=2)
+    result = await bounded_gather(list[Awaitable[int]](), limit=2)
     assert result.results == []
     assert result.n_failed == 0

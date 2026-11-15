@@ -65,7 +65,7 @@ def _span(name: str, kind: str | None, root: bool) -> Iterator[None]:
     if not (root or tracing.in_trace()):
         yield
         return
-    attrs = {tracing.SPAN_KIND: kind} if kind else None
+    attrs = tracing.kind_attributes(kind) if kind else None
     with tracing.tracer().start_as_current_span(name, attributes=attrs):
         yield
 

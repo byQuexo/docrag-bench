@@ -1,0 +1,31 @@
+# Local smoke test on kind (also run in CI): the image is loaded into the
+# cluster with `kind load docker-image docrag-bench:kind`, and the API serves
+# configs/e2e_fake.yaml (fake embedder, reranker and LLM), so the test needs no
+# model download and no API key. It proves the image, probes, security context
+# and wiring to Qdrant - not answer quality (that is the eval gate's job).
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+
+configMapGenerator:
+  - name: docrag-config
+    behavior: merge
+    literals:
+      - DOCRAG_CONFIG=configs/e2e_fake.yaml
+      - DOCRAG_ENVIRONMENT=development
+
+images:
+  - name: docrag-bench
+    newTag: kind
+
+# Smaller requests so the API fits next to Qdrant on a laptop's kind node.
+patches:
+  - target:
+      kind: Deployment
+      name: docrag-api
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests
+        value: {cpu: 100m, memory: 256Mi}

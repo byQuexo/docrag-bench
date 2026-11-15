@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: docrag
+  labels:
+    # Reject pods that run as root, escalate privileges, etc.
+    pod-security.kubernetes.io/enforce: restricted

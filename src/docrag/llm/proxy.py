@@ -22,7 +22,7 @@ from dataclasses import dataclass, field
 from pydantic import BaseModel, ValidationError
 
 from docrag.llm.base import Provider
-from docrag.llm.pricing import cost_eur
+from docrag.llm.pricing import cost_eur, cost_usd
 from docrag.llm.types import ChatCompletion, Message, json_schema_for
 from docrag.shared import timing, tracing
 from docrag.shared.cache import Cache, stable_hash
@@ -199,9 +199,12 @@ class LLMProxy:
         from docrag.llm.fake import FakeProvider
         from docrag.llm.openai_compat import OpenAICompatProvider
 
+        timeout, retries = settings.llm_timeout_s, settings.llm_max_retries
         providers: dict[str, Provider] = {
             "fake": FakeProvider(),
-            "ollama": OpenAICompatProvider("ollama", settings.ollama_base_url),
+            "ollama": OpenAICompatProvider(
+                "ollama", settings.ollama_base_url, timeout=timeout, max_retries=retries
+            ),
         }
         # Only providers with a key are registered; a route to a missing one fails
         # with a clear message in resolve().
@@ -218,7 +221,11 @@ class LLMProxy:
         for name, (url, key) in openai_compatible.items():
             if key is not None:
                 providers[name] = OpenAICompatProvider(
-                    name, url, key.get_secret_value()
+                    name,
+                    url,
+                    key.get_secret_value(),
+                    timeout=timeout,
+                    max_retries=retries,
                 )
         # OpenRouter: one key, hundreds of models, OpenAI format.
         # Route: "openrouter:anthropic/claude-haiku-5-5" (model = vendor/model).
@@ -227,6 +234,8 @@ class LLMProxy:
                 "openrouter",
                 "https://openrouter.ai/api/v1",
                 settings.openrouter_api_key.get_secret_value(),
+                timeout=timeout,
+                max_retries=retries,
                 extra_body={
                     # Only route to upstream hosts that support every parameter
                     # we send - above all response_format/json_schema. Otherwise
@@ -238,7 +247,9 @@ class LLMProxy:
             )
         if settings.anthropic_api_key is not None:
             providers["anthropic"] = AnthropicProvider(
-                settings.anthropic_api_key.get_secret_value()
+                settings.anthropic_api_key.get_secret_value(),
+                timeout=timeout,
+                max_retries=retries,
             )
         return cls(providers, cache=cache, budget_eur=settings.budget_eur)
 
@@ -254,6 +265,11 @@ def _trace_request(
     attrs: dict[str, object] = {
         "llm.provider": route.partition(":")[0],
         "llm.model_name": model,
+        # OpenTelemetry GenAI conventions, read by Langfuse (and most other
+        # LLM tools); the llm.* keys above are OpenInference, read by Phoenix.
+        "gen_ai.system": route.partition(":")[0],
+        "gen_ai.request.model": model,
+        "gen_ai.request.temperature": temperature,
         "llm.invocation_parameters": json.dumps(
             {
                 "temperature": temperature,
@@ -268,6 +284,18 @@ def _trace_request(
         # .text drops images: base64 page renders don't belong in a span.
         attrs[f"llm.input_messages.{i}.message.content"] = m.text
     tracing.annotate(attrs)
+    # Langfuse shows a generation's input from this role-labelled list (it does
+    # not read OpenInference's llm.input_messages.*). Kept whole up to 64k chars:
+    # the prompt with the retrieved context is what the model actually saw.
+    tracing.annotate(
+        {
+            "langfuse.observation.input": json.dumps(
+                [{"role": m.role, "content": m.text} for m in messages],
+                ensure_ascii=False,
+            )
+        },
+        max_len=tracing.MAX_PROMPT_TEXT,
+    )
 
 
 def _trace_response(route: str, completion: ChatCompletion, cache_hit: bool) -> None:
@@ -277,6 +305,10 @@ def _trace_response(route: str, completion: ChatCompletion, cache_hit: bool) -> 
             "llm.output_messages.0.message.role": "assistant",
             "llm.output_messages.0.message.content": completion.content,
             "output.value": completion.content,
+            "langfuse.observation.output": json.dumps(
+                {"role": "assistant", "content": completion.content},
+                ensure_ascii=False,
+            ),
             "llm.token_count.prompt": u.input_tokens,
             "llm.token_count.completion": u.output_tokens,
             "llm.token_count.total": u.input_tokens + u.output_tokens,
@@ -284,6 +316,11 @@ def _trace_response(route: str, completion: ChatCompletion, cache_hit: bool) -> 
             # what the call WOULD cost on a cold cache.
             "docrag.cache_hit": cache_hit,
             "docrag.cost_eur": 0.0 if cache_hit else cost_eur(route, u),
+            "gen_ai.response.model": completion.model,
+            "gen_ai.usage.input_tokens": u.input_tokens,
+            "gen_ai.usage.output_tokens": u.output_tokens,
+            # Langfuse's cost field is USD; a cache hit was not billed.
+            "gen_ai.usage.cost": 0.0 if cache_hit else cost_usd(route, u),
         }
     )
 

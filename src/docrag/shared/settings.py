@@ -14,7 +14,7 @@ secret can never leak into a results file.
 import logging
 from functools import lru_cache
 from pathlib import Path
-from typing import Self
+from typing import Literal, Self
 
 from pydantic import AliasChoices, Field, SecretStr, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -84,6 +84,52 @@ class Settings(BaseSettings):
     # exports traces (see shared/tracing.py for why).
     otel_endpoint: str | None = None
 
+    # Langfuse (optional, off unless both keys are set): the same spans are also
+    # exported to Langfuse over OTLP. Off by default for a reason: spans hold
+    # questions, prompts and document text, and Langfuse Cloud is a third party.
+    langfuse_public_key: str | None = Field(
+        default=None,
+        validation_alias=AliasChoices(
+            "LANGFUSE_PUBLIC_KEY", "DOCRAG_LANGFUSE_PUBLIC_KEY"
+        ),
+    )
+    langfuse_secret_key: SecretStr | None = Field(
+        default=None,
+        validation_alias=AliasChoices(
+            "LANGFUSE_SECRET_KEY", "DOCRAG_LANGFUSE_SECRET_KEY"
+        ),
+    )
+    # EU cloud by default; https://us.cloud.langfuse.com or a self-hosted URL.
+    langfuse_host: str = Field(
+        default="https://cloud.langfuse.com",
+        validation_alias=AliasChoices("LANGFUSE_HOST", "DOCRAG_LANGFUSE_HOST"),
+    )
+
+    # Trace context on every span (Langfuse filters by it). environment keeps
+    # test traffic apart from production; release is e.g. the image tag.
+    environment: str = "development"
+    release: str | None = None
+    # False = traces keep structure, timings, ids, scores, tokens and cost, but
+    # no questions, prompts, answers or document text (privacy/compliance).
+    trace_content: bool = True
+
+    # Logs: "text" for a terminal, "json" (one object per line) for containers.
+    log_format: Literal["text", "json"] = "text"
+    log_level: str = "INFO"
+
+    # Timeouts and retries for the calls that leave the process. Retries use
+    # exponential backoff with jitter (shared/retry.py) and only fire on
+    # transient errors (timeouts, connection errors, 429, 5xx).
+    llm_timeout_s: float = Field(default=120.0, gt=0)  # per attempt
+    llm_max_retries: int = Field(default=2, ge=0)
+    qdrant_timeout_s: float = Field(default=30.0, gt=0)
+    qdrant_max_retries: int = Field(default=2, ge=0)
+    # Whole /query request, all retries included. Past it the API answers 504
+    # instead of keeping the client waiting.
+    request_timeout_s: float = Field(default=150.0, gt=0)
+    # /readyz gives Qdrant this long to answer before reporting "not ready".
+    readiness_timeout_s: float = Field(default=2.0, gt=0)
+
     # Hard stop for paid API usage per process (EUR). See llm/proxy.py.
     budget_eur: float = 5.0
     # Look up missing API keys in the OS credential store (set False in CI/tests).
@@ -112,6 +158,7 @@ _API_KEY_FIELDS = (
     "mistral_api_key",
     "openrouter_api_key",
     "deepseek_api_key",
+    "langfuse_secret_key",
 )
 KEYRING_SERVICE = "docrag"
 

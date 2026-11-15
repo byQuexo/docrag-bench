@@ -7,6 +7,7 @@ import pytest
 from docrag.ingest.chunker import chunk_blocks
 from docrag.ingest.ocr import OcrLine, ocr_blocks, pages_needing_ocr, reading_order
 from docrag.shared.cache import Cache
+from docrag.shared.schema import Origin
 from docrag.store.qdrant import collection_name
 
 SCANNED = Path(__file__).resolve().parents[2] / "fixtures" / "tiny_scanned.pdf"
@@ -17,7 +18,7 @@ class FakeOcrEngine:
 
     name = "fake-ocr"
     version = "1"
-    origin = "ocr"
+    origin: Origin = "ocr"
     zoom = 1.0
 
     def __init__(self) -> None:

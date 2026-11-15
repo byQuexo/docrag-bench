@@ -19,6 +19,12 @@ services:
     volumes:
       # Named volume: the index survives `docker compose down` (not `down -v`).
       - qdrant_storage:/qdrant/storage
+    # The image has no curl or wget; bash can open a TCP connection itself.
+    healthcheck:
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/6333"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
     restart: unless-stopped
 
   # Phoenix: open-source trace viewer for LLM apps (Arize). It receives
@@ -38,9 +44,13 @@ services:
 
   api:
     build: .
+    # Start the API once Qdrant accepts connections (its health check above).
+    # The API's own health check (Dockerfile) then covers the API itself.
     depends_on:
-      - qdrant
-      - phoenix
+      qdrant:
+        condition: service_healthy
+      phoenix:
+        condition: service_started
     ports:
       - "127.0.0.1:8000:8000"
     environment:

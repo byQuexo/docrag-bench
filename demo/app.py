@@ -54,7 +54,7 @@ _INLINE_ID = re.compile(r"\[([^\]\s]+):p(\d+):c\d+\]")
 LOCAL_MODEL = os.environ.get("DOCRAG_DEMO_LOCAL_MODEL")
 if LOCAL_MODEL:
     # Loads the model weights NOW, at startup: ZeroGPU requires that.
-    import local_llm  # noqa: E402
+    import local_llm
 
 
 def sample_pdfs() -> dict[str, Path]:

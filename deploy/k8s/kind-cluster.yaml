@@ -1,0 +1,17 @@
+# kind cluster config for hosts that still run cgroup v1, e.g. Docker Desktop
+# on an older WSL 2 kernel (check: `docker info --format '{{.CgroupVersion}}'`).
+# Kubernetes 1.35+ refuses to start the kubelet on cgroup v1 unless told
+# otherwise. Not needed on cgroup v2 hosts (CI runners, current Linux):
+#
+#   kind create cluster --name docrag --config deploy/k8s/kind-cluster.yaml
+#
+# The better fix is cgroup v2 for WSL (in %UserProfile%\.wslconfig:
+# [wsl2] kernelCommandLine = cgroup_no_v1=all, then `wsl --shutdown`).
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+    kubeadmConfigPatches:
+      - |
+        kind: KubeletConfiguration
+        failCgroupV1: false

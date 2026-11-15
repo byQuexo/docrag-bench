@@ -12,14 +12,19 @@ naming the collection after model+dim makes accidental mixing impossible.
 
 import logging
 import re
+from collections.abc import Callable
+from functools import partial
+from typing import Any
 
 from qdrant_client import QdrantClient, models
+from qdrant_client.http.exceptions import ResponseHandlingException, UnexpectedResponse
 
 from docrag.embed.base import Vectors
 from docrag.shared import tracing
 from docrag.shared.config import RetrievalMode
 from docrag.shared.ids import chunk_point_id
-from docrag.shared.schema import Chunk, Hit
+from docrag.shared.retry import retry_sync
+from docrag.shared.schema import Chunk, Hit, HitSource
 from docrag.shared.timing import timed
 from docrag.store.bm25 import doc_sparse_vector, query_sparse_vector
 
@@ -29,12 +34,13 @@ DENSE = "dense"
 SPARSE = "bm25"
 
 
-def make_client(location: str) -> QdrantClient:
+def make_client(location: str, timeout: float = 30.0) -> QdrantClient:
     """':memory:' (tests), 'http(s)://...' (server) or a folder path (embedded)."""
     if location == ":memory:":
         return QdrantClient(":memory:")
     if location.startswith(("http://", "https://")):
-        return QdrantClient(url=location, timeout=60)
+        # int: the client's type hints say int, and sub-second precision is moot.
+        return QdrantClient(url=location, timeout=max(1, round(timeout)))
     # Embedded mode: Qdrant's Python implementation persists to a folder.
     # Fine for development; slow beyond ~20k points (brute-force search).
     return QdrantClient(path=location)
@@ -61,14 +67,41 @@ def collection_name(
     return f"{name}__v{fingerprint}" if fingerprint else name
 
 
+def is_transient(err: Exception) -> bool:
+    """Worth retrying: no answer at all (connection/timeout) or a 429/5xx.
+
+    A 4xx such as "collection not found" or "wrong vector size" is a bug or a
+    config error; retrying would only delay the real error message.
+    """
+    if isinstance(err, ResponseHandlingException):  # connection refused, timeout
+        return True
+    if isinstance(err, UnexpectedResponse):
+        return err.status_code is not None and (
+            err.status_code == 429 or err.status_code >= 500
+        )
+    return False
+
+
 class QdrantStore:
-    def __init__(self, client: QdrantClient, collection: str, dim: int) -> None:
+    def __init__(
+        self, client: QdrantClient, collection: str, dim: int, retries: int = 2
+    ) -> None:
         self.client = client
         self.collection = collection
         self.dim = dim
+        self.retries = retries
+
+    def _retry[T](self, fn: Callable[[], T]) -> T:
+        # Every call below is idempotent (reads, or upserts with deterministic
+        # point IDs), so repeating one after a timeout can't duplicate data.
+        return retry_sync(fn, retries=self.retries, is_transient=is_transient)
+
+    def ping(self) -> bool:
+        """Readiness: the server answers AND the served collection exists."""
+        return self.client.collection_exists(self.collection)
 
     def ensure_collection(self) -> None:
-        if self.client.collection_exists(self.collection):
+        if self._retry(lambda: self.client.collection_exists(self.collection)):
             return
         self.client.create_collection(
             self.collection,
@@ -90,7 +123,9 @@ class QdrantStore:
 
     def count(self, doc_id: str | None = None) -> int:
         flt = _doc_filter([doc_id]) if doc_id else None
-        return self.client.count(self.collection, count_filter=flt, exact=True).count
+        return self._retry(
+            lambda: self.client.count(self.collection, count_filter=flt, exact=True)
+        ).count
 
     @timed("upsert")
     def upsert(
@@ -110,7 +145,11 @@ class QdrantStore:
             for chunk, vec in zip(chunks, vectors, strict=True)
         ]
         for start in range(0, len(points), batch_size):
-            self.client.upsert(self.collection, points[start : start + batch_size])
+            batch = points[start : start + batch_size]
+            self._retry(partial(self.client.upsert, self.collection, batch))
+
+    def _query(self, *args: Any, **kwargs: Any) -> models.QueryResponse:
+        return self._retry(lambda: self.client.query_points(*args, **kwargs))
 
     @timed("search", kind=tracing.RETRIEVER)
     def search(
@@ -125,12 +164,13 @@ class QdrantStore:
         doc_ids: list[str] | None = None,
     ) -> list[Hit]:
         flt = _doc_filter(doc_ids) if doc_ids else None
+        source: HitSource
         sparse = query_sparse_vector(query_text)
         has_terms = bool(sparse.indices)
 
         if mode == "dense" or (mode != "bm25" and not has_terms):
             # Also the fallback for hybrid when the query has no usable keywords.
-            res = self.client.query_points(
+            res = self._query(
                 self.collection,
                 query=_dense(query_vector),
                 using=DENSE,
@@ -142,7 +182,7 @@ class QdrantStore:
         elif mode == "bm25":
             if not has_terms:
                 return []
-            res = self.client.query_points(
+            res = self._query(
                 self.collection,
                 query=sparse,
                 using=SPARSE,
@@ -156,7 +196,7 @@ class QdrantStore:
             #   rrf(d) = sum over branches 1 / (k + rank_in_branch(d))
             # RRF only uses RANKS, so cosine scores (0..1) and BM25 scores (0..30+)
             # never need to be calibrated against each other.
-            res = self.client.query_points(
+            res = self._query(
                 self.collection,
                 prefetch=[
                     models.Prefetch(
@@ -189,6 +229,7 @@ class QdrantStore:
         tracing.annotate_documents(
             "retrieval.documents", tracing.hit_docs(hits), max_content=200
         )
+        tracing.set_io(input=query_text, output=tracing.ranked(hits))
         return hits
 
 

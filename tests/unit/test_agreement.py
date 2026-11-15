@@ -183,3 +183,21 @@ def test_labeling_waits_when_the_file_is_locked(
     assert n == 2 and any("open in another program" in m for m in messages)
     saved = pl.read_csv(path, infer_schema_length=0).row(0, named=True)
     assert (saved["human_correct"], saved["human_faithful"]) == ("true", "false")
+
+
+def test_cohen_kappa_matches_sklearn() -> None:
+    import random
+
+    from sklearn.metrics import cohen_kappa_score
+
+    from docrag.eval.agreement import cohen_kappa
+
+    rng = random.Random(7)
+    for _ in range(50):
+        n = rng.randint(2, 60)
+        a = [rng.random() < 0.7 for _ in range(n)]
+        b = [x if rng.random() < 0.8 else not x for x in a]
+        if len(set(a) | set(b)) < 2:
+            continue
+        expected = cohen_kappa_score(a, b, labels=[False, True])
+        assert cohen_kappa(a, b) == pytest.approx(expected, abs=1e-12)

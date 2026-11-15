@@ -1,0 +1,35 @@
+# docrag on Kubernetes: the API (Deployment + Service) and Qdrant (StatefulSet
+# + Service). Apply with `kubectl apply -k deploy/k8s/base` or an overlay, e.g.
+# `kubectl apply -k deploy/k8s/overlays/kind`. See docs/deploy.md.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: docrag
+labels:
+  - pairs:
+      app.kubernetes.io/part-of: docrag
+    includeSelectors: false
+
+resources:
+  - namespace.yaml
+  - qdrant.yaml
+  - api.yaml
+
+# Non-secret settings as environment variables (pydantic-settings reads them).
+# Secrets (OPENROUTER_API_KEY, LANGFUSE_*) go into the Secret "docrag-secrets",
+# created by hand, never committed: see docs/deploy.md.
+configMapGenerator:
+  - name: docrag-config
+    literals:
+      - DOCRAG_CONFIG=configs/answer_haiku_vlm_v3.yaml
+      - DOCRAG_QDRANT_LOCATION=http://qdrant:6333
+      - DOCRAG_LOG_FORMAT=json
+      - DOCRAG_ENVIRONMENT=production
+      - DOCRAG_USE_KEYRING=false
+      - DOCRAG_MODELS_DIR=/app/models/hf
+      - DOCRAG_CACHE_PATH=/app/.cache/docrag.sqlite
+      - HF_HOME=/tmp/hf
+
+images:
+  - name: docrag-bench
+    newTag: latest

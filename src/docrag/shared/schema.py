@@ -14,6 +14,7 @@ BlockType = Literal["text", "table", "image"]
 # Where the text came from. "ocr"/"vlm" text is only as trustworthy as the model
 # that read it, so the eval reports it separately.
 Origin = Literal["text", "ocr", "vlm"]
+HitSource = Literal["dense", "bm25", "hybrid", "rerank"]
 
 
 class Block(BaseModel):
@@ -63,4 +64,4 @@ class Hit(BaseModel):
     chunk: Chunk
     score: float
     # Which stage last scored this hit; useful for debugging and the README GIF.
-    source: Literal["dense", "bm25", "hybrid", "rerank"]
+    source: HitSource

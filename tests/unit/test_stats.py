@@ -12,7 +12,9 @@ def test_mcnemar_hand_calculation() -> None:
     a = [True, True, False, False, True, False]
     b = [True, False, True, True, True, True]
     # b wins on 3 questions, loses on 1: p = 2 * P(X <= 1 | n=4, 0.5) = 2 * 5/16
-    assert mcnemar(a, b) == (3, 1, pytest.approx(0.625))
+    wins, losses, p = mcnemar(a, b)
+    assert (wins, losses) == (3, 1)
+    assert p == pytest.approx(0.625)
     assert mcnemar(a, a) == (0, 0, 1.0)
 
 

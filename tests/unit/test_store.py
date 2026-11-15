@@ -52,7 +52,7 @@ def test_upsert_is_idempotent(
 def test_upsert_length_mismatch(
     memory_store: QdrantStore, tiny_chunks: list[Chunk], embeddings: EmbeddingService
 ) -> None:
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="same length"):
         memory_store.upsert(tiny_chunks, embeddings.embed(["only one"]))
 
 

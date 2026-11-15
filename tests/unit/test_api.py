@@ -33,8 +33,8 @@ def client(
         yield c
 
 
-def test_health(client: TestClient) -> None:
-    assert client.get("/health").json() == {"status": "ok"}
+def test_healthz(client: TestClient) -> None:
+    assert client.get("/healthz").json() == {"status": "ok"}
 
 
 def test_query_creates_thread_and_history_grows(client: TestClient) -> None:

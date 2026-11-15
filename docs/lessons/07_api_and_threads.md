@@ -220,9 +220,11 @@ run N uvicorn workers/replicas behind a load balancer, run Qdrant as a cluster, 
 embedding/reranking to a GPU inference service if CPU becomes the bottleneck.
 
 **Q: What happens if Qdrant is down?**
-A: The search call raises a connection error in the retriever. It isn't one of the mapped
-exceptions, so FastAPI returns 500. A production version would map it to 503 with a
-retry-after header and expose a readiness probe that checks Qdrant (`/health` is liveness only).
+A: Each Qdrant call is retried with jittered backoff on connection errors, 429 and 5xx
+(not on 4xx such as "collection not found"). If the retries give up, `/query` answers 503
+"search backend unavailable", and `/readyz` answers 503 as well, so Kubernetes stops routing
+traffic to the pod. `/healthz` (liveness) stays green on purpose: restarting the API would not
+bring Qdrant back. See lesson 14.
 
 **Q: Why `asyncio.to_thread` for retrieval?**
 A: Embedding and reranking are synchronous CPU work. Inside an async handler they'd block

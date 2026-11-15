@@ -131,6 +131,7 @@ def rerank(
         }
     )
     tracing.annotate_documents("reranker.output_documents", tracing.hit_docs(out))
+    tracing.set_io(input=query, output=tracing.ranked(out))
     return out
 
 

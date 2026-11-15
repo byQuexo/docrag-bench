@@ -54,4 +54,5 @@ class Retriever:
             # AnswerService, so retrieval metrics measure pure ranking quality.
             hits = rerank(self.reranker, question, hits, top_k=self.config.top_k)
         tracing.annotate_documents("retrieval.documents", tracing.hit_docs(hits))
+        tracing.set_io(output=tracing.ranked(hits, text_chars=300))
         return hits

@@ -4,8 +4,12 @@ All tests run against an InMemorySpanExporter (fixture `spans` in conftest.py),
 so no collector is needed.
 """
 
+import asyncio
+import base64
+import json
 from pathlib import Path
 
+import pytest
 from fastapi.testclient import TestClient
 from opentelemetry.sdk.trace import ReadableSpan
 from opentelemetry.sdk.trace.export.in_memory_span_exporter import (
@@ -127,7 +131,7 @@ def test_api_request_is_the_trace_root(
         body = client.post(
             "/query", json={"question": QUESTION, "doc_ids": ["tiny"]}
         ).json()
-        client.get("/health")
+        client.get("/healthz")
     named = _by_name(spans)
     # FastAPI's own HTTP server span is the root of the trace ...
     http = named["POST /query"]
@@ -145,3 +149,126 @@ def test_api_request_is_the_trace_root(
 
 def test_setup_without_endpoint_is_off() -> None:
     assert tracing.setup_tracing(None) is False
+
+
+def test_otel_sdk_disabled_wins_over_an_endpoint(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setenv("OTEL_SDK_DISABLED", "true")
+    assert tracing.setup_tracing("http://127.0.0.1:6006/v1/traces") is False
+
+
+def test_langfuse_target_endpoint_and_basic_auth() -> None:
+    target = tracing.LangfuseTarget("https://cloud.langfuse.com/", "pk-lf-1", "sk-lf-2")
+    assert target.endpoint == "https://cloud.langfuse.com/api/public/otel/v1/traces"
+    scheme, token = target.headers["Authorization"].split()
+    assert scheme == "Basic"
+    assert base64.b64decode(token).decode() == "pk-lf-1:sk-lf-2"
+    assert target.headers["x-langfuse-ingestion-version"] == "4"
+
+
+def test_llm_span_has_langfuse_and_gen_ai_attributes_and_every_span_has_session(
+    spans: InMemorySpanExporter,
+    memory_store: QdrantStore,
+    embeddings: EmbeddingService,
+) -> None:
+    app = create_app(_service(memory_store, embeddings))
+    with TestClient(app) as client:
+        body = client.post(
+            "/query", json={"question": QUESTION, "doc_ids": ["tiny"]}
+        ).json()
+    named = _by_name(spans)
+    llm = named["llm"].attributes or {}
+    assert llm["langfuse.observation.type"] == "generation"
+    assert llm["gen_ai.request.model"] == "m"
+    assert llm["gen_ai.usage.input_tokens"] == llm["llm.token_count.prompt"]
+    assert llm["gen_ai.usage.cost"] == 0.0  # the fake provider is free
+    assert (named["retrieve"].attributes or {})["langfuse.observation.type"] == (
+        "retriever"
+    )
+    # Every pipeline span carries the session (= thread) id, also the ones
+    # started in worker threads (embed, search, rerank). FastAPI's own
+    # dependency/serialization spans run outside the handler and do not.
+    ours = [
+        s
+        for s in spans.get_finished_spans()
+        if not s.name.startswith(("POST", "fastapi."))
+    ]
+    assert {s.name for s in ours} >= {"query", "answer", "retrieve", "embed", "llm"}
+    assert {(s.attributes or {}).get("session.id") for s in ours} == {body["thread_id"]}
+
+
+def test_api_trace_is_named_has_question_and_answer_and_no_framework_noise(
+    spans: InMemorySpanExporter,
+    memory_store: QdrantStore,
+    embeddings: EmbeddingService,
+) -> None:
+    app = create_app(_service(memory_store, embeddings))
+    with TestClient(app) as client:
+        body = client.post(
+            "/query", json={"question": QUESTION, "doc_ids": ["tiny"]}
+        ).json()
+    finished = spans.get_finished_spans()
+    root = next(s for s in finished if s.parent is None)
+    attrs = root.attributes or {}
+    # Langfuse takes the trace name and the trace input/output from the root.
+    assert attrs["langfuse.trace.name"] == "answer-question"
+    assert attrs["input.value"] == QUESTION
+    assert attrs["output.value"] == body["answer"]
+    assert not [s.name for s in finished if s.name.startswith("fastapi.")]
+    # Every step shows what went in and what came out.
+    named = _by_name(spans)
+    for step in ("retrieve", "search", "rerank", "verify"):
+        assert "output.value" in (named[step].attributes or {}), step
+    messages = json.loads(
+        str((named["llm"].attributes or {})["langfuse.observation.input"])
+    )
+    assert [m["role"] for m in messages] == ["system", "user"]
+    assert messages[-1]["content"] == QUESTION
+
+
+def test_trace_context_is_on_every_span(spans: InMemorySpanExporter) -> None:
+    tracing.configure(
+        tracing.TraceContext(environment="ci", release="abc123", tags=("api",))
+    )
+    try:
+        with tracing.root_span("answer"):
+            _step()
+    finally:
+        tracing.configure(tracing.TraceContext())
+    for span in spans.get_finished_spans():
+        attrs = span.attributes or {}
+        assert attrs["langfuse.environment"] == "ci"
+        assert attrs["langfuse.release"] == "abc123"
+        assert tuple(attrs["langfuse.trace.tags"]) == ("api",)  # type: ignore[arg-type]
+
+
+def test_content_capture_off_keeps_structure_but_no_text(
+    spans: InMemorySpanExporter,
+    memory_store: QdrantStore,
+    embeddings: EmbeddingService,
+) -> None:
+    tracing.configure(tracing.TraceContext(capture_content=False))
+    try:
+        asyncio.run(_service(memory_store, embeddings).answer(QUESTION))
+    finally:
+        tracing.configure(tracing.TraceContext())
+    finished = spans.get_finished_spans()
+    assert {s.name for s in finished} >= {"answer", "retrieve", "llm", "verify"}
+    for span in finished:
+        leaked = [k for k in (span.attributes or {}) if tracing.is_content(k)]
+        assert leaked == [], (span.name, leaked)
+    llm = _by_name(spans)["llm"].attributes or {}
+    assert "gen_ai.usage.input_tokens" in llm  # tokens and cost stay
+    assert "gen_ai.usage.cost" in llm
+
+
+def test_many_attributes_do_not_push_out_the_span_kind(
+    spans: InMemorySpanExporter,
+) -> None:
+    """Regression: OTel's default limit (128) dropped the OLDEST attributes, the
+    kind keys, on the 50-candidate search span; Langfuse then showed SPAN."""
+    with tracing.root_span("search", kind=tracing.RETRIEVER):
+        tracing.annotate({f"docrag.k{i}": i for i in range(300)})
+    attrs = spans.get_finished_spans()[0].attributes or {}
+    assert attrs[tracing.LANGFUSE_TYPE] == "retriever"

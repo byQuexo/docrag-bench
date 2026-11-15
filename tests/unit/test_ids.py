@@ -39,7 +39,7 @@ def test_make_chunk_id_valid(doc_id: str, page: int, index: int, expected: str) 
     ],
 )
 def test_make_chunk_id_rejects_invalid(doc_id: str, page: int, index: int) -> None:
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match=r"Invalid doc_id|page must be"):
         make_chunk_id(doc_id, page, index)
 
 
@@ -50,7 +50,7 @@ def test_parse_chunk_id_roundtrip() -> None:
 
 @pytest.mark.parametrize("bad", ["doc3", "doc3:p2", "doc3:pX:c1", "[doc3:p2:c1]", ""])
 def test_parse_chunk_id_rejects_malformed(bad: str) -> None:
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid chunk_id"):
         parse_chunk_id(bad)
 
 

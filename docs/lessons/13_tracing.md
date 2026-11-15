@@ -193,7 +193,7 @@ tab), which is exactly what a thread is.
 
 ```python
 # api/app.py
-app = FastAPI(..., telemetry={"exclude": lambda scope: scope.get("path") == "/health"})
+app = FastAPI(..., telemetry={"exclude": lambda scope: scope.get("path") in PROBES})
 ...
 tracing.annotate({"session.id": thread_id})          # on FastAPI's HTTP span
 with tracing.root_span("query", attributes={"session.id": thread_id, ...}):
@@ -295,7 +295,7 @@ fixture clears it per test. Tests that don't ask for `spans` are unaffected.
 * ingest (`ingest_pdf` + `embed`): no spans;
 * one `answer()` call: one trace, all 7 spans, `retrieve` parented across the
   thread hop, LLM tokens + retrieved document IDs present;
-* API: FastAPI's span is the root, `query` carries `session.id`, `/health` is not traced;
+* API: FastAPI's span is the root, `query` carries `session.id`, the probes `/healthz` and `/readyz` are not traced;
 * `child_of` joins the trace of an already-ended span.
 
 The OTLP exporter itself was smoke-tested against a tiny local HTTP server that

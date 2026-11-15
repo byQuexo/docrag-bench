@@ -182,9 +182,9 @@ async def test_failed_answers_count_as_wrong(
     memory_store: QdrantStore, embeddings: EmbeddingService
 ) -> None:
     def flaky(messages: list[Message], schema: type | None) -> str:
-        if schema is not None and schema.__name__ == "Answer":
-            if "Europe" in messages[-1].text:
-                raise RuntimeError("provider down")
+        is_answer = schema is not None and schema.__name__ == "Answer"
+        if is_answer and "Europe" in messages[-1].text:
+            raise RuntimeError("provider down")
         return default_responder(messages, schema)
 
     config = ExperimentConfig(

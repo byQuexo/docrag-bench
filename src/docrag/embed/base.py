@@ -78,6 +78,11 @@ class EmbeddingService:
                 "docrag.cache_misses": len(missing),
             }
         )
+        # Spans exist only on the query path, where this is the one question.
+        tracing.set_io(
+            input=texts[0] if len(texts) == 1 else texts,
+            output=f"{len(texts)} x {self.dim}-dim vector",
+        )
         return out
 
     def embed_query(self, text: str) -> Vectors:
