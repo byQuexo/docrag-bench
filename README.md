@@ -231,6 +231,10 @@ What exists in this repository today, and where to check it. Anything not in thi
 | Container | multi-stage image, non-root user, health check, JSON logs by default; compose starts the API only after Qdrant is healthy | [`Dockerfile`](Dockerfile), [`compose.yaml`](compose.yaml) |
 | Kubernetes | Deployment + Service, Qdrant StatefulSet with a volume, startup/liveness/readiness probes, resource limits, read-only root filesystem under the `restricted` Pod Security Standard; deployed to kind in CI and smoke-tested | [`deploy/k8s/`](deploy/k8s/), [`docs/deploy.md`](docs/deploy.md) |
 
+<img alt="A real docrag trace in Langfuse: POST /query, query, answer, retrieve with embed, search and rerank, the llm generation and verify; the generation shows Claude Haiku 5.5, 5.3k tokens and the role-labelled messages with the cited answer" src="docs/assets/langfuse-trace.png" width="100%">
+
+*One `/query` request in Langfuse (2026-11-15): the span tree on the left; on the right the LLM call with model, tokens and the structured answer with its evidence. Cost shows $0.00 because this answer came from the LLM cache; the first, uncached call for the same question cost $0.00067.*
+
 **What CI measured** ([run on commit `88bfed9`](https://github.com/byQuexo/docrag-bench/actions/runs/43730701046), 2026-11-15). Gate on 38 dev-split questions, 95% CIs bootstrapped over the 4 documents:
 
 | Check | CI value | Threshold |
