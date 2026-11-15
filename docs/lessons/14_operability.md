@@ -15,6 +15,18 @@ Files: `pyproject.toml`, `.pre-commit-config.yaml`, `src/docrag/shared/settings.
 There is no notebook for this lesson: most of it is configuration you read and
 run, not functions you write.
 
+This lesson tells the story. The same decisions are also recorded as short
+lookup entries in [`docs/decisions/`](../decisions/README.md) (ADRs: context,
+alternatives, consequences, evidence): section 1 → [0012](../decisions/0012-tooling-uv-mypy-precommit.md),
+3 → [0015](../decisions/0015-liveness-vs-readiness.md),
+4 → [0013](../decisions/0013-sync-qdrant-in-worker-threads.md) and [0014](../decisions/0014-retries-and-deadlines.md),
+5 → [0016](../decisions/0016-stdlib-json-logs.md),
+6 → [0018](../decisions/0018-langfuse-otlp-exporter.md),
+7 → [0010](../decisions/0010-ci-eval-gate.md) and [0011](../decisions/0011-real-judge-in-ci.md),
+8 → [0019](../decisions/0019-testcontainers-for-qdrant.md),
+9 → [0020](../decisions/0020-container-image.md) and [0021](../decisions/0021-kubernetes-kustomize-kind.md).
+The next steps are proposed in [0022](../decisions/0022-shared-thread-store.md)–[0024](../decisions/0024-local-langfuse-in-compose.md).
+
 ---
 
 ## 1. Quality tooling: one source of versions
