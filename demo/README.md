@@ -24,8 +24,8 @@ Chosen at startup; the page shows which mode is active.
 
 | Mode | Set | Cost for the Space owner | Quality |
 |---|---|---|---|
-| **Open model on ZeroGPU** (recommended for a public Space) | variable `DOCRAG_DEMO_LOCAL_MODEL=Qwen/Qwen3.8-27B-FP8` | none: GPU time comes from each visitor's free daily ZeroGPU quota | benchmarked via OpenRouter: correct 0.521 vs 0.544 for Haiku, see below |
-| Claude Haiku 5.5 | secret `OPENROUTER_API_KEY` | ~0.1 EUR per 100 questions, capped by `DOCRAG_BUDGET_EUR` | the benchmark headline (0.544) |
+| **Open model on ZeroGPU** (recommended for a public Space) | variable `DOCRAG_DEMO_LOCAL_MODEL=Qwen/Qwen3.8-27B-FP8` | none: GPU time comes from each visitor's free daily ZeroGPU quota | benchmarked via OpenRouter: correct 0.521 vs 0.546 for Haiku, see below |
+| Claude Haiku 5.5 | secret `OPENROUTER_API_KEY` | ~0.1 EUR per 100 questions, capped by `DOCRAG_BUDGET_EUR` | the benchmark headline (0.546) |
 | Retrieval only | nothing | none | no answers: shows the ranked evidence and the best page |
 
 **Why Qwen3.8-27B:** in the [answer-model comparison](https://github.com/byQuexo/docrag-bench#results) it came closest to Haiku among the open models (correct 0.521 [0.479, 0.566]). The smaller Qwen3.5-9B scored 0.434, and Verify rejected the citations of 93% of its answers (it rarely copies quotes verbatim), so it would mark almost every answer as unsourced. The FP8 version (~28 GB) fits ZeroGPU's 48 GB slot.
