@@ -295,9 +295,22 @@ level, so faithfulness is not used as evidence. A second judge model or more lab
 would be the next step.
 
 **Q: How is a run reproducible?**
-A: The config is saved with its hash; parse, embed and LLM results are cached by content and
-version; the split is a deterministic hash. Rerunning the same config hits the cache: same
-numbers, 0 EUR.
+A: The config is saved with its hash; `run.json` records the git commit and whether the
+tree was dirty (`docrag eval` refuses a dirty tree); parse, embed and LLM results are cached
+by content and version; the split is a deterministic hash. Rerunning the same config hits
+the cache, but not bit-identically: re-running the headline run from a clean checkout
+changed 21 of 735 rows. The GPU reranker scores near-tied chunks slightly differently from
+run to run, a different chunk order is a different prompt, and a different prompt misses
+the cache (30 new LLM calls, 0.02 EUR; one verdict changed, correct 0.544 → 0.546). What is
+exactly reproducible is everything downstream of `per_question.csv`
+(`scripts/reproduce_stats.py`).
+
+**Q: Your first headline run was made from uncommitted code. What did you do about it?**
+A: Made `docrag eval` refuse a dirty tree (`--allow-dirty` is recorded in `run.json`),
+re-ran the config from a clean commit while replaying the LLM cache, compared the two runs
+row by row and explained every difference, then moved the old run to
+`results/_superseded/` instead of deleting it. The re-run fixes provenance only: `answer_v3`
+was still chosen with test results in view, so it is still not a held-out result.
 
 **Q: Why slices?**
 A: The average hides failure modes. MMLongBench has many chart/figure questions that a

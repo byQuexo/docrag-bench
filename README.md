@@ -11,9 +11,9 @@
 </p>
 
 <p align="center">
-  <img alt="0.544 correct [0.501, 0.590] with verified citations (citation precision 0.789) · scanned PDFs recall@10 0.000 → 0.776 → 0.834 (no OCR → RapidOCR → vision LLM) · +3.6 points correct, 0.508 → 0.544, McNemar p = 0.002, from the abstention experiment" src="docs/assets/readme/metrics.svg" width="100%">
+  <img alt="0.546 correct [0.503, 0.591] with verified citations (citation precision 0.789) · scanned PDFs recall@10 0.000 → 0.776 → 0.834 (no OCR → RapidOCR → vision LLM) · +3.7 points correct, 0.508 → 0.546, McNemar p = 0.001, from the abstention experiment" src="docs/assets/readme/metrics.svg" width="100%">
   <br>
-  <sub>MMLongBench-Doc test split: 735 questions over 93 PDFs, 23% unanswerable on purpose. 95% CIs bootstrapped over documents. Scanned PDFs: 152 answerable questions on 23 image-only PDFs. The 0.544 and the +3.6 points come from the <code>answer_v3</code> prompt, which was chosen with test results in view, from a run made with uncommitted code: read <a href="#how-far-to-trust-these-numbers">how far to trust these numbers</a> before quoting them.</sub>
+  <sub>MMLongBench-Doc test split: 735 questions over 93 PDFs, 23% unanswerable on purpose. 95% CIs bootstrapped over documents. Scanned PDFs: 152 answerable questions on 23 image-only PDFs. The 0.546 and the +3.7 points come from the <code>answer_v3</code> prompt, which was chosen with test results in view (the run itself is from committed code, see provenance): read <a href="#how-far-to-trust-these-numbers">how far to trust these numbers</a> before quoting them.</sub>
 </p>
 
 docrag-bench answers questions over long PDFs (reports, papers, slide decks, scans) with page citations that are checked in code, and comes with the benchmark harness that measured which design choices actually help.
@@ -51,7 +51,7 @@ Request path: retrieve (embed, hybrid search, rerank), abstain if nothing releva
 
 **Live demo: [huggingface.co/spaces/Quexoo/docrag-bench](https://huggingface.co/spaces/Quexoo/docrag-bench)**. Pick a sample PDF or upload your own (up to 60 pages), ask a question, and get the answer with verified page citations, the retrieved evidence and the cited page. Answers come from the open model Qwen3.8-27B on free ZeroGPU hardware: no API key, the GPU time comes from each visitor's daily Hugging Face quota. Expect a wait: the GPU is lent per question, and the first question about a new PDF also indexes it. The same demo runs locally ([demo/README.md](demo/README.md)).
 
-**One concrete case from the benchmark** (question `aafd3a26978f` in [`per_question.csv`](results/20261101T162727_answer_haiku_vlm_v3_776cde4ae38c/per_question.csv) of the headline run):
+**One concrete case from the benchmark** (question `aafd3a26978f` in [`per_question.csv`](results/20261115T171818_answer_haiku_vlm_v3_776cde4ae38c/per_question.csv) of the headline run):
 
 | | |
 |---|---|
@@ -117,7 +117,7 @@ flowchart LR
 Test split of [MMLongBench-Doc](https://huggingface.co/datasets/yubo2333/MMLongBench-Doc): 735 questions over 93 documents, split by document, search scoped to the question's document. Brackets are 95% CIs bootstrapped over documents (2,000 reps, seed 0). **Every number in this section is recomputed from the committed run files by `uv run python scripts/reproduce_stats.py`** (no data download, API key or index needed); the run folder behind each row is linked.
 
 <p align="center">
-  <img alt="Answer-model comparison, share correct with 95% CIs: Claude Haiku 5.5 0.544, Gemini 3.8 Flash 0.536, Qwen3.8-27B 0.521, Qwen3.8 Flash 0.520, GPT-5.4 mini 0.473, Qwen3.5-9B 0.434, Mistral Small 2603 0.423" src="docs/assets/readme/chart-answer-models.svg" width="49%">
+  <img alt="Answer-model comparison, share correct with 95% CIs: Claude Haiku 5.5 0.546, Gemini 3.8 Flash 0.536, Qwen3.8-27B 0.521, Qwen3.8 Flash 0.520, GPT-5.4 mini 0.473, Qwen3.5-9B 0.434, Mistral Small 2603 0.423" src="docs/assets/readme/chart-answer-models.svg" width="49%">
   <img alt="Scanned PDFs recall@10: no OCR 0.000, RapidOCR 0.776, vision LLM 0.834; text-layer PDFs 0.752 / 0.753 / 0.755" src="docs/assets/readme/chart-scanned-ocr.svg" width="49%">
 </p>
 
@@ -129,7 +129,7 @@ Test split of [MMLongBench-Doc](https://huggingface.co/datasets/yubo2333/MMLongB
 | + OCR (RapidOCR) | 0.471 [0.433, 0.511] | 0.342 | 0.905 | 0.390 | 0.220 | 0.531 | 0.740 | 0.842 | [folder](results/20261101T145657_answer_haiku_ocr_e0374573a911/) |
 | + OCR (vision LLM) | 0.508 [0.464, 0.556] | 0.397 | 0.881 | 0.390 | 0.309 | 0.653 | 0.762 | 0.885 | [folder](results/20261101T150405_answer_haiku_vlm_2156a0d5111d/) |
 | + prompt `answer_v2`, 10 chunks | 0.540 [0.499, 0.585] | **0.469** | 0.780 | **0.566** | **0.357** | **0.667** | 0.764 | 0.851 | [folder](results/20261101T151804_answer_haiku_vlm_v2_7af24838e9f8/) |
-| + prompt `answer_v3`, 10 chunks | **0.544** [0.501, 0.590] | 0.430 | **0.929** | 0.500 | 0.328 | 0.657 | **0.789** | 0.891 | [folder](results/20261101T162727_answer_haiku_vlm_v3_776cde4ae38c/) |
+| + prompt `answer_v3`, 10 chunks | **0.546** [0.503, 0.591] | 0.430 | **0.935** | 0.500 | 0.328 | 0.662 | **0.789** | 0.885 | [folder](results/20261115T171818_answer_haiku_vlm_v3_776cde4ae38c/) |
 
 "Correct" counts abstaining on an unanswerable question as correct. Citation precision is the share of verified citations that point at a gold evidence page. 2–3 of 735 judge calls per run failed (invalid JSON after one retry); they are counted (`judge_failed`) and left out of the means and paired tests.
 
@@ -158,30 +158,30 @@ Run folders: `results/*_dense_*`, `*_bm25_*`, `*_hybrid_*`, `*_baseline_*`, `*_n
 <summary><b>Experiments</b>: OCR, abstention, chatbot mode, answer-model comparison</summary>
 
 - **OCR.** Without OCR the system can't see image-only PDFs (mostly slide decks). OCR takes recall@10 over all questions from 0.550 to 0.776, the biggest single gain in the project. The vision LLM beats RapidOCR mainly on charts (correct 0.220 → 0.309), because it binds numbers to their labels. Its OCR cost (0.42 EUR for 1,390 pages) was read from OpenRouter at the time and is not recorded in `results/`.
-- **Abstention.** The first answer runs abstained on ~43% of answerable questions, although the gold page was often in the top 5. A new column (`abstained_before_llm`) showed the rerank gate stops only 2.8%; the LLM itself was saying "Not answerable". Four variants (`answer_v1`/`answer_v2` × 5/10 chunks) were compared on **dev**; only the winner ran on test. `answer_v2` + 10 chunks answers more (answerable +48/−7, p < 0.0001) but also answers questions whose premise is false (unanswerable +1/−18). `answer_v3` adds "answer exactly what was asked; false premise → *Not answerable*": unanswerable back to 0.929 (+25/−0 vs v2), answerable 0.430 (+3/−25 vs v2). v2 and v3 tie overall (+28/−25, p = 0.78). **How v3 came about:** its rules were written after reading v2's 18 lost unanswerable questions *on the test split*, then checked on dev (unanswerable 0.797 → 0.878, +6/−0, p = 0.031; overall n.s.), then run on test and picked as the headline with both test results in view. So v3's test numbers are not an independent held-out estimate, and the +3.6 points (v3 vs the vision-LLM baseline, +45/−19, p = 0.002) carry that selection effect. The cleanly held-out result is v2's: chosen on dev, run once on test, +3.2 points (+49/−25, p = 0.007).
+- **Abstention.** The first answer runs abstained on ~43% of answerable questions, although the gold page was often in the top 5. A new column (`abstained_before_llm`) showed the rerank gate stops only 2.8%; the LLM itself was saying "Not answerable". Four variants (`answer_v1`/`answer_v2` × 5/10 chunks) were compared on **dev**; only the winner ran on test. `answer_v2` + 10 chunks answers more (answerable +48/−7, p < 0.0001) but also answers questions whose premise is false (unanswerable +1/−18). `answer_v3` adds "answer exactly what was asked; false premise → *Not answerable*": unanswerable back to 0.935 (+26/−0 vs v2), answerable 0.430 (+3/−25 vs v2). v2 and v3 tie overall (+29/−25, p = 0.68). **How v3 came about:** its rules were written after reading v2's 18 lost unanswerable questions *on the test split*, then checked on dev (unanswerable 0.797 → 0.878, +6/−0, p = 0.031; overall n.s.), then run on test and picked as the headline with both test results in view. So v3's test numbers are not an independent held-out estimate, and the +3.7 points (v3 vs the vision-LLM baseline, paired over the 731 questions both runs have a verdict for, +46/−19, p = 0.001) carry that selection effect. The cleanly held-out result is v2's: chosen on dev, run once on test, +3.2 points (+49/−25, p = 0.007).
 - **Chatbot mode (search all documents).** All other numbers search only the question's own PDF. Asking across all 134 indexed PDFs (`scope: corpus`, [`configs/corpus_vlm.yaml`](configs/corpus_vlm.yaml), [run](results/20261101T174107_corpus_vlm_629974d14084/)) drops recall@10 from 0.776 to **0.599** [0.546, 0.655]: −0.177, CI [−0.211, −0.143] (text-layer 0.755 → 0.567, scanned 0.834 → 0.687). Answer quality in this mode is not benchmarked.
 - **Answer-model comparison.** Same index, retrieval, prompt (`answer_v3`, 10 chunks) and judge; only the answer model changes (configs `answer_model_*.yaml`, runs `results/*_answer_model_*`). Paired McNemar against Haiku on the same 735 questions:
 
   | answer model | correct | vs Haiku | unanswerable | failed answers* | LLM p50 / p95 | EUR per 100 questions |
   |---|---|---|---|---|---|---|
-  | **Claude Haiku 5.5** | **0.544** [0.501, 0.590] | – | 0.929 | 0.0% | 2.2 s / 7.4 s | **0.09** |
-  | Gemini 3.8 Flash | 0.536 [0.493, 0.580] | −0.8 pts (p = 0.47, n.s.) | 0.935 | 0.1% | 4.6 s / 16 s | 0.51 |
-  | Qwen3.8-27B | 0.521 [0.479, 0.566] | −2.3 pts (p = 0.036) | 0.839 | 6.8% | 5.0 s / 49 s | 0.37 |
-  | Qwen3.8 Flash | 0.520 [0.475, 0.568] | −2.4 pts (p = 0.020) | 0.827 | 5.6% | 10.1 s / 68 s** | 0.14 |
-  | GPT-5.4 mini | 0.473 [0.432, 0.516] | −7.2 pts (p < 0.001) | 0.667 | 0.0% | 1.4 s / 7.0 s | 0.26 |
-  | Qwen3.5-9B | 0.434 [0.392, 0.478] | −11.0 pts (p < 0.001) | 0.875 | 0.0% | 0.9 s / 5.9 s | 0.01 |
-  | Mistral Small 2603 | 0.423 [0.385, 0.462] | −12.2 pts (p < 0.001) | 0.780 | 0.0% | 1.0 s / 6.4 s | 0.07 |
+  | **Claude Haiku 5.5** | **0.546** [0.503, 0.591] | – | 0.935 | 0.0% | 2.2 s / 7.4 s** | **0.09** |
+  | Gemini 3.8 Flash | 0.536 [0.493, 0.580] | −1.0 pts (p = 0.38, n.s.) | 0.935 | 0.1% | 4.6 s / 16 s | 0.51 |
+  | Qwen3.8-27B | 0.521 [0.479, 0.566] | −2.5 pts (p = 0.024) | 0.839 | 6.8% | 5.0 s / 49 s | 0.37 |
+  | Qwen3.8 Flash | 0.520 [0.475, 0.568] | −2.5 pts (p = 0.013) | 0.827 | 5.6% | 10.1 s / 68 s** | 0.14 |
+  | GPT-5.4 mini | 0.473 [0.432, 0.516] | −7.3 pts (p < 0.001) | 0.667 | 0.0% | 1.4 s / 7.0 s | 0.26 |
+  | Qwen3.5-9B | 0.434 [0.392, 0.478] | −11.2 pts (p < 0.001) | 0.875 | 0.0% | 0.9 s / 5.9 s | 0.01 |
+  | Mistral Small 2603 | 0.423 [0.385, 0.462] | −12.3 pts (p < 0.001) | 0.780 | 0.0% | 1.0 s / 6.4 s | 0.07 |
 
   \* empty or invalid JSON after one retry, counted as wrong. The Qwen3.8 models are reasoning models: with the same 4,096-token limit as every other model, they sometimes spend it all on hidden reasoning and return nothing. Cost is `cost_eur_full` from each `run.json` (answers + judge, cache hits priced).
-  \** from the first full run ([`results/_superseded/`](results/_superseded/README.md)); the re-run that replaced 4 rate-limited answers timed only 16 calls.
+  \** from the first full run ([`results/_superseded/`](results/_superseded/README.md)); the re-runs replayed the LLM cache and timed only the calls that missed it (Qwen3.8 Flash: 16, Haiku: 30).
 
-  Caveats: `answer_v3` was developed with Haiku, so other models may do better with their own prompt; there is one judge model. Haiku and Gemini 3.8 Flash are statistically tied; Gemini has the higher citation precision (0.810 vs 0.789) but costs about 5.6× as much. GPT-5.4 mini mostly loses on unanswerable questions (0.667 vs 0.929). Qwen3.5-9B often gets the answer right but rarely quotes verbatim: Verify rejected all citations of 93% of its non-abstained answers, so they come back as `unsupported`. That is exactly what Verify is for.
+  Caveats: `answer_v3` was developed with Haiku, so other models may do better with their own prompt; there is one judge model. Haiku and Gemini 3.8 Flash are statistically tied; Gemini has the higher citation precision (0.810 vs 0.789) but costs about 5.6× as much. GPT-5.4 mini mostly loses on unanswerable questions (0.667 vs 0.935). Qwen3.5-9B often gets the answer right but rarely quotes verbatim: Verify rejected all citations of 93% of its non-abstained answers, so they come back as `unsupported`. That is exactly what Verify is for.
 </details>
 
 ### How far to trust these numbers
 
-- **Provenance of the headline run.** [`run.json`](results/20261101T162727_answer_haiku_vlm_v3_776cde4ae38c/run.json) of the `answer_v3` test run records `"commit": "826f8871328e68a9d04cc3a16173ec83a69b553f", "dirty": true`. Commit 826f887 exists in the history, but the run started with uncommitted changes under `src/`, `configs/`, `pyproject.toml` or `uv.lock`, and what they were was not recorded. Two traces show at least part of it: the run's config `configs/answer_haiku_vlm_v3.yaml` was first committed in 5d6b42b, and the `run.json` has `cost_eur_billed`/`cost_eur_full` fields that the 826f887 code cannot write (also added in 5d6b42b). Whether anything else differed is unknown. So these numbers can't be attributed to 826f887, nor to the current code, which has changed since. Other runs with `dirty: true`: `answer_haiku_vlm_v2` (b402121), `corpus_vlm` (ef2a510), and three model-comparison runs, `qwen35_9b`, `mistralsmall`, `qwen38_27b` (0102411). The retrieval runs record no commit at all. `scripts/reproduce_stats.py` prints this for every run.
-- **What that limits, and what still holds.** You can't check out a commit and re-run to get the exact code behind those numbers. Re-running also needs paid API calls (the LLM cache is local, not committed), and hosted models can drift. What *is* reproducible is everything downstream of the per-question files: every mean, interval and test in this README.
+- **Provenance of the headline run.** The `answer_v3` test run was re-run on 2026-11-15 from a clean checkout; its [`run.json`](results/20261115T171818_answer_haiku_vlm_v3_776cde4ae38c/run.json) records `"commit": "251a50d8b4e4bdd483f15baa0801b9a4c08c42f6", "dirty": false`. Same config, index and models; it replayed the local LLM cache, so 1,034 of 1,064 LLM calls were cache hits and 30 were new (0.02 EUR billed). 21 of 735 rows differ from the first run: rerank scores of near-tied chunks differ in the 3rd–4th decimal between runs, which reorders or swaps chunks in the context, and a changed prompt misses the cache and gets a fresh answer (11 answers). No retrieval code, dependency, model or Qdrant version changed between the two runs, so the likely cause is GPU (fp16) nondeterminism in the reranker; not verified further. Net effect: one more question correct (0.544 → 0.546), one fewer unanswerable miss (0.929 → 0.935), faithful 0.891 → 0.885, retrieval means within 0.001. The first run is kept in [`results/_superseded/`](results/_superseded/README.md): it recorded commit 826f887 with `"dirty": true` (uncommitted changes, later committed in 5d6b42b, whose exact content was not recorded). Other runs with `dirty: true`: `answer_haiku_vlm_v2` (b402121, the v3-vs-v2 comparison uses it), `corpus_vlm` (ef2a510), and three model-comparison runs, `qwen35_9b`, `mistralsmall`, `qwen38_27b` (0102411). The retrieval runs record no commit at all. `scripts/reproduce_stats.py` prints this for every run.
+- **What that limits, and what still holds.** The headline run can be checked out (251a50d) and re-run. Re-running from scratch still needs paid API calls (the LLM cache is local, not committed), hosted models can drift, and GPU reranking changes a few answers per run (above). What is exactly reproducible is everything downstream of the per-question files: every mean, interval and test in this README.
 - **No independent test validation for `answer_v3`.** It was designed from test-split errors and chosen with test results in view (see Experiments). There is no untouched test set left for that choice. A fresh held-out set (or a new split) would be needed to confirm it.
 - **The faithfulness judge is at chance level** (κ 0.06, above). Correctness agreement (κ 0.77) is based on 50 labels from one human on one run.
 - **One dataset, one judge model, one split.** The CIs cover resampling of documents, not the choice of judge, prompt or dataset.
@@ -193,8 +193,8 @@ Run folders: `results/*_dense_*`, `*_bm25_*`, `*_hybrid_*`, `*_baseline_*`, `*_n
 - **Judge reliability:** agreement with human labels is measured with `docrag label-sample` → `docrag label` → `docrag judge-agreement`; the 50 labels are in `results/human_labels/`. Faithfulness was hard for the human too: when retrieval missed part of the evidence, "every claim is in the cited passages" depends on how strictly the passages are read. A quote-only judge (`judge_v1`) put faithfulness at 0.46–0.50; with the full cited passages (`judge_v2`) it is 0.83–0.89, but given κ 0.06 neither level is validated.
 - **Costs:** `run.json` reports `cost_eur_billed` (what was charged; cache hits are free) and `cost_eur_full` (cache hits priced from their stored usage, comparable across runs). The `answer_v3` test run: 0.67 EUR full. The project total of all LLM calls (~14 EUR) comes from the OpenRouter account, not from `results/`.
 - **Dataset quirks:** 1,091 questions, 135 documents in the QA set, 134 PDFs downloadable (744 test questions in the split, 735 with a PDF). One question appears twice on the same document with contradictory gold answers ("46%" and "Not answerable"); paired tests align runs by row, not by question ID (the script checks that the rows line up).
-- **Re-running from the cache** gives the same metrics; 2 of 735 answers were regenerated because retrieval returned a slightly different chunk set (probably GPU nondeterminism, not verified).
-- **Latency (GPU, `answer_v3`):** search p50 6 ms, rerank p50 499 ms, LLM p50 2.2 s, whole answer p50 2.8 s / p95 6.2 s.
+- **Re-running from the cache** is not bit-identical: an earlier re-run regenerated 2 of 735 answers, the clean re-run 11 (and changed one verdict), each time because retrieval returned a slightly different chunk order or set (see provenance).
+- **Latency (GPU, `answer_v3`, first full run):** search p50 6 ms, rerank p50 499 ms, LLM p50 2.2 s, whole answer p50 2.8 s / p95 6.2 s. The clean re-run is not used for latency: its answers were mostly cache hits.
 </details>
 
 ## Learnings
@@ -202,7 +202,7 @@ Run folders: `results/*_dense_*`, `*_bm25_*`, `*_hybrid_*`, `*_baseline_*`, `*_n
 - **OCR only helps on PDFs without a text layer.** On text-layer documents recall@10 stays at 0.752 / 0.753 / 0.755 (no OCR / RapidOCR / vision LLM); on scanned ones it goes 0.000 → 0.776 → 0.834. Look at the data before tuning models. → [lesson 12](docs/lessons/12_ocr.md)
 - **The LLM abstains, not the threshold.** Only 2.8% of answerable questions were stopped by the rerank gate. The fix was the prompt. → [lesson 08](docs/lessons/08_eval.md)
 - **Check the judge before you trust the score.** `judge_v2` agrees with a human on correctness (κ 0.77) but its faithfulness verdicts are at chance level (κ 0.06). Earlier, averaging abstentions as "faithful" had made a metric artifact look like an OCR effect. → [lesson 08](docs/lessons/08_eval.md)
-- **The more expensive model doesn't win.** Haiku and Gemini 3.8 Flash are statistically tied on correctness (0.544 vs 0.536, p = 0.47), but Gemini costs about 5.6× as much per question. → [lesson 05](docs/lessons/05_llm_proxy.md)
+- **The more expensive model doesn't win.** Haiku and Gemini 3.8 Flash are statistically tied on correctness (0.546 vs 0.536, p = 0.38), but Gemini costs about 5.6× as much per question. → [lesson 05](docs/lessons/05_llm_proxy.md)
 - **A small model can be right and still unsourced.** Verify rejected all citations of 93% of Qwen3.5-9B's answers because the quotes weren't verbatim. Without Verify those answers would look sourced. → [lesson 06](docs/lessons/06_answer_and_verify.md)
 
 <details>
@@ -362,7 +362,7 @@ Solutions are in `notebooks/lessons/solutions/`; CI executes them so they stay i
 
 ## Known limitations
 
-- **Measurement:** the headline run was made from uncommitted code; `answer_v3` was selected with test results in view; the faithfulness judge is at chance level; one dataset, one judge model, 50 human labels from one person (details in [How far to trust these numbers](#how-far-to-trust-these-numbers)).
+- **Measurement:** `answer_v3` was selected with test results in view; re-runs are not bit-identical (GPU reranking reorders near-tied chunks; the clean re-run changed 21 of 735 rows and one verdict); the faithfulness judge is at chance level; one dataset, one judge model, 50 human labels from one person (details in [How far to trust these numbers](#how-far-to-trust-these-numbers)).
 - **Charts and figures are hard for a text retriever.** Only captions, labels and OCR/VLM descriptions are indexed; a ColPali-style visual retriever is future work.
 - Verify checks that quotes are *real*, not that they *support* the claim (no entailment check).
 - `answer_v2`/`v3` were developed with Haiku; other answer models may need their own prompt.
