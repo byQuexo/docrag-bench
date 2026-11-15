@@ -97,13 +97,18 @@ so the coverage report counts both.
 
 ### 6. CI (`.github/workflows/ci.yml`)
 
-Three parallel jobs on every push/PR:
+Three jobs on every push/PR:
 
-1. **lint-test:** `uv sync --locked` → `ruff check` → `ruff format --check` → `mypy src`
-   → `pytest -m "not e2e"`.
-2. **e2e:** a Qdrant **service container** (`qdrant/qdrant:v1.20.0`, same tag as
-   compose), poll `/readyz` until ready (not a fixed sleep), then `pytest -m e2e`.
-3. **docker:** `docker build`, so a broken Dockerfile fails the PR, not the deploy.
+1. **lint-test:** `uv sync --locked` → `ruff check` → `ruff format --check` →
+   `mypy src tests scripts` → `pytest --cov` (unit tests and the testcontainers E2E tests in
+   one run, so coverage counts both) → the lesson solution notebooks.
+2. **eval-gate** (only after lint-test passed): the real pipeline on 38 fixed dev
+   questions against a Qdrant **service container** (`qdrant/qdrant:v1.20.0`, same tag as
+   compose), polled via `/readyz` until ready (not a fixed sleep). Fails the build when
+   retrieval or answer quality drops; see lesson 14.
+3. **deploy-smoke:** `docker build`, then a kind cluster with the manifests from
+   `deploy/k8s` and a smoke test, so a broken Dockerfile or manifest fails the PR, not the
+   deploy.
 
 `--locked` fails if `uv.lock` and `pyproject.toml` disagree. `concurrency:
 cancel-in-progress` cancels outdated runs of the same branch.
@@ -180,11 +185,12 @@ def resource():
    chunk first for "Europe 2024 revenue". **Done when** green.
 3. Break the Dockerfile on purpose (e.g. `COPY srcx`) and run `docker build .`. **Done
    when** you've read the error. Then revert.
-4. Run the E2E test locally against `docker compose up -d qdrant`. **Done when** it
-   passes and you've seen the collection at `http://localhost:6333/dashboard`.
-5. Add a CI step that runs `uv run docrag eval configs/e2e_fake.yaml` against the service
-   container. (Hint: the fixture PDFs aren't the MMLongBench docs, so think about what the
-   runner needs.) **Done when** you've decided whether it's worth it and why.
+4. Run the E2E test locally (`uv run pytest -m e2e`, Docker running) and watch
+   `docker ps` in a second terminal while it runs. **Done when** you've seen the throwaway
+   Qdrant container appear and disappear.
+5. Read the `eval-gate` job in `ci.yml` and `scripts/eval_gate.py`. **Done when** you can
+   explain why it uses the dev split, why fork PRs only run the retrieval half, and why
+   restoring the LLM cache can't return a stale answer.
 
 ## Interview questions
 
