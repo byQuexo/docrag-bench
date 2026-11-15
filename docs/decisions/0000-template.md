@@ -28,5 +28,9 @@ Files, commits, CI runs and result folders that show the decision and its
 effect. Rationale that no code, commit or doc states is marked
 **Begründung offen** (rationale open) instead of being invented.
 
+A `Proposed` ADR has **Problem**, **Options** (a table with for and against)
+and **Open questions for the decision** instead of Context, Decision and
+Consequences; once decided, it gets those sections and the status `Accepted`.
+
 Keep it to one page. The lessons in `docs/lessons/` tell the story; an ADR is
 the short entry you look up.

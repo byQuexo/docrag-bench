@@ -45,3 +45,7 @@ has a written answer that can be checked.
 | [0019](0019-testcontainers-for-qdrant.md) | Integration tests start Qdrant with testcontainers | Accepted | 2026-11-14 |
 | [0020](0020-container-image.md) | Multi-stage, non-root image; models downloaded at start, not baked in | Accepted | 2026-11-01 |
 | [0021](0021-kubernetes-kustomize-kind.md) | Kubernetes manifests with kustomize, tested on kind in CI, one replica | Accepted | 2026-11-14 |
+| | **Proposed** | | |
+| [0022](0022-shared-thread-store.md) | A shared thread store behind a flag | Proposed | 2026-11-15 |
+| [0023](0023-ocr-optional-extra.md) | OCR as an optional extra, to shrink the serving image | Proposed | 2026-11-15 |
+| [0024](0024-local-langfuse-in-compose.md) | Langfuse locally in `compose.yaml` | Proposed | 2026-11-15 |
