@@ -21,3 +21,10 @@ has a written answer that can be checked.
 
 | # | Decision | Status | Date |
 |---|---|---|---|
+| | **Retrieval and generation** | | |
+| [0001](0001-hybrid-search-qdrant-rerank.md) | Hybrid search (dense + BM25) in Qdrant, then a cross-encoder rerank | Accepted | 2026-11-01 |
+| [0002](0002-local-onnx-models.md) | Local ONNX embedder and reranker instead of API or PyTorch models | Accepted | 2026-11-01 |
+| [0003](0003-pymupdf-parser.md) | PyMuPDF as the PDF parser, not Docling | Accepted | 2026-11-01 |
+| [0004](0004-ocr-separate-pass.md) | OCR as a separate pass: RapidOCR, a vision LLM as the second engine | Accepted | 2026-11-01 |
+| [0005](0005-verify-citations-in-code.md) | Citations are verified in code, not by an LLM | Accepted | 2026-11-01 |
+| [0006](0006-own-llm-proxy.md) | Our own LLM proxy with a content-addressed cache and a budget cap | Accepted | 2026-11-01 |
