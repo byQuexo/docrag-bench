@@ -34,3 +34,14 @@ has a written answer that can be checked.
 | [0009](0009-refuse-dirty-benchmark-runs.md) | Benchmark runs refuse to start from a dirty working tree | Accepted | 2026-11-09 |
 | [0010](0010-ci-eval-gate.md) | CI eval gate on fixed dev-split questions, thresholds with a margin | Accepted | 2026-11-14 |
 | [0011](0011-real-judge-in-ci.md) | A real judge in CI with a spend cap; fork PRs report the judge as skipped | Accepted | 2026-11-14 |
+| | **Service and operations** | | |
+| [0012](0012-tooling-uv-mypy-precommit.md) | One version source: uv lockfile, mypy strict everywhere, pre-commit through `uv run` | Accepted | 2026-11-01 |
+| [0013](0013-sync-qdrant-in-worker-threads.md) | Sync Qdrant client in worker threads, async only for LLM calls | Accepted | 2026-11-01 |
+| [0014](0014-retries-and-deadlines.md) | Retries with full jitter and Retry-After; one deadline per request (504) | Accepted | 2026-11-14 |
+| [0015](0015-liveness-vs-readiness.md) | `/healthz` checks only the process, `/readyz` checks Qdrant | Accepted | 2026-11-14 |
+| [0016](0016-stdlib-json-logs.md) | JSON logs from a stdlib formatter, with the trace id, not structlog | Accepted | 2026-11-14 |
+| [0017](0017-opentelemetry-tracing.md) | OpenTelemetry as the tracing layer, query path only | Accepted | 2026-11-01 |
+| [0018](0018-langfuse-otlp-exporter.md) | Langfuse as a second OTLP exporter, not the Langfuse SDK | Accepted | 2026-11-14 |
+| [0019](0019-testcontainers-for-qdrant.md) | Integration tests start Qdrant with testcontainers | Accepted | 2026-11-14 |
+| [0020](0020-container-image.md) | Multi-stage, non-root image; models downloaded at start, not baked in | Accepted | 2026-11-01 |
+| [0021](0021-kubernetes-kustomize-kind.md) | Kubernetes manifests with kustomize, tested on kind in CI, one replica | Accepted | 2026-11-14 |
