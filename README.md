@@ -373,8 +373,10 @@ Solutions are in `notebooks/lessons/solutions/`; CI executes them so they stay i
 - Qdrant's embedded mode is brute force and slow beyond roughly 20k chunks; use the Docker server for full runs.
 - Operations: one API replica (threads in memory), no auth or rate limiting, manual indexing, no metrics endpoint (see [What is missing](#what-is-missing)).
 
+**Design decisions.** Every major architecture and operations choice has a one-page record in [`docs/decisions/`](docs/decisions/README.md): context, the alternatives that were rejected, consequences (including the costs), and the commits, CI runs or results that back it. 21 are accepted and 3 are proposed next steps (shared thread store, OCR as an optional extra, local Langfuse). Where no code, commit or doc gives a reason, the record says so instead of supplying one.
+
 <details>
-<summary>Design decisions</summary>
+<summary>Design decisions in one line each</summary>
 
 - **PyMuPDF, not Docling.** It parses a 50-page PDF in seconds on CPU without ML models and detects ruled tables. Docling has better layout quality but needs PyTorch and is far slower. The parser sits behind a `Parser` protocol; a second parser is only added if a benchmark justifies it.
 - **ONNX Runtime, not PyTorch.** About 50 MB instead of several GB, and the same model files run on CPU or CUDA. Pooling and truncation are implemented by hand, small and tested.
@@ -421,6 +423,7 @@ docrag-bench/
 ├── demo/           # Gradio demo (local or Hugging Face Space)
 ├── ui/             # web UI: chat with sources + benchmark dashboard (Vite, React)
 ├── notebooks/lessons/  # interactive lessons (+ solutions/)
+├── docs/decisions/     # architecture decision records (ADRs)
 ├── docs/lessons/       # lesson texts
 ├── tests/          # unit/ against fakes, e2e/ against a real Qdrant (testcontainers)
 ├── configs/        # one YAML per experiment

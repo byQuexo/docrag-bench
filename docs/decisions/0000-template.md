@@ -1,6 +1,6 @@
 # NNNN. Title: the decision as a short phrase
 
-- **Status:** Proposed | Accepted | Superseded by [NNNN](NNNN-title.md)
+- **Status:** Proposed | Accepted | Superseded by NNNN (linked)
 - **Date:** YYYY-MM-DD (the commit that introduced the decision, or the day it was proposed)
 
 ## Context
