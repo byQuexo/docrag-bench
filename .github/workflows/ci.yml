@@ -154,10 +154,14 @@ jobs:
       - uses: actions/checkout@v7
       - name: Build image
         run: docker build -t docrag-bench:kind .
+      # Two numbers, because they differ a lot: what `docker image inspect`
+      # reports (probably the compressed size on this runner) and
+      # how much the files inside the image take up.
       - name: Image size
         run: |
-          docker image inspect docrag-bench:kind --format '{{.Size}}' \
-            | awk '{printf "Image size (uncompressed): %.0f MB\n", $1/1e6}' \
+          reported=$(docker image inspect docrag-bench:kind --format '{{.Size}}')
+          files=$(docker run --rm --entrypoint du docrag-bench:kind -sxm / | cut -f1)
+          echo "Image: $((reported / 1000000)) MB as reported by docker, ${files} MB of files inside" \
             | tee -a "$GITHUB_STEP_SUMMARY"
       - uses: helm/kind-action@v1.15.2
         with:

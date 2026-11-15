@@ -225,13 +225,21 @@ What exists in this repository today, and where to check it. Anything not in thi
 | Health | `/healthz` (liveness, no dependencies) and `/readyz` (Qdrant reachable within 2 s and the collection exists, else 503) | [`api/app.py`](src/docrag/api/app.py) |
 | Failure handling | timeouts on every LLM and Qdrant call; retries with exponential backoff and jitter on transient errors only, honouring `Retry-After`; one deadline per request (504); Qdrant outage → 503; LLM budget cap | [`retry.py`](src/docrag/shared/retry.py), [`qdrant.py`](src/docrag/store/qdrant.py), [`openai_compat.py`](src/docrag/llm/openai_compat.py) |
 | Logs | JSON lines with `trace_id`/`span_id`, one access line per request (probes excluded) | [`logs.py`](src/docrag/shared/logs.py) |
-| Traces | OpenTelemetry spans request → retrieve (embed, search, rerank) → LLM (model, tokens, cost) → verify, exported to Phoenix and/or Langfuse; off unless configured, `OTEL_SDK_DISABLED=true` turns it off | [`tracing.py`](src/docrag/shared/tracing.py), [lesson 13](docs/lessons/13_tracing.md) |
-| Tests | <!--N_TESTS--> unit tests against fakes; integration tests against a real Qdrant started by testcontainers; line and branch coverage reported in CI with a floor of 80% | [`tests/`](tests/) |
+| Traces | OpenTelemetry spans request → retrieve (embed, search, rerank) → LLM (model, tokens, cost) → verify, exported to Phoenix and/or Langfuse (checked against a live Langfuse Cloud project: named traces, sessions, environment, generation model/tokens/cost); off unless configured, `OTEL_SDK_DISABLED=true` turns it off, `DOCRAG_TRACE_CONTENT=false` keeps text out | [`tracing.py`](src/docrag/shared/tracing.py), [lesson 13](docs/lessons/13_tracing.md) |
+| Tests | 281 tests pass in CI: unit tests against fakes plus 6 integration tests against a real Qdrant started by testcontainers (the Gradio demo tests are skipped there, the demo extra is not installed); line and branch coverage 86.3%, floor 80% | [`tests/`](tests/) |
 | Quality gate | CI fails when recall@10 or the LLM-judged share of correct answers on a fixed set of 38 dev-split questions drops below its threshold; results uploaded as a CI artifact | [`ci.yml`](.github/workflows/ci.yml), [`fixtures/ci_gate.yaml`](fixtures/ci_gate.yaml) |
 | Container | multi-stage image, non-root user, health check, JSON logs by default; compose starts the API only after Qdrant is healthy | [`Dockerfile`](Dockerfile), [`compose.yaml`](compose.yaml) |
 | Kubernetes | Deployment + Service, Qdrant StatefulSet with a volume, startup/liveness/readiness probes, resource limits, read-only root filesystem under the `restricted` Pod Security Standard; deployed to kind in CI and smoke-tested | [`deploy/k8s/`](deploy/k8s/), [`docs/deploy.md`](docs/deploy.md) |
 
-<!--GATE-->
+**What CI measured** ([run on commit `88bfed9`](https://github.com/byQuexo/docrag-bench/actions/runs/43730701046), 2026-11-15). Gate on 38 dev-split questions, 95% CIs bootstrapped over the 4 documents:
+
+| Check | CI value | Threshold |
+|---|---|---|
+| recall@10 | 0.790 [0.670, 0.909] | ≥ 0.65 |
+| correct (LLM judge) | 0.579 [0.463, 0.714] | ≥ 0.40 |
+| judge failures | 0 of 38 | ≤ 10% |
+
+A local run of the same gate gave 0.748 and 0.500 (reranker in fp16 on a GPU instead of fp32 on CPU, and LLM answers vary between runs), which is why the thresholds sit well below both. These numbers measure a small fixed set for regression detection; the benchmark results above are the measurement of the system.
 
 ### What is missing
 

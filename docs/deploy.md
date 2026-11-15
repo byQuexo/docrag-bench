@@ -18,8 +18,10 @@ runs as the unprivileged user `app` (uid 10001), writes only to `/app/models`
 and `/app/.cache`, and logs JSON (`DOCRAG_LOG_FORMAT=json`). CI builds it on
 every push and writes its size to the job summary (job `deploy-smoke`).
 
-It is not small: about 940 MB uncompressed (local build, 2026-11-14), nearly all
-of it the Python environment: polars (170 MB), OpenCV + RapidOCR (~185 MB, only
+It is not small. Two numbers, because they differ: CI's `docker image inspect`
+reported 365 MB (probably the compressed size; the CI step now prints both),
+and a local build measured about 940 MB of files inside the image (2026-11-14),
+nearly all of it the Python environment: polars (170 MB), OpenCV + RapidOCR (~185 MB, only
 needed for OCR at ingest time), PyMuPDF (116 MB), ONNX Runtime (68 MB).
 scikit-learn and SciPy (~190 MB) were removed from the runtime dependencies for
 that reason. Next step: an `ocr` extra so the serving image skips OpenCV.
