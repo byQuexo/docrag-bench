@@ -105,6 +105,14 @@ class Settings(BaseSettings):
         validation_alias=AliasChoices("LANGFUSE_HOST", "DOCRAG_LANGFUSE_HOST"),
     )
 
+    # Trace context on every span (Langfuse filters by it). environment keeps
+    # test traffic apart from production; release is e.g. the image tag.
+    environment: str = "development"
+    release: str | None = None
+    # False = traces keep structure, timings, ids, scores, tokens and cost, but
+    # no questions, prompts, answers or document text (privacy/compliance).
+    trace_content: bool = True
+
     # Logs: "text" for a terminal, "json" (one object per line) for containers.
     log_format: Literal["text", "json"] = "text"
     log_level: str = "INFO"

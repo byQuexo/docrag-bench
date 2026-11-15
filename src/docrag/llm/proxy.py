@@ -284,6 +284,18 @@ def _trace_request(
         # .text drops images: base64 page renders don't belong in a span.
         attrs[f"llm.input_messages.{i}.message.content"] = m.text
     tracing.annotate(attrs)
+    # Langfuse shows a generation's input from this role-labelled list (it does
+    # not read OpenInference's llm.input_messages.*). Kept whole up to 64k chars:
+    # the prompt with the retrieved context is what the model actually saw.
+    tracing.annotate(
+        {
+            "langfuse.observation.input": json.dumps(
+                [{"role": m.role, "content": m.text} for m in messages],
+                ensure_ascii=False,
+            )
+        },
+        max_len=tracing.MAX_PROMPT_TEXT,
+    )
 
 
 def _trace_response(route: str, completion: ChatCompletion, cache_hit: bool) -> None:
@@ -293,6 +305,10 @@ def _trace_response(route: str, completion: ChatCompletion, cache_hit: bool) -> 
             "llm.output_messages.0.message.role": "assistant",
             "llm.output_messages.0.message.content": completion.content,
             "output.value": completion.content,
+            "langfuse.observation.output": json.dumps(
+                {"role": "assistant", "content": completion.content},
+                ensure_ascii=False,
+            ),
             "llm.token_count.prompt": u.input_tokens,
             "llm.token_count.completion": u.output_tokens,
             "llm.token_count.total": u.input_tokens + u.output_tokens,

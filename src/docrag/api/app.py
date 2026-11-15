@@ -106,7 +106,12 @@ def create_app(
         title="docrag-bench",
         version="0.1.0",
         lifespan=lifespan,
-        telemetry={"exclude": lambda scope: scope.get("path") in PROBES},
+        telemetry={
+            "exclude": lambda scope: scope.get("path") in PROBES,
+            # No spans for FastAPI's internal steps (dependency resolution,
+            # serialization): noise next to the RAG steps. The HTTP span stays.
+            "operation_spans": False,
+        },
     )
     # app.state holds the "singletons" of this app instance. No module-level
     # globals, so two apps (e.g. in tests) never share state.
@@ -180,6 +185,11 @@ def create_app(
         # the request. session.id = thread id on both: Phoenix groups all turns
         # of a conversation under "Sessions".
         tracing.annotate({"session.id": thread_id})
+        # The current span here is FastAPI's HTTP span, the ROOT of the trace:
+        # Langfuse shows the root's input/output as the trace's, so the question
+        # goes in and the answer out (below), not the raw request.
+        tracing.annotate({"langfuse.trace.name": "answer-question"})
+        tracing.set_io(input=body.question)
         with (
             tracing.session(thread_id),
             tracing.root_span(
@@ -215,6 +225,7 @@ def create_app(
             tracing.annotate(
                 {"output.value": result.answer, "docrag.status": result.status}
             )
+        tracing.set_io(output=result.answer)  # back on the root span
         store.append(
             thread_id,
             Message(role="user", content=body.question),

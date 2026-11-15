@@ -229,6 +229,7 @@ class QdrantStore:
         tracing.annotate_documents(
             "retrieval.documents", tracing.hit_docs(hits), max_content=200
         )
+        tracing.set_io(input=query_text, output=tracing.ranked(hits))
         return hits
 
 

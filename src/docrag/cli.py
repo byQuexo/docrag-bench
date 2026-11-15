@@ -21,7 +21,7 @@ from docrag.shared.cache import Cache
 from docrag.shared.config import ExperimentConfig
 from docrag.shared.logs import setup_logging
 from docrag.shared.settings import Settings, get_settings
-from docrag.shared.tracing import LangfuseTarget, setup_tracing
+from docrag.shared.tracing import LangfuseTarget, TraceContext, setup_tracing
 
 log = logging.getLogger("docrag")
 
@@ -35,7 +35,16 @@ def _setup_tracing(settings: Settings, service_name: str) -> None:
             settings.langfuse_public_key,
             settings.langfuse_secret_key.get_secret_value(),
         )
-    setup_tracing(settings.otel_endpoint, service_name, langfuse=langfuse)
+    context = TraceContext(
+        environment=settings.environment,
+        release=settings.release,
+        # "docrag-api" -> tag "api": which entry point produced the trace.
+        tags=(service_name.removeprefix("docrag-"),),
+        capture_content=settings.trace_content,
+    )
+    setup_tracing(
+        settings.otel_endpoint, service_name, langfuse=langfuse, context=context
+    )
 
 
 def _cmd_ingest(args: argparse.Namespace) -> None:
