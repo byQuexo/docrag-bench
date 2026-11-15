@@ -166,8 +166,14 @@ jobs:
       - uses: helm/kind-action@v1.15.2
         with:
           cluster_name: docrag
-      - name: Load image into kind
-        run: kind load docker-image docrag-bench:kind --name docrag
+      # Load BOTH images into the node, so nothing is pulled inside the cluster:
+      # the kind node pulls from Docker Hub anonymously, and shared runner IPs
+      # hit its rate limit now and then (one run failed with ImagePullBackOff).
+      - name: Load images into kind
+        run: |
+          QDRANT=qdrant/qdrant:v1.20.0-unprivileged # same tag as deploy/k8s/base
+          for i in 1 2 3; do docker pull -q "$QDRANT" && break; sleep $((i * 10)); done
+          kind load docker-image docrag-bench:kind "$QDRANT" --name docrag
       - name: Deploy
         run: kubectl apply -k deploy/k8s/overlays/kind
       - name: Smoke test
@@ -176,5 +182,6 @@ jobs:
         if: failure()
         run: |
           kubectl -n docrag get all
+          kubectl -n docrag get events --sort-by=.lastTimestamp
           kubectl -n docrag describe pods
           kubectl -n docrag logs deployment/docrag-api --tail=100 || true
